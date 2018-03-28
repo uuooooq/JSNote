@@ -3,10 +3,11 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
 
-class ProfileScreen extends React.Component {
+export default class ProfileScreen extends React.Component {
     static navigationOptions = {
       title: 'Profile Detail',
     };
