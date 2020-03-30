@@ -1,0 +1,30 @@
+PODS:
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - GCDWebServer (3.5.3):
+    - GCDWebServer/Core (= 3.5.3)
+  - GCDWebServer/Core (3.5.3)
+  - GCDWebServer/WebDAV (3.5.3):
+    - GCDWebServer/Core
+  - GCDWebServer/WebUploader (3.5.3):
+    - GCDWebServer/Core
+
+DEPENDENCIES:
+  - FMDB
+  - GCDWebServer (~> 3.0)
+  - GCDWebServer/WebDAV (~> 3.0)
+  - GCDWebServer/WebUploader (~> 3.0)
+
+SPEC REPOS:
+  trunk:
+    - FMDB
+    - GCDWebServer
+
+SPEC CHECKSUMS:
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  GCDWebServer: c0ab22c73e1b84f358d1e2f74bf6afd1c60829f2
+
+PODFILE CHECKSUM: 154ca760d43d34a68c9812e3398beb7b15c31e77
+
+COCOAPODS: 1.8.4
