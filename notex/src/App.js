@@ -13,6 +13,8 @@ import 'antd/dist/antd.css';
 const { Content } = Layout;
 const { Search } = Input;
 
+const httpPre = 'http://'+window.location.host
+
 // var listData = [];
 // for (let i = 0; i < 23; i++) {
 //   listData.push({
@@ -146,7 +148,7 @@ export default class App extends React.Component {
   }
 
   fetchData() {
-    fetch('http://192.168.1.6:8080/hello?start=0&end=100')
+    fetch(httpPre+'/hello?start=0&end=100')
       .then((response) => {
         if (!response.ok) throw new Error(response.status);
         else return response.json();
@@ -227,7 +229,7 @@ export default class App extends React.Component {
     // }).then(function(response){
     //     console.log(response);
     // })
-    let url = "http://192.168.1.6:8080";
+    let url = httpPre//"http://192.168.1.6:8080";
     let formData = new FormData();
     //formData.append('c','login');
     formData.append('value', valueStr);
@@ -275,7 +277,7 @@ export default class App extends React.Component {
                     <Radio.Group onChange={this.onChange.bind(this)} value={this.state.value}>
                       <Radio value={1}>文本</Radio>
                       <Radio value={2}>文件</Radio>
-                      <Radio value={3}>代码</Radio>
+              <Radio value={3}>代码{httpPre}</Radio>
                     </Radio.Group>
                   </div>
                   <Button>取消(ctrl+c)</Button>
