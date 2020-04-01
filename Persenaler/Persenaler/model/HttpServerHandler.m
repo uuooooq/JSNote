@@ -10,7 +10,8 @@
 #import "DataSource.h"
 
 @interface HttpServerHandler (){
-    GCDWebServer* _webServer;
+    //GCDWebServer* _webServer;
+    GCDWebDAVServer* davServer;
 }
 
 @property(nonatomic,strong) DataSource *dataSource;
@@ -23,8 +24,14 @@
     self.dataSource = [DataSource new];
     [self.dataSource loadRecord];
     
+    //NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+
+    
     NSString *rootDir = [[NSBundle mainBundle] pathForResource:@"website" ofType:nil];
     
+//    davServer = [[GCDWebDAVServer alloc] initWithUploadDirectory:rootDir];
+//    [davServer start];
+//    NSLog(@"Visit %@ in your WebDAV client", davServer.serverURL);
     //创建http服务器
     _webServer = [[GCDWebServer alloc] init];
     [_webServer addGETHandlerForBasePath:@"/" directoryPath:rootDir indexFilename:@"index.html" cacheAge:3600 allowRangeRequests:YES];
@@ -83,6 +90,10 @@
     [_webServer startWithPort:8080 bonjourName:nil];
     NSLog(@"Visit %@ in your web browser", _webServer.serverURL);
     
+}
+
+-(NSString*)getAddr{
+    return [_webServer.serverURL absoluteString];
 }
 
 @end

@@ -1,9 +1,11 @@
 #import "SceneDelegate.h"
 #import "HttpServerHandler.h"
+#import "ViewController.h"
 
-@interface SceneDelegate ()
+@interface SceneDelegate ()<GCDWebServerDelegate>
 {
     HttpServerHandler *httpServerHandler;
+    ViewController *vc;
 }
 
 @end
@@ -17,6 +19,18 @@
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
     httpServerHandler = [HttpServerHandler new];
     [httpServerHandler startServer];
+    httpServerHandler.webServer.delegate = self;
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.windowScene = (UIWindowScene*)scene;
+    vc = [ViewController new];
+    NSLog(@"%@",[httpServerHandler getAddr]);
+    //vc.title = [httpServerHandler getAddr];
+    UINavigationController *rootNavgationController = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = rootNavgationController;
+    //rootNavgationController.title = [httpServerHandler getAddr];
+    [self.window makeKeyAndVisible];
+    
+
 }
 
 
@@ -50,6 +64,12 @@
     // Called as the scene transitions from the foreground to the background.
     // Use this method to save data, release shared resources, and store enough scene-specific state information
     // to restore the scene back to its current state.
+}
+
+// server delegate
+- (void)webServerDidStart:(GCDWebServer*)server{
+    NSLog(@"---%@",[httpServerHandler getAddr]);
+    vc.title = [httpServerHandler getAddr];
 }
 
 
