@@ -12,6 +12,7 @@
 
 @interface ViewController ()
 {
+    UIView *bottomView;
     
 }
 
@@ -49,7 +50,9 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    self.shuKucollectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+    CGRect collectonFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-50);
+    
+    self.shuKucollectionView = [[UICollectionView alloc] initWithFrame:collectonFrame collectionViewLayout:layout];
     
     self.shuKucollectionView.delegate = self;
     self.shuKucollectionView.dataSource = self;
@@ -62,6 +65,11 @@
     //self.shuKucollectionView.collectionViewLayout = UICollectionViewFlowLayout;
     
     [self.view addSubview: self.shuKucollectionView];
+    
+    
+    bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50)];
+    bottomView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:bottomView];
     
 }
 
@@ -88,10 +96,5 @@
     
     return CGSizeMake(screenWidth, 40);
 }
-
-
-
-
-
 
 @end
