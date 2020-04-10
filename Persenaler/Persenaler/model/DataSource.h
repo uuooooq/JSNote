@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSArray*)getRecordsFrom:(int)start to:(int)end;
 -(void)loadRecord;
 
+-(NSArray*)getSearchWith:(NSString*)key;
+
 @end
 
 NS_ASSUME_NONNULL_END

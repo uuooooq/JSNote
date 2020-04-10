@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray *)getKeyValuesFrom:(int)start to:(int)end;
 
 - (NSArray *)getKeyValuesStringFrom:(int)start to:(int)end;
+
+-(NSArray*)getKeyValuesWith:(NSString*)key;
 @end
 
 NS_ASSUME_NONNULL_END

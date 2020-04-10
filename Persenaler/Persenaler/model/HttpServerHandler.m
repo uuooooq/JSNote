@@ -10,7 +10,6 @@
 #import "DataSource.h"
 
 @interface HttpServerHandler (){
-    //GCDWebServer* _webServer;
     GCDWebDAVServer* davServer;
 }
 
@@ -23,19 +22,32 @@
 -(void)startServer{
     self.dataSource = [DataSource new];
     [self.dataSource loadRecord];
+     _webServer = [[GCDWebServer alloc] init];
+    [self startIndexServices];
+    [self startFetchListApi];
+    [self startAddItemApi];
+    [self startSearchApi];
     
-    //NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    // 启动服务器在8080端口
+    [_webServer startWithPort:8080 bonjourName:nil];
+    NSLog(@"Visit %@ in your web browser", _webServer.serverURL);
+    
+}
 
+-(void)startIndexServices{
     
     NSString *rootDir = [[NSBundle mainBundle] pathForResource:@"website" ofType:nil];
-    
-//    davServer = [[GCDWebDAVServer alloc] initWithUploadDirectory:rootDir];
-//    [davServer start];
-//    NSLog(@"Visit %@ in your WebDAV client", davServer.serverURL);
-    //创建http服务器
-    _webServer = [[GCDWebServer alloc] init];
     [_webServer addGETHandlerForBasePath:@"/" directoryPath:rootDir indexFilename:@"index.html" cacheAge:3600 allowRangeRequests:YES];
     
+}
+
+// 获取总共条目数
+-(void)startFetchListCout{
+    
+}
+
+// 获取指定条目数据
+-(void)startFetchListApi{
     __weak typeof(self) weakSelf = self;
     [_webServer addHandlerForMethod:@"GET" path:@"/hello" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse * _Nullable(__kindof GCDWebServerRequest * _Nonnull request) {
         NSLog(@"%@ %@",[request.query objectForKey:@"start"],[request.query objectForKey:@"end"]);
@@ -44,8 +56,7 @@
         
         NSArray * obj = [weakSelf.dataSource getRecordsFrom:start to:end];
         GCDWebServerDataResponse* response = [GCDWebServerDataResponse responseWithJSONObject:obj];
-        //response = [GCDWebServerDataResponse responseWithStatusCode:200];
-        //响应头设置，跨域请求需要设置，只允许设置的域名或者ip才能跨域访问本接口）
+
         [response setValue:@"*" forAdditionalHeader:@"Access-Control-Allow-Origin"];
         [response setValue:@"Content-Type" forAdditionalHeader:@"Access-Control-Allow-Headers"];
         //设置options的实效性（我设置了12个小时=43200秒）
@@ -54,8 +65,12 @@
         
         return response;
     }];
+}
+
+// 添加数据接口
+-(void)startAddItemApi{
     
-    
+    __weak typeof(self) weakSelf = self;
     [_webServer addHandlerForMethod:@"POST" path:@"/" requestClass:[GCDWebServerMultiPartFormRequest class] processBlock:^GCDWebServerResponse * _Nullable(__kindof GCDWebServerRequest * _Nonnull request) {
         
         NSArray *arr = [(GCDWebServerMultiPartFormRequest*)request arguments];
@@ -85,11 +100,26 @@
         [response setStatusCode:200];
         return response;
     }];
-    
-    // Start server on port 8080
-    [_webServer startWithPort:8080 bonjourName:nil];
-    NSLog(@"Visit %@ in your web browser", _webServer.serverURL);
-    
+}
+
+// 匹配查找
+-(void)startSearchApi{
+    __weak typeof(self) weakSelf = self;
+    [_webServer addHandlerForMethod:@"GET" path:@"/search" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse * _Nullable(__kindof GCDWebServerRequest * _Nonnull request) {
+        NSLog(@"%@",[request.query objectForKey:@"searchWord"]);
+        NSString* searchWord = [request.query objectForKey:@"searchWord"];
+        
+        NSArray * obj = [weakSelf.dataSource getSearchWith:searchWord];
+        GCDWebServerDataResponse* response = [GCDWebServerDataResponse responseWithJSONObject:obj];
+
+        [response setValue:@"*" forAdditionalHeader:@"Access-Control-Allow-Origin"];
+        [response setValue:@"Content-Type" forAdditionalHeader:@"Access-Control-Allow-Headers"];
+        //设置options的实效性（我设置了12个小时=43200秒）
+        [response setValue:@"43200" forAdditionalHeader:@"Access-Control-max-age"];
+        [response setStatusCode:200];
+        
+        return response;
+    }];
 }
 
 -(NSString*)getAddr{

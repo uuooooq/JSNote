@@ -64,6 +64,14 @@ static DataSource *_DBCtl = nil;
     return [[NSArray alloc] init];
 }
 
+-(NSArray*)getSearchWith:(NSString*)key{
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getKeyValuesWith:key];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];}
+
 -(void)addRecord:(DbKeyValue*)value{
     [[DataBase sharedDataBase] addKeyValue:value];
     //if ([self.recordArr count] <101) {

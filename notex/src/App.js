@@ -7,8 +7,8 @@ import 'antd/dist/antd.css';
 const { Content } = Layout;
 
 //const httpPre = 'http://'+window.location.host //http://192.168.1.103:8080
-const httpPre =  'http://192.168.1.103:8080'
-  
+const httpPre = 'http://192.168.1.103:8080'
+
 
 var listData = [];
 
@@ -77,6 +77,15 @@ export default class App extends React.Component {
       })
       console.log('you press key keydown ' + e.keyCode)
     }
+    if (70 == e.keyCode && e.ctrlKey) {
+        window.event.preventDefault()//
+        window.event.cancelBubble = true//IE
+        this.setState({
+          myData: [],
+        })
+        this.searchData()
+      console.log('you press key keydown ' + e.keyCode)
+    }
   }
 
   handleChange(e) {
@@ -88,6 +97,10 @@ export default class App extends React.Component {
 
   onSave(e) {
 
+    if(this.state.inputValue.length <1){
+      return;
+    }
+
     this.sendToServer(this.state.inputValue)
     //this.state.myData.
     if (tmpListData) {
@@ -98,7 +111,7 @@ export default class App extends React.Component {
   }
 
   fetchData() {
-    fetch(httpPre+'/hello?start=0&end=100')
+    fetch(httpPre + '/hello?start=0&end=100')
       .then((response) => {
         if (!response.ok) throw new Error(response.status);
         else return response.json();
@@ -112,6 +125,21 @@ export default class App extends React.Component {
         this.setState({ requestFailed: true });
       });
 
+  }
+
+  searchData(){
+    fetch(httpPre+'/search?searchWord='+this.state.inputValue).then((response) => {
+      if (!response.ok) throw new Error(response.status);
+      else return response.json();
+    })
+    .then((data) =>{
+      this.setState({ myData: data });
+      console.log(data);
+    })
+    .catch((error) => {
+      console.log('error: ' + error);
+      this.setState({ requestFailed: true });
+    });
   }
 
   sendToServer(valueStr) {

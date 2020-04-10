@@ -275,5 +275,36 @@ static DataBase *_DBCtl = nil;
     }
 }
 
+-(NSArray*)getKeyValuesWith:(NSString*)key{
+    [_db open];
+    NSMutableArray *arr = [NSMutableArray new];
+    
+    NSString *selectSQL = [NSString stringWithFormat:@"SELECT * FROM kvTb WHERE value like '%%%@%%'",key];
+
+    FMResultSet *res = [_db executeQuery:selectSQL];
+    
+    while ([res next]) {
+        NSMutableDictionary *tmpDict = [[NSMutableDictionary alloc] init];
+        //keyValue.key = [res stringForColumn:@"key"];
+        [tmpDict setObject:[res stringForColumn:@"key"] forKey:@"key"];
+        //keyValue.value = [res stringForColumn:@"value"];
+        [tmpDict setObject:[res stringForColumn:@"value"] forKey:@"value"];
+        //keyValue.createTime = [res intForColumn:@"createTime"];
+        [tmpDict setObject:[res stringForColumn:@"createTime"] forKey:@"createTime"];
+        //keyValue.extCategory = [res stringForColumn:@"extCategory"];
+        [tmpDict setObject:[res stringForColumn:@"extCategory"] forKey:@"extCategory"];
+        [arr addObject:tmpDict];
+    }
+    
+    //[_db close];
+    
+    if ([arr count]>0) {
+        return arr;
+    }
+    else{
+        return nil;
+    }
+}
+
 
 @end
