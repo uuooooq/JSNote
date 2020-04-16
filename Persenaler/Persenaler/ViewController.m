@@ -9,8 +9,9 @@
 #import "ViewController.h"
 #import "BaseRecordCell.h"
 #import "DataSource.h"
+#import <TZImagePickerController/TZImagePickerController.h>
 
-@interface ViewController ()
+@interface ViewController ()<TZImagePickerControllerDelegate>
 {
     UIView *bottomView;
     
@@ -69,7 +70,28 @@
     
     bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50)];
     bottomView.backgroundColor = [UIColor whiteColor];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
+    [btn setTitle:@"图片" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(addPhotoAction) forControlEvents:UIControlEventTouchUpInside];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [bottomView addSubview:btn];
+
     [self.view addSubview:bottomView];
+    
+    
+}
+
+#pragma mark action method
+-(void)addPhotoAction{
+    
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
+
+    // You can get the photos by block, the same as by delegate.
+    // 你可以通过block或者代理，来得到用户选择的照片.
+    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+
+    }];
+    [self presentViewController:imagePickerVc animated:YES completion:nil];
     
 }
 

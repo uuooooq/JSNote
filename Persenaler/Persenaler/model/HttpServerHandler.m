@@ -27,19 +27,32 @@
     [self startFetchListApi];
     [self startAddItemApi];
     [self startSearchApi];
+    [self startResServices];
     
     // 启动服务器在8080端口
     [_webServer startWithPort:8080 bonjourName:nil];
     NSLog(@"Visit %@ in your web browser", _webServer.serverURL);
+    
+    
     
 }
 
 -(void)startIndexServices{
     
     NSString *rootDir = [[NSBundle mainBundle] pathForResource:@"website" ofType:nil];
-    [_webServer addGETHandlerForBasePath:@"/" directoryPath:rootDir indexFilename:@"index.html" cacheAge:3600 allowRangeRequests:YES];
+    [_webServer addGETHandlerForBasePath:@"/" directoryPath:rootDir indexFilename:nil cacheAge:3600 allowRangeRequests:YES];
     
 }
+
+-(void)startResServices{
+    
+//    NSString *rootDir = [[NSBundle mainBundle] pathForResource:@"files" ofType:nil];
+//    [_webServer addGETHandlerForBasePath:@"/res" directoryPath:rootDir indexFilename:nil cacheAge:3600 allowRangeRequests:YES];
+//
+    
+//    [webServer addGETHandlerForBasePath:@"/" directoryPath:NSHomeDirectory() indexFilename:nil cacheAge:3600 allowRangeRequests:YES];
+}
+
 
 // 获取总共条目数
 -(void)startFetchListCout{

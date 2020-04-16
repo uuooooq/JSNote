@@ -10,4 +10,5 @@ target 'Persenaler' do
   pod "GCDWebServer/WebUploader", "~> 3.0"
   pod "GCDWebServer/WebDAV", "~> 3.0"
   pod 'FMDB'
+  pod 'TZImagePickerController' 
 end

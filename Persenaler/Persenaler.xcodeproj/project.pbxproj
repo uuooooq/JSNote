@@ -10,6 +10,7 @@
 		B5EB15EAF707BF165B96B3DF /* Pods_Persenaler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40DB189454420C72E85AD78A /* Pods_Persenaler.framework */; };
 		E65609D424336BA10089B3C6 /* DbKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E65609D024336BA10089B3C6 /* DbKeyValue.m */; };
 		E65609D524336BA10089B3C6 /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E65609D124336BA10089B3C6 /* DataBase.m */; };
+		E66E89252446FC1500F1DABC /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = E66E89242446FC1500F1DABC /* test.png */; };
 		E67A47E32401ED9100FA357B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E67A47E22401ED9100FA357B /* AppDelegate.m */; };
 		E67A47E62401ED9100FA357B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E67A47E52401ED9100FA357B /* SceneDelegate.m */; };
 		E67A47E92401ED9100FA357B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E67A47E82401ED9100FA357B /* ViewController.m */; };
@@ -30,6 +31,7 @@
 		E65609D124336BA10089B3C6 /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
 		E65609D224336BA10089B3C6 /* DbKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DbKeyValue.h; sourceTree = "<group>"; };
 		E65609D324336BA10089B3C6 /* DataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBase.h; sourceTree = "<group>"; };
+		E66E89242446FC1500F1DABC /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		E67A47DE2401ED9100FA357B /* Persenaler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Persenaler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E67A47E12401ED9100FA357B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E67A47E22401ED9100FA357B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -81,6 +83,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E66E89212446E6D800F1DABC /* files */ = {
+			isa = PBXGroup;
+			children = (
+				E66E89242446FC1500F1DABC /* test.png */,
+			);
+			path = files;
+			sourceTree = "<group>";
+		};
 		E67A47D52401ED9100FA357B = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +112,7 @@
 		E67A47E02401ED9100FA357B /* Persenaler */ = {
 			isa = PBXGroup;
 			children = (
+				E66E89212446E6D800F1DABC /* files */,
 				E67A480A24035C7200FA357B /* views */,
 				E67A47FD2403524900FA357B /* model */,
 				E67A47FB240200E100FA357B /* website */,
@@ -204,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E67A47F12401ED9500FA357B /* LaunchScreen.storyboard in Resources */,
+				E66E89252446FC1500F1DABC /* test.png in Resources */,
 				E67A47EE2401ED9500FA357B /* Assets.xcassets in Resources */,
 				E67A47FC240200E100FA357B /* website in Resources */,
 				E67A47EC2401ED9100FA357B /* Main.storyboard in Resources */,
