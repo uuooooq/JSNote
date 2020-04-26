@@ -7,7 +7,8 @@ import 'antd/dist/antd.css';
 const { Content } = Layout;
 
 //const httpPre = 'http://'+window.location.host //http://192.168.1.103:8080
-const httpPre = 'http://192.168.1.103:8080'
+const httpPre = 'http://192.168.1.4:8080'
+const imgPre = httpPre+'/file?imageName='
 
 
 var listData = [];
@@ -166,12 +167,26 @@ export default class App extends React.Component {
   }
 
   createTextDisplay(value) {
-    return (
-      <div>
-        <pre>{value}</pre>
+
+    if(value.type == '2' || value.type.inputValue == 2){
+      return(
+        <div>
+        <img height={360} src={imgPre+value.value} />
       </div>
-    );
+      )
+    }
+    else{
+      return (
+        <div>
+          <pre>{value.value}</pre>
+          
+        </div>
+      );
+    }
+
+
   }
+
 
   render() {
 
@@ -198,9 +213,9 @@ export default class App extends React.Component {
                 dataSource={this.state.myData}
                 size="large"
                 renderItem={item => (
-                  <div style={{ display: 'flex', flex: '1', flexDirection: 'column' }}>
+                  <div style={{ display: 'flex', flex: '1', flexDirection: 'column',marginRight:200,marginLeft:200 }}>
                     <div style={{ display: 'flex', flex: '1', padding: '10px' }}>
-                      <pre>{item.value}</pre>
+                      {this.createTextDisplay(item)}
                     </div>
 
                     <Divider></Divider>
@@ -225,3 +240,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+//<pre>{item.value}</pre>
