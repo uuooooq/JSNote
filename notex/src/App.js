@@ -6,8 +6,8 @@ import TextareaAutosize from 'react-textarea-autosize';
 import 'antd/dist/antd.css';
 const { Content } = Layout;
 
-const httpPre = 'http://'+window.location.host //http://192.168.1.103:8080
-//const httpPre = 'http://192.168.1.4:8080'
+const httpPre = 'http://'+window.location.host 
+//const httpPre = 'http://192.168.1.12:8080'
 const imgPre = httpPre+'/file?imageName='
 
 
