@@ -88,7 +88,7 @@ static DataBase *_DBCtl = nil;
     
     if (![self isTableOK:@"kvTb"]) {
         NSLog(@"---------- start create kvTb");
-        NSString *keyValueTbSql = @"CREATE TABLE 'kvTb' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT,'createTime' INTEGER,'extCategory' TEXT)";
+        NSString *keyValueTbSql = @"CREATE TABLE 'kvTb' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT,'type' INTEGER,'createTime' INTEGER,'extCategory' TEXT)";
         [_db executeUpdate:keyValueTbSql];
     }
     //[_db close];
@@ -135,7 +135,7 @@ static DataBase *_DBCtl = nil;
 //        [_db executeUpdate:@"UPDATE 'kvTb' SET value = ?  WHERE key = ? ",keyValue.value,keyValue.key];
 //    }
 //    else{
-        [_db executeUpdate:@"INSERT INTO kvTb(key,value,createTime,extCategory) values(?, ?, ?, ?)",keyValue.key,keyValue.value,@(keyValue.createTime),keyValue.extCategory];
+        [_db executeUpdate:@"INSERT INTO kvTb(key,value,type,createTime,extCategory) values(?, ?, ?,?, ?)",keyValue.key,keyValue.value,@(keyValue.type),@(keyValue.createTime),keyValue.extCategory];
 //    }
     
     
@@ -207,6 +207,7 @@ static DataBase *_DBCtl = nil;
         
         keyValue.key = [res stringForColumn:@"key"];
         keyValue.value = [res stringForColumn:@"value"];
+        keyValue.type = [res intForColumn:@"type"];
         keyValue.createTime = [res intForColumn:@"createTime"];
         keyValue.extCategory = [res stringForColumn:@"extCategory"];
     }
@@ -233,6 +234,7 @@ static DataBase *_DBCtl = nil;
         keyValue.value = [res stringForColumn:@"value"];
         keyValue.createTime = [res intForColumn:@"createTime"];
         keyValue.extCategory = [res stringForColumn:@"extCategory"];
+        keyValue.type = [res intForColumn:@"type"];
         [arr addObject:keyValue];
     }
     
@@ -254,14 +256,11 @@ static DataBase *_DBCtl = nil;
     
     while ([res next]) {
         NSMutableDictionary *tmpDict = [[NSMutableDictionary alloc] init];
-        //keyValue.key = [res stringForColumn:@"key"];
         [tmpDict setObject:[res stringForColumn:@"key"] forKey:@"key"];
-        //keyValue.value = [res stringForColumn:@"value"];
         [tmpDict setObject:[res stringForColumn:@"value"] forKey:@"value"];
-        //keyValue.createTime = [res intForColumn:@"createTime"];
         [tmpDict setObject:[res stringForColumn:@"createTime"] forKey:@"createTime"];
-        //keyValue.extCategory = [res stringForColumn:@"extCategory"];
         [tmpDict setObject:[res stringForColumn:@"extCategory"] forKey:@"extCategory"];
+        [tmpDict setObject:[res stringForColumn:@"type"] forKey:@"type"];
         [arr addObject:tmpDict];
     }
     

@@ -25,12 +25,30 @@
     vc = [ViewController new];
     NSLog(@"%@",[httpServerHandler getAddr]);
     //vc.title = [httpServerHandler getAddr];
+    //[self setDir];
     UINavigationController *rootNavgationController = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = rootNavgationController;
     //rootNavgationController.title = [httpServerHandler getAddr];
     [self.window makeKeyAndVisible];
     
 
+}
+
+-(void)setDir{
+    
+    NSString *rootDir = [[NSBundle mainBundle] pathForResource:@"website" ofType:nil];
+    
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,  NSUserDomainMask, YES);
+
+    NSString *docPath = [path objectAtIndex:0];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+
+    NSString *finalPath = [docPath stringByAppendingPathComponent:@"index.html"];
+    if (![fileManager fileExistsAtPath:finalPath]) {
+        [fileManager copyItemAtPath:rootDir toPath:docPath error:nil];
+        NSLog(@"**************** copy did");
+    }
 }
 
 

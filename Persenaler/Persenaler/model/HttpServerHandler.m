@@ -8,9 +8,13 @@
 
 #import "HttpServerHandler.h"
 #import "DataSource.h"
+#import "ZDWUtility.h"
+
+
 
 @interface HttpServerHandler (){
     GCDWebDAVServer* davServer;
+    
 }
 
 @property(nonatomic,strong) DataSource *dataSource;
@@ -22,12 +26,17 @@
 -(void)startServer{
     self.dataSource = [DataSource new];
     [self.dataSource loadRecord];
+    //__weak typeof(self) tmpSelf = self;
+    
      _webServer = [[GCDWebServer alloc] init];
     [self startIndexServices];
     [self startFetchListApi];
     [self startAddItemApi];
     [self startSearchApi];
-    [self startResServices];
+    //[self startResServices];
+    [self startDirServices];
+    //[self startStaticServices];
+    [self startTestServices];
     
     // 启动服务器在8080端口
     [_webServer startWithPort:8080 bonjourName:nil];
@@ -37,20 +46,62 @@
     
 }
 
--(void)startIndexServices{
+-(void)startDirServices{
     
-    NSString *rootDir = [[NSBundle mainBundle] pathForResource:@"website" ofType:nil];
-    [_webServer addGETHandlerForBasePath:@"/" directoryPath:rootDir indexFilename:nil cacheAge:3600 allowRangeRequests:YES];
-    
+//    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,  NSUserDomainMask, YES);
+//
+//    NSString *docPath = [path objectAtIndex:0];
+//
+//    //NSString *rootDir = [[NSBundle mainBundle] pathForResource:@"website" ofType:nil];
+//    [_webServer addGETHandlerForBasePath:@"/Files" directoryPath:docPath indexFilename:nil cacheAge:3600 allowRangeRequests:YES];
+//
 }
 
--(void)startResServices{
+-(void)startIndexServices{
+        
+    NSString *rootDir = [[NSBundle mainBundle] pathForResource:@"website" ofType:nil];
+    [_webServer addGETHandlerForBasePath:@"/" directoryPath:rootDir indexFilename:@"index.html" cacheAge:3600 allowRangeRequests:YES];
+}
+
+-(void)startTestServices{
     
-//    NSString *rootDir = [[NSBundle mainBundle] pathForResource:@"files" ofType:nil];
-//    [_webServer addGETHandlerForBasePath:@"/res" directoryPath:rootDir indexFilename:nil cacheAge:3600 allowRangeRequests:YES];
-//
+    __weak typeof(self) weakSelf = self;
+    [_webServer addHandlerForMethod:@"GET" path:@"/file" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse * _Nullable(__kindof GCDWebServerRequest * _Nonnull request) {
+        
+        NSLog(@"==================%@",[request.query objectForKey:@"imageName"]);
+        NSString* imageName = [request.query objectForKey:@"imageName"];
+        NSData *obj = [NSData dataWithContentsOfFile:[weakSelf getImagePath:imageName]];
+        GCDWebServerDataResponse* response = [GCDWebServerDataResponse responseWithData:obj contentType:@"image/png"];
+
+        [response setStatusCode:200];
+        
+        return response;
+    }];
+}
+
+- (NSString*)getImagePath:(NSString *)name {
+
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,  NSUserDomainMask, YES);
+
+    NSString *docPath = [path objectAtIndex:0];
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+
+    NSString *finalPath = [docPath stringByAppendingPathComponent:name];
     
-//    [webServer addGETHandlerForBasePath:@"/" directoryPath:NSHomeDirectory() indexFilename:nil cacheAge:3600 allowRangeRequests:YES];
+//    NSString *finalPath = [[NSBundle mainBundle] pathForResource:@"website" ofType:nil];
+//    finalPath = [finalPath stringByAppendingFormat:@"/data/files/test2.png"];
+
+    
+
+    // Remove the filename and create the remaining path
+
+    [fileManager createDirectoryAtPath:[finalPath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:nil error:nil];//stringByDeletingLastPathComponent是关键
+
+    
+
+    return finalPath;
+
 }
 
 
@@ -80,6 +131,13 @@
     }];
 }
 
+// 添加上传文件接口
+
+-(void)startAddFilepi{
+    //__weak typeof(self) weakSelf = self;
+    
+}
+
 // 添加数据接口
 -(void)startAddItemApi{
     
@@ -88,16 +146,19 @@
         
         NSArray *arr = [(GCDWebServerMultiPartFormRequest*)request arguments];
         for (GCDWebServerMultiPartArgument *argument in arr) {
+            NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
+            [extCategoryDic setObject:@"VT_TEXT" forKey:@"type"];
             DbKeyValue * keyValue = [DbKeyValue new];
             keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
             keyValue.value = argument.string;
             keyValue.createTime =[DbKeyValue getCurrentTime];
-            keyValue.extCategory = @"text";
+            keyValue.type = VT_TEXT;
+            //keyValue.extCategory = @"{}";
+            keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
             [weakSelf.dataSource addRecord:keyValue];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // UI更新代码
-                //[weakSelf.shuKucollectionView reloadData];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
             });
             
