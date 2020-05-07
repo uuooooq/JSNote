@@ -30,6 +30,7 @@
 /* Begin PBXFileReference section */
 		0AD43534560657615509498C /* Pods-Persenaler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.release.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.release.xcconfig"; sourceTree = "<group>"; };
 		40DB189454420C72E85AD78A /* Pods_Persenaler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Persenaler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E63368642462AF6B00FC0BEC /* note.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = note.md; sourceTree = "<group>"; };
 		E65609D024336BA10089B3C6 /* DbKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DbKeyValue.m; sourceTree = "<group>"; };
 		E65609D124336BA10089B3C6 /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
 		E65609D224336BA10089B3C6 /* DbKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DbKeyValue.h; sourceTree = "<group>"; };
@@ -138,6 +139,7 @@
 				E66E8929244BE4A800F1DABC /* ZUtitlity.h */,
 				E66E892B244DAE4F00F1DABC /* ZDWUtility.h */,
 				E66E892C244DAE4F00F1DABC /* ZDWUtility.m */,
+				E63368642462AF6B00FC0BEC /* note.md */,
 			);
 			path = Persenaler;
 			sourceTree = "<group>";

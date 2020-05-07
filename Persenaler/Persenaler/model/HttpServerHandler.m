@@ -12,8 +12,8 @@
 
 
 
-@interface HttpServerHandler (){
-    GCDWebDAVServer* davServer;
+@interface HttpServerHandler ()<GCDWebUploaderDelegate>{
+    //GCDWebDAVServer* davServer;
     
 }
 
@@ -28,7 +28,12 @@
     [self.dataSource loadRecord];
     //__weak typeof(self) tmpSelf = self;
     
-     _webServer = [[GCDWebServer alloc] init];
+    // _webServer = [[GCDWebServer alloc] init];
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,  NSUserDomainMask, YES);
+
+    NSString *docPath = [path objectAtIndex:0];
+    _webServer = [[GCDWebUploader alloc] initWithUploadDirectory:docPath];
+    _webServer.delegate = self;
     [self startIndexServices];
     [self startFetchListApi];
     [self startAddItemApi];
@@ -198,6 +203,45 @@
 
 -(NSString*)getAddr{
     return [_webServer.serverURL absoluteString];
+}
+
+#pragma mark upload file delegate
+
+/**
+ *  This method is called whenever a file has been downloaded.
+ */
+- (void)webUploader:(GCDWebUploader*)uploader didDownloadFileAtPath:(NSString*)path{
+    NSLog(@"********************* didDownloadFileAtPath %@",path);
+}
+
+/**
+ *  This method is called whenever a file has been uploaded.
+ */
+- (void)webUploader:(GCDWebUploader*)uploader didUploadFileAtPath:(NSString*)path{
+    NSLog(@"********************* didUploadFileAtPath %@",path);
+}
+
+/**
+ *  This method is called whenever a file or directory has been moved.
+ */
+- (void)webUploader:(GCDWebUploader*)uploader didMoveItemFromPath:(NSString*)fromPath toPath:(NSString*)toPath{
+    NSLog(@"********************* didMoveItemFromPath %@",fromPath);
+}
+
+/**
+ *  This method is called whenever a file or directory has been deleted.
+ */
+- (void)webUploader:(GCDWebUploader*)uploader didDeleteItemAtPath:(NSString*)path{
+    
+    NSLog(@"********************* fromPath %@",path);
+}
+
+/**
+ *  This method is called whenever a directory has been created.
+ */
+- (void)webUploader:(GCDWebUploader*)uploader didCreateDirectoryAtPath:(NSString*)path{
+    
+    NSLog(@"********************* didCreateDirectoryAtPath %@",path);
 }
 
 @end

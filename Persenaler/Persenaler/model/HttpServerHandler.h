@@ -7,16 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCDWebServer.h"
-#import "GCDWebServerDataResponse.h"
-#import "GCDWebServerMultiPartFormRequest.h"
-#import "GCDWebDAVServer.h"
+//#import "GCDWebServer.h"
+//#import "GCDWebServerDataResponse.h"
+//#import "GCDWebServerMultiPartFormRequest.h"
+//#import "GCDWebDAVServer.h"
+#import <GCDWebUploader.h>
+#import <GCDWebServer.h>
+#import <GCDWebServerDataResponse.h>
+#import <GCDWebServerMultiPartFormRequest.h>
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HttpServerHandler : NSObject
 
-@property(nonatomic,strong) GCDWebServer* webServer;;
+@property(nonatomic,strong) GCDWebUploader * webServer; //GCDWebServer* webServer;;
 
 -(void)startServer;
 
