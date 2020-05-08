@@ -1,15 +1,18 @@
 import React from 'react';
 import './App.css';
-import { Affix, Button, List, Divider, Radio } from 'antd';
+import { Affix, Button, List, Divider, Radio, Upload, message } from 'antd';
 import { Layout } from 'antd';
 import TextareaAutosize from 'react-textarea-autosize';
 import 'antd/dist/antd.css';
 const { Content } = Layout;
+//import { Upload, message, Button } from 'antd';
+//import { UploadOutlined } from '@ant-design/icons';
 
-const httpPre = 'http://'+window.location.host 
-//const httpPre = 'http://192.168.1.12:8080'
-const imgPre = httpPre+'/file?imageName='
 
+//const httpPre = 'http://'+window.location.host 
+const httpPre = 'http://192.168.1.12:8080'
+const imgPre = httpPre + '/file?imageName='
+const uploadUrl = httpPre + '/upload'
 
 var listData = [];
 
@@ -26,14 +29,20 @@ if (storage) {
 
 
 
-export default class App extends React.Component {
 
+export default class App extends React.Component {
 
   state = {
     value: 1,
     myData: [],
     inputValue: '',
   };
+
+
+  constructor(props){
+    super(props);
+    this.fileInput = React.createRef();
+  }
 
 
   onChange = e => {
@@ -79,12 +88,12 @@ export default class App extends React.Component {
       console.log('you press key keydown ' + e.keyCode)
     }
     if (70 == e.keyCode && e.ctrlKey) {
-        window.event.preventDefault()//
-        window.event.cancelBubble = true//IE
-        this.setState({
-          myData: [],
-        })
-        this.searchData()
+      window.event.preventDefault()//
+      window.event.cancelBubble = true//IE
+      this.setState({
+        myData: [],
+      })
+      this.searchData()
       console.log('you press key keydown ' + e.keyCode)
     }
   }
@@ -98,7 +107,7 @@ export default class App extends React.Component {
 
   onSave(e) {
 
-    if(this.state.inputValue.length <1){
+    if (this.state.inputValue.length < 1) {
       return;
     }
 
@@ -128,19 +137,19 @@ export default class App extends React.Component {
 
   }
 
-  searchData(){
-    fetch(httpPre+'/search?searchWord='+this.state.inputValue).then((response) => {
+  searchData() {
+    fetch(httpPre + '/search?searchWord=' + this.state.inputValue).then((response) => {
       if (!response.ok) throw new Error(response.status);
       else return response.json();
     })
-    .then((data) =>{
-      this.setState({ myData: data });
-      console.log(data);
-    })
-    .catch((error) => {
-      console.log('error: ' + error);
-      this.setState({ requestFailed: true });
-    });
+      .then((data) => {
+        this.setState({ myData: data });
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log('error: ' + error);
+        this.setState({ requestFailed: true });
+      });
   }
 
   sendToServer(valueStr) {
@@ -168,24 +177,52 @@ export default class App extends React.Component {
 
   createTextDisplay(value) {
 
-    if(value.type == '2' || value.type.inputValue == 2){
-      return(
+    if (value.type == '2' || value.type.inputValue == 2) {
+      return (
         <div>
-        <img height={360} src={imgPre+value.value} />
-      </div>
+          <img height={360} src={imgPre + value.value} />
+        </div>
       )
     }
-    else{
+    else {
       return (
         <div>
           <pre>{value.value}</pre>
-          
+
         </div>
       );
     }
 
 
   }
+
+  onSaveFile(e) {
+    alert('hello world');
+    var form = new FormData()
+
+    var fileObj = this.fileInput.current.files[0] //document.getElementById("file").files[0]
+
+    form.append("files[]", fileObj) //uploadFile为后台给的参数名
+
+    fetch(uploadUrl, {
+
+      method: 'POST',
+
+      body: form,
+
+    }).then(function (response) {
+
+        return response.json();
+        alert('上传成功')
+      }).then((e) => {
+
+        console.log(e)
+        alert('上传失败'+e)
+      })
+  }
+
+
+
 
 
   render() {
@@ -198,6 +235,11 @@ export default class App extends React.Component {
             <Affix offsetTop={0} >
               <div style={{ display: 'flex', width: '100%', flexDirection: 'column' }}>
                 <div style={{ display: 'flex', width: '100%', backgroundColor: 'white', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'baseline' }}>
+                  {/* <Button onClick={this.onSaveFile.bind(this)}>添加文件</Button> */}
+                  <div>
+                  <input type="file" name='file' ref={this.fileInput}/>
+                <input type="button" value="上传" onClick={this.onSaveFile.bind(this)}/>
+                  </div>
                   <Button>取消(ctrl+c)</Button>
                   <Button onClick={this.onSave.bind(this)} >保存(ctrl+s)</Button>
                 </div>
@@ -213,7 +255,7 @@ export default class App extends React.Component {
                 dataSource={this.state.myData}
                 size="large"
                 renderItem={item => (
-                  <div style={{ display: 'flex', flex: '1', flexDirection: 'column',marginRight:200,marginLeft:200 }}>
+                  <div style={{ display: 'flex', flex: '1', flexDirection: 'column', marginRight: 200, marginLeft: 200 }}>
                     <div style={{ display: 'flex', flex: '1', padding: '10px' }}>
                       {this.createTextDisplay(item)}
                     </div>
