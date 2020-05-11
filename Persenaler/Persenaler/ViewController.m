@@ -70,20 +70,33 @@
     [self.view addSubview: self.shuKucollectionView];
     
     
-    bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-60, self.view.frame.size.width, 60)];
-    bottomView.backgroundColor = [UIColor lightGrayColor];
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
-    [btn setTitle:@"图片" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(addPhotoAction) forControlEvents:UIControlEventTouchUpInside];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [bottomView addSubview:btn];
-
-    [self.view addSubview:bottomView];
+//    bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-60, self.view.frame.size.width, 60)];
+//    bottomView.backgroundColor = [UIColor whiteColor];
+//    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
+//    [btn setTitle:@"图片" forState:UIControlStateNormal];
+//    [btn addTarget:self action:@selector(addPhotoAction) forControlEvents:UIControlEventTouchUpInside];
+//    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [bottomView addSubview:btn];
+//
+//    UIButton *btnTxt = [[UIButton alloc] initWithFrame:CGRectMake(20+50, 10, 40, 40)];
+//    [btnTxt setTitle:@"文字" forState:UIControlStateNormal];
+//    [btnTxt addTarget:self action:@selector(addTextAction) forControlEvents:UIControlEventTouchUpInside];
+//    [btnTxt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [bottomView addSubview:btnTxt];
+//
+//    [self.view addSubview:bottomView];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPhotoAction)];
     
     
 }
 
 #pragma mark action method
+-(void)addTextAction{
+    
+    
+}
+
 -(void)addPhotoAction{
     
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
@@ -183,7 +196,7 @@
     int screenWidth = screenFrame.size.width;
     
     if (keyValue.type == VT_IMG) {
-        return CGSizeMake(screenWidth, screenWidth+10*2);
+        return CGSizeMake(screenWidth, screenWidth+100);
     }
 
     return CGSizeMake(screenWidth, 60);

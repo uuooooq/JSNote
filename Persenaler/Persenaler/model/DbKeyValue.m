@@ -13,7 +13,7 @@
 +(int)getCurrentTime{
     
     NSDate *datenow = [NSDate date];
-    return [datenow timeIntervalSince1970]*1000;
+    return [datenow timeIntervalSince1970];
 }
 
 

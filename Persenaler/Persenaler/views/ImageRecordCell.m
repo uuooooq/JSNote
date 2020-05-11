@@ -13,6 +13,7 @@
 @interface  ImageRecordCell(){
     
     UIImageView *imgView;
+    UILabel *descLbl;
     
 }
 
@@ -37,12 +38,16 @@
 //    title.font = [UIFont systemFontOfSize:14];
 //    [self.contentView addSubview:title];
     
-    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, self.frame.size.width - 20*2, self.frame.size.height - 10*2)];
-    imgView.contentMode = UIViewContentModeCenter;
+    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.width)];
+    imgView.contentMode = UIViewContentModeScaleAspectFill;
     imgView.clipsToBounds = YES;
     [self addSubview:imgView];
     
-    
+    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.size.width+10, self.frame.size.width-20, 30)];
+    descLbl.textColor = [UIColor lightGrayColor];
+    descLbl.textAlignment = NSTextAlignmentRight;
+    descLbl.font = [UIFont systemFontOfSize:14];
+    [self addSubview:descLbl];
 }
 
 -(void)updateRecord:(DbKeyValue*)value{
@@ -51,6 +56,14 @@
     NSString* filePath = [self getImagePath:value.value];
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
     imgView.image = image;
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:value.createTime];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //最结尾的Z表示的是时区，零时区表示+0000，东八区表示+0800
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    // 使用formatter转换后的date字符串变成了当前时区的时间
+    NSString *dateStr = [formatter stringFromDate:date];
+    descLbl.text = dateStr;
 }
 
 - (NSString*)getImagePath:(NSString *)name {
