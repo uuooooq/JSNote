@@ -12,7 +12,7 @@
 
 
 
-@interface HttpServerHandler ()<GCDWebUploaderDelegate>{
+@interface HttpServerHandler (){
     //GCDWebDAVServer* davServer;
     
 }
@@ -29,11 +29,13 @@
     //__weak typeof(self) tmpSelf = self;
     
     // _webServer = [[GCDWebServer alloc] init];
-    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,  NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 
-    NSString *docPath = [path objectAtIndex:0];
-    _webServer = [[GCDWebUploader alloc] initWithUploadDirectory:docPath];
-    _webServer.delegate = self;
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+
+    NSLog(@"path:   %@",documentsDirectory);
+    self.webServer = [[GCDWebUploader alloc] initWithUploadDirectory:documentsDirectory];
+    self.webServer.delegate = self;
     [self startIndexServices];
     [self startFetchListApi];
     [self startAddItemApi];
@@ -205,20 +207,44 @@
     return [_webServer.serverURL absoluteString];
 }
 
+-(void)saveFileItem:(NSString*)fileName{
+    
+    
+    if (!fileName || [fileName length]<1) {
+        return;
+    }
+    NSLog(@"开始记录文件到数据库");
+    NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
+    [extCategoryDic setObject:@"img" forKey:@"type"];
+    
+    DbKeyValue * keyValue = [DbKeyValue new];
+    keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
+    keyValue.value = fileName;
+    keyValue.createTime =[DbKeyValue getCurrentTime];
+    keyValue.type = VT_IMG;
+    keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+    [self.dataSource addRecord:keyValue];
+    //[weakSelf.dataSource addRecord:keyValue];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
+}
+
 #pragma mark upload file delegate
 
 /**
  *  This method is called whenever a file has been downloaded.
  */
 - (void)webUploader:(GCDWebUploader*)uploader didDownloadFileAtPath:(NSString*)path{
-    NSLog(@"********************* didDownloadFileAtPath %@",path);
+    NSLog(@"********************* didDownloadFileAtPath %@ %@",path,[path lastPathComponent]);
+    
 }
 
 /**
  *  This method is called whenever a file has been uploaded.
  */
 - (void)webUploader:(GCDWebUploader*)uploader didUploadFileAtPath:(NSString*)path{
-    NSLog(@"********************* didUploadFileAtPath %@",path);
+    NSLog(@"********************* didUploadFileAtPath %@ %@",path,[path lastPathComponent]);
+    [self saveFileItem:[path lastPathComponent]];
+    
 }
 
 /**
@@ -242,6 +268,11 @@
 - (void)webUploader:(GCDWebUploader*)uploader didCreateDirectoryAtPath:(NSString*)path{
     
     NSLog(@"********************* didCreateDirectoryAtPath %@",path);
+}
+
+- (void)webServerDidStart:(GCDWebServer*)server{
+    NSLog(@"---%@",[self getAddr]);
+    //vc.title = [self getAddr];
 }
 
 @end

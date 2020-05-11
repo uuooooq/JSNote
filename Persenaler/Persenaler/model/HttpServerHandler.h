@@ -19,7 +19,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HttpServerHandler : NSObject
+@interface HttpServerHandler : NSObject<GCDWebUploaderDelegate>
 
 @property(nonatomic,strong) GCDWebUploader * webServer; //GCDWebServer* webServer;;
 

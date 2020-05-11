@@ -19,7 +19,7 @@
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
     httpServerHandler = [HttpServerHandler new];
     [httpServerHandler startServer];
-    httpServerHandler.webServer.delegate = self;
+    //httpServerHandler.webServer.delegate = self;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.windowScene = (UIWindowScene*)scene;
     vc = [ViewController new];
@@ -85,10 +85,7 @@
 }
 
 // server delegate
-- (void)webServerDidStart:(GCDWebServer*)server{
-    NSLog(@"---%@",[httpServerHandler getAddr]);
-    vc.title = [httpServerHandler getAddr];
-}
+
 
 
 @end
