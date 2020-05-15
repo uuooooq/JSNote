@@ -10,6 +10,7 @@
 		B5EB15EAF707BF165B96B3DF /* Pods_Persenaler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40DB189454420C72E85AD78A /* Pods_Persenaler.framework */; };
 		E6336867246A9DDE00FC0BEC /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6336866246A9DDE00FC0BEC /* SearchViewController.m */; };
 		E633686A246E65C000FC0BEC /* BaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6336869246E65C000FC0BEC /* BaseListViewController.m */; };
+		E633686D246EC26100FC0BEC /* InputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E633686C246EC26100FC0BEC /* InputViewController.m */; };
 		E65609D424336BA10089B3C6 /* DbKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E65609D024336BA10089B3C6 /* DbKeyValue.m */; };
 		E65609D524336BA10089B3C6 /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E65609D124336BA10089B3C6 /* DataBase.m */; };
 		E66E89252446FC1500F1DABC /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = E66E89242446FC1500F1DABC /* test.png */; };
@@ -37,6 +38,8 @@
 		E6336866246A9DDE00FC0BEC /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		E6336868246E65C000FC0BEC /* BaseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseListViewController.h; sourceTree = "<group>"; };
 		E6336869246E65C000FC0BEC /* BaseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseListViewController.m; sourceTree = "<group>"; };
+		E633686B246EC26100FC0BEC /* InputViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputViewController.h; sourceTree = "<group>"; };
+		E633686C246EC26100FC0BEC /* InputViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputViewController.m; sourceTree = "<group>"; };
 		E65609D024336BA10089B3C6 /* DbKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DbKeyValue.m; sourceTree = "<group>"; };
 		E65609D124336BA10089B3C6 /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
 		E65609D224336BA10089B3C6 /* DbKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DbKeyValue.h; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 				E6336866246A9DDE00FC0BEC /* SearchViewController.m */,
 				E6336868246E65C000FC0BEC /* BaseListViewController.h */,
 				E6336869246E65C000FC0BEC /* BaseListViewController.m */,
+				E633686B246EC26100FC0BEC /* InputViewController.h */,
+				E633686C246EC26100FC0BEC /* InputViewController.m */,
 			);
 			path = Persenaler;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */,
 				E66E8930244DB96700F1DABC /* ImageRecordCell.m in Sources */,
 				E65609D524336BA10089B3C6 /* DataBase.m in Sources */,
+				E633686D246EC26100FC0BEC /* InputViewController.m in Sources */,
 				E633686A246E65C000FC0BEC /* BaseListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

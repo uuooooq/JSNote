@@ -13,6 +13,7 @@
 #import "ZDWUtility.h"
 #import "ImageRecordCell.h"
 #import "SearchViewController.h"
+#import "InputViewController.h"
 
 @interface ViewController ()<TZImagePickerControllerDelegate>
 {
@@ -45,7 +46,7 @@
 
 -(void)initView{
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPhotoAction)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
     //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearchAction)];
     
     UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearchAction)];
@@ -55,10 +56,6 @@
 }
 
 #pragma mark action method
--(void)addTextAction{
-    
-    
-}
 
 -(void)goSettingAction{
     [self.navigationController pushViewController:[SearchViewController new] animated:YES];
@@ -67,6 +64,37 @@
 -(void)goToSearchAction{
     
     [self.navigationController pushViewController:[SearchViewController new] animated:YES];
+}
+
+-(void)addAction{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"选择类型"
+                                   message:nil
+                                   preferredStyle:UIAlertControllerStyleActionSheet];
+     
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"图片" style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * action) {
+        [self addPhotoAction];
+    }];
+    UIAlertAction* defaultAction1 = [UIAlertAction actionWithTitle:@"文字" style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * action) {
+        [self addTextAction];
+    }];
+    UIAlertAction* defaultAction2 = [UIAlertAction actionWithTitle:@"故事线" style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * action) {}];
+     
+    [alert addAction:defaultAction];
+    [alert addAction:defaultAction1];
+    [alert addAction:defaultAction2];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+-(void)addTextAction{
+    
+    [self presentViewController:[InputViewController new] animated:YES completion:^{
+        
+    }];
+    
 }
 
 -(void)addPhotoAction{
