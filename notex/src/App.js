@@ -46,7 +46,7 @@ export default class App extends React.Component {
 
 
   onChange = e => {
-    console.log('radio checked', e.target.value);
+    console.log('radio checked1', e.target.value);
     this.setState({
       value: e.target.value,
     });
