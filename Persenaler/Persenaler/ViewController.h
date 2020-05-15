@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseListViewController.h"
 
-
-@interface ViewController : UISearchController<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
+@interface ViewController : BaseListViewController{
     
     
 }
 
-@property(nonatomic,strong) UICollectionView *shuKucollectionView;
 
 
 @end

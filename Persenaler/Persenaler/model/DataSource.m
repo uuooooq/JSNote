@@ -70,7 +70,9 @@ static DataSource *_DBCtl = nil;
     if (tmpArr) {
         return tmpArr;
     }
-    return [[NSArray alloc] init];}
+    return [[NSArray alloc] init];
+    
+}
 
 -(void)addRecord:(DbKeyValue*)value{
     [[DataBase sharedDataBase] addKeyValue:value];
@@ -78,6 +80,14 @@ static DataSource *_DBCtl = nil;
     [self loadRecord];
     //[[DataBase sharedDataBase] addKeyValue:value];
     //}
+}
+
+-(NSArray*)getSearchKeyValueWith:(NSString*)key{
+    NSArray *tmpArr = [[DataBase sharedDataBase] getKeyValuesObjWith:key];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
 }
 
 @end

@@ -12,6 +12,7 @@
 #import <TZImagePickerController/TZImagePickerController.h>
 #import "ZDWUtility.h"
 #import "ImageRecordCell.h"
+#import "SearchViewController.h"
 
 @interface ViewController ()<TZImagePickerControllerDelegate>
 {
@@ -19,7 +20,7 @@
     
 }
 
-@property(nonatomic,strong) DataSource *dataSource;
+
 
 @end
 
@@ -28,66 +29,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.dataSource = [DataSource sharedDataSource];
+//    self.dataSource = [DataSource sharedDataSource];
 //    [self.dataSource loadRecord];
     [self initView];
+    [self receiveNotiAction];
     //[self initHttpServer];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotiAction) name:@"receiveData" object:nil];
+    
 }
 
 
--(void)receiveNotiAction{
-    
-    //[weakSelf.shuKucollectionView reloadData];
-    //[self.dataSource loadRecord];
-    [self.shuKucollectionView reloadData];
-    
-}
+
 
 
 
 -(void)initView{
     
-    
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    
-    CGRect collectonFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-50);
-    
-    self.shuKucollectionView = [[UICollectionView alloc] initWithFrame:collectonFrame collectionViewLayout:layout];
-    
-    self.shuKucollectionView.delegate = self;
-    self.shuKucollectionView.dataSource = self;
-//    [self.shuKucollectionView registerClass:[ShukuHomeListCell class] forCellWithReuseIdentifier:@"ShukuHomeListCell"];
-    [self.shuKucollectionView registerClass:[BaseRecordCell class] forCellWithReuseIdentifier:@"BaseRecordCell"];
-    [self.shuKucollectionView registerClass:[ImageRecordCell class] forCellWithReuseIdentifier:@"ImageRecordCell"];
-    [self.shuKucollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
-    self.shuKucollectionView.backgroundColor = [UIColor whiteColor];
-    
-    //self.shuKucollectionView.collectionViewLayout = UICollectionViewFlowLayout;
-    
-    [self.view addSubview: self.shuKucollectionView];
-    
-    
-//    bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-60, self.view.frame.size.width, 60)];
-//    bottomView.backgroundColor = [UIColor whiteColor];
-//    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
-//    [btn setTitle:@"图片" forState:UIControlStateNormal];
-//    [btn addTarget:self action:@selector(addPhotoAction) forControlEvents:UIControlEventTouchUpInside];
-//    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [bottomView addSubview:btn];
-//
-//    UIButton *btnTxt = [[UIButton alloc] initWithFrame:CGRectMake(20+50, 10, 40, 40)];
-//    [btnTxt setTitle:@"文字" forState:UIControlStateNormal];
-//    [btnTxt addTarget:self action:@selector(addTextAction) forControlEvents:UIControlEventTouchUpInside];
-//    [btnTxt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [bottomView addSubview:btnTxt];
-//
-//    [self.view addSubview:bottomView];
-    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPhotoAction)];
+    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearchAction)];
     
+    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearchAction)];
+    UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(goToSearchAction)];
+    self.navigationItem.rightBarButtonItems = @[searchItem,settingItem];
     
 }
 
@@ -95,6 +58,15 @@
 -(void)addTextAction{
     
     
+}
+
+-(void)goSettingAction{
+    [self.navigationController pushViewController:[SearchViewController new] animated:YES];
+}
+
+-(void)goToSearchAction{
+    
+    [self.navigationController pushViewController:[SearchViewController new] animated:YES];
 }
 
 -(void)addPhotoAction{
@@ -153,54 +125,7 @@
 
 }
 
-- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
-    
-    
-    DbKeyValue *keyValue = [self.dataSource.recordArr objectAtIndex:indexPath.row];
-    
-    switch (keyValue.type) {
-        case VT_TEXT:
-        {
-            BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
-            [cell updateRecord:keyValue];
-            return cell;
-        }
-            break;
-        case VT_IMG:
-        {
-            ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
-            [cell updateRecord:keyValue];
-            return cell;
-        }
-            
-        default:
-            return nil;
-            break;
-    }
-    
-    //return cell;
-    
-}
 
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    //return 100;//[self.shuku.novels count];
-    return [self.dataSource.recordArr count];
-}
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    DbKeyValue *keyValue = [self.dataSource.recordArr objectAtIndex:indexPath.row];
-    CGRect screenFrame = [UIScreen mainScreen].bounds;
-    int screenWidth = screenFrame.size.width;
-    
-    if (keyValue.type == VT_IMG) {
-        return CGSizeMake(screenWidth, screenWidth+100);
-    }
-
-    return CGSizeMake(screenWidth, 60);
-    
-}
 
 @end

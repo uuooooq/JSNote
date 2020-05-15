@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(NSArray*)getSearchWith:(NSString*)key;
 
+-(NSArray*)getSearchKeyValueWith:(NSString*)key;
+
 @end
 
 NS_ASSUME_NONNULL_END
