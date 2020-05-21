@@ -12,6 +12,7 @@
     
     UILabel *title;
     
+    
 }
 
 @end
@@ -35,8 +36,13 @@
     title.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:title];
     
+//    _commBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 30 -10, 60 -20-5, 30, 20)];
+//    [_commBtn setTitle:@"comm" forState:UIControlStateNormal];
+//    //[commBtn addTarget:self action:@selector(clickCommAction) forControlEvents:UIControlEventTouchUpInside];
+//    [self.contentView addSubview:_commBtn];
     
 }
+
 
 -(void)updateRecord:(DbKeyValue*)value{
     

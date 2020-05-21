@@ -45,15 +45,36 @@
     }
     
     NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
-    [extCategoryDic setObject:@"VT_TEXT" forKey:@"type"];
+    [extCategoryDic setObject:TXT forKey:@"type"];
     DbKeyValue * keyValue = [DbKeyValue new];
     keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
     keyValue.value = self.textView.text;
     keyValue.createTime =[DbKeyValue getCurrentTime];
     keyValue.type = VT_TEXT;
-    //keyValue.extCategory = @"{}";
     keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
     [self.dataSource addRecord:keyValue];
+    
+    if (self.fromKeyValue) {
+        NSMutableDictionary *groupCategoryDic = [NSMutableDictionary dictionary];
+        
+        DbKeyValueGroup *keyValueGroup = [DbKeyValueGroup new];
+        keyValueGroup.createTime = [DbKeyValueGroup getCurrentTime];
+        keyValueGroup.rootID = self.fromKeyValue.kvid;
+        keyValueGroup.rootValue = self.fromKeyValue.value;
+        keyValueGroup.extCategory = [ZDWUtility convertStringFromDic:groupCategoryDic];
+        DbKeyValue *subItem = [self.dataSource getKeyValue:keyValue.key];
+        keyValueGroup.subID = subItem.kvid;
+        keyValueGroup.subValue = subItem.value;
+        keyValueGroup.rootType = self.fromKeyValue.type;
+        keyValueGroup.subType = keyValue.type;
+        
+        [self.dataSource addRecordGroup:keyValueGroup];
+    }
+    
+
+    
+    
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
     
     [self dismissViewControllerAnimated:YES completion:^{

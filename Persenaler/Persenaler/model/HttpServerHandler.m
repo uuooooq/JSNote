@@ -154,7 +154,7 @@
         NSArray *arr = [(GCDWebServerMultiPartFormRequest*)request arguments];
         for (GCDWebServerMultiPartArgument *argument in arr) {
             NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
-            [extCategoryDic setObject:@"VT_TEXT" forKey:@"type"];
+            [extCategoryDic setObject:TXT forKey:@"type"];
             DbKeyValue * keyValue = [DbKeyValue new];
             keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
             keyValue.value = argument.string;
@@ -215,7 +215,7 @@
     }
     NSLog(@"开始记录文件到数据库");
     NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
-    [extCategoryDic setObject:@"img" forKey:@"type"];
+    [extCategoryDic setObject:IMG forKey:@"type"];
     
     DbKeyValue * keyValue = [DbKeyValue new];
     keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];

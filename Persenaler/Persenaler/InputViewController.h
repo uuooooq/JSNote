@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong) UITextView *textView;
 @property(nonatomic,strong) DataSource *dataSource;
+@property(nonatomic,strong) DbKeyValue *fromKeyValue;
+@property(nonatomic,assign) BOOL isSubItem;
+
 @end
 
 NS_ASSUME_NONNULL_END

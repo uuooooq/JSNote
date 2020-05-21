@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BaseRecordCell : UICollectionViewCell{
 }
 
+@property(nonatomic,strong) UIButton * commBtn;
+
 -(void)updateRecord:(DbKeyValue*)value;
 
 @end

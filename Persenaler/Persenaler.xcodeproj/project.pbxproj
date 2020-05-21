@@ -11,6 +11,8 @@
 		E6336867246A9DDE00FC0BEC /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6336866246A9DDE00FC0BEC /* SearchViewController.m */; };
 		E633686A246E65C000FC0BEC /* BaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6336869246E65C000FC0BEC /* BaseListViewController.m */; };
 		E633686D246EC26100FC0BEC /* InputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E633686C246EC26100FC0BEC /* InputViewController.m */; };
+		E6336870247274C500FC0BEC /* DbKeyValueGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E633686F247274C500FC0BEC /* DbKeyValueGroup.m */; };
+		E63368732472839E00FC0BEC /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E63368722472839E00FC0BEC /* ItemDetailViewController.m */; };
 		E65609D424336BA10089B3C6 /* DbKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E65609D024336BA10089B3C6 /* DbKeyValue.m */; };
 		E65609D524336BA10089B3C6 /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E65609D124336BA10089B3C6 /* DataBase.m */; };
 		E66E89252446FC1500F1DABC /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = E66E89242446FC1500F1DABC /* test.png */; };
@@ -40,6 +42,10 @@
 		E6336869246E65C000FC0BEC /* BaseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseListViewController.m; sourceTree = "<group>"; };
 		E633686B246EC26100FC0BEC /* InputViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputViewController.h; sourceTree = "<group>"; };
 		E633686C246EC26100FC0BEC /* InputViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputViewController.m; sourceTree = "<group>"; };
+		E633686E247274C500FC0BEC /* DbKeyValueGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DbKeyValueGroup.h; sourceTree = "<group>"; };
+		E633686F247274C500FC0BEC /* DbKeyValueGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DbKeyValueGroup.m; sourceTree = "<group>"; };
+		E63368712472839E00FC0BEC /* ItemDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
+		E63368722472839E00FC0BEC /* ItemDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
 		E65609D024336BA10089B3C6 /* DbKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DbKeyValue.m; sourceTree = "<group>"; };
 		E65609D124336BA10089B3C6 /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
 		E65609D224336BA10089B3C6 /* DbKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DbKeyValue.h; sourceTree = "<group>"; };
@@ -155,6 +161,8 @@
 				E6336869246E65C000FC0BEC /* BaseListViewController.m */,
 				E633686B246EC26100FC0BEC /* InputViewController.h */,
 				E633686C246EC26100FC0BEC /* InputViewController.m */,
+				E63368712472839E00FC0BEC /* ItemDetailViewController.h */,
+				E63368722472839E00FC0BEC /* ItemDetailViewController.m */,
 			);
 			path = Persenaler;
 			sourceTree = "<group>";
@@ -170,6 +178,8 @@
 				E67A48052403567500FA357B /* DataSource.m */,
 				E6D0DF1324199BC2007DD127 /* HttpServerHandler.h */,
 				E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */,
+				E633686E247274C500FC0BEC /* DbKeyValueGroup.h */,
+				E633686F247274C500FC0BEC /* DbKeyValueGroup.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -301,11 +311,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E63368732472839E00FC0BEC /* ItemDetailViewController.m in Sources */,
 				E67A47E92401ED9100FA357B /* ViewController.m in Sources */,
 				E6336867246A9DDE00FC0BEC /* SearchViewController.m in Sources */,
 				E67A47E32401ED9100FA357B /* AppDelegate.m in Sources */,
 				E67A47F42401ED9500FA357B /* main.m in Sources */,
 				E65609D424336BA10089B3C6 /* DbKeyValue.m in Sources */,
+				E6336870247274C500FC0BEC /* DbKeyValueGroup.m in Sources */,
 				E66E892A244BE4A800F1DABC /* ZUtitlity.h in Sources */,
 				E67A48062403567500FA357B /* DataSource.m in Sources */,
 				E66E892D244DAE4F00F1DABC /* ZDWUtility.m in Sources */,

@@ -43,10 +43,17 @@
     imgView.clipsToBounds = YES;
     [self addSubview:imgView];
     
-    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.size.width+10, self.frame.size.width-20, 30)];
+    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-200-10, self.frame.size.height-30, 200, 30)];
     descLbl.textColor = [UIColor lightGrayColor];
     descLbl.textAlignment = NSTextAlignmentRight;
     descLbl.font = [UIFont systemFontOfSize:14];
+    
+//    _commBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 200-10-10-50, self.frame.size.height-20-5, 50, 20)];
+//    [_commBtn setTitle:@"com" forState:UIControlStateNormal];
+//    [_commBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    //[commBtn addTarget:self action:@selector(clickCommAction) forControlEvents:UIControlEventTouchUpInside];
+//    [self addSubview:_commBtn];
+    
     [self addSubview:descLbl];
 }
 

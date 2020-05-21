@@ -8,6 +8,7 @@
 
 #import "SearchViewController.h"
 #import "DataSource.h"
+#import "ItemDetailViewController.h"
 
 @interface SearchViewController ()<UITextFieldDelegate>{
     UITextField *searchTF;
@@ -47,8 +48,19 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [searchTF becomeFirstResponder];
-    [self searchAction:@""];
+    if ([searchTF.text length]>0) {
+        
+    }
+    else{
+        [searchTF becomeFirstResponder];
+        [self searchAction:@""];
+    }
+
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [searchTF resignFirstResponder];
 }
 
 #pragma mark action
@@ -91,5 +103,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)didSelectionCell:(NSIndexPath*)indexPath{
+    
+    ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
+    itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:itemDetailVC animated:YES];
+}
 
 @end

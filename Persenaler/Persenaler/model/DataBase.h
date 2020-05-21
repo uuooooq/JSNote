@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DbKeyValue.h"
+#import "DbKeyValueGroup.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -41,6 +42,12 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSArray*)getKeyValuesWith:(NSString*)key;
 
 -(NSArray*)getKeyValuesObjWith:(NSString*)key;
+
+- (DbKeyValueGroup *)getRootKeyValue:(NSString*)subID;
+
+- (NSArray *)getKeyValueGroups:(NSString*)rootID;
+
+-(void)addkeyValueGroup:(DbKeyValueGroup*)kvGroup;
 @end
 
 NS_ASSUME_NONNULL_END

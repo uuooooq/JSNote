@@ -91,6 +91,11 @@ static DataBase *_DBCtl = nil;
         NSString *keyValueTbSql = @"CREATE TABLE 'kvTb' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT,'type' INTEGER,'createTime' INTEGER,'extCategory' TEXT)";
         [_db executeUpdate:keyValueTbSql];
     }
+    if (![self isTableOK:@"kvGroupTb"]) {
+        NSLog(@"---------- start create kvTb");
+        NSString *keyValueTbSql = @"CREATE TABLE 'kvGroupTb' ('gid' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'rootID' INTEGER,'rootValue' TEXT,'rootType' INTEGER,'subID' INTEGER,'subValue' TEXT,'subType' INTEGER,'type' INTEGER,'createTime' INTEGER,'extCategory' TEXT)";
+        [_db executeUpdate:keyValueTbSql];
+    }
     //[_db close];
 
 }
@@ -144,28 +149,84 @@ static DataBase *_DBCtl = nil;
     
 }
 
-//- (void)addPerson:(Person *)person{
-//    [_db open];
-//
-//    NSNumber *maxID = @(0);
-//
-//    FMResultSet *res = [_db executeQuery:@"SELECT * FROM person "];
-//    //获取数据库中最大的ID
-//    while ([res next]) {
-//        if ([maxID integerValue] < [[res stringForColumn:@"person_id"] integerValue]) {
-//            maxID = @([[res stringForColumn:@"person_id"] integerValue] ) ;
-//        }
-//
-//    }
-//    maxID = @([maxID integerValue] + 1);
-//
-//    [_db executeUpdate:@"INSERT INTO person(person_id,person_name,person_age,person_number)VALUES(?,?,?,?)",maxID,person.name,@(person.age),@(person.number)];
-//
-//
-//
-//    [_db close];
-//
-//}
+-(void)updateKeyValue:(DbKeyValue*)keyValue{
+    
+    [_db open];
+    
+    [_db executeUpdate:@"UPDATE 'kvTb' SET type = ?  WHERE id = ? ",@(keyValue.type),@(keyValue.kvid)];
+    
+    [_db close];
+    
+}
+
+-(void)addkeyValueGroup:(DbKeyValueGroup*)kvGroup{
+    //NSString *keyValueTbSql = @"CREATE TABLE 'kvTb' ('gid' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'rootID' INTEGER,'rootValue' TEXT,'subID' INTEGER,'subValue' TEXT,'type' INTEGER,'createTime' INTEGER,'extCategory' TEXT)";
+    [_db open];
+    [_db executeUpdate:@"INSERT INTO kvGroupTb(rootID,rootValue,rootType,subID,subValue,subType,type,createTime,extCategory) values(?, ?,?, ?, ?,?, ?,?, ?)",@(kvGroup.rootID),kvGroup.rootValue,@(kvGroup.rootType),@(kvGroup.subID),kvGroup.subValue,@(kvGroup.subType),@(kvGroup.type),@(kvGroup.createTime),kvGroup.extCategory];
+    [_db close];
+}
+
+- (DbKeyValueGroup *)getRootKeyValue:(NSString*)subID{
+    [_db open];
+    
+    FMResultSet *res = [_db executeQuery:@"SELECT * FROM kvGroupTb where subID = ?",subID];
+    DbKeyValueGroup *keyValueGroup = [[DbKeyValueGroup alloc] init];
+    while ([res next]) {
+        
+        keyValueGroup.gID = [res intForColumn:@"gid"];
+        keyValueGroup.rootID = [res intForColumn:@"rootID"];
+        keyValueGroup.rootValue = [res stringForColumn:@"rootValue"];
+        keyValueGroup.rootType = [res intForColumn:@"rootType"];
+        keyValueGroup.subID = [res intForColumn:@"subID"];
+        keyValueGroup.subValue = [res stringForColumn:@"subValue"];
+        keyValueGroup.subType = [res intForColumn:@"subType"];
+        keyValueGroup.type = [res intForColumn:@"type"];
+        keyValueGroup.createTime = [res intForColumn:@"createTime"];
+        keyValueGroup.extCategory = [res stringForColumn:@"extCategory"];
+    }
+    
+    [_db close];
+    
+    if (keyValueGroup.gID) {
+        return keyValueGroup;
+    }
+    else{
+        return nil;
+    }
+}
+
+- (NSArray *)getKeyValueGroups:(NSString*)rootID{
+    
+    [_db open];
+    NSMutableArray *arr = [NSMutableArray new];
+    FMResultSet *res = [_db executeQuery:@"SELECT * FROM kvGroupTb where rootID = ?",rootID];
+    
+    while ([res next]) {
+        DbKeyValueGroup *keyValueGroup = [[DbKeyValueGroup alloc] init];
+        keyValueGroup.gID = [res intForColumn:@"gid"];
+        keyValueGroup.rootID = [res intForColumn:@"rootID"];
+        keyValueGroup.rootValue = [res stringForColumn:@"rootValue"];
+        keyValueGroup.rootType = [res intForColumn:@"rootType"];
+        keyValueGroup.subID = [res intForColumn:@"subID"];
+        keyValueGroup.subValue = [res stringForColumn:@"subValue"];
+        keyValueGroup.subType = [res intForColumn:@"subType"];
+        keyValueGroup.type = [res intForColumn:@"type"];
+        keyValueGroup.createTime = [res intForColumn:@"createTime"];
+        keyValueGroup.extCategory = [res stringForColumn:@"extCategory"];
+        [arr addObject:keyValueGroup];
+    }
+    
+    [_db close];
+    
+    if ([arr count]>0) {
+        return arr;
+    }
+    else{
+        return nil;
+    }
+}
+
+
 - (void)deleteKeyValue:(DbKeyValue *)keyValue{
     
     [_db open];
@@ -176,26 +237,6 @@ static DataBase *_DBCtl = nil;
     
 }
 
-//
-//- (void)deletePerson:(Person *)person{
-//    [_db open];
-//
-//    [_db executeUpdate:@"DELETE FROM person WHERE person_id = ?",person.ID];
-//
-//    [_db close];
-//}
-//
-//- (void)updatePerson:(Person *)person{
-//    [_db open];
-//
-//    [_db executeUpdate:@"UPDATE 'person' SET person_name = ?  WHERE person_id = ? ",person.name,person.ID];
-//    [_db executeUpdate:@"UPDATE 'person' SET person_age = ?  WHERE person_id = ? ",@(person.age),person.ID];
-//    [_db executeUpdate:@"UPDATE 'person' SET person_number = ?  WHERE person_id = ? ",@(person.number + 1),person.ID];
-//
-//
-//
-//    [_db close];
-//}
 
 - (DbKeyValue *)getKeyValue:(NSString*)key{
     
@@ -204,7 +245,7 @@ static DataBase *_DBCtl = nil;
     FMResultSet *res = [_db executeQuery:@"SELECT * FROM kvTb where key = ?",key];
     DbKeyValue *keyValue = [[DbKeyValue alloc] init];
     while ([res next]) {
-        
+        keyValue.kvid = [res intForColumn:@"id"];
         keyValue.key = [res stringForColumn:@"key"];
         keyValue.value = [res stringForColumn:@"value"];
         keyValue.type = [res intForColumn:@"type"];
@@ -230,6 +271,7 @@ static DataBase *_DBCtl = nil;
     
     while ([res next]) {
         DbKeyValue *keyValue = [[DbKeyValue alloc] init];
+        keyValue.kvid = [res intForColumn:@"id"];
         keyValue.key = [res stringForColumn:@"key"];
         keyValue.value = [res stringForColumn:@"value"];
         keyValue.createTime = [res intForColumn:@"createTime"];
@@ -256,6 +298,8 @@ static DataBase *_DBCtl = nil;
     
     while ([res next]) {
         NSMutableDictionary *tmpDict = [[NSMutableDictionary alloc] init];
+        
+        [tmpDict setObject:[res stringForColumn:@"id"] forKey:@"id"];
         [tmpDict setObject:[res stringForColumn:@"key"] forKey:@"key"];
         [tmpDict setObject:[res stringForColumn:@"value"] forKey:@"value"];
         [tmpDict setObject:[res stringForColumn:@"createTime"] forKey:@"createTime"];
@@ -285,6 +329,7 @@ static DataBase *_DBCtl = nil;
     while ([res next]) {
         NSMutableDictionary *tmpDict = [[NSMutableDictionary alloc] init];
         //keyValue.key = [res stringForColumn:@"key"];
+        [tmpDict setObject:[res stringForColumn:@"id"] forKey:@"id"];
         [tmpDict setObject:[res stringForColumn:@"key"] forKey:@"key"];
         //keyValue.value = [res stringForColumn:@"value"];
         [tmpDict setObject:[res stringForColumn:@"value"] forKey:@"value"];
@@ -316,6 +361,7 @@ static DataBase *_DBCtl = nil;
     
     while ([res next]) {
         DbKeyValue *keyValue = [[DbKeyValue alloc] init];
+        keyValue.kvid = [res intForColumn:@"id"];
         keyValue.key = [res stringForColumn:@"key"];
         keyValue.value = [res stringForColumn:@"value"];
         keyValue.createTime = [res intForColumn:@"createTime"];
@@ -333,6 +379,7 @@ static DataBase *_DBCtl = nil;
         return nil;
     }
 }
+
 
 
 @end

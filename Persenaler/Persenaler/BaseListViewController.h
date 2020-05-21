@@ -25,6 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)receiveNotiAction;
 
+-(void)didSelectionCell:(NSIndexPath*)indexPath;
+-(void)addAction;
+-(void)addTextAction;
+
+-(void)addPhotoStepNext:(DbKeyValue*)keyValue;
+
 @end
 
 NS_ASSUME_NONNULL_END
