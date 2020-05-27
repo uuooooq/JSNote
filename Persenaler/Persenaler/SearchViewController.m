@@ -9,6 +9,7 @@
 #import "SearchViewController.h"
 #import "DataSource.h"
 #import "ItemDetailViewController.h"
+#import "TestViewController.h"
 
 @interface SearchViewController ()<UITextFieldDelegate>{
     UITextField *searchTF;
@@ -109,6 +110,9 @@
     ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
     itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:itemDetailVC animated:YES];
+    
+//    TestViewController *testVc = [TestViewController new];
+//    [self.navigationController pushViewController:testVc animated:YES];
 }
 
 @end

@@ -29,6 +29,7 @@
 		E67A47FC240200E100FA357B /* website in Resources */ = {isa = PBXBuildFile; fileRef = E67A47FB240200E100FA357B /* website */; };
 		E67A48062403567500FA357B /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E67A48052403567500FA357B /* DataSource.m */; };
 		E67A480924035C6800FA357B /* BaseRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E67A480824035C6800FA357B /* BaseRecordCell.m */; };
+		E6816920247F23D8005E2A81 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E681691F247F23D8005E2A81 /* TestViewController.m */; };
 		E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,8 @@
 		E67A48052403567500FA357B /* DataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
 		E67A480724035C6800FA357B /* BaseRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseRecordCell.h; sourceTree = "<group>"; };
 		E67A480824035C6800FA357B /* BaseRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseRecordCell.m; sourceTree = "<group>"; };
+		E681691E247F23D8005E2A81 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		E681691F247F23D8005E2A81 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		E6D0DF1324199BC2007DD127 /* HttpServerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpServerHandler.h; sourceTree = "<group>"; };
 		E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpServerHandler.m; sourceTree = "<group>"; };
 		F46E43402A2F5518B2EF8BC1 /* Pods-Persenaler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.debug.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.debug.xcconfig"; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 				E633686C246EC26100FC0BEC /* InputViewController.m */,
 				E63368712472839E00FC0BEC /* ItemDetailViewController.h */,
 				E63368722472839E00FC0BEC /* ItemDetailViewController.m */,
+				E681691E247F23D8005E2A81 /* TestViewController.h */,
+				E681691F247F23D8005E2A81 /* TestViewController.m */,
 			);
 			path = Persenaler;
 			sourceTree = "<group>";
@@ -317,6 +322,7 @@
 				E67A47E32401ED9100FA357B /* AppDelegate.m in Sources */,
 				E67A47F42401ED9500FA357B /* main.m in Sources */,
 				E65609D424336BA10089B3C6 /* DbKeyValue.m in Sources */,
+				E6816920247F23D8005E2A81 /* TestViewController.m in Sources */,
 				E6336870247274C500FC0BEC /* DbKeyValueGroup.m in Sources */,
 				E66E892A244BE4A800F1DABC /* ZUtitlity.h in Sources */,
 				E67A48062403567500FA357B /* DataSource.m in Sources */,
