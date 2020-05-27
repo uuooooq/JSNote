@@ -7,6 +7,9 @@
 //
 
 #import "BaseRecordCell.h"
+#import "ZDWUtility.h"
+
+
 
 @interface  BaseRecordCell(){
     
@@ -23,18 +26,18 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self customizeView];
+        //[self customizeView];
     }
     return self;
 }
 
 -(void)customizeView{
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 200, 30)];
-    title.textColor = [UIColor blackColor];
-    title.textAlignment = NSTextAlignmentLeft;
-    title.font = [UIFont systemFontOfSize:14];
-    [self.contentView addSubview:title];
+//    title = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.frame.size.width-20, self.frame.size.width-10)];
+//    title.textColor = [UIColor blackColor];
+//    title.numberOfLines = 0;
+//    title.attributedText = [ZDWUtility getLabelAttributeString:];
+//    [self.contentView addSubview:title];
     
 //    _commBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 30 -10, 60 -20-5, 30, 20)];
 //    [_commBtn setTitle:@"comm" forState:UIControlStateNormal];
@@ -46,7 +49,24 @@
 
 -(void)updateRecord:(DbKeyValue*)value{
     
-    title.text = value.value;
+    //title.text = value.value;
+    [title removeFromSuperview];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, self.frame.size.width-10, self.frame.size.height-10)];
+    title.textColor = [UIColor blackColor];
+    title.numberOfLines = 0;
+    title.attributedText = [ZDWUtility getLabelAttributeString:value.value];
+    title.backgroundColor = [UIColor grayColor];
+    [self.contentView addSubview:title];
 }
+
++(CGSize)caculateCurrentSize:(NSString*)value{
+    
+    CGFloat higth = [ZDWUtility getLabelHight:value withWidth:ZDWSCREEN_WIDTH-20];
+    return CGSizeMake(ZDWSCREEN_WIDTH-10, higth+10);
+}
+
+//+(NSMutableAttributedString*)getLabelAttributeString:(NSString*)value{
+//    
+//}
 
 @end

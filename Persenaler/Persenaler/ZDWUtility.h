@@ -7,6 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+
+#define ZDWSCREEN_WIDTH  ([UIScreen mainScreen].bounds.size.width)
+#define ZDWSCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSString*)convertStringFromDic:(NSDictionary*)dic;
 + (NSString*)getImagePath:(NSString *)name;
+
++(CGFloat)getLabelHight:(NSString*)currentStr withWidth:(CGFloat)currentWidth;
+
++(NSMutableAttributedString*)getLabelAttributeString:(NSString*)value;
 
 @end
 

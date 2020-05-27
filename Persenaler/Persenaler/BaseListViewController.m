@@ -85,8 +85,12 @@
     if (keyValue.type == VT_IMG) {
         return CGSizeMake(screenWidth, screenWidth+50);
     }
+    
+    if (keyValue.type == VT_TEXT) {
+        return [BaseRecordCell caculateCurrentSize:keyValue.value];
+    }
 
-    return CGSizeMake(screenWidth, 60);
+    return CGSizeMake(screenWidth, 180);
     
 }
 
