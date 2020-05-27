@@ -18,9 +18,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataSource = [DataSource sharedDataSource];
+    //self.dataSource = [DataSource sharedDataSource];
     [self createCollectionView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotiAction) name:@"receiveData" object:nil];
+}
+
+-(DataSource*)dataSource{
+    if (_dataSource == nil) {
+        _dataSource = [DataSource sharedDataSource];
+    }
+    return _dataSource;
 }
 
 - (void)createCollectionView{

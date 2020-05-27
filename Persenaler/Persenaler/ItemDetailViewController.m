@@ -21,6 +21,18 @@
     [self initView];
     NSLog(@"******************************** ");
     
+
+}
+
+
+-(void)receiveNotiAction{
+    NSLog(@"******************************** receiveNotiAction");
+    //[weakSelf.shuKucollectionView reloadData];
+    //[self.dataSource loadRecord];
+    [self.currentDataArr removeAllObjects];
+
+    [self.currentDataArr addObject:self.fromKeyValue];
+    [self.shuKucollectionView reloadData];
     NSArray *tmpGroups = [self.dataSource getKeyValueGroups:[NSString stringWithFormat:@"%d",self.fromKeyValue.kvid]];
     if ([tmpGroups count] > 0) {
         for (DbKeyValueGroup *item in tmpGroups) {
@@ -33,16 +45,6 @@
             [self.currentDataArr addObject:keyValue];
         }
     }
-}
-
-
--(void)receiveNotiAction{
-    NSLog(@"******************************** receiveNotiAction");
-    //[weakSelf.shuKucollectionView reloadData];
-    //[self.dataSource loadRecord];
-    [self.currentDataArr removeAllObjects];
-    [self.currentDataArr addObject:self.fromKeyValue];
-    [self.shuKucollectionView reloadData];
     
 }
 
