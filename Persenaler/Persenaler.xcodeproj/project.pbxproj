@@ -30,6 +30,7 @@
 		E67A48062403567500FA357B /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E67A48052403567500FA357B /* DataSource.m */; };
 		E67A480924035C6800FA357B /* BaseRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E67A480824035C6800FA357B /* BaseRecordCell.m */; };
 		E6816920247F23D8005E2A81 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E681691F247F23D8005E2A81 /* TestViewController.m */; };
+		E6816923247F3857005E2A81 /* FullsizeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6816922247F3857005E2A81 /* FullsizeImageView.m */; };
 		E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,8 @@
 		E67A480824035C6800FA357B /* BaseRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseRecordCell.m; sourceTree = "<group>"; };
 		E681691E247F23D8005E2A81 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		E681691F247F23D8005E2A81 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		E6816921247F3857005E2A81 /* FullsizeImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullsizeImageView.h; sourceTree = "<group>"; };
+		E6816922247F3857005E2A81 /* FullsizeImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullsizeImageView.m; sourceTree = "<group>"; };
 		E6D0DF1324199BC2007DD127 /* HttpServerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpServerHandler.h; sourceTree = "<group>"; };
 		E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpServerHandler.m; sourceTree = "<group>"; };
 		F46E43402A2F5518B2EF8BC1 /* Pods-Persenaler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.debug.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.debug.xcconfig"; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				E67A480824035C6800FA357B /* BaseRecordCell.m */,
 				E66E892E244DB96700F1DABC /* ImageRecordCell.h */,
 				E66E892F244DB96700F1DABC /* ImageRecordCell.m */,
+				E6816921247F3857005E2A81 /* FullsizeImageView.h */,
+				E6816922247F3857005E2A81 /* FullsizeImageView.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				E67A47E32401ED9100FA357B /* AppDelegate.m in Sources */,
 				E67A47F42401ED9500FA357B /* main.m in Sources */,
 				E65609D424336BA10089B3C6 /* DbKeyValue.m in Sources */,
+				E6816923247F3857005E2A81 /* FullsizeImageView.m in Sources */,
 				E6816920247F23D8005E2A81 /* TestViewController.m in Sources */,
 				E6336870247274C500FC0BEC /* DbKeyValueGroup.m in Sources */,
 				E66E892A244BE4A800F1DABC /* ZUtitlity.h in Sources */,

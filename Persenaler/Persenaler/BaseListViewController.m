@@ -9,8 +9,11 @@
 #import "BaseListViewController.h"
 #import "InputViewController.h"
 #import <TZImagePickerController/TZImagePickerController.h>
+#import "FullsizeImageView.h"
 
-@interface BaseListViewController ()<TZImagePickerControllerDelegate>
+@interface BaseListViewController ()<TZImagePickerControllerDelegate>{
+    FullsizeImageView *fullImageView;
+}
 
 @end
 
@@ -19,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.dataSource = [DataSource sharedDataSource];
+    fullImageView = [[FullsizeImageView alloc] initWithFrame:self.navigationController.view.bounds];
+    [fullImageView.closeBtn addTarget:self action:@selector(dismissFullImageView) forControlEvents:UIControlEventTouchUpInside];
     [self createCollectionView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotiAction) name:@"receiveData" object:nil];
 }
@@ -90,7 +95,7 @@
     int screenWidth = screenFrame.size.width;
     
     if (keyValue.type == VT_IMG) {
-        return CGSizeMake(screenWidth, screenWidth+50);
+        return CGSizeMake(screenWidth, screenWidth+30);
     }
     
     if (keyValue.type == VT_TEXT) {
@@ -112,6 +117,7 @@
         {
             BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
+            
             return cell;
         }
             break;
@@ -119,6 +125,9 @@
         {
             ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
+            cell.fullsizeBtn.tag = indexPath.row;
+            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             return cell;
         }
             
@@ -228,6 +237,23 @@
     [fileManager createDirectoryAtPath:[finalPath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:nil error:nil];//stringByDeletingLastPathComponent是关键
     return finalPath;
 
+}
+
+-(void)fusizeBtnClick:(UIButton*)btn{
+    
+    DbKeyValue *keyValue = [self.currentDataArr objectAtIndex:btn.tag];
+    NSLog(@"fullsize btn click %@",keyValue.value);
+    [self showFullImageSizeView:keyValue.value];
+}
+
+-(void)showFullImageSizeView:(NSString*)imgName{
+    
+    [fullImageView showImage:imgName];
+    [self.navigationController.view addSubview:fullImageView];
+}
+
+-(void)dismissFullImageView{
+    [fullImageView removeFromSuperview];
 }
 
 

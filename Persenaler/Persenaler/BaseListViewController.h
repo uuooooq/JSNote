@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)addTextAction;
 
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue;
+-(void)fusizeBtnClick:(UIButton*)btn;
 
 @end
 

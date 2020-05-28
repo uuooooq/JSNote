@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)updateRecord:(DbKeyValue*)value;
 @property(nonatomic,strong) UIButton * commBtn;
+@property(nonatomic,strong) UIButton * fullsizeBtn;
 
 @end
 
