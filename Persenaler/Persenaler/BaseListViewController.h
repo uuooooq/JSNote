@@ -14,6 +14,7 @@
 #import "BaseRecordCell.h"
 #import "ImageRecordCell.h"
 #import "DbKeyValue.h"
+#import "NewFunctionView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) UICollectionView *shuKucollectionView;
 @property(nonatomic,strong) DataSource *dataSource;
 @property(nonatomic,strong) NSMutableArray *currentDataArr;
+@property(nonatomic,strong) UIView *bottomView;
+@property(nonatomic,strong) UILabel *promtLbl;
+@property(nonatomic,strong) NewFunctionView *newFunctionView;
 
 -(void)receiveNotiAction;
 

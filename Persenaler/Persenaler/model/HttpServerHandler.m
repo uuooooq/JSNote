@@ -36,7 +36,7 @@
     NSLog(@"path:   %@",documentsDirectory);
     self.webServer = [[GCDWebUploader alloc] initWithUploadDirectory:documentsDirectory];
     self.webServer.delegate = self;
-    [self startIndexServices];
+    //[self startIndexServices];
     [self startFetchListApi];
     [self startAddItemApi];
     [self startSearchApi];
@@ -271,8 +271,12 @@
 }
 
 - (void)webServerDidStart:(GCDWebServer*)server{
-    NSLog(@"---%@",[self getAddr]);
+    NSLog(@"---***%@",[self getAddr]);
     //vc.title = [self getAddr];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // UI更新代码
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"serverRunning" object:nil];
+    });
 }
 
 @end

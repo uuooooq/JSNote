@@ -31,6 +31,8 @@
 		E67A480924035C6800FA357B /* BaseRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E67A480824035C6800FA357B /* BaseRecordCell.m */; };
 		E6816920247F23D8005E2A81 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E681691F247F23D8005E2A81 /* TestViewController.m */; };
 		E6816923247F3857005E2A81 /* FullsizeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6816922247F3857005E2A81 /* FullsizeImageView.m */; };
+		E6816926248065D7005E2A81 /* NewFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6816925248065D7005E2A81 /* NewFunctionView.m */; };
+		E681692924807179005E2A81 /* SearchResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E681692824807179005E2A81 /* SearchResultsController.m */; };
 		E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,10 @@
 		E681691F247F23D8005E2A81 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		E6816921247F3857005E2A81 /* FullsizeImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullsizeImageView.h; sourceTree = "<group>"; };
 		E6816922247F3857005E2A81 /* FullsizeImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullsizeImageView.m; sourceTree = "<group>"; };
+		E6816924248065D7005E2A81 /* NewFunctionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewFunctionView.h; sourceTree = "<group>"; };
+		E6816925248065D7005E2A81 /* NewFunctionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewFunctionView.m; sourceTree = "<group>"; };
+		E681692724807179005E2A81 /* SearchResultsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResultsController.h; sourceTree = "<group>"; };
+		E681692824807179005E2A81 /* SearchResultsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchResultsController.m; sourceTree = "<group>"; };
 		E6D0DF1324199BC2007DD127 /* HttpServerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpServerHandler.h; sourceTree = "<group>"; };
 		E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpServerHandler.m; sourceTree = "<group>"; };
 		F46E43402A2F5518B2EF8BC1 /* Pods-Persenaler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.debug.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.debug.xcconfig"; sourceTree = "<group>"; };
@@ -171,6 +177,8 @@
 				E63368722472839E00FC0BEC /* ItemDetailViewController.m */,
 				E681691E247F23D8005E2A81 /* TestViewController.h */,
 				E681691F247F23D8005E2A81 /* TestViewController.m */,
+				E681692724807179005E2A81 /* SearchResultsController.h */,
+				E681692824807179005E2A81 /* SearchResultsController.m */,
 			);
 			path = Persenaler;
 			sourceTree = "<group>";
@@ -201,6 +209,8 @@
 				E66E892F244DB96700F1DABC /* ImageRecordCell.m */,
 				E6816921247F3857005E2A81 /* FullsizeImageView.h */,
 				E6816922247F3857005E2A81 /* FullsizeImageView.m */,
+				E6816924248065D7005E2A81 /* NewFunctionView.h */,
+				E6816925248065D7005E2A81 /* NewFunctionView.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -327,6 +337,7 @@
 				E67A47E32401ED9100FA357B /* AppDelegate.m in Sources */,
 				E67A47F42401ED9500FA357B /* main.m in Sources */,
 				E65609D424336BA10089B3C6 /* DbKeyValue.m in Sources */,
+				E681692924807179005E2A81 /* SearchResultsController.m in Sources */,
 				E6816923247F3857005E2A81 /* FullsizeImageView.m in Sources */,
 				E6816920247F23D8005E2A81 /* TestViewController.m in Sources */,
 				E6336870247274C500FC0BEC /* DbKeyValueGroup.m in Sources */,
@@ -340,6 +351,7 @@
 				E65609D524336BA10089B3C6 /* DataBase.m in Sources */,
 				E633686D246EC26100FC0BEC /* InputViewController.m in Sources */,
 				E633686A246E65C000FC0BEC /* BaseListViewController.m in Sources */,
+				E6816926248065D7005E2A81 /* NewFunctionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

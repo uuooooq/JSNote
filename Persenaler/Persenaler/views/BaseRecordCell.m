@@ -59,9 +59,9 @@
     [self.contentView addSubview:title];
     
     [descLbl removeFromSuperview];
-    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-200-10, self.frame.size.height-20, 200, 20)];
+    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.size.height-20, 200, 20)];
     descLbl.textColor = [UIColor lightGrayColor];
-    descLbl.textAlignment = NSTextAlignmentRight;
+    descLbl.textAlignment = NSTextAlignmentLeft;
     descLbl.font = [UIFont systemFontOfSize:12];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:value.createTime];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

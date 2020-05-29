@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseListViewController.h"
+#import "HttpServerHandler.h"
 
 @interface ViewController : BaseListViewController{
     
     
 }
+
+@property(nonatomic,strong) HttpServerHandler *serverHeadler;
 
 
 

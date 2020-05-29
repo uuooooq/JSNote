@@ -15,14 +15,16 @@
 #import "SearchViewController.h"
 #import "InputViewController.h"
 #import "ItemDetailViewController.h"
+#import "SearchResultsController.h"
 
-@interface ViewController ()
+@interface ViewController ()<UISearchControllerDelegate, UISearchBarDelegate>
 {
     UIView *bottomView;
     
 }
 
-
+@property (strong, nonatomic) UISearchController *searchController;
+@property (strong, nonatomic) SearchResultsController *resultsController;
 
 @end
 
@@ -36,7 +38,7 @@
     [self initView];
     [self receiveNotiAction];
     //[self initHttpServer];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveServerNotiAction) name:@"serverRunning" object:nil];
     
 }
 
@@ -47,16 +49,40 @@
 
 -(void)initView{
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
-    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearchAction)];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
+//    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearchAction)];
+//
+//    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearchAction)];
+////    UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(goToSearchAction)];
+//    self.navigationItem.rightBarButtonItem = searchItem;//@[searchItem,settingItem];
     
-    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goToSearchAction)];
-//    UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(goToSearchAction)];
-    self.navigationItem.rightBarButtonItem = searchItem;//@[searchItem,settingItem];
+    //初始化 SearchController
+    {
+        self.resultsController = [[SearchResultsController alloc] init];
+        
+        self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.resultsController];
+        self.searchController.searchResultsUpdater = self.resultsController;
+        self.searchController.delegate = self;
+        self.searchController.searchBar.delegate = self;
+        //self.searchController.searchBar.prompt = @"xxxksdfjkslflsd";
+        self.searchController.obscuresBackgroundDuringPresentation = YES; //搜索时，背景色半透明
+        self.searchController.hidesNavigationBarDuringPresentation = YES; //搜索时，隐藏导航栏
+        
+        self.navigationItem.searchController = self.searchController; //iOS11 后，可以放在导航栏
+        
+        //self.navigationItem.hidesSearchBarWhenScrolling = NO; //刚开始显示
+        self.definesPresentationContext = YES;//解决搜索时iOS13以下系统点哪都没反应的问题
+    }
     
 }
 
 #pragma mark action method
+
+-(void)receiveServerNotiAction{
+//    self.searchController.searchBar.searchFieldBackgroundPositionAdjustment = UIOffsetMake(0, 20);
+//    self.searchController.searchBar.prompt = @"xxxksdfjkslflsd";//[self.serverHeadler getAddr];
+    self.promtLbl.text = [NSString stringWithFormat:@"网页访问: %@",[self.serverHeadler getAddr]];
+}
 
 -(void)goSettingAction{
     [self.navigationController pushViewController:[SearchViewController new] animated:YES];
@@ -101,6 +127,7 @@
 -(void)didSelectionCell:(NSIndexPath*)indexPath{
     
     ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
+    itemDetailVC.title = @"详情页";
     itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:itemDetailVC animated:YES];
 }
@@ -161,7 +188,39 @@
 //
 //}
 
+#pragma mark - UISearchControllerDelegate
+- (void)willPresentSearchController:(UISearchController *)searchController {
+    NSLog(@"%s", __FUNCTION__);
+}
 
+- (void)didPresentSearchController:(UISearchController *)searchController {
+    NSLog(@"%s", __FUNCTION__);
+}
+
+- (void)willDismissSearchController:(UISearchController *)searchController {
+    NSLog(@"%s", __FUNCTION__);
+}
+
+- (void)didDismissSearchController:(UISearchController *)searchController {
+    NSLog(@"%s", __FUNCTION__);
+}
+
+- (void)presentSearchController:(UISearchController *)searchController {
+    NSLog(@"%s", __FUNCTION__);
+}
+
+#pragma mark - UISearchBarDelegate
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    NSLog(@"%s", __FUNCTION__);
+    return YES;
+}
+
+//点键盘的搜索
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSLog(@"%s", __FUNCTION__);
+}
 
 
 @end

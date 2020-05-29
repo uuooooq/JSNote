@@ -37,24 +37,56 @@
 
 - (void)createCollectionView{
     
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        
-        CGRect collectonFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-        
-        self.shuKucollectionView = [[UICollectionView alloc] initWithFrame:collectonFrame collectionViewLayout:layout];
-        
-        self.shuKucollectionView.delegate = self;
-        self.shuKucollectionView.dataSource = self;
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    
+    CGRect collectonFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-50);
+    
+    self.shuKucollectionView = [[UICollectionView alloc] initWithFrame:collectonFrame collectionViewLayout:layout];
+    
+    layout.headerReferenceSize = CGSizeMake(ZDWSCREEN_WIDTH, 50.0f);  //设置headerView大小
+    [self.shuKucollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+    
+    self.shuKucollectionView.delegate = self;
+    self.shuKucollectionView.dataSource = self;
     //    [self.shuKucollectionView registerClass:[ShukuHomeListCell class] forCellWithReuseIdentifier:@"ShukuHomeListCell"];
-        [self.shuKucollectionView registerClass:[BaseRecordCell class] forCellWithReuseIdentifier:@"BaseRecordCell"];
-        [self.shuKucollectionView registerClass:[ImageRecordCell class] forCellWithReuseIdentifier:@"ImageRecordCell"];
-        [self.shuKucollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
-        self.shuKucollectionView.backgroundColor = [UIColor whiteColor];
+    [self.shuKucollectionView registerClass:[BaseRecordCell class] forCellWithReuseIdentifier:@"BaseRecordCell"];
+    [self.shuKucollectionView registerClass:[ImageRecordCell class] forCellWithReuseIdentifier:@"ImageRecordCell"];
+    [self.shuKucollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+    self.shuKucollectionView.backgroundColor = [UIColor whiteColor];
+    
+    //self.shuKucollectionView.collectionViewLayout = UICollectionViewFlowLayout;
+    
+    [self.view addSubview: self.shuKucollectionView];
+    [self.bottomView addSubview:self.newFunctionView];
+}
+
+-(UIView*)bottomView{
+    if (_bottomView == nil) {
+        _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, ZDWSCREEN_HEIGHT-50, ZDWSCREEN_WIDTH, 50)];
+        _bottomView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:_bottomView];
         
-        //self.shuKucollectionView.collectionViewLayout = UICollectionViewFlowLayout;
-        
-        [self.view addSubview: self.shuKucollectionView];
+    }
+    return _bottomView;
+}
+
+-(NewFunctionView*)newFunctionView{
+    if (!_newFunctionView) {
+        _newFunctionView = [[NewFunctionView alloc] initWithFrame:self.bottomView.bounds];
+        [_newFunctionView.addTxtBtn addTarget:self action:@selector(addTextAction) forControlEvents:UIControlEventTouchUpInside];
+        [_newFunctionView.addImgBtn addTarget:self action:@selector(addPhotoAction) forControlEvents:UIControlEventTouchUpInside];
+        [_newFunctionView.addAudioBtn addTarget:self action:@selector(addAudioAction) forControlEvents:UIControlEventTouchUpInside];
+        [_newFunctionView.addVideoBtn addTarget:self action:@selector(addVideoAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _newFunctionView;
+}
+
+-(UILabel*)promtLbl{
+    if (!_promtLbl) {
+        _promtLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, ZDWSCREEN_WIDTH-20, 20)];
+    }
+    return _promtLbl;
 }
 
 -(void)receiveNotiAction{
@@ -143,6 +175,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self didSelectionCell:indexPath];
 }
+- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+    [headerView addSubview:self.promtLbl];
+    return headerView;
+}
 
 #pragma mark action
 
@@ -218,6 +256,14 @@
     }];
     [self presentViewController:imagePickerVc animated:YES completion:nil];
     
+}
+
+-(void)addVideoAction{
+    NSLog(@"************* addVideoAction");
+}
+
+-(void)addAudioAction{
+    NSLog(@"************* addAudioAction");
 }
 
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue{
