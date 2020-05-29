@@ -36,7 +36,7 @@
     NSLog(@"path:   %@",documentsDirectory);
     self.webServer = [[GCDWebUploader alloc] initWithUploadDirectory:documentsDirectory];
     self.webServer.delegate = self;
-    //[self startIndexServices];
+    [self startIndexServices];
     [self startFetchListApi];
     [self startAddItemApi];
     [self startSearchApi];
