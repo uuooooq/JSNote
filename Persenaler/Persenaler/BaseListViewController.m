@@ -129,6 +129,9 @@
     if (keyValue.type == VT_IMG) {
         return CGSizeMake(screenWidth, screenWidth+30);
     }
+    if (keyValue.type == VT_VIDEO) {
+        return CGSizeMake(screenWidth, screenWidth+30);
+    }
     
     if (keyValue.type == VT_TEXT) {
         return [BaseRecordCell caculateCurrentSize:keyValue.value];
@@ -154,6 +157,15 @@
         }
             break;
         case VT_IMG:
+        {
+            ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            cell.fullsizeBtn.tag = indexPath.row;
+            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+        }
+        case VT_VIDEO:
         {
             ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
@@ -218,44 +230,112 @@
 -(void)addPhotoAction{
     
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
-
+    imagePickerVc.allowTakeVideo = YES;
+    imagePickerVc.allowTakePicture = YES;
+    imagePickerVc.allowPickingImage = YES;
+    imagePickerVc.allowPickingVideo = YES;
     // You can get the photos by block, the same as by delegate.
     // 你可以通过block或者代理，来得到用户选择的照片.
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         
         
         for (int i=0; i < [photos count]; i++) {
-            PHAsset * currentAsset = [assets objectAtIndex:i];
-            UIImage * tmpImg = [photos objectAtIndex:i];
-            NSString *currentImgName = [currentAsset valueForKey:@"filename"] ;
-            NSData *imagedata=UIImagePNGRepresentation(tmpImg);
-            NSString *newImageName=[self getImagePath:currentImgName];
-            BOOL result =  [imagedata writeToFile:newImageName options:NSAtomicWrite error:nil];//[imagedata writeToFile:rootDir atomically:YES];
-            NSLog(@"=============== %lu  %@",(unsigned long)[photos count],newImageName);
-            if (result == YES) {
-                NSLog(@"保存成功");
-                
-                NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
-                [extCategoryDic setObject:IMG forKey:@"type"];
-                
-                DbKeyValue * keyValue = [DbKeyValue new];
-                keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
-                keyValue.value = currentImgName;
-                keyValue.createTime =[DbKeyValue getCurrentTime];
-                keyValue.type = VT_IMG;
-                keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
-                [self.dataSource addRecord:keyValue];
-                
-                [self addPhotoStepNext:keyValue];
-                //[weakSelf.dataSource addRecord:keyValue];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
-            }
+            
+            [self copyImageInfoAndInsertToDb:[assets objectAtIndex:i] withImage:[photos objectAtIndex:i] withExtCategoryDic:nil withType:VT_IMG];
+//            PHAsset * currentAsset = [assets objectAtIndex:i];
+//            UIImage * tmpImg = [photos objectAtIndex:i];
+//            NSString *currentImgName = [currentAsset valueForKey:@"filename"] ;
+//            NSData *imagedata=UIImagePNGRepresentation(tmpImg);
+//            NSString *newImageName=[self getImagePath:currentImgName];
+//            BOOL result =  [imagedata writeToFile:newImageName options:NSAtomicWrite error:nil];//[imagedata writeToFile:rootDir atomically:YES];
+//            NSLog(@"=============== %lu  %@",(unsigned long)[photos count],newImageName);
+//            if (result == YES) {
+//                NSLog(@"保存成功");
+//
+//                NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
+//                [extCategoryDic setObject:IMG forKey:@"type"];
+//
+//                DbKeyValue * keyValue = [DbKeyValue new];
+//                keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
+//                keyValue.value = currentImgName;
+//                keyValue.createTime =[DbKeyValue getCurrentTime];
+//                keyValue.type = VT_IMG;
+//                keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+//                [self.dataSource addRecord:keyValue];
+//
+//                [self addPhotoStepNext:keyValue];
+//                //[weakSelf.dataSource addRecord:keyValue];
+//                //[[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
+//            }
         }
         
 
     }];
+    
+    [imagePickerVc setDidFinishPickingVideoHandle:^(UIImage *coverImage, PHAsset *asset) {
+        
+        [[TZImageManager manager] getVideoOutputPathWithAsset:asset presetName:AVAssetExportPresetHighestQuality success:^(NSString *outputPath) {
+            // NSData *data = [NSData dataWithContentsOfFile:outputPath];
+            NSLog(@"视频导出到本地完成,沙盒路径为:%@",outputPath);
+            // Export completed, send video here, send by outputPath or NSData
+            // 导出完成，在这里写上传代码，通过路径或者通过NSData上传
+            
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            //全局队列+异步任务
+            dispatch_async(queue, ^{
+                [ZDWUtility copyBigFileFromPath:outputPath];
+                NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
+                [extCategoryDic setObject:VIDEO forKey:@"type"];
+                [extCategoryDic setObject:[outputPath lastPathComponent] forKey:@"filename"];
+                [self copyImageInfoAndInsertToDb:asset withImage:coverImage withExtCategoryDic:extCategoryDic withType:VT_VIDEO];
+                NSLog(@"%@",[NSThread currentThread]);
+            });
+            
+            
+            [ZDWUtility copyBigFileFromPath:outputPath];
+        } failure:^(NSString *errorMessage, NSError *error) {
+            NSLog(@"视频导出失败:%@,error:%@",errorMessage, error);
+        }];
+        
+    }];
     [self presentViewController:imagePickerVc animated:YES completion:nil];
     
+}
+
+-(void)copyImageInfoAndInsertToDb:(PHAsset *)currentAsset
+                        withImage:(UIImage*)currentImg
+               withExtCategoryDic:(NSMutableDictionary*)extCategoryDic
+                         withType:(ValueType)type{
+    
+    UIImage * tmpImg = currentImg;
+    NSString *currentImgName = [currentAsset valueForKey:@"filename"] ;
+    NSData *imagedata=UIImagePNGRepresentation(tmpImg);
+    NSString *newImageName=[self getImagePath:currentImgName];
+    BOOL result =  [imagedata writeToFile:newImageName options:NSAtomicWrite error:nil];//[imagedata writeToFile:rootDir atomically:YES];
+    NSLog(@"===============  %@",newImageName);
+    if (result == YES) {
+        NSLog(@"保存成功");
+        if (!extCategoryDic) {
+            NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
+            [extCategoryDic setObject:IMG forKey:@"type"];
+        }
+        
+        DbKeyValue * keyValue = [DbKeyValue new];
+        keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
+        keyValue.value = currentImgName;
+        keyValue.createTime =[DbKeyValue getCurrentTime];
+        keyValue.type = type;
+        keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+        [self.dataSource addRecord:keyValue];
+        
+        [self addPhotoStepNext:keyValue];
+        //[weakSelf.dataSource addRecord:keyValue];
+        //[[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // UI更新代码
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
+        });
+    }
 }
 
 -(void)addVideoAction{

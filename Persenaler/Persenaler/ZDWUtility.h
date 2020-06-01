@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSMutableAttributedString*)getLabelAttributeString:(NSString*)value;
 
++ (void)copyBigFileFromPath:(NSString*)fromPath;
+
 @end
 
 NS_ASSUME_NONNULL_END
