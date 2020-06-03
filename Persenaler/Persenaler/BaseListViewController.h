@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)didSelectionCell:(NSIndexPath*)indexPath;
 -(void)addAction;
 -(void)addTextAction;
+-(void)moreAction;
 
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue;
 -(void)fusizeBtnClick:(UIButton*)btn;

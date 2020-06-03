@@ -14,18 +14,22 @@ NS_ASSUME_NONNULL_BEGIN
 #define IMG @"img"
 #define VIDEO @"video"
 #define FILE @"file"
+#define AUDIO @"audio"
 
 typedef enum _ValueType{
     VT_ALL = 0,
     VT_TEXT,
     VT_IMG,
     VT_VIDEO,
+    VT_AUDIO,
     VT_ROOT_TEXT = 10,
     VT_ROOT_IMG,
     VT_ROOT_VIDEO,
+    VT_ROOT_AUDIO,
     VT_SUB_TEXT = 20,
     VT_SUB_IMG,
-    VT_SUB_VIDEO
+    VT_SUB_VIDEO,
+    VT_SUB_AUDIO
 }ValueType;
 
 @interface DbKeyValue : NSObject

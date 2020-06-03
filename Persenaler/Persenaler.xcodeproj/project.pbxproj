@@ -33,6 +33,12 @@
 		E6816923247F3857005E2A81 /* FullsizeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6816922247F3857005E2A81 /* FullsizeImageView.m */; };
 		E6816926248065D7005E2A81 /* NewFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6816925248065D7005E2A81 /* NewFunctionView.m */; };
 		E681692924807179005E2A81 /* SearchResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E681692824807179005E2A81 /* SearchResultsController.m */; };
+		E681692E24863F45005E2A81 /* RecordAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = E681692D24863F45005E2A81 /* RecordAudioController.m */; };
+		E68169302486401D005E2A81 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E681692F2486401D005E2A81 /* AVFoundation.framework */; };
+		E681693224864029005E2A81 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E681693124864029005E2A81 /* AudioToolbox.framework */; };
+		E6816935248701BB005E2A81 /* VideoRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6816934248701BB005E2A81 /* VideoRecordCell.m */; };
+		E6816938248701D9005E2A81 /* AudioRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6816937248701D9005E2A81 /* AudioRecordCell.m */; };
+		E681694024885AC2005E2A81 /* Waver.m in Sources */ = {isa = PBXBuildFile; fileRef = E681693F24885AC2005E2A81 /* Waver.m */; };
 		E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +91,16 @@
 		E6816925248065D7005E2A81 /* NewFunctionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewFunctionView.m; sourceTree = "<group>"; };
 		E681692724807179005E2A81 /* SearchResultsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResultsController.h; sourceTree = "<group>"; };
 		E681692824807179005E2A81 /* SearchResultsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchResultsController.m; sourceTree = "<group>"; };
+		E681692C24863F45005E2A81 /* RecordAudioController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordAudioController.h; sourceTree = "<group>"; };
+		E681692D24863F45005E2A81 /* RecordAudioController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordAudioController.m; sourceTree = "<group>"; };
+		E681692F2486401D005E2A81 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E681693124864029005E2A81 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E6816933248701BB005E2A81 /* VideoRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoRecordCell.h; sourceTree = "<group>"; };
+		E6816934248701BB005E2A81 /* VideoRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoRecordCell.m; sourceTree = "<group>"; };
+		E6816936248701D9005E2A81 /* AudioRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioRecordCell.h; sourceTree = "<group>"; };
+		E6816937248701D9005E2A81 /* AudioRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioRecordCell.m; sourceTree = "<group>"; };
+		E681693E24885AC1005E2A81 /* Waver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Waver.h; sourceTree = "<group>"; };
+		E681693F24885AC2005E2A81 /* Waver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Waver.m; sourceTree = "<group>"; };
 		E6D0DF1324199BC2007DD127 /* HttpServerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpServerHandler.h; sourceTree = "<group>"; };
 		E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpServerHandler.m; sourceTree = "<group>"; };
 		F46E43402A2F5518B2EF8BC1 /* Pods-Persenaler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.debug.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.debug.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +111,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E681693224864029005E2A81 /* AudioToolbox.framework in Frameworks */,
+				E68169302486401D005E2A81 /* AVFoundation.framework in Frameworks */,
 				B5EB15EAF707BF165B96B3DF /* Pods_Persenaler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,6 +132,8 @@
 		D32D29C4E5AD468195446881 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E681693124864029005E2A81 /* AudioToolbox.framework */,
+				E681692F2486401D005E2A81 /* AVFoundation.framework */,
 				40DB189454420C72E85AD78A /* Pods_Persenaler.framework */,
 			);
 			name = Frameworks;
@@ -148,6 +168,7 @@
 		E67A47E02401ED9100FA357B /* Persenaler */ = {
 			isa = PBXGroup;
 			children = (
+				E681693924885A86005E2A81 /* component */,
 				E66E89212446E6D800F1DABC /* files */,
 				E67A480A24035C7200FA357B /* views */,
 				E67A47FD2403524900FA357B /* model */,
@@ -179,6 +200,8 @@
 				E681691F247F23D8005E2A81 /* TestViewController.m */,
 				E681692724807179005E2A81 /* SearchResultsController.h */,
 				E681692824807179005E2A81 /* SearchResultsController.m */,
+				E681692C24863F45005E2A81 /* RecordAudioController.h */,
+				E681692D24863F45005E2A81 /* RecordAudioController.m */,
 			);
 			path = Persenaler;
 			sourceTree = "<group>";
@@ -211,8 +234,29 @@
 				E6816922247F3857005E2A81 /* FullsizeImageView.m */,
 				E6816924248065D7005E2A81 /* NewFunctionView.h */,
 				E6816925248065D7005E2A81 /* NewFunctionView.m */,
+				E6816933248701BB005E2A81 /* VideoRecordCell.h */,
+				E6816934248701BB005E2A81 /* VideoRecordCell.m */,
+				E6816936248701D9005E2A81 /* AudioRecordCell.h */,
+				E6816937248701D9005E2A81 /* AudioRecordCell.m */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		E681693924885A86005E2A81 /* component */ = {
+			isa = PBXGroup;
+			children = (
+				E681693A24885A96005E2A81 /* wave */,
+			);
+			path = component;
+			sourceTree = "<group>";
+		};
+		E681693A24885A96005E2A81 /* wave */ = {
+			isa = PBXGroup;
+			children = (
+				E681693E24885AC1005E2A81 /* Waver.h */,
+				E681693F24885AC2005E2A81 /* Waver.m */,
+			);
+			path = wave;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,11 +375,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E681694024885AC2005E2A81 /* Waver.m in Sources */,
 				E63368732472839E00FC0BEC /* ItemDetailViewController.m in Sources */,
 				E67A47E92401ED9100FA357B /* ViewController.m in Sources */,
 				E6336867246A9DDE00FC0BEC /* SearchViewController.m in Sources */,
 				E67A47E32401ED9100FA357B /* AppDelegate.m in Sources */,
 				E67A47F42401ED9500FA357B /* main.m in Sources */,
+				E6816938248701D9005E2A81 /* AudioRecordCell.m in Sources */,
 				E65609D424336BA10089B3C6 /* DbKeyValue.m in Sources */,
 				E681692924807179005E2A81 /* SearchResultsController.m in Sources */,
 				E6816923247F3857005E2A81 /* FullsizeImageView.m in Sources */,
@@ -345,9 +391,11 @@
 				E67A48062403567500FA357B /* DataSource.m in Sources */,
 				E66E892D244DAE4F00F1DABC /* ZDWUtility.m in Sources */,
 				E67A480924035C6800FA357B /* BaseRecordCell.m in Sources */,
+				E6816935248701BB005E2A81 /* VideoRecordCell.m in Sources */,
 				E67A47E62401ED9100FA357B /* SceneDelegate.m in Sources */,
 				E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */,
 				E66E8930244DB96700F1DABC /* ImageRecordCell.m in Sources */,
+				E681692E24863F45005E2A81 /* RecordAudioController.m in Sources */,
 				E65609D524336BA10089B3C6 /* DataBase.m in Sources */,
 				E633686D246EC26100FC0BEC /* InputViewController.m in Sources */,
 				E633686A246E65C000FC0BEC /* BaseListViewController.m in Sources */,

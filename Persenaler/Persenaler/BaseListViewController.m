@@ -10,6 +10,7 @@
 #import "InputViewController.h"
 #import <TZImagePickerController/TZImagePickerController.h>
 #import "FullsizeImageView.h"
+#import "RecordAudioController.h"
 
 @interface BaseListViewController ()<TZImagePickerControllerDelegate>{
     FullsizeImageView *fullImageView;
@@ -174,6 +175,13 @@
             //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             return cell;
         }
+        case VT_AUDIO:
+        {
+            BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            
+            return cell;
+        }
             
         default:
             return nil;
@@ -230,10 +238,10 @@
 -(void)addPhotoAction{
     
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
-    imagePickerVc.allowTakeVideo = YES;
+    imagePickerVc.allowTakeVideo = NO;
     imagePickerVc.allowTakePicture = YES;
     imagePickerVc.allowPickingImage = YES;
-    imagePickerVc.allowPickingVideo = YES;
+    imagePickerVc.allowPickingVideo = NO;
     // You can get the photos by block, the same as by delegate.
     // 你可以通过block或者代理，来得到用户选择的照片.
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
@@ -272,34 +280,38 @@
 
     }];
     
-    [imagePickerVc setDidFinishPickingVideoHandle:^(UIImage *coverImage, PHAsset *asset) {
-        
-        [[TZImageManager manager] getVideoOutputPathWithAsset:asset presetName:AVAssetExportPresetHighestQuality success:^(NSString *outputPath) {
-            // NSData *data = [NSData dataWithContentsOfFile:outputPath];
-            NSLog(@"视频导出到本地完成,沙盒路径为:%@",outputPath);
-            // Export completed, send video here, send by outputPath or NSData
-            // 导出完成，在这里写上传代码，通过路径或者通过NSData上传
-            
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-            //全局队列+异步任务
-            dispatch_async(queue, ^{
-                [ZDWUtility copyBigFileFromPath:outputPath];
-                NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
-                [extCategoryDic setObject:VIDEO forKey:@"type"];
-                [extCategoryDic setObject:[outputPath lastPathComponent] forKey:@"filename"];
-                [self copyImageInfoAndInsertToDb:asset withImage:coverImage withExtCategoryDic:extCategoryDic withType:VT_VIDEO];
-                NSLog(@"%@",[NSThread currentThread]);
-            });
-            
-            
-            [ZDWUtility copyBigFileFromPath:outputPath];
-        } failure:^(NSString *errorMessage, NSError *error) {
-            NSLog(@"视频导出失败:%@,error:%@",errorMessage, error);
-        }];
-        
-    }];
+//    [imagePickerVc setDidFinishPickingVideoHandle:^(UIImage *coverImage, PHAsset *asset) {
+//
+//        [[TZImageManager manager] getVideoOutputPathWithAsset:asset presetName:AVAssetExportPresetHighestQuality success:^(NSString *outputPath) {
+//            // NSData *data = [NSData dataWithContentsOfFile:outputPath];
+//            NSLog(@"视频导出到本地完成,沙盒路径为:%@",outputPath);
+//            // Export completed, send video here, send by outputPath or NSData
+//            // 导出完成，在这里写上传代码，通过路径或者通过NSData上传
+//
+//            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//            //全局队列+异步任务
+//            dispatch_async(queue, ^{
+//                [ZDWUtility copyBigFileFromPath:outputPath];
+//                NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
+//                [extCategoryDic setObject:VIDEO forKey:@"type"];
+//                [extCategoryDic setObject:[outputPath lastPathComponent] forKey:@"filename"];
+//                [self copyImageInfoAndInsertToDb:asset withImage:coverImage withExtCategoryDic:extCategoryDic withType:VT_VIDEO];
+//                NSLog(@"%@",[NSThread currentThread]);
+//            });
+//
+//
+//            [ZDWUtility copyBigFileFromPath:outputPath];
+//        } failure:^(NSString *errorMessage, NSError *error) {
+//            NSLog(@"视频导出失败:%@,error:%@",errorMessage, error);
+//        }];
+//
+//    }];
     [self presentViewController:imagePickerVc animated:YES completion:nil];
     
+}
+
+-(void)moreAction{
+    NSLog(@"在子类中实现");
 }
 
 -(void)copyImageInfoAndInsertToDb:(PHAsset *)currentAsset
@@ -316,7 +328,7 @@
     if (result == YES) {
         NSLog(@"保存成功");
         if (!extCategoryDic) {
-            NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
+            extCategoryDic = [NSMutableDictionary dictionary];
             [extCategoryDic setObject:IMG forKey:@"type"];
         }
         
@@ -340,10 +352,49 @@
 
 -(void)addVideoAction{
     NSLog(@"************* addVideoAction");
+    
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
+    imagePickerVc.allowTakeVideo = YES;
+    imagePickerVc.allowTakePicture = NO;
+    imagePickerVc.allowPickingImage = NO;
+    imagePickerVc.allowPickingVideo = YES;
+    
+    [imagePickerVc setDidFinishPickingVideoHandle:^(UIImage *coverImage, PHAsset *asset) {
+        
+        [[TZImageManager manager] getVideoOutputPathWithAsset:asset presetName:AVAssetExportPresetHighestQuality success:^(NSString *outputPath) {
+            // NSData *data = [NSData dataWithContentsOfFile:outputPath];
+            NSLog(@"视频导出到本地完成,沙盒路径为:%@",outputPath);
+            // Export completed, send video here, send by outputPath or NSData
+            // 导出完成，在这里写上传代码，通过路径或者通过NSData上传
+            
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            //全局队列+异步任务
+            dispatch_async(queue, ^{
+                [ZDWUtility copyBigFileFromPath:outputPath];
+                NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
+                [extCategoryDic setObject:VIDEO forKey:@"type"];
+                [extCategoryDic setObject:[outputPath lastPathComponent] forKey:@"filename"];
+                [self copyImageInfoAndInsertToDb:asset withImage:coverImage withExtCategoryDic:extCategoryDic withType:VT_VIDEO];
+                NSLog(@"%@",[NSThread currentThread]);
+            });
+            
+            
+            //[ZDWUtility copyBigFileFromPath:outputPath];
+        } failure:^(NSString *errorMessage, NSError *error) {
+            NSLog(@"视频导出失败:%@,error:%@",errorMessage, error);
+        }];
+        
+    }];
+    [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
 -(void)addAudioAction{
     NSLog(@"************* addAudioAction");
+    
+    [self.navigationController presentViewController:[RecordAudioController new] animated:YES completion:^{
+        
+    }];
+    
 }
 
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue{
