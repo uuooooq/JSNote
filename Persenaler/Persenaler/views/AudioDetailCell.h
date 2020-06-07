@@ -1,8 +1,8 @@
 //
-//  AudioRecordCell.h
+//  AudioDetailCell.h
 //  Persenaler
 //
-//  Created by zhu dongwei on 2020/6/3.
+//  Created by zhu dongwei on 2020/6/7.
 //  Copyright © 2020 zhu dongwei. All rights reserved.
 //
 
@@ -11,11 +11,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AudioRecordCell : UICollectionViewCell{
-    
-}
+@interface AudioDetailCell : UICollectionViewCell
+
 @property(nonatomic,strong)UILabel *titleLbl;
+@property(nonatomic,strong)UIButton * playBtn;
+@property(nonatomic,strong)UIProgressView *progress;
+
+
 -(void)updateRecord:(DbKeyValue*)value;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

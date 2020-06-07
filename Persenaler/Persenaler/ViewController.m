@@ -33,11 +33,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.dataSource = [DataSource sharedDataSource];
-//    [self.dataSource loadRecord];
     [self initView];
     [self receiveNotiAction];
-    //[self initHttpServer];
+    
+    [self.shuKucollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+    self.layout.headerReferenceSize = CGSizeMake(ZDWSCREEN_WIDTH, 50.0f);  //设置headerView大小
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveServerNotiAction) name:@"serverRunning" object:nil];
     
 }
@@ -144,6 +145,13 @@
 //    }];
 //    
 //}
+
+- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+    [headerView addSubview:self.promtLbl];
+    return headerView;
+}
 
 -(void)didSelectionCell:(NSIndexPath*)indexPath{
     

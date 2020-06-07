@@ -27,6 +27,7 @@
 @property(nonatomic,strong)UIButton *saveBtn;
 @property(nonatomic,strong)NSTimer *timer;
 
+
 @end
 
 @implementation RecordAudioController
@@ -115,14 +116,12 @@
         [self.audioRecorder record];
     }
 }
+
+
+
 #pragma mark -- 录音开始
 - (void)startRecordNotice{
     if ([self.audioRecorder isRecording]) {
-//        [self.audioRecorder stop];
-//
-//        [UIView animateWithDuration:0.5 animations:^{
-//            [self.startBtn setImage:[UIImage imageNamed:@"audiostart"] forState:UIControlStateNormal];
-//        }];
         [self recorderFinish:[UIButton new]];
         return;
     }
@@ -175,28 +174,9 @@
     NSString *audioPath = [documentDirectory stringByAppendingFormat:@"/%f.caf",[[NSDate date] timeIntervalSince1970]];
     [[NSData dataWithContentsOfFile:tempPath] writeToFile:audioPath atomically:YES];
     
-//    typeof(self) __weak weakSelf = self;
-//    [UIView animateWithDuration:0.5 animations:^{
-//        weakSelf.windowTopRecorderView.frame = CGRectMake(CGRectGetMinX(weakSelf.windowTopRecorderView.frame), -CGRectGetHeight(weakSelf.windowTopRecorderView.frame), CGRectGetWidth(weakSelf.windowTopRecorderView.frame), CGRectGetHeight(weakSelf.windowTopRecorderView.frame));
-//    }];
-    
-    //[self saveAction];
-    
-    
-//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    //全局队列+异步任务
-//    dispatch_async(queue, ^{
-//        [ZDWUtility copyBigFileFromPath:outputPath];
-//        NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
-//        [extCategoryDic setObject:VIDEO forKey:@"type"];
-//        [extCategoryDic setObject:[outputPath lastPathComponent] forKey:@"filename"];
-//        [self copyImageInfoAndInsertToDb:asset withImage:coverImage withExtCategoryDic:extCategoryDic withType:VT_VIDEO];
-//        NSLog(@"%@",[NSThread currentThread]);
-//    });
-    
-    
     NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
     [extCategoryDic setObject:AUDIO forKey:@"type"];
+    [extCategoryDic setObject:[NSNumber numberWithLong:self.audioTime] forKey:@"audiotime"];
     DbKeyValue * keyValue = [DbKeyValue new];
     keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
     keyValue.value = [audioPath lastPathComponent];

@@ -11,6 +11,7 @@
 #import <TZImagePickerController/TZImagePickerController.h>
 #import "FullsizeImageView.h"
 #import "RecordAudioController.h"
+#import "AudioRecordCell.h"
 
 @interface BaseListViewController ()<TZImagePickerControllerDelegate>{
     FullsizeImageView *fullImageView;
@@ -38,21 +39,22 @@
 
 - (void)createCollectionView{
     
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    _layout = [[UICollectionViewFlowLayout alloc] init];
+    _layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
     CGRect collectonFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-50);
     
-    self.shuKucollectionView = [[UICollectionView alloc] initWithFrame:collectonFrame collectionViewLayout:layout];
+    self.shuKucollectionView = [[UICollectionView alloc] initWithFrame:collectonFrame collectionViewLayout:_layout];
     
-    layout.headerReferenceSize = CGSizeMake(ZDWSCREEN_WIDTH, 50.0f);  //设置headerView大小
-    [self.shuKucollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
     
+//    [self.shuKucollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+//
     self.shuKucollectionView.delegate = self;
     self.shuKucollectionView.dataSource = self;
     //    [self.shuKucollectionView registerClass:[ShukuHomeListCell class] forCellWithReuseIdentifier:@"ShukuHomeListCell"];
     [self.shuKucollectionView registerClass:[BaseRecordCell class] forCellWithReuseIdentifier:@"BaseRecordCell"];
     [self.shuKucollectionView registerClass:[ImageRecordCell class] forCellWithReuseIdentifier:@"ImageRecordCell"];
+    [self.shuKucollectionView registerClass:[AudioRecordCell class] forCellWithReuseIdentifier:@"AudioRecordCell"];
     [self.shuKucollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
     self.shuKucollectionView.backgroundColor = [UIColor whiteColor];
     
@@ -137,8 +139,11 @@
     if (keyValue.type == VT_TEXT) {
         return [BaseRecordCell caculateCurrentSize:keyValue.value];
     }
+    if (keyValue.type == VT_AUDIO) {
+        return CGSizeMake(screenWidth, 50);
+    }
 
-    return CGSizeMake(screenWidth, 180);
+    return CGSizeMake(screenWidth, 60);
     
 }
 
@@ -177,7 +182,7 @@
         }
         case VT_AUDIO:
         {
-            BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
+            AudioRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
             
             return cell;
@@ -195,12 +200,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self didSelectionCell:indexPath];
 }
-- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-    [headerView addSubview:self.promtLbl];
-    return headerView;
-}
+
 
 #pragma mark action
 
@@ -250,62 +250,12 @@
         for (int i=0; i < [photos count]; i++) {
             
             [self copyImageInfoAndInsertToDb:[assets objectAtIndex:i] withImage:[photos objectAtIndex:i] withExtCategoryDic:nil withType:VT_IMG];
-//            PHAsset * currentAsset = [assets objectAtIndex:i];
-//            UIImage * tmpImg = [photos objectAtIndex:i];
-//            NSString *currentImgName = [currentAsset valueForKey:@"filename"] ;
-//            NSData *imagedata=UIImagePNGRepresentation(tmpImg);
-//            NSString *newImageName=[self getImagePath:currentImgName];
-//            BOOL result =  [imagedata writeToFile:newImageName options:NSAtomicWrite error:nil];//[imagedata writeToFile:rootDir atomically:YES];
-//            NSLog(@"=============== %lu  %@",(unsigned long)[photos count],newImageName);
-//            if (result == YES) {
-//                NSLog(@"保存成功");
-//
-//                NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
-//                [extCategoryDic setObject:IMG forKey:@"type"];
-//
-//                DbKeyValue * keyValue = [DbKeyValue new];
-//                keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
-//                keyValue.value = currentImgName;
-//                keyValue.createTime =[DbKeyValue getCurrentTime];
-//                keyValue.type = VT_IMG;
-//                keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
-//                [self.dataSource addRecord:keyValue];
-//
-//                [self addPhotoStepNext:keyValue];
-//                //[weakSelf.dataSource addRecord:keyValue];
-//                //[[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
-//            }
+
         }
         
 
     }];
     
-//    [imagePickerVc setDidFinishPickingVideoHandle:^(UIImage *coverImage, PHAsset *asset) {
-//
-//        [[TZImageManager manager] getVideoOutputPathWithAsset:asset presetName:AVAssetExportPresetHighestQuality success:^(NSString *outputPath) {
-//            // NSData *data = [NSData dataWithContentsOfFile:outputPath];
-//            NSLog(@"视频导出到本地完成,沙盒路径为:%@",outputPath);
-//            // Export completed, send video here, send by outputPath or NSData
-//            // 导出完成，在这里写上传代码，通过路径或者通过NSData上传
-//
-//            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//            //全局队列+异步任务
-//            dispatch_async(queue, ^{
-//                [ZDWUtility copyBigFileFromPath:outputPath];
-//                NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
-//                [extCategoryDic setObject:VIDEO forKey:@"type"];
-//                [extCategoryDic setObject:[outputPath lastPathComponent] forKey:@"filename"];
-//                [self copyImageInfoAndInsertToDb:asset withImage:coverImage withExtCategoryDic:extCategoryDic withType:VT_VIDEO];
-//                NSLog(@"%@",[NSThread currentThread]);
-//            });
-//
-//
-//            [ZDWUtility copyBigFileFromPath:outputPath];
-//        } failure:^(NSString *errorMessage, NSError *error) {
-//            NSLog(@"视频导出失败:%@,error:%@",errorMessage, error);
-//        }];
-//
-//    }];
     [self presentViewController:imagePickerVc animated:YES completion:nil];
     
 }

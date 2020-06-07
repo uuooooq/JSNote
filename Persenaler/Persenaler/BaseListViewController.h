@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) UIView *bottomView;
 @property(nonatomic,strong) UILabel *promtLbl;
 @property(nonatomic,strong) NewFunctionView *newFunctionView;
+@property(nonatomic,strong) UICollectionViewFlowLayout *layout;
 
 -(void)receiveNotiAction;
 

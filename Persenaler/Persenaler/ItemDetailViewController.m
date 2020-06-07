@@ -8,8 +8,15 @@
 
 #import "ItemDetailViewController.h"
 #import "InputViewController.h"
+#import "AudioDetailCell.h"
+#import "AudioRecordCell.h"
 
-@interface ItemDetailViewController ()
+
+@interface ItemDetailViewController ()<AVAudioPlayerDelegate>{
+    UIButton *playBtn;
+}
+
+@property (nonatomic,strong) AVAudioPlayer *audioPlayer;
 
 @end
 
@@ -17,16 +24,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self initView];
-    NSLog(@"******************************** ");
     
-
+    [self.shuKucollectionView registerClass:[AudioDetailCell class] forCellWithReuseIdentifier:@"AudioDetailCell"];
 }
 
 
 -(void)receiveNotiAction{
-    NSLog(@"******************************** receiveNotiAction");
+    
     //[weakSelf.shuKucollectionView reloadData];
     //[self.dataSource loadRecord];
     [self.currentDataArr removeAllObjects];
@@ -36,7 +41,7 @@
     NSArray *tmpGroups = [self.dataSource getKeyValueGroups:[NSString stringWithFormat:@"%d",self.fromKeyValue.kvid]];
     if ([tmpGroups count] > 0) {
         for (DbKeyValueGroup *item in tmpGroups) {
-            NSLog(@"================== %@",item.subValue);
+            
             DbKeyValue* keyValue = [DbKeyValue new];
             keyValue.kvid = item.subID;
             keyValue.value = item.subValue;
@@ -103,6 +108,287 @@
         
         [self.dataSource addRecordGroup:keyValueGroup];
     }
+}
+
+-(void)playClickAction:(UIButton*)btn{
+    NSLog(@"play click action ===============");
+    [self playMusic:btn];
+    
+    
+}
+
+#pragma mark -- 播放音频
+
+- (void)playMusic:(UIButton*)btn
+{
+
+    if (!self.audioPlayer.isPlaying)
+    {
+
+        [self.audioPlayer play];
+        //开始计时
+        //self.timer.fireDate = [NSDate distantPast];
+        [btn setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+
+    }
+    else{
+        [self pauseMusic];
+        [btn setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+    }
+
+}
+
+
+- (void)pauseMusic
+{
+
+    if (self.audioPlayer.isPlaying)
+    {
+
+        [self.audioPlayer pause];
+        [playBtn setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+        //暂停定时器
+        //self.timer.fireDate = [NSDate distantFuture];
+
+    }
+
+}
+
+- (AVAudioPlayer*)audioPlayer
+{
+    if (!_audioPlayer) {
+        
+        NSString *kMusicFile = [ZDWUtility getImagePath:self.fromKeyValue.value];
+
+        //获取本地播放文件路径
+        //NSString *path = [[NSBundle mainBundle] pathForResource:kMusicFile ofType:nil];
+
+        NSError *error = nil;
+
+        //初始化播放器 stringByAddingPercentEncodingWithAllowedCharacters
+        //_audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:[path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]] error:&error];
+        _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:kMusicFile] error:&error];
+        if (error) {
+            NSLog(@"=============== error:%@",error.description);
+            return nil;
+        }
+        //是否循环播放
+        _audioPlayer.numberOfLoops = 0;
+
+        //把播放文件加载到缓存中（注意：即使在播放之前音频文件没有加载到缓冲区程序也会隐式调用此方法。）
+        [_audioPlayer prepareToPlay];
+
+        //设置代理，监听播放状态(例如:播放完成)
+        _audioPlayer.delegate = self;
+
+
+//        // 设置音频会话模式，后台播放
+//        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+//        [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+//        [audioSession setActive:YES error:nil];
+
+
+        // 添加通知(输出改变通知)  ios 6.0 后
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(routeChange:) name:AVAudioSessionRouteChangeNotification object:nil];
+
+
+
+        if (error) {
+
+            NSAssert(YES,@"音乐初始化过程报错");
+
+        }
+
+
+    }
+    return _audioPlayer;
+}
+
+- (void)routeChange:(NSNotification*)notification
+{
+
+    NSDictionary *dic = notification.userInfo;
+
+    int changeReason = [dic[AVAudioSessionRouteChangeReasonKey] intValue];
+
+    //等于AVAudioSessionRouteChangeReasonOldDeviceUnavailable表示旧输出不可用
+    if (changeReason == AVAudioSessionRouteChangeReasonOldDeviceUnavailable)
+    {
+        AVAudioSessionRouteDescription *routeDescription=dic[AVAudioSessionRouteChangePreviousRouteKey];
+        AVAudioSessionPortDescription *portDescription= [routeDescription.outputs firstObject];
+        //原设备为耳机则暂停
+        if ([portDescription.portType isEqualToString:@"Headphones"])
+        {
+            //这边必须回调到主线程
+            dispatch_async(dispatch_get_main_queue(), ^{
+
+                //self.playOrPause.selected = NO;
+
+            });
+
+            //[self pauseMusic];
+        }
+    }
+
+}//输出改变通知
+
+
+#pragma mark - AVAudioPlayer Delegate
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+
+    [playBtn setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+
+}
+
+#pragma mark collection delegate overrate
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    DbKeyValue *keyValue = [self.currentDataArr objectAtIndex:indexPath.row];
+    CGRect screenFrame = [UIScreen mainScreen].bounds;
+    int screenWidth = screenFrame.size.width;
+    
+    if (indexPath.row == 0) {
+        switch (keyValue.type) {
+            case VT_IMG:
+            {
+                return CGSizeMake(screenWidth, screenWidth+30);
+            }
+                break;
+            case VT_TEXT:
+            {
+                return CGSizeMake(screenWidth, screenWidth+30);
+            }
+                break;
+            case VT_VIDEO:
+            {
+                return [BaseRecordCell caculateCurrentSize:keyValue.value];
+            }
+                break;
+            case VT_AUDIO:
+            {
+                return CGSizeMake(screenWidth, 100);
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    else{
+        if (keyValue.type == VT_IMG) {
+            return CGSizeMake(screenWidth, screenWidth+30);
+        }
+        if (keyValue.type == VT_VIDEO) {
+            return CGSizeMake(screenWidth, screenWidth+30);
+        }
+        
+        if (keyValue.type == VT_TEXT) {
+            return [BaseRecordCell caculateCurrentSize:keyValue.value];
+        }
+        if (keyValue.type == VT_AUDIO) {
+            return CGSizeMake(screenWidth, 50);
+        }
+
+    }
+    
+    return CGSizeMake(screenWidth, 60);
+    
+}
+
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    
+    
+    DbKeyValue *keyValue = [self.currentDataArr objectAtIndex:indexPath.row];
+    
+    
+    if (indexPath.row == 0) {
+        switch (keyValue.type) {
+            case VT_TEXT:
+            {
+                BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
+                [cell updateRecord:keyValue];
+                
+                return cell;
+            }
+                break;
+            case VT_IMG:
+            {
+                ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
+                [cell updateRecord:keyValue];
+                cell.fullsizeBtn.tag = indexPath.row;
+                [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+                //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+                return cell;
+            }
+            case VT_VIDEO:
+            {
+                ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
+                [cell updateRecord:keyValue];
+                cell.fullsizeBtn.tag = indexPath.row;
+                [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+                //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+                return cell;
+            }
+            case VT_AUDIO:
+            {
+                AudioDetailCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioDetailCell" forIndexPath:indexPath];
+                [cell updateRecord:keyValue];
+                [cell.playBtn addTarget:self action:@selector(playClickAction:) forControlEvents:UIControlEventTouchUpInside];
+                playBtn = cell.playBtn;
+                return cell;
+            }
+                
+            default:
+                return nil;
+                break;
+        }
+    }
+    
+    switch (keyValue.type) {
+        case VT_TEXT:
+        {
+            BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            
+            return cell;
+        }
+            break;
+        case VT_IMG:
+        {
+            ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            cell.fullsizeBtn.tag = indexPath.row;
+            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+        }
+        case VT_VIDEO:
+        {
+            ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            cell.fullsizeBtn.tag = indexPath.row;
+            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+        }
+        case VT_AUDIO:
+        {
+            AudioRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            
+            return cell;
+        }
+            
+        default:
+            return nil;
+            break;
+    }
+    
+    //return cell;
+    
 }
 
 @end

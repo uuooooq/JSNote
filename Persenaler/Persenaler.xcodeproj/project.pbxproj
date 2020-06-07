@@ -39,6 +39,10 @@
 		E6816935248701BB005E2A81 /* VideoRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6816934248701BB005E2A81 /* VideoRecordCell.m */; };
 		E6816938248701D9005E2A81 /* AudioRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6816937248701D9005E2A81 /* AudioRecordCell.m */; };
 		E681694024885AC2005E2A81 /* Waver.m in Sources */ = {isa = PBXBuildFile; fileRef = E681693F24885AC2005E2A81 /* Waver.m */; };
+		E68586E3248C4D5800712095 /* AudioOperateViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E68586E2248C4D5800712095 /* AudioOperateViewCell.m */; };
+		E68586E6248C4D8700712095 /* AudioActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68586E5248C4D8700712095 /* AudioActionViewCell.swift */; };
+		E68586EA248CCACE00712095 /* AudioOperateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E68586E9248CCACE00712095 /* AudioOperateView.m */; };
+		E68586F0248CD2F100712095 /* AudioDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E68586EF248CD2F100712095 /* AudioDetailCell.m */; };
 		E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +105,14 @@
 		E6816937248701D9005E2A81 /* AudioRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioRecordCell.m; sourceTree = "<group>"; };
 		E681693E24885AC1005E2A81 /* Waver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Waver.h; sourceTree = "<group>"; };
 		E681693F24885AC2005E2A81 /* Waver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Waver.m; sourceTree = "<group>"; };
+		E68586E1248C4D5800712095 /* AudioOperateViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioOperateViewCell.h; sourceTree = "<group>"; };
+		E68586E2248C4D5800712095 /* AudioOperateViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioOperateViewCell.m; sourceTree = "<group>"; };
+		E68586E4248C4D8700712095 /* Persenaler-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Persenaler-Bridging-Header.h"; sourceTree = "<group>"; };
+		E68586E5248C4D8700712095 /* AudioActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioActionViewCell.swift; sourceTree = "<group>"; };
+		E68586E8248CCACE00712095 /* AudioOperateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioOperateView.h; sourceTree = "<group>"; };
+		E68586E9248CCACE00712095 /* AudioOperateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioOperateView.m; sourceTree = "<group>"; };
+		E68586EE248CD2F100712095 /* AudioDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioDetailCell.h; sourceTree = "<group>"; };
+		E68586EF248CD2F100712095 /* AudioDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioDetailCell.m; sourceTree = "<group>"; };
 		E6D0DF1324199BC2007DD127 /* HttpServerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpServerHandler.h; sourceTree = "<group>"; };
 		E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpServerHandler.m; sourceTree = "<group>"; };
 		F46E43402A2F5518B2EF8BC1 /* Pods-Persenaler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.debug.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.debug.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +180,7 @@
 		E67A47E02401ED9100FA357B /* Persenaler */ = {
 			isa = PBXGroup;
 			children = (
+				E68586E7248C8A6C00712095 /* res */,
 				E681693924885A86005E2A81 /* component */,
 				E66E89212446E6D800F1DABC /* files */,
 				E67A480A24035C7200FA357B /* views */,
@@ -238,6 +251,14 @@
 				E6816934248701BB005E2A81 /* VideoRecordCell.m */,
 				E6816936248701D9005E2A81 /* AudioRecordCell.h */,
 				E6816937248701D9005E2A81 /* AudioRecordCell.m */,
+				E68586E1248C4D5800712095 /* AudioOperateViewCell.h */,
+				E68586E2248C4D5800712095 /* AudioOperateViewCell.m */,
+				E68586E5248C4D8700712095 /* AudioActionViewCell.swift */,
+				E68586E4248C4D8700712095 /* Persenaler-Bridging-Header.h */,
+				E68586E8248CCACE00712095 /* AudioOperateView.h */,
+				E68586E9248CCACE00712095 /* AudioOperateView.m */,
+				E68586EE248CD2F100712095 /* AudioDetailCell.h */,
+				E68586EF248CD2F100712095 /* AudioDetailCell.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -257,6 +278,13 @@
 				E681693F24885AC2005E2A81 /* Waver.m */,
 			);
 			path = wave;
+			sourceTree = "<group>";
+		};
+		E68586E7248C8A6C00712095 /* res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = res;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +320,7 @@
 				TargetAttributes = {
 					E67A47DD2401ED9100FA357B = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1150;
 					};
 				};
 			};
@@ -379,6 +408,7 @@
 				E63368732472839E00FC0BEC /* ItemDetailViewController.m in Sources */,
 				E67A47E92401ED9100FA357B /* ViewController.m in Sources */,
 				E6336867246A9DDE00FC0BEC /* SearchViewController.m in Sources */,
+				E68586F0248CD2F100712095 /* AudioDetailCell.m in Sources */,
 				E67A47E32401ED9100FA357B /* AppDelegate.m in Sources */,
 				E67A47F42401ED9500FA357B /* main.m in Sources */,
 				E6816938248701D9005E2A81 /* AudioRecordCell.m in Sources */,
@@ -386,11 +416,14 @@
 				E681692924807179005E2A81 /* SearchResultsController.m in Sources */,
 				E6816923247F3857005E2A81 /* FullsizeImageView.m in Sources */,
 				E6816920247F23D8005E2A81 /* TestViewController.m in Sources */,
+				E68586E6248C4D8700712095 /* AudioActionViewCell.swift in Sources */,
 				E6336870247274C500FC0BEC /* DbKeyValueGroup.m in Sources */,
+				E68586E3248C4D5800712095 /* AudioOperateViewCell.m in Sources */,
 				E66E892A244BE4A800F1DABC /* ZUtitlity.h in Sources */,
 				E67A48062403567500FA357B /* DataSource.m in Sources */,
 				E66E892D244DAE4F00F1DABC /* ZDWUtility.m in Sources */,
 				E67A480924035C6800FA357B /* BaseRecordCell.m in Sources */,
+				E68586EA248CCACE00712095 /* AudioOperateView.m in Sources */,
 				E6816935248701BB005E2A81 /* VideoRecordCell.m in Sources */,
 				E67A47E62401ED9100FA357B /* SceneDelegate.m in Sources */,
 				E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */,
@@ -540,6 +573,7 @@
 			baseConfigurationReference = F46E43402A2F5518B2EF8BC1 /* Pods-Persenaler.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5A3SR4J693;
 				INFOPLIST_FILE = Persenaler/Info.plist;
@@ -549,6 +583,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wenter.Persenaler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Persenaler/views/Persenaler-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -558,6 +595,7 @@
 			baseConfigurationReference = 0AD43534560657615509498C /* Pods-Persenaler.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5A3SR4J693;
 				INFOPLIST_FILE = Persenaler/Info.plist;
@@ -567,6 +605,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wenter.Persenaler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Persenaler/views/Persenaler-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
