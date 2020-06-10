@@ -10,6 +10,7 @@
 #import "InputViewController.h"
 #import "AudioDetailCell.h"
 #import "AudioRecordCell.h"
+#import "TextDetailCell.h"
 
 
 @interface ItemDetailViewController ()<AVAudioPlayerDelegate>{
@@ -27,6 +28,7 @@
     [self initView];
     
     [self.shuKucollectionView registerClass:[AudioDetailCell class] forCellWithReuseIdentifier:@"AudioDetailCell"];
+    [self.shuKucollectionView registerClass:[TextDetailCell class] forCellWithReuseIdentifier:@"TextDetailCell"];
 }
 
 
@@ -254,17 +256,17 @@
         switch (keyValue.type) {
             case VT_IMG:
             {
-                return CGSizeMake(screenWidth, screenWidth+30);
+                return CGSizeMake(screenWidth, screenWidth);
             }
                 break;
             case VT_TEXT:
             {
-                return CGSizeMake(screenWidth, screenWidth+30);
+                return [BaseRecordCell caculateCurrentSize:keyValue.value];
             }
                 break;
             case VT_VIDEO:
             {
-                return [BaseRecordCell caculateCurrentSize:keyValue.value];
+                return CGSizeMake(screenWidth, screenWidth);
             }
                 break;
             case VT_AUDIO:
@@ -278,10 +280,10 @@
     }
     else{
         if (keyValue.type == VT_IMG) {
-            return CGSizeMake(screenWidth, screenWidth+30);
+            return CGSizeMake(screenWidth, screenWidth);
         }
         if (keyValue.type == VT_VIDEO) {
-            return CGSizeMake(screenWidth, screenWidth+30);
+            return CGSizeMake(screenWidth, screenWidth);
         }
         
         if (keyValue.type == VT_TEXT) {
@@ -308,7 +310,7 @@
         switch (keyValue.type) {
             case VT_TEXT:
             {
-                BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
+                TextDetailCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TextDetailCell" forIndexPath:indexPath];
                 [cell updateRecord:keyValue];
                 
                 return cell;
@@ -389,6 +391,15 @@
     
     //return cell;
     
+}
+
+-(void)didSelectionCell:(NSIndexPath*)indexPath{
+    
+    if (indexPath.row == 0) {
+        if (self.fromKeyValue.type == VT_IMG) {
+            [self showFullImageSizeView:self.fromKeyValue.value];
+        }
+    }
 }
 
 @end

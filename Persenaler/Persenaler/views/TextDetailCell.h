@@ -1,8 +1,8 @@
 //
-//  VideoRecordCell.h
+//  TextDetailCell.h
 //  Persenaler
 //
-//  Created by zhu dongwei on 2020/6/3.
+//  Created by zhu dongwei on 2020/6/10.
 //  Copyright © 2020 zhu dongwei. All rights reserved.
 //
 
@@ -11,11 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface VideoRecordCell : UICollectionViewCell
+@interface TextDetailCell : UICollectionViewCell
 
 -(void)updateRecord:(DbKeyValue*)value;
-@property(nonatomic,strong) UIButton * commBtn;
-@property(nonatomic,strong) UIButton * fullsizeBtn;
+
++(CGSize)caculateCurrentSize:(NSString*)value;
 
 @end
 

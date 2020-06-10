@@ -41,7 +41,7 @@
     imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.width)];
     imgView.contentMode = UIViewContentModeScaleAspectFill;
     imgView.clipsToBounds = YES;
-    [self addSubview:imgView];
+    [self.contentView addSubview:imgView];
     
     descLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.size.height-20, 200, 20)];
     descLbl.textColor = [UIColor lightGrayColor];
@@ -54,12 +54,17 @@
 //    //[commBtn addTarget:self action:@selector(clickCommAction) forControlEvents:UIControlEventTouchUpInside];
 //    [self addSubview:_commBtn];
     
-    _fullsizeBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, self.frame.size.width-24-10, 24, 24)];
-    [_fullsizeBtn setImage:[UIImage imageNamed:@"fullsize"] forState:UIControlStateNormal];
-    [_fullsizeBtn setBackgroundColor:[UIColor whiteColor]];
-    [self addSubview:_fullsizeBtn];
+//    _fullsizeBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, self.frame.size.width-24-10, 24, 24)];
+//    [_fullsizeBtn setImage:[UIImage imageNamed:@"fullsize"] forState:UIControlStateNormal];
+//    [_fullsizeBtn setBackgroundColor:[UIColor whiteColor]];
+//    [self.contentView addSubview:_fullsizeBtn];
     
-    [self addSubview:descLbl];
+//    UIImageView *tagImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
+//    [tagImgView setImage:[UIImage imageNamed:@"takephoto"]];
+//    tagImgView.contentMode = UIViewContentModeCenter;
+//    [self.contentView addSubview:tagImgView];
+    
+    [self.contentView addSubview:descLbl];
 }
 
 -(void)updateRecord:(DbKeyValue*)value{
@@ -72,7 +77,7 @@
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:value.createTime];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     //最结尾的Z表示的是时区，零时区表示+0000，东八区表示+0800
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
     // 使用formatter转换后的date字符串变成了当前时区的时间
     NSString *dateStr = [formatter stringFromDate:date];
     descLbl.text = dateStr;

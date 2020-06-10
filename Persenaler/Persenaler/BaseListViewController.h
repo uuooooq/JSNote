@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue;
 -(void)fusizeBtnClick:(UIButton*)btn;
+-(void)showFullImageSizeView:(NSString*)imgName;
 
 @end
 

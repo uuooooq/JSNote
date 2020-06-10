@@ -45,6 +45,8 @@
     [self.addAudioBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self addSubview:self.addAudioBtn];
     
+    //self.addAudioBtn.enabled = NO;
+    
 //    self.addVideoBtn = [[UIButton alloc] initWithFrame:CGRectMake(20+60+60, 5, 40, 24)];
 //    [self.addVideoBtn setTitle:@"视频" forState:UIControlStateNormal];
 //    [self.addVideoBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

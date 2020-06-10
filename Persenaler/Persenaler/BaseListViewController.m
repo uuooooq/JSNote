@@ -12,6 +12,7 @@
 #import "FullsizeImageView.h"
 #import "RecordAudioController.h"
 #import "AudioRecordCell.h"
+#import "VideoRecordCell.h"
 
 @interface BaseListViewController ()<TZImagePickerControllerDelegate>{
     FullsizeImageView *fullImageView;
@@ -56,6 +57,7 @@
     [self.shuKucollectionView registerClass:[ImageRecordCell class] forCellWithReuseIdentifier:@"ImageRecordCell"];
     [self.shuKucollectionView registerClass:[AudioRecordCell class] forCellWithReuseIdentifier:@"AudioRecordCell"];
     [self.shuKucollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+    [self.shuKucollectionView registerClass:[VideoRecordCell class] forCellWithReuseIdentifier:@"VideoRecordCell"];
     self.shuKucollectionView.backgroundColor = [UIColor whiteColor];
     
     //self.shuKucollectionView.collectionViewLayout = UICollectionViewFlowLayout;
@@ -130,10 +132,10 @@
     int screenWidth = screenFrame.size.width;
     
     if (keyValue.type == VT_IMG) {
-        return CGSizeMake(screenWidth, screenWidth+30);
+        return CGSizeMake(screenWidth, screenWidth);
     }
     if (keyValue.type == VT_VIDEO) {
-        return CGSizeMake(screenWidth, screenWidth+30);
+        return CGSizeMake(screenWidth, screenWidth);
     }
     
     if (keyValue.type == VT_TEXT) {
@@ -173,11 +175,8 @@
         }
         case VT_VIDEO:
         {
-            ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
+            VideoRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VideoRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
-            cell.fullsizeBtn.tag = indexPath.row;
-            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             return cell;
         }
         case VT_AUDIO:

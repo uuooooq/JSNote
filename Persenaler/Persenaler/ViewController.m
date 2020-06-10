@@ -114,37 +114,6 @@
     [alert addAction:cancelAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
-//
-//-(void)addAction{
-//    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"选择类型"
-//                                   message:nil
-//                                   preferredStyle:UIAlertControllerStyleActionSheet];
-//     
-//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"图片" style:UIAlertActionStyleDefault
-//       handler:^(UIAlertAction * action) {
-//        [self addPhotoAction];
-//    }];
-//    UIAlertAction* defaultAction1 = [UIAlertAction actionWithTitle:@"文字" style:UIAlertActionStyleDefault
-//       handler:^(UIAlertAction * action) {
-//        [self addTextAction];
-//    }];
-//    UIAlertAction* defaultAction2 = [UIAlertAction actionWithTitle:@"故事线" style:UIAlertActionStyleDefault
-//       handler:^(UIAlertAction * action) {}];
-//     
-//    [alert addAction:defaultAction];
-//    [alert addAction:defaultAction1];
-//    [alert addAction:defaultAction2];
-//    [self presentViewController:alert animated:YES completion:nil];
-//    
-//}
-//
-//-(void)addTextAction{
-//    
-//    [self presentViewController:[InputViewController new] animated:YES completion:^{
-//        
-//    }];
-//    
-//}
 
 - (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
@@ -156,8 +125,8 @@
 -(void)didSelectionCell:(NSIndexPath*)indexPath{
     
     ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
-    itemDetailVC.title = @"详情页";
     itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
+    itemDetailVC.title = @"详情";
     [self.navigationController pushViewController:itemDetailVC animated:YES];
 }
 
