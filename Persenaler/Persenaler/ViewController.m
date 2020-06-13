@@ -40,6 +40,7 @@
     self.layout.headerReferenceSize = CGSizeMake(ZDWSCREEN_WIDTH, 50.0f);  //设置headerView大小
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveServerNotiAction) name:@"serverRunning" object:nil];
+    [self.bottomView addSubview:self.newFunctionView];
     
 }
 
@@ -78,7 +79,31 @@
     
 }
 
+-(void)receiveNotiAction{
+    [super receiveNotiAction];
+
+}
+-(NewFunctionView*)newFunctionView{
+    if (!_newFunctionView) {
+        _newFunctionView = [[NewFunctionView alloc] initWithFrame:self.bottomView.bounds];
+        [_newFunctionView.addTxtBtn addTarget:self action:@selector(addTextAction) forControlEvents:UIControlEventTouchUpInside];
+        [_newFunctionView.addImgBtn addTarget:self action:@selector(addPhotoAction) forControlEvents:UIControlEventTouchUpInside];
+//        [_newFunctionView.addAudioBtn addTarget:self action:@selector(addAudioAction) forControlEvents:UIControlEventTouchUpInside];
+//        [_newFunctionView.addVideoBtn addTarget:self action:@selector(addVideoAction) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    [_newFunctionView updateViewFunctionState:VS_HomeList];
+    [_newFunctionView.searchBtn addTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside];
+    return _newFunctionView;
+}
+
+
 #pragma mark action method
+
+
+-(void)searchAction{
+    [self.navigationItem.searchController.searchBar becomeFirstResponder];
+}
 
 -(void)receiveServerNotiAction{
 //    self.searchController.searchBar.searchFieldBackgroundPositionAdjustment = UIOffsetMake(0, 20);

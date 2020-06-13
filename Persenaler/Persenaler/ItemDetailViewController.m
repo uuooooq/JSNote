@@ -26,9 +26,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initView];
-    
+    [self receiveNotiAction];
     [self.shuKucollectionView registerClass:[AudioDetailCell class] forCellWithReuseIdentifier:@"AudioDetailCell"];
     [self.shuKucollectionView registerClass:[TextDetailCell class] forCellWithReuseIdentifier:@"TextDetailCell"];
+    [self.bottomView addSubview:self.newFunctionView];
+
+}
+
+-(NewFunctionView*)newFunctionView{
+    if (!_newFunctionView) {
+        _newFunctionView = [[NewFunctionView alloc] initWithFrame:self.bottomView.bounds];
+        [_newFunctionView.addTxtBtn addTarget:self action:@selector(addTextAction) forControlEvents:UIControlEventTouchUpInside];
+        [_newFunctionView.addImgBtn addTarget:self action:@selector(addPhotoAction) forControlEvents:UIControlEventTouchUpInside];
+//        [_newFunctionView.addAudioBtn addTarget:self action:@selector(addAudioAction) forControlEvents:UIControlEventTouchUpInside];
+//        [_newFunctionView.addVideoBtn addTarget:self action:@selector(addVideoAction) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    if (self.fromKeyValue.type == VT_TEXT) {
+        [_newFunctionView updateViewFunctionState:VS_ItemDetail_Text];
+        [_newFunctionView.copyyBtn addTarget:self action:@selector(copyAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    else if(self.fromKeyValue.type == VT_IMG){
+        [_newFunctionView updateViewFunctionState:VS_ItemDetail_Img];
+    }
+//    [_newFunctionView.searchBtn addTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside];
+    return _newFunctionView;
 }
 
 
@@ -53,6 +75,10 @@
         }
     }
     
+
+    
+    //[self.newFunctionView updateViewFunctionState:];
+    
 }
 
 -(void)initView{
@@ -68,7 +94,7 @@
 -(void)setFromKeyValue:(DbKeyValue *)fromKeyValue{
     
     _fromKeyValue = fromKeyValue;
-    [self receiveNotiAction];
+    //[self receiveNotiAction];
 }
 
 /*
@@ -80,6 +106,15 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)copyAction{
+    
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = self.fromKeyValue.value;
+    
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:nil message:@"已经拷贝到剪贴板中" preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alertVC animated:YES completion:nil];
+}
 
 -(void)addTextAction{
     

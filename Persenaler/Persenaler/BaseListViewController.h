@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) NSMutableArray *currentDataArr;
 @property(nonatomic,strong) UIView *bottomView;
 @property(nonatomic,strong) UILabel *promtLbl;
-@property(nonatomic,strong) NewFunctionView *newFunctionView;
+
 @property(nonatomic,strong) UICollectionViewFlowLayout *layout;
 
 -(void)receiveNotiAction;
@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)addAction;
 -(void)addTextAction;
 -(void)moreAction;
+-(void)searchAction;
+-(void)addPhotoAction;
+-(void)copyAction;
 
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue;
 -(void)fusizeBtnClick:(UIButton*)btn;

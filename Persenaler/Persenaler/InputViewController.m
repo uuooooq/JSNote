@@ -8,6 +8,7 @@
 
 #import "InputViewController.h"
 #import "ZDWUtility.h"
+#import <IQKeyboardManager/IQKeyboardManager.h>
 
 
 @interface InputViewController (){
@@ -26,16 +27,30 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     _textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 200)];
-    _textView.backgroundColor = [UIColor lightGrayColor];
+    //_textView.backgroundColor = [UIColor lightGrayColor];
+    _textView.layer.borderWidth = 1;
+    _textView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     _textView.layer.cornerRadius = 5;
+    
     [self.view addSubview:_textView];
     
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    //manager.toolbarDoneBarButtonItemText = @"保存";
+    [_textView addDoneOnKeyboardWithTarget:self action:@selector(saveAction)];
+    //manager.toolbarDoneBarButtonItemImage = [UIImage imageNamed:@"save"];
+    [_textView.keyboardToolbar.doneBarButton setTitle:@"保存"];
+    //[_textView setToolbarPlaceholder:@"请输入"];
+    //[_textView addDoneOnKeyboardWithTarget:self action:@selector(saveAction)];
+    //manager.toolbarDoneBarButtonItemText = @"保存";
     
-    saveBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width- 60-10, 200+20, 60, 30)];
-    [saveBtn setTitle:@"保存" forState:UIControlStateNormal];
-    saveBtn.backgroundColor = [UIColor lightGrayColor];
-    [saveBtn addTarget:self action:@selector(saveAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:saveBtn];
+//    IQBarButtonItem *item = [[IQBarButtonItem alloc] initWithTitle:@"保存s" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
+//    [_textView.keyboardToolbar setDoneBarButton:item];
+//    _textView.toolbarPlaceholder = @"保存";
+//    saveBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width- 60-10, 200+20, 60, 30)];
+//    [saveBtn setTitle:@"保存" forState:UIControlStateNormal];
+//    saveBtn.backgroundColor = [UIColor lightGrayColor];
+//    [saveBtn addTarget:self action:@selector(saveAction) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:saveBtn];/Users/zhudongwei/Downloads/IQKeyboardManager-master/Podfile
 }
 
 -(void)saveAction{

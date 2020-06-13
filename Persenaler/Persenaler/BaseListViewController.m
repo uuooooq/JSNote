@@ -63,7 +63,7 @@
     //self.shuKucollectionView.collectionViewLayout = UICollectionViewFlowLayout;
     
     [self.view addSubview: self.shuKucollectionView];
-    [self.bottomView addSubview:self.newFunctionView];
+    
 }
 
 -(UIView*)bottomView{
@@ -76,16 +76,7 @@
     return _bottomView;
 }
 
--(NewFunctionView*)newFunctionView{
-    if (!_newFunctionView) {
-        _newFunctionView = [[NewFunctionView alloc] initWithFrame:self.bottomView.bounds];
-        [_newFunctionView.addTxtBtn addTarget:self action:@selector(addTextAction) forControlEvents:UIControlEventTouchUpInside];
-        [_newFunctionView.addImgBtn addTarget:self action:@selector(addPhotoAction) forControlEvents:UIControlEventTouchUpInside];
-        [_newFunctionView.addAudioBtn addTarget:self action:@selector(addAudioAction) forControlEvents:UIControlEventTouchUpInside];
-        [_newFunctionView.addVideoBtn addTarget:self action:@selector(addVideoAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _newFunctionView;
-}
+
 
 -(UILabel*)promtLbl{
     if (!_promtLbl) {
@@ -260,6 +251,10 @@
 }
 
 -(void)moreAction{
+    NSLog(@"在子类中实现");
+}
+
+-(void)searchAction{
     NSLog(@"在子类中实现");
 }
 

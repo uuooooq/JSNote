@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseListViewController.h"
 #import "HttpServerHandler.h"
+#import "NewFunctionView.h"
 
 @interface ViewController : BaseListViewController{
     
@@ -16,7 +17,7 @@
 }
 
 @property(nonatomic,strong) HttpServerHandler *serverHeadler;
-
+@property(nonatomic,strong) NewFunctionView *newFunctionView;
 
 
 @end
