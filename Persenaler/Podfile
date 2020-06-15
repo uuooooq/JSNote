@@ -13,5 +13,4 @@ target 'Persenaler' do
   pod 'FMDB'
   pod 'TZImagePickerController'
   pod 'IQKeyboardManager'
-  pod 'MBProgressHUD', '~> 1.2.0'
 end

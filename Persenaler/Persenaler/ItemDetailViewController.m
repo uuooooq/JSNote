@@ -13,6 +13,7 @@
 #import "TextDetailCell.h"
 
 
+
 @interface ItemDetailViewController ()<AVAudioPlayerDelegate>{
     UIButton *playBtn;
 }
@@ -48,6 +49,7 @@
     }
     else if(self.fromKeyValue.type == VT_IMG){
         [_newFunctionView updateViewFunctionState:VS_ItemDetail_Img];
+        [_newFunctionView.saveBtn addTarget:self action:@selector(saveAction) forControlEvents:UIControlEventTouchUpInside];
     }
 //    [_newFunctionView.searchBtn addTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside];
     return _newFunctionView;
@@ -113,7 +115,26 @@
     pasteboard.string = self.fromKeyValue.value;
     
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:nil message:@"已经拷贝到剪贴板中" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alertVC addAction:cancelAction];
     [self presentViewController:alertVC animated:YES completion:nil];
+    
+    //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    [SVProgressHUD showWithStatus:@"已经拷贝到剪贴板中"];
+    
+//    JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+//    HUD.textLabel.text = @"已经拷贝到剪贴板中";
+//    [HUD showInView:self.view];
+//    [HUD dismissAfterDelay:3.0];
+    
+ //   JGProgressHUDSuccessIndicatorView *hud = [JGProgressHUDSuccessIndicatorView];
+    
+}
+
+-(void)saveAction{
+    
 }
 
 -(void)addTextAction{

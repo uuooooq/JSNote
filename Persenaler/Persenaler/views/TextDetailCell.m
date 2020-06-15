@@ -56,7 +56,7 @@
 +(CGSize)caculateCurrentSize:(NSString*)value{
     
     CGFloat higth = [ZDWUtility getLabelHight:value withWidth:ZDWSCREEN_WIDTH-20 withFontSize:[UIFont boldSystemFontOfSize:FontSize]];
-    return CGSizeMake(ZDWSCREEN_WIDTH-10, higth+40);
+    return CGSizeMake(ZDWSCREEN_WIDTH-20, higth+40);
 }
 
 @end

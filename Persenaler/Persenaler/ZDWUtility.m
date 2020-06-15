@@ -61,7 +61,7 @@
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:currentStr];
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.lineSpacing = 3;//调整行间距 这个跟计算高度的行间距一定要对应
+    paragraphStyle.lineSpacing = 5;//调整行间距 这个跟计算高度的行间距一定要对应
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [currentStr length])];
     
     UIFont *systemFont = foneSize;

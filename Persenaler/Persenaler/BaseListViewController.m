@@ -370,6 +370,7 @@
 -(void)showFullImageSizeView:(NSString*)imgName{
     
     [fullImageView showImage:imgName];
+    [fullImageView.closeBtn addTarget:self action:@selector(dismissFullImageView) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.view addSubview:fullImageView];
 }
 

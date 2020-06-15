@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)searchAction;
 -(void)addPhotoAction;
 -(void)copyAction;
+-(void)saveAction;
 
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue;
 -(void)fusizeBtnClick:(UIButton*)btn;
