@@ -45,6 +45,7 @@
 		E68586F0248CD2F100712095 /* AudioDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E68586EF248CD2F100712095 /* AudioDetailCell.m */; };
 		E68586F32490DFB700712095 /* TextDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E68586F22490DFB700712095 /* TextDetailCell.m */; };
 		E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */; };
+		E6DDD8FF249758B800E1B5C6 /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +119,9 @@
 		E68586F22490DFB700712095 /* TextDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextDetailCell.m; sourceTree = "<group>"; };
 		E6D0DF1324199BC2007DD127 /* HttpServerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpServerHandler.h; sourceTree = "<group>"; };
 		E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpServerHandler.m; sourceTree = "<group>"; };
+		E6DDD8FD249758B800E1B5C6 /* UpdateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
+		E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
+		E6DDD9002497659900E1B5C6 /* 数据表升级.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "数据表升级.md"; sourceTree = "<group>"; };
 		F46E43402A2F5518B2EF8BC1 /* Pods-Persenaler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.debug.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,6 +222,9 @@
 				E681692824807179005E2A81 /* SearchResultsController.m */,
 				E681692C24863F45005E2A81 /* RecordAudioController.h */,
 				E681692D24863F45005E2A81 /* RecordAudioController.m */,
+				E6DDD8FD249758B800E1B5C6 /* UpdateViewController.h */,
+				E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */,
+				E6DDD9002497659900E1B5C6 /* 数据表升级.md */,
 			);
 			path = Persenaler;
 			sourceTree = "<group>";
@@ -436,6 +443,7 @@
 				E66E8930244DB96700F1DABC /* ImageRecordCell.m in Sources */,
 				E681692E24863F45005E2A81 /* RecordAudioController.m in Sources */,
 				E65609D524336BA10089B3C6 /* DataBase.m in Sources */,
+				E6DDD8FF249758B800E1B5C6 /* UpdateViewController.m in Sources */,
 				E633686D246EC26100FC0BEC /* InputViewController.m in Sources */,
 				E633686A246E65C000FC0BEC /* BaseListViewController.m in Sources */,
 				E6816926248065D7005E2A81 /* NewFunctionView.m in Sources */,
