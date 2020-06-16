@@ -179,7 +179,11 @@
         }
             
         default:
-            return nil;
+        {
+            UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
+            return cell;
+        }
+            //return nil;
             break;
     }
     
@@ -281,7 +285,7 @@
         keyValue.value = currentImgName;
         keyValue.createTime =[DbKeyValue getCurrentTime];
         keyValue.type = type;
-        keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+        //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
         [self.dataSource addRecord:keyValue];
         
         [self addPhotoStepNext:keyValue];

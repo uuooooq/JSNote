@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray *)getKeyValueGroups:(NSString*)rootID;
 
+-(void)migrationDb;
+
 @end
 
 NS_ASSUME_NONNULL_END

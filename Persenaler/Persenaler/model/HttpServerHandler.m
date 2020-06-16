@@ -161,7 +161,7 @@
             keyValue.createTime =[DbKeyValue getCurrentTime];
             keyValue.type = VT_TEXT;
             //keyValue.extCategory = @"{}";
-            keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+            //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
             [weakSelf.dataSource addRecord:keyValue];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -222,7 +222,7 @@
     keyValue.value = fileName;
     keyValue.createTime =[DbKeyValue getCurrentTime];
     keyValue.type = VT_IMG;
-    keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+    //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
     [self.dataSource addRecord:keyValue];
     //[weakSelf.dataSource addRecord:keyValue];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];

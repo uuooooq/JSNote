@@ -46,6 +46,8 @@
 		E68586F32490DFB700712095 /* TextDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E68586F22490DFB700712095 /* TextDetailCell.m */; };
 		E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */; };
 		E6DDD8FF249758B800E1B5C6 /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */; };
+		E6DDD9032498880600E1B5C6 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD9022498880600E1B5C6 /* Record.m */; };
+		E6DDD90624989AF600E1B5C6 /* SubRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD90524989AF600E1B5C6 /* SubRecord.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +124,10 @@
 		E6DDD8FD249758B800E1B5C6 /* UpdateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
 		E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
 		E6DDD9002497659900E1B5C6 /* 数据表升级.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "数据表升级.md"; sourceTree = "<group>"; };
+		E6DDD9012498880600E1B5C6 /* Record.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
+		E6DDD9022498880600E1B5C6 /* Record.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		E6DDD90424989AF600E1B5C6 /* SubRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubRecord.h; sourceTree = "<group>"; };
+		E6DDD90524989AF600E1B5C6 /* SubRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubRecord.m; sourceTree = "<group>"; };
 		F46E43402A2F5518B2EF8BC1 /* Pods-Persenaler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.debug.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -242,6 +248,10 @@
 				E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */,
 				E633686E247274C500FC0BEC /* DbKeyValueGroup.h */,
 				E633686F247274C500FC0BEC /* DbKeyValueGroup.m */,
+				E6DDD9012498880600E1B5C6 /* Record.h */,
+				E6DDD9022498880600E1B5C6 /* Record.m */,
+				E6DDD90424989AF600E1B5C6 /* SubRecord.h */,
+				E6DDD90524989AF600E1B5C6 /* SubRecord.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -418,6 +428,7 @@
 			files = (
 				E681694024885AC2005E2A81 /* Waver.m in Sources */,
 				E63368732472839E00FC0BEC /* ItemDetailViewController.m in Sources */,
+				E6DDD9032498880600E1B5C6 /* Record.m in Sources */,
 				E67A47E92401ED9100FA357B /* ViewController.m in Sources */,
 				E6336867246A9DDE00FC0BEC /* SearchViewController.m in Sources */,
 				E68586F0248CD2F100712095 /* AudioDetailCell.m in Sources */,
@@ -433,6 +444,7 @@
 				E6336870247274C500FC0BEC /* DbKeyValueGroup.m in Sources */,
 				E68586E3248C4D5800712095 /* AudioOperateViewCell.m in Sources */,
 				E66E892A244BE4A800F1DABC /* ZUtitlity.h in Sources */,
+				E6DDD90624989AF600E1B5C6 /* SubRecord.m in Sources */,
 				E67A48062403567500FA357B /* DataSource.m in Sources */,
 				E66E892D244DAE4F00F1DABC /* ZDWUtility.m in Sources */,
 				E67A480924035C6800FA357B /* BaseRecordCell.m in Sources */,

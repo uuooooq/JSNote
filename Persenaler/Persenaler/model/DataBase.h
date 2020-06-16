@@ -45,9 +45,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (DbKeyValueGroup *)getRootKeyValue:(NSString*)subID;
 
-- (NSArray *)getKeyValueGroups:(NSString*)rootID;
+//- (NSArray *)getKeyValueGroups:(NSString*)rootID;
 
 -(void)addkeyValueGroup:(DbKeyValueGroup*)kvGroup;
+
+- (NSArray*)getKeyValueGroups:(NSString *)rootKey;
+
+
+// migration kvTb kvGroupTb
+
+-(void)migrationDb;
 @end
 
 NS_ASSUME_NONNULL_END

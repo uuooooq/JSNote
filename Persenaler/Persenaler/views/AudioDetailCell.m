@@ -44,17 +44,17 @@
 
 -(void)updateRecord:(DbKeyValue*)value{
     
-    NSError *error = nil;
-    
-    NSDictionary *extCategory = [NSJSONSerialization JSONObjectWithData:[value.extCategory dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
-    
+//    NSError *error = nil;
+//    
+//    NSDictionary *extCategory = [NSJSONSerialization JSONObjectWithData:[value.extCategory dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+//    
     NSString *tmpString = value.value;
     
-    if (!error && [extCategory objectForKey:@"audiotime"]) {
-        NSNumber *audioTime = [extCategory objectForKey:@"audiotime"];
-        
-        tmpString = [tmpString stringByAppendingFormat:@"  时长 %lu:%02ld",audioTime.longValue/60,audioTime.longValue%60];
-    }
+//    if (!error && [extCategory objectForKey:@"audiotime"]) {
+//        NSNumber *audioTime = [extCategory objectForKey:@"audiotime"];
+//
+//        tmpString = [tmpString stringByAppendingFormat:@"  时长 %lu:%02ld",audioTime.longValue/60,audioTime.longValue%60];
+//    }
     
     self.titleLbl.text = tmpString;
 }

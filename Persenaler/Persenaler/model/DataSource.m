@@ -126,5 +126,11 @@ static DataSource *_DBCtl = nil;
     }
     return [[NSArray alloc] init];
 }
+-(void)migrationDb{
+    
+    [[DataBase sharedDataBase] migrationDb];
+    
+}
+
 
 @end

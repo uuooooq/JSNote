@@ -66,7 +66,7 @@
     keyValue.value = self.textView.text;
     keyValue.createTime =[DbKeyValue getCurrentTime];
     keyValue.type = VT_TEXT;
-    keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+    //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
     [self.dataSource addRecord:keyValue];
     
     if (self.fromKeyValue) {

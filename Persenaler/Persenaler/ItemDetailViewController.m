@@ -64,17 +64,18 @@
 
     [self.currentDataArr addObject:self.fromKeyValue];
     [self.shuKucollectionView reloadData];
-    NSArray *tmpGroups = [self.dataSource getKeyValueGroups:[NSString stringWithFormat:@"%d",self.fromKeyValue.kvid]];
+    NSArray *tmpGroups = [self.dataSource getKeyValueGroups:self.fromKeyValue.key];//[self.dataSource getKeyValueGroups:[NSString stringWithFormat:@"%d",self.fromKeyValue.kvid]];
     if ([tmpGroups count] > 0) {
-        for (DbKeyValueGroup *item in tmpGroups) {
-            
-            DbKeyValue* keyValue = [DbKeyValue new];
-            keyValue.kvid = item.subID;
-            keyValue.value = item.subValue;
-            keyValue.type = item.subType;
-            keyValue.createTime = [DbKeyValue getCurrentTime];
-            [self.currentDataArr addObject:keyValue];
+        for (DbKeyValue *item in tmpGroups) {
+
+//            DbKeyValue* keyValue = [DbKeyValue new];
+//            keyValue.kvid = item.subID;
+//            keyValue.value = item.subValue;
+//            keyValue.type = item.subType;
+//            keyValue.createTime = [DbKeyValue getCurrentTime];
+            [self.currentDataArr addObject:item];
         }
+        
     }
     
 

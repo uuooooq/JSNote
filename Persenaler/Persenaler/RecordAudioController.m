@@ -182,7 +182,7 @@
     keyValue.value = [audioPath lastPathComponent];
     keyValue.createTime =[DbKeyValue getCurrentTime];
     keyValue.type = VT_AUDIO;
-    keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+    //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
     [[DataSource sharedDataSource] addRecord:keyValue];
     dispatch_async(dispatch_get_main_queue(), ^{
         // UI更新代码

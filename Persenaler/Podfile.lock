@@ -10,7 +10,6 @@ PODS:
   - GCDWebServer/WebUploader (3.5.3):
     - GCDWebServer/Core
   - IQKeyboardManager (6.5.4)
-  - JGProgressHUD (2.1)
   - TZImagePickerController (3.3.1)
 
 DEPENDENCIES:
@@ -19,13 +18,11 @@ DEPENDENCIES:
   - GCDWebServer/WebDAV (~> 3.0)
   - GCDWebServer/WebUploader (~> 3.0)
   - IQKeyboardManager
-  - JGProgressHUD
   - TZImagePickerController
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - IQKeyboardManager
-    - JGProgressHUD
   trunk:
     - FMDB
     - GCDWebServer
@@ -35,9 +32,8 @@ SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   GCDWebServer: c0ab22c73e1b84f358d1e2f74bf6afd1c60829f2
   IQKeyboardManager: 72b359cd7e777e3a984cedbe05f8da45320cbb63
-  JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   TZImagePickerController: 99f03b64145a8c92c55b9b1b931410967d9be4cb
 
-PODFILE CHECKSUM: 0ed1c6220104e9eb244cc3b2aa79497d88198c5b
+PODFILE CHECKSUM: 570f35c001250434b1326e1aab3f8930dac2c4d8
 
 COCOAPODS: 1.8.4
