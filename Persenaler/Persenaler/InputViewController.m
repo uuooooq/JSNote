@@ -59,31 +59,35 @@
         return;
     }
     
-    NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
-    [extCategoryDic setObject:TXT forKey:@"type"];
+    //NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
+    //[extCategoryDic setObject:TXT forKey:@"type"];
     DbKeyValue * keyValue = [DbKeyValue new];
     keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
     keyValue.value = self.textView.text;
     keyValue.createTime =[DbKeyValue getCurrentTime];
-    keyValue.type = VT_TEXT;
+    keyValue.type = VT_SUB_TEXT;
     //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
     [self.dataSource addRecord:keyValue];
     
     if (self.fromKeyValue) {
-        NSMutableDictionary *groupCategoryDic = [NSMutableDictionary dictionary];
+//        NSMutableDictionary *groupCategoryDic = [NSMutableDictionary dictionary];
         
-        DbKeyValueGroup *keyValueGroup = [DbKeyValueGroup new];
-        keyValueGroup.createTime = [DbKeyValueGroup getCurrentTime];
-        keyValueGroup.rootID = self.fromKeyValue.kvid;
-        keyValueGroup.rootValue = self.fromKeyValue.value;
-        keyValueGroup.extCategory = [ZDWUtility convertStringFromDic:groupCategoryDic];
+//        DbKeyValueGroup *keyValueGroup = [DbKeyValueGroup new];
+//        keyValueGroup.createTime = [DbKeyValueGroup getCurrentTime];
+//        keyValueGroup.rootID = self.fromKeyValue.kvid;
+//        keyValueGroup.rootValue = self.fromKeyValue.value;
+//        keyValueGroup.extCategory = [ZDWUtility convertStringFromDic:groupCategoryDic];
+//        DbKeyValue *subItem = [self.dataSource getKeyValue:keyValue.key];
+//        keyValueGroup.subID = subItem.kvid;
+//        keyValueGroup.subValue = subItem.value;
+//        keyValueGroup.rootType = self.fromKeyValue.type;
+//        keyValueGroup.subType = keyValue.type;
         DbKeyValue *subItem = [self.dataSource getKeyValue:keyValue.key];
-        keyValueGroup.subID = subItem.kvid;
-        keyValueGroup.subValue = subItem.value;
-        keyValueGroup.rootType = self.fromKeyValue.type;
-        keyValueGroup.subType = keyValue.type;
+        SubRecord *subRecord = [SubRecord new];
+        subRecord.rootKey = self.fromKeyValue.key;
+        subRecord.subKey = subItem.key;
         
-        [self.dataSource addRecordGroup:keyValueGroup];
+        [self.dataSource addSubRecord:subRecord];
     }
     
 

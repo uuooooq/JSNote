@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DbKeyValue.h"
 #import "DataBase.h"
+#import "SubRecord.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,7 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray *)getKeyValueGroups:(NSString*)rootID;
 
+-(void)addSubRecord:(SubRecord*)subRecord;
+
 -(void)migrationDb;
+
+-(NSArray*)getSubRecordsWith:(NSString*)rootKey;
 
 @end
 

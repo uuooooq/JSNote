@@ -107,6 +107,15 @@ static DataSource *_DBCtl = nil;
     return [[NSArray alloc] init];
 }
 
+-(NSArray*)getSubRecordsWith:(NSString*)rootKey{
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordsWith:rootKey];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+}
+
 -(void)addRecord:(DbKeyValue*)value{
     [[DataBase sharedDataBase] addKeyValue:value];
     //if ([self.recordArr count] <101) {
@@ -117,6 +126,10 @@ static DataSource *_DBCtl = nil;
 
 -(void)addRecordGroup:(DbKeyValueGroup*)group{
     [[DataBase sharedDataBase] addkeyValueGroup:group];
+}
+
+-(void)addSubRecord:(SubRecord*)subRecord{
+    [[DataBase sharedDataBase] addKeyValueSubRelation:subRecord];
 }
 
 -(NSArray*)getSearchKeyValueWith:(NSString*)key{

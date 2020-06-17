@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DbKeyValue.h"
 #import "DbKeyValueGroup.h"
+#import "SubRecord.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -50,6 +51,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)addkeyValueGroup:(DbKeyValueGroup*)kvGroup;
 
 - (NSArray*)getKeyValueGroups:(NSString *)rootKey;
+
+-(void)addKeyValueSubRelation:(SubRecord*)subRecord;
+
+- (NSArray*)getSubRecordsWith:(NSString *)rootKey;
 
 
 // migration kvTb kvGroupTb

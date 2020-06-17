@@ -11,6 +11,7 @@
 #import "AudioDetailCell.h"
 #import "AudioRecordCell.h"
 #import "TextDetailCell.h"
+#import "VideoRecordCell.h"
 
 
 
@@ -30,6 +31,7 @@
     [self receiveNotiAction];
     [self.shuKucollectionView registerClass:[AudioDetailCell class] forCellWithReuseIdentifier:@"AudioDetailCell"];
     [self.shuKucollectionView registerClass:[TextDetailCell class] forCellWithReuseIdentifier:@"TextDetailCell"];
+    [self.shuKucollectionView registerClass:[TextDetailCell class] forCellWithReuseIdentifier:@"VideoRecordCell"];
     [self.bottomView addSubview:self.newFunctionView];
 
 }
@@ -64,7 +66,9 @@
 
     [self.currentDataArr addObject:self.fromKeyValue];
     [self.shuKucollectionView reloadData];
-    NSArray *tmpGroups = [self.dataSource getKeyValueGroups:self.fromKeyValue.key];//[self.dataSource getKeyValueGroups:[NSString stringWithFormat:@"%d",self.fromKeyValue.kvid]];
+    //NSArray *tmpGroups = [self.dataSource getKeyValueGroups:self.fromKeyValue.key];//[self.dataSource getKeyValueGroups:[NSString stringWithFormat:@"%d",self.fromKeyValue.kvid]];
+    
+    NSArray *tmpGroups = [self.dataSource getSubRecordsWith:self.fromKeyValue.key];
     if ([tmpGroups count] > 0) {
         for (DbKeyValue *item in tmpGroups) {
 
@@ -152,7 +156,7 @@
     
     InputViewController *inputVC = [InputViewController new];
     inputVC.fromKeyValue = self.fromKeyValue;
-    
+    inputVC.isSubItem = YES;
     [self presentViewController:inputVC animated:YES completion:^{
         
     }];
@@ -162,20 +166,25 @@
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue{
     //NSLog(@"************* addPhotoStepNext");
     if (self.fromKeyValue) {
-        NSMutableDictionary *groupCategoryDic = [NSMutableDictionary dictionary];
+//        NSMutableDictionary *groupCategoryDic = [NSMutableDictionary dictionary];
         
-        DbKeyValueGroup *keyValueGroup = [DbKeyValueGroup new];
-        keyValueGroup.createTime = [DbKeyValueGroup getCurrentTime];
-        keyValueGroup.rootID = self.fromKeyValue.kvid;
-        keyValueGroup.rootValue = self.fromKeyValue.value;
-        keyValueGroup.extCategory = [ZDWUtility convertStringFromDic:groupCategoryDic];
+//        DbKeyValueGroup *keyValueGroup = [DbKeyValueGroup new];
+//        keyValueGroup.createTime = [DbKeyValueGroup getCurrentTime];
+//        keyValueGroup.rootID = self.fromKeyValue.kvid;
+//        keyValueGroup.rootValue = self.fromKeyValue.value;
+//        keyValueGroup.extCategory = [ZDWUtility convertStringFromDic:groupCategoryDic];
+//        DbKeyValue *subItem = [self.dataSource getKeyValue:keyValue.key];
+//        keyValueGroup.subID = subItem.kvid;
+//        keyValueGroup.subValue = subItem.value;
+//        keyValueGroup.rootType = self.fromKeyValue.type;
+//        keyValueGroup.subType = keyValue.type;
+//
+//        [self.dataSource addRecordGroup:keyValueGroup];
+        
         DbKeyValue *subItem = [self.dataSource getKeyValue:keyValue.key];
-        keyValueGroup.subID = subItem.kvid;
-        keyValueGroup.subValue = subItem.value;
-        keyValueGroup.rootType = self.fromKeyValue.type;
-        keyValueGroup.subType = keyValue.type;
-        
-        [self.dataSource addRecordGroup:keyValueGroup];
+        SubRecord *subRecord = [SubRecord new];
+        subRecord.rootKey = self.fromKeyValue.key;
+        subRecord.subKey = subItem.key;
     }
 }
 
@@ -341,6 +350,26 @@
                 return CGSizeMake(screenWidth, 100);
             }
                 break;
+                case VT_SUB_IMG:
+                {
+                    return CGSizeMake(screenWidth, screenWidth);
+                }
+                    break;
+                case VT_SUB_TEXT:
+                {
+                    return [BaseRecordCell caculateCurrentSize:keyValue.value];
+                }
+                    break;
+                case VT_SUB_VIDEO:
+                {
+                    return CGSizeMake(screenWidth, screenWidth);
+                }
+                    break;
+                case VT_SUB_AUDIO:
+                {
+                    return CGSizeMake(screenWidth, 100);
+                }
+                    break;
             default:
                 break;
         }
@@ -359,6 +388,21 @@
         if (keyValue.type == VT_AUDIO) {
             return CGSizeMake(screenWidth, 50);
         }
+        
+        if (keyValue.type == VT_SUB_IMG) {
+            return CGSizeMake(screenWidth, screenWidth);
+        }
+        if (keyValue.type == VT_SUB_IMG) {
+            return CGSizeMake(screenWidth, screenWidth);
+        }
+        
+        if (keyValue.type == VT_SUB_TEXT) {
+            return [BaseRecordCell caculateCurrentSize:keyValue.value];
+        }
+        if (keyValue.type == VT_SUB_AUDIO) {
+            return CGSizeMake(screenWidth, 50);
+        }
+        
 
     }
     
@@ -392,6 +436,7 @@
                 //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                 return cell;
             }
+                break;
             case VT_VIDEO:
             {
                 ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
@@ -401,6 +446,7 @@
                 //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                 return cell;
             }
+                break;
             case VT_AUDIO:
             {
                 AudioDetailCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioDetailCell" forIndexPath:indexPath];
@@ -409,7 +455,40 @@
                 playBtn = cell.playBtn;
                 return cell;
             }
+                break;
+            case VT_SUB_TEXT:
+            {
+                BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
+                [cell updateRecord:keyValue];
                 
+                return cell;
+            }
+                break;
+            case VT_SUB_IMG:
+            {
+                ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
+                [cell updateRecord:keyValue];
+                cell.fullsizeBtn.tag = indexPath.row;
+                [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+                //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+                return cell;
+            }
+                break;
+            case VT_SUB_VIDEO:
+            {
+                VideoRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VideoRecordCell" forIndexPath:indexPath];
+                [cell updateRecord:keyValue];
+                return cell;
+            }
+                break;
+            case VT_SUB_AUDIO:
+            {
+                AudioRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioRecordCell" forIndexPath:indexPath];
+                [cell updateRecord:keyValue];
+                
+                return cell;
+            }
+                break;
             default:
                 return nil;
                 break;
@@ -434,6 +513,7 @@
             //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             return cell;
         }
+            break;
         case VT_VIDEO:
         {
             ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
@@ -443,6 +523,7 @@
             //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             return cell;
         }
+            break;
         case VT_AUDIO:
         {
             AudioRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioRecordCell" forIndexPath:indexPath];
@@ -450,7 +531,43 @@
             
             return cell;
         }
+            break;
+        case VT_SUB_TEXT:
+        {
+            BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
             
+            return cell;
+        }
+            break;
+        case VT_SUB_IMG:
+        {
+            ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            cell.fullsizeBtn.tag = indexPath.row;
+            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+        }
+            break;
+        case VT_SUB_VIDEO:
+        {
+            ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            cell.fullsizeBtn.tag = indexPath.row;
+            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+        }
+            break;
+        case VT_SUB_AUDIO:
+        {
+            AudioRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            
+            return cell;
+        }
+            break;
         default:
             return nil;
             break;

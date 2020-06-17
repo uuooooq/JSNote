@@ -51,7 +51,8 @@
     
     ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
     itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
-    itemDetailVC.title = @"详情页";
+        itemDetailVC.title = @"详情";
+    itemDetailVC.isDetailPage = YES;
     [self.presentingViewController.navigationController pushViewController:itemDetailVC animated:YES];
     
 //    TestViewController *testVc = [TestViewController new];

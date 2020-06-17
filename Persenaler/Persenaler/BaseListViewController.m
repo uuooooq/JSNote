@@ -122,17 +122,17 @@
     CGRect screenFrame = [UIScreen mainScreen].bounds;
     int screenWidth = screenFrame.size.width;
     
-    if (keyValue.type == VT_IMG) {
+    if (keyValue.type == VT_IMG || keyValue.type == VT_SUB_IMG) {
         return CGSizeMake(screenWidth, screenWidth);
     }
-    if (keyValue.type == VT_VIDEO) {
+    if (keyValue.type == VT_VIDEO || keyValue.type == VT_SUB_VIDEO) {
         return CGSizeMake(screenWidth, screenWidth);
     }
     
-    if (keyValue.type == VT_TEXT) {
+    if (keyValue.type == VT_TEXT || keyValue.type == VT_SUB_TEXT) {
         return [BaseRecordCell caculateCurrentSize:keyValue.value];
     }
-    if (keyValue.type == VT_AUDIO) {
+    if (keyValue.type == VT_AUDIO || keyValue.type == VT_SUB_AUDIO) {
         return CGSizeMake(screenWidth, 50);
     }
 
@@ -164,12 +164,14 @@
             //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             return cell;
         }
+            break;
         case VT_VIDEO:
         {
             VideoRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VideoRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
             return cell;
         }
+            break;
         case VT_AUDIO:
         {
             AudioRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioRecordCell" forIndexPath:indexPath];
@@ -177,7 +179,40 @@
             
             return cell;
         }
+            break;
+        case VT_SUB_TEXT:
+        {
+            BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
             
+            return cell;
+        }
+            break;
+        case VT_SUB_IMG:
+        {
+            ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            cell.fullsizeBtn.tag = indexPath.row;
+            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+        }
+            break;
+        case VT_SUB_VIDEO:
+        {
+            VideoRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VideoRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            return cell;
+        }
+            break;
+        case VT_SUB_AUDIO:
+        {
+            AudioRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            
+            return cell;
+        }
+            break;
         default:
         {
             UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
@@ -223,8 +258,14 @@
 }
 
 -(void)addTextAction{
-    
-    [self presentViewController:[InputViewController new] animated:YES completion:^{
+    InputViewController *inputVc = [InputViewController new];
+    if (self.isDetailPage) {
+        inputVc.isSubItem = YES;
+    }
+    else{
+        inputVc.isSubItem = NO;
+    }
+    [self presentViewController:inputVc animated:YES completion:^{
         
     }];
     
@@ -238,12 +279,20 @@
     imagePickerVc.allowPickingVideo = NO;
     // You can get the photos by block, the same as by delegate.
     // 你可以通过block或者代理，来得到用户选择的照片.
+    
+    ValueType vt;
+    if (self.isDetailPage) {
+        vt = VT_SUB_IMG;
+    }
+    else{
+        vt = VT_IMG;
+    }
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         
         
         for (int i=0; i < [photos count]; i++) {
             
-            [self copyImageInfoAndInsertToDb:[assets objectAtIndex:i] withImage:[photos objectAtIndex:i] withExtCategoryDic:nil withType:VT_IMG];
+            [self copyImageInfoAndInsertToDb:[assets objectAtIndex:i] withImage:[photos objectAtIndex:i] withExtCategoryDic:nil withType:vt];
 
         }
         

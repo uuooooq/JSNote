@@ -147,6 +147,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+
 - (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
@@ -159,6 +160,7 @@
     ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
     itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
     itemDetailVC.title = @"详情";
+    itemDetailVC.isDetailPage = YES;
     [self.navigationController pushViewController:itemDetailVC animated:YES];
 }
 

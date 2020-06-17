@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) UILabel *promtLbl;
 
 @property(nonatomic,strong) UICollectionViewFlowLayout *layout;
+@property(nonatomic,assign) BOOL isDetailPage;
 
 -(void)receiveNotiAction;
 
