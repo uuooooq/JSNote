@@ -13,9 +13,11 @@
 #import "RecordAudioController.h"
 #import "AudioRecordCell.h"
 #import "VideoRecordCell.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface BaseListViewController ()<TZImagePickerControllerDelegate>{
     FullsizeImageView *fullImageView;
+    MJRefreshAutoNormalFooter * footer;
 }
 
 @end
@@ -24,11 +26,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.currentPageNum = 1;
+    self.currentPageContentNum = 20;
     //self.dataSource = [DataSource sharedDataSource];
     fullImageView = [[FullsizeImageView alloc] initWithFrame:self.navigationController.view.bounds];
     [fullImageView.closeBtn addTarget:self action:@selector(dismissFullImageView) forControlEvents:UIControlEventTouchUpInside];
     [self createCollectionView];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotiAction) name:@"receiveData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWithNewData) name:@"newReceiveData" object:nil];
 }
 
 -(DataSource*)dataSource{
@@ -61,6 +65,40 @@
     self.shuKucollectionView.backgroundColor = [UIColor whiteColor];
     
     //self.shuKucollectionView.collectionViewLayout = UICollectionViewFlowLayout;
+    __weak __typeof(self) weakSelf = self;
+   footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+             // UI更新代码
+             //[[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
+            [weakSelf loadNextPage];
+            [weakSelf.shuKucollectionView.mj_footer endRefreshing];
+         });
+    }];
+//    [footer setTitle:@"下拉显示更多数据" forState:MJRefreshStateIdle];
+//    [footer setTitle:@"没有数据了" forState:MJRefreshStateNoMoreData];
+    self.shuKucollectionView.mj_footer = footer;
+    
+    
+//    self.shuKucollectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+//        // 增加5条假数据
+////        for (int i = 0; i<5; i++) {
+////            [weakSelf.colors addObject:MJRandomColor];
+////        }
+//
+//        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+////        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+////            [weakSelf.shuKucollectionView reloadData];
+////
+////            // 结束刷新
+////            [weakSelf.shuKucollectionView.mj_footer endRefreshing];
+////        });
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            // UI更新代码
+//            //[[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
+//            [weakSelf loadNextPage];
+//             [weakSelf.shuKucollectionView.mj_footer endRefreshing];
+//        });
+//    }];
     
     [self.view addSubview: self.shuKucollectionView];
     
@@ -86,14 +124,16 @@
 }
 
 -(void)receiveNotiAction{
-    
+
     //[weakSelf.shuKucollectionView reloadData];
     //[self.dataSource loadRecord];
     [self.currentDataArr removeAllObjects];
     [self.currentDataArr addObjectsFromArray:self.dataSource.recordArr];
     [self.shuKucollectionView reloadData];
-    
+
 }
+
+
 
 -(void)didSelectionCell:(NSIndexPath*)indexPath{
     
@@ -234,6 +274,25 @@
 #pragma mark action
 
 
+-(void)loadNextPage{
+    
+    
+}
+
+-(void)noMoreData{
+    [self.shuKucollectionView.mj_footer setState:MJRefreshStateNoMoreData];
+    [footer setTitle:@"已无更多数据" forState:MJRefreshStateIdle];
+}
+
+-(void)updateWithNewData{
+    
+}
+
+-(void)saveAction{
+    
+}
+
+
 -(void)addAction{
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"选择类型"
                                    message:nil
@@ -308,6 +367,10 @@
 }
 
 -(void)searchAction{
+    NSLog(@"在子类中实现");
+}
+
+-(void)copyAction{
     NSLog(@"在子类中实现");
 }
 

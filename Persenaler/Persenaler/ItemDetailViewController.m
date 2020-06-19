@@ -28,7 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initView];
-    [self receiveNotiAction];
+    //[self receiveNotiAction];
+    self.currentPageContentNum = 100;
+    [self.currentDataArr addObject:self.fromKeyValue];
+    [self loadNextPage];
     [self.shuKucollectionView registerClass:[AudioDetailCell class] forCellWithReuseIdentifier:@"AudioDetailCell"];
     [self.shuKucollectionView registerClass:[TextDetailCell class] forCellWithReuseIdentifier:@"TextDetailCell"];
     [self.shuKucollectionView registerClass:[TextDetailCell class] forCellWithReuseIdentifier:@"VideoRecordCell"];
@@ -62,30 +65,51 @@
     
     //[weakSelf.shuKucollectionView reloadData];
     //[self.dataSource loadRecord];
-    [self.currentDataArr removeAllObjects];
-
-    [self.currentDataArr addObject:self.fromKeyValue];
-    [self.shuKucollectionView reloadData];
-    //NSArray *tmpGroups = [self.dataSource getKeyValueGroups:self.fromKeyValue.key];//[self.dataSource getKeyValueGroups:[NSString stringWithFormat:@"%d",self.fromKeyValue.kvid]];
+//    [self.currentDataArr removeAllObjects];
+//
+//    [self.currentDataArr addObject:self.fromKeyValue];
+//    [self.shuKucollectionView reloadData];
+//    //NSArray *tmpGroups = [self.dataSource getKeyValueGroups:self.fromKeyValue.key];//[self.dataSource getKeyValueGroups:[NSString stringWithFormat:@"%d",self.fromKeyValue.kvid]];
+//
+//    NSArray *tmpGroups = [self.dataSource getSubRecordsWith:self.fromKeyValue.key];
+//    if ([tmpGroups count] > 0) {
+//        for (DbKeyValue *item in tmpGroups) {
+//
+////            DbKeyValue* keyValue = [DbKeyValue new];
+////            keyValue.kvid = item.subID;
+////            keyValue.value = item.subValue;
+////            keyValue.type = item.subType;
+////            keyValue.createTime = [DbKeyValue getCurrentTime];
+//            [self.currentDataArr addObject:item];
+//        }
+//
+//    }
     
-    NSArray *tmpGroups = [self.dataSource getSubRecordsWith:self.fromKeyValue.key];
-    if ([tmpGroups count] > 0) {
-        for (DbKeyValue *item in tmpGroups) {
-
-//            DbKeyValue* keyValue = [DbKeyValue new];
-//            keyValue.kvid = item.subID;
-//            keyValue.value = item.subValue;
-//            keyValue.type = item.subType;
-//            keyValue.createTime = [DbKeyValue getCurrentTime];
-            [self.currentDataArr addObject:item];
-        }
-        
-    }
+    //NSArray* tmpSubRecords = [self.dataSource getNewSubRecordsWith:self.fromKeyValue. withRootKey:<#(nonnull NSString *)#>];
     
 
     
     //[self.newFunctionView updateViewFunctionState:];
     
+}
+
+
+-(void)loadNextPage{
+    
+    
+    NSArray *arr = [self.dataSource getSubRecordsWith:self.fromKeyValue.key from:((self.currentPageNum-1)*self.currentPageContentNum) to:self.currentPageNum*self.currentPageContentNum];//getRecordsObjFrom:((self.currentPageNum-1)*self.currentPageContentNum) to:self.currentPageNum*self.currentPageContentNum];
+    if (arr && [arr count]>0) {
+        [self.currentDataArr addObjectsFromArray:arr];
+        self.currentPageNum = self.currentPageNum + 1;
+        [self.shuKucollectionView reloadData];
+    }
+    else{
+        //[self.shuKucollectionView.mj_footer setState:MJRefreshStateNoMoreData];
+    }
+    if ([arr count]<self.currentPageContentNum) {
+        [self noMoreData];
+    }
+
 }
 
 -(void)initView{
@@ -166,25 +190,14 @@
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue{
     //NSLog(@"************* addPhotoStepNext");
     if (self.fromKeyValue) {
-//        NSMutableDictionary *groupCategoryDic = [NSMutableDictionary dictionary];
-        
-//        DbKeyValueGroup *keyValueGroup = [DbKeyValueGroup new];
-//        keyValueGroup.createTime = [DbKeyValueGroup getCurrentTime];
-//        keyValueGroup.rootID = self.fromKeyValue.kvid;
-//        keyValueGroup.rootValue = self.fromKeyValue.value;
-//        keyValueGroup.extCategory = [ZDWUtility convertStringFromDic:groupCategoryDic];
-//        DbKeyValue *subItem = [self.dataSource getKeyValue:keyValue.key];
-//        keyValueGroup.subID = subItem.kvid;
-//        keyValueGroup.subValue = subItem.value;
-//        keyValueGroup.rootType = self.fromKeyValue.type;
-//        keyValueGroup.subType = keyValue.type;
-//
-//        [self.dataSource addRecordGroup:keyValueGroup];
         
         DbKeyValue *subItem = [self.dataSource getKeyValue:keyValue.key];
         SubRecord *subRecord = [SubRecord new];
         subRecord.rootKey = self.fromKeyValue.key;
         subRecord.subKey = subItem.key;
+        subRecord.createTime = subItem.createTime;
+        
+        [self.dataSource addSubRecord:subRecord];
     }
 }
 

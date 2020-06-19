@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)addRecordGroup:(DbKeyValueGroup*)group;
 
 -(NSArray*)getRecordsFrom:(int)start to:(int)end;
+-(NSArray*)getRecordsObjFrom:(int)start to:(int)end;
 
 -(void)loadRecord;
 
@@ -41,6 +42,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)migrationDb;
 
 -(NSArray*)getSubRecordsWith:(NSString*)rootKey;
+-(NSArray*)getSubRecordsWith:(NSString*)rootKey from:(int)start to:(int)end;
+
+-(NSArray*)getNewSubRecordsWith:(int)gid withRootKey:(NSString*)rootKey;
 
 @end
 

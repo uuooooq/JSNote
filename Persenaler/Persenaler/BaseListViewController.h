@@ -28,9 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong) UICollectionViewFlowLayout *layout;
 @property(nonatomic,assign) BOOL isDetailPage;
+@property(nonatomic,assign) uint currentPageNum;
+@property(nonatomic,assign) uint currentPageContentNum;
 
 -(void)receiveNotiAction;
-
+-(void)updateWithNewData;
 -(void)didSelectionCell:(NSIndexPath*)indexPath;
 -(void)addAction;
 -(void)addTextAction;
@@ -43,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue;
 -(void)fusizeBtnClick:(UIButton*)btn;
 -(void)showFullImageSizeView:(NSString*)imgName;
+
+-(void)noMoreData;
 
 @end
 

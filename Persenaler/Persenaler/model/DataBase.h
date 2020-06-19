@@ -56,6 +56,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray*)getSubRecordsWith:(NSString *)rootKey;
 
+- (NSArray*)getSubRecordsWith:(NSString *)rootKey from:(int)start to:(int)end;
+
+-(NSArray*)getNewSubRecordsWith:(int)gid withRootKey:(NSString*)rootKey;
+
+
 
 // migration kvTb kvGroupTb
 

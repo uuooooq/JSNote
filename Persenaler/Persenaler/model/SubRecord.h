@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) int gID;
 @property(nonatomic,strong) NSString *rootKey;
 @property(nonatomic,strong) NSString *subKey;
+@property(nonatomic,assign) int createTime;
 
 @end
 

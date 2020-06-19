@@ -86,6 +86,7 @@
         SubRecord *subRecord = [SubRecord new];
         subRecord.rootKey = self.fromKeyValue.key;
         subRecord.subKey = subItem.key;
+        subRecord.createTime = subItem.createTime;
         
         [self.dataSource addSubRecord:subRecord];
     }

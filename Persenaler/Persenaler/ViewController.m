@@ -16,6 +16,7 @@
 #import "InputViewController.h"
 #import "ItemDetailViewController.h"
 #import "SearchResultsController.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface ViewController ()<UISearchControllerDelegate, UISearchBarDelegate>
 {
@@ -34,8 +35,8 @@
     [super viewDidLoad];
     
     [self initView];
-    [self receiveNotiAction];
-    
+    //[self receiveNotiAction];
+    [self loadNextPage];
     [self.shuKucollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
     self.layout.headerReferenceSize = CGSizeMake(ZDWSCREEN_WIDTH, 50.0f);  //设置headerView大小
     
@@ -107,6 +108,21 @@
 
 #pragma mark action method
 
+-(void)loadNextPage{
+    
+    
+    NSArray *arr = [self.dataSource getRecordsObjFrom:((self.currentPageNum-1)*self.currentPageContentNum) to:self.currentPageNum*self.currentPageContentNum];
+    if (arr && [arr count]>0) {
+        [self.currentDataArr addObjectsFromArray:arr];
+        self.currentPageNum = self.currentPageNum + 1;
+        [self.shuKucollectionView reloadData];
+    }
+    else{
+        [self noMoreData];
+    }
+
+}
+
 
 -(void)searchAction{
     [self.navigationItem.searchController.searchBar becomeFirstResponder];
@@ -163,7 +179,6 @@
     itemDetailVC.isDetailPage = YES;
     [self.navigationController pushViewController:itemDetailVC animated:YES];
 }
-
 //-(void)addPhotoAction{
 //    
 //    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];

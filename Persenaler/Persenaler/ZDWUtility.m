@@ -165,4 +165,10 @@
     [targetHandle closeFile];
 }
 
++(int)getCurrentTime{
+    
+    NSDate *datenow = [NSDate date];
+    return [datenow timeIntervalSince1970];
+}
+
 @end
