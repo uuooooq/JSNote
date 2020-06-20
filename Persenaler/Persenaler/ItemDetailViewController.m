@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //self.navigationController.navigationBar.prefersLargeTitles = NO;
     [self initView];
     //[self receiveNotiAction];
     self.currentPageContentNum = 100;
@@ -619,9 +620,16 @@
 -(void)didSelectionCell:(NSIndexPath*)indexPath{
     
     if (indexPath.row == 0) {
-        if (self.fromKeyValue.type == VT_IMG) {
+        if (self.fromKeyValue.type == VT_IMG || self.fromKeyValue.type == VT_SUB_IMG) {
             [self showFullImageSizeView:self.fromKeyValue.value];
         }
+    }
+    else{
+        ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
+        itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
+        //itemDetailVC.title = @"详情";
+        itemDetailVC.isDetailPage = YES;
+        [self.navigationController pushViewController:itemDetailVC animated:YES];
     }
 }
 
