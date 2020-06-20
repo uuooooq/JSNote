@@ -58,9 +58,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray*)getSubRecordsWith:(NSString *)rootKey from:(int)start to:(int)end;
 
--(NSArray*)getNewSubRecordsWith:(int)gid withRootKey:(NSString*)rootKey;
+-(NSArray*)getNewSubRecordsWithCreateTime:(int)createTime withRootKey:(NSString*)rootKey;
+-(NSArray*)getNewRecordsWithCreateTime:(int)createTime;
 
+- (NSArray*)getSubRecordsWith:(NSString *)rootKey pageNumWith:(int)pageNum pageWith:(int)createTime;
 
+- (NSArray *)getKeyValuesPageNumWith:(int)pageNum pageWith:(int)createTime;
 
 // migration kvTb kvGroupTb
 

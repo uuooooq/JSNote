@@ -111,16 +111,52 @@
 -(void)loadNextPage{
     
     
-    NSArray *arr = [self.dataSource getRecordsObjFrom:((self.currentPageNum-1)*self.currentPageContentNum) to:self.currentPageNum*self.currentPageContentNum];
+//    NSArray *arr = [self.dataSource getRecordsObjFrom:((self.currentPageNum-1)*self.currentPageContentNum) to:self.currentPageNum*self.currentPageContentNum];
+//    if (arr && [arr count]>0) {
+//        [self.currentDataArr addObjectsFromArray:arr];
+//        self.currentPageNum = self.currentPageNum + 1;
+//        [self.shuKucollectionView reloadData];
+//    }
+//    else{
+//        [self noMoreData];
+//    }
+    
+    NSArray* arr = [self.dataSource getKeyValuesPageNumWith:self.currentPageContentNum pageWith:self.loadPageTime];
+    //NSArray* arr = [self.dataSource getSubRecordsWith:self.fromKeyValue.key pageNumWith:self.currentPageContentNum pageWith:self.loadPageTime];
     if (arr && [arr count]>0) {
         [self.currentDataArr addObjectsFromArray:arr];
         self.currentPageNum = self.currentPageNum + 1;
         [self.shuKucollectionView reloadData];
+        
+        DbKeyValue *lastValue = [self.currentDataArr lastObject];
+        self.loadPageTime = lastValue.createTime;
     }
     else{
+        //[self.shuKucollectionView.mj_footer setState:MJRefreshStateNoMoreData];
+    }
+    if ([arr count]<self.currentPageContentNum) {
         [self noMoreData];
     }
 
+}
+
+-(void)updateWithNewData{
+    
+    int tmpCreateTime = 0;
+    
+    if ([self.currentDataArr count]>0) {
+        DbKeyValue *item = [self.currentDataArr objectAtIndex:0];
+        tmpCreateTime = item.createTime;
+    }
+
+    NSArray *arr = [self.dataSource getNewRecordsWithCreateTime:tmpCreateTime];
+    if (arr && [arr count]>0) {
+        for (DbKeyValue* item in arr) {
+            [self.currentDataArr insertObject:item atIndex:0];
+        }
+        [self.shuKucollectionView reloadData];
+    }
+    
 }
 
 

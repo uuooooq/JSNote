@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) BOOL isDetailPage;
 @property(nonatomic,assign) uint currentPageNum;
 @property(nonatomic,assign) uint currentPageContentNum;
+@property(nonatomic,assign) int loadPageTime;
 
 -(void)receiveNotiAction;
 -(void)updateWithNewData;

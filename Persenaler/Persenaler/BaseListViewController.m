@@ -28,11 +28,12 @@
     [super viewDidLoad];
     self.currentPageNum = 1;
     self.currentPageContentNum = 20;
+    _loadPageTime = 0;
     //self.dataSource = [DataSource sharedDataSource];
     fullImageView = [[FullsizeImageView alloc] initWithFrame:self.navigationController.view.bounds];
     [fullImageView.closeBtn addTarget:self action:@selector(dismissFullImageView) forControlEvents:UIControlEventTouchUpInside];
     [self createCollectionView];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWithNewData) name:@"newReceiveData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWithNewData) name:@"receiveData" object:nil];
 }
 
 -(DataSource*)dataSource{
@@ -285,6 +286,14 @@
 }
 
 -(void)updateWithNewData{
+    
+//    int tmpCreateTime = 0
+//
+//    if ([self.currentDataArr count] >0) {
+//        DbKeyValue *tmpItem = [];
+//    }
+//
+//    NSArray *arr = [self.dataSource getNewRecordsWithCreateTime:];
     
 }
 

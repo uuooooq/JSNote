@@ -243,7 +243,7 @@ static DataBase *_DBCtl = nil;
 -(void)addKeyValueSubRelation:(SubRecord*)subRecord{
     
     [_db open];
-    [_db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(rootKey,subKey,createTime) values(?, ?,?)",subRecordTBName],subRecord.rootKey,subRecord.subKey,subRecord.createTime];
+    [_db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(rootKey,subKey,createTime) values(?, ?,?)",subRecordTBName],subRecord.rootKey,subRecord.subKey,@(subRecord.createTime)];
     [_db close];
     
 }
@@ -375,7 +375,7 @@ static DataBase *_DBCtl = nil;
 - (NSArray*)getSubRecordsWith:(NSString *)rootKey from:(int)start to:(int)end{
     [_db open];
     NSMutableArray *arr = [NSMutableArray new];
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where rootKey = ? ORDER BY id desc LIMIT ?,?",subRecordTBName] ,rootKey,@(start),@(end)];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where rootKey = ? ORDER BY createTime desc LIMIT ?,?",subRecordTBName] ,rootKey,@(start),@(end)];
     
     while ([res next]) {
         
@@ -401,6 +401,42 @@ static DataBase *_DBCtl = nil;
     else{
         return nil;
     }
+}
+
+- (NSArray*)getSubRecordsWith:(NSString *)rootKey pageNumWith:(int)pageNum pageWith:(int)createTime{
+    
+    [_db open];
+    NSMutableArray *arr = [NSMutableArray new];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where rootKey = ? AND createTime < ? ORDER BY createTime desc LIMIT 0,?",subRecordTBName] ,rootKey,@(createTime),@(pageNum)];
+    
+    while ([res next]) {
+        
+        SubRecord * subRecord = [SubRecord new];
+        subRecord.gID = [res intForColumn:@"id"];
+        subRecord.rootKey = [res stringForColumn:@"rootKey"];
+        subRecord.subKey = [res stringForColumn:@"subKey"];
+        subRecord.createTime = [res intForColumn:@"createTime"];
+        
+        DbKeyValue * keyValue = [self getKeyValue:subRecord.subKey];//[DbKeyValue new];
+        
+        if (keyValue) {
+            [arr addObject:keyValue];
+        }
+        
+    }
+    
+    [_db close];
+    
+    if ([arr count]>0) {
+        return arr;
+    }
+    else{
+        return nil;
+    }
+    
+    
+    
+    return nil;
 }
 
 
@@ -470,6 +506,33 @@ static DataBase *_DBCtl = nil;
     [_db open];
     NSMutableArray *arr = [NSMutableArray new];
     FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY createTime desc LIMIT ?,?",recordTBName],@(start),@(end)];
+    
+    while ([res next]) {
+        DbKeyValue *keyValue = [[DbKeyValue alloc] init];
+        keyValue.kvid = [res intForColumn:@"id"];
+        keyValue.key = [res stringForColumn:@"key"];
+        keyValue.value = [res stringForColumn:@"value"];
+        keyValue.createTime = [res intForColumn:@"createTime"];
+        //keyValue.extCategory = [res stringForColumn:@"extCategory"];
+        keyValue.type = [res intForColumn:@"type"];
+        [arr addObject:keyValue];
+    }
+    
+    //[_db close];
+    
+    if ([arr count]>0) {
+        return arr;
+    }
+    else{
+        return nil;
+    }
+}
+//pageNumWith:(int)pageNum pageWith:(int)createTime
+- (NSArray *)getKeyValuesPageNumWith:(int)pageNum pageWith:(int)createTime{
+    
+    [_db open];
+    NSMutableArray *arr = [NSMutableArray new];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where createTime < ? ORDER BY createTime desc LIMIT 0,?",recordTBName],@(createTime),@(pageNum)];
     
     while ([res next]) {
         DbKeyValue *keyValue = [[DbKeyValue alloc] init];
@@ -582,11 +645,11 @@ static DataBase *_DBCtl = nil;
     }
 }
 
--(NSArray*)getNewSubRecordsWith:(int)gid withRootKey:(NSString*)rootKey{
+-(NSArray*)getNewSubRecordsWithCreateTime:(int)createTime withRootKey:(NSString*)rootKey{
     
     [_db open];
     NSMutableArray *arr = [NSMutableArray new];
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where rootKey = ? AND id > ?",subRecordTBName] ,rootKey,gid];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where rootKey = ? AND createTime > ?",subRecordTBName] ,rootKey,@(createTime)];
     
     while ([res next]) {
         
@@ -605,6 +668,34 @@ static DataBase *_DBCtl = nil;
     }
     
     [_db close];
+    
+    if ([arr count]>0) {
+        return arr;
+    }
+    else{
+        return nil;
+    }
+    
+}
+
+-(NSArray*)getNewRecordsWithCreateTime:(int)createTime{
+    
+    [_db open];
+    NSMutableArray *arr = [NSMutableArray new];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where createTime > ? ORDER BY createTime desc ",recordTBName],@(createTime)];
+    
+    while ([res next]) {
+        DbKeyValue *keyValue = [[DbKeyValue alloc] init];
+        keyValue.kvid = [res intForColumn:@"id"];
+        keyValue.key = [res stringForColumn:@"key"];
+        keyValue.value = [res stringForColumn:@"value"];
+        keyValue.createTime = [res intForColumn:@"createTime"];
+        //keyValue.extCategory = [res stringForColumn:@"extCategory"];
+        keyValue.type = [res intForColumn:@"type"];
+        [arr addObject:keyValue];
+    }
+    
+    //[_db close];
     
     if ([arr count]>0) {
         return arr;

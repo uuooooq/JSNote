@@ -7,6 +7,7 @@
 //
 
 #import "DataSource.h"
+#import "ZDWUtility.h"
 
 static DataSource *_DBCtl = nil;
 
@@ -137,9 +138,19 @@ static DataSource *_DBCtl = nil;
     
 }
 
--(NSArray*)getNewSubRecordsWith:(int)gid withRootKey:(NSString*)rootKey{
+-(NSArray*)getNewSubRecordsWithCreateTime:(int)createTime withRootKey:(NSString*)rootKey{
     
-    NSArray *tmpArr = [[DataBase sharedDataBase] getNewSubRecordsWith:gid withRootKey:rootKey];//getSubRecordsWith:rootKey];
+    NSArray *tmpArr = [[DataBase sharedDataBase] getNewSubRecordsWithCreateTime:createTime withRootKey:rootKey];//getSubRecordsWith:rootKey];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+    
+}
+
+-(NSArray*)getNewRecordsWithCreateTime:(int)createTime{
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getNewRecordsWithCreateTime:createTime];//getSubRecordsWith:rootKey];
     if (tmpArr) {
         return tmpArr;
     }
@@ -170,9 +181,34 @@ static DataSource *_DBCtl = nil;
     }
     return [[NSArray alloc] init];
 }
--(void)migrationDb{
+
+
+- (NSArray*)getSubRecordsWith:(NSString *)rootKey pageNumWith:(int)pageNum pageWith:(int)createTime{
     
-    [[DataBase sharedDataBase] migrationDb];
+    if (createTime == 0) {
+        createTime = [ZDWUtility getCurrentTime];
+    }
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordsWith:rootKey pageNumWith:pageNum pageWith:createTime];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+    
+}
+
+- (NSArray *)getKeyValuesPageNumWith:(int)pageNum pageWith:(int)createTime{
+    
+    if (createTime == 0) {
+        createTime = [ZDWUtility getCurrentTime];
+    }
+    
+    //NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordsWith:rootKey pageNumWith:pageNum pageWith:createTime];
+    NSArray* tmpArr = [[DataBase sharedDataBase] getKeyValuesPageNumWith:pageNum pageWith:createTime];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
     
 }
 
