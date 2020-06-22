@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  更新 DbKeyValue
  *
  */
-//- (void)updateKeyValue:(DbKeyValue *)keyValue;
+- (void)updateKeyValue:(DbKeyValue *)keyValue;
 
 - (DbKeyValue *)getKeyValue:(NSString*)key;
 

@@ -29,7 +29,8 @@ typedef enum _ValueType{
     VT_SUB_TEXT = 20,
     VT_SUB_IMG,
     VT_SUB_VIDEO,
-    VT_SUB_AUDIO
+    VT_SUB_AUDIO,
+    VT_SUB_ROOT_TEXT = 30
 }ValueType;
 
 @interface DbKeyValue : NSObject

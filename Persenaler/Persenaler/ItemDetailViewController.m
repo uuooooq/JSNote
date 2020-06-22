@@ -12,6 +12,7 @@
 #import "AudioRecordCell.h"
 #import "TextDetailCell.h"
 #import "VideoRecordCell.h"
+#import "NewFolderViewController.h"
 
 
 
@@ -31,7 +32,7 @@
     [self initView];
     //[self receiveNotiAction];
     self.currentPageContentNum = 100;
-    [self.currentDataArr addObject:self.fromKeyValue];
+    //[self.currentDataArr addObject:self.fromKeyValue];
     [self loadNextPage];
     [self.shuKucollectionView registerClass:[AudioDetailCell class] forCellWithReuseIdentifier:@"AudioDetailCell"];
     [self.shuKucollectionView registerClass:[TextDetailCell class] forCellWithReuseIdentifier:@"TextDetailCell"];
@@ -49,9 +50,10 @@
 //        [_newFunctionView.addVideoBtn addTarget:self action:@selector(addVideoAction) forControlEvents:UIControlEventTouchUpInside];
         
     }
-    if (self.fromKeyValue.type == VT_TEXT) {
+    if (self.fromKeyValue.type == VT_ROOT_TEXT || self.fromKeyValue.type == VT_TEXT || self.fromKeyValue.type == VT_SUB_ROOT_TEXT) {
         [_newFunctionView updateViewFunctionState:VS_ItemDetail_Text];
         [_newFunctionView.copyyBtn addTarget:self action:@selector(copyAction) forControlEvents:UIControlEventTouchUpInside];
+        [_newFunctionView.folderBtn addTarget:self action:@selector(newFolderAction) forControlEvents:UIControlEventTouchUpInside];
     }
     else if(self.fromKeyValue.type == VT_IMG){
         [_newFunctionView updateViewFunctionState:VS_ItemDetail_Img];
@@ -107,7 +109,7 @@
         self.currentPageNum = self.currentPageNum + 1;
         [self.shuKucollectionView reloadData];
         
-        DbKeyValue *lastValue = [self.currentDataArr lastObject];
+        DbKeyValue *lastValue = [self.currentDataArr firstObject];
         self.loadPageTime = lastValue.createTime;
     }
     else{
@@ -123,15 +125,15 @@
     
     int tmpCreateTime = 0;
     
-    if ([self.currentDataArr count]>1) {
-        DbKeyValue *item = [self.currentDataArr objectAtIndex:1];
+    if ([self.currentDataArr count]>0) {
+        DbKeyValue *item = [self.currentDataArr firstObject];
         tmpCreateTime = item.createTime;
     }
 
     NSArray *arr = [self.dataSource getNewSubRecordsWithCreateTime:tmpCreateTime withRootKey:self.fromKeyValue.key];
     if (arr && [arr count]>0) {
         for (DbKeyValue* item in arr) {
-            [self.currentDataArr insertObject:item atIndex:1];
+            [self.currentDataArr insertObject:item atIndex:0];
         }
         [self.shuKucollectionView reloadData];
     }
@@ -177,6 +179,16 @@
     [alertVC addAction:cancelAction];
     [self presentViewController:alertVC animated:YES completion:nil];
     
+}
+
+-(void)newFolderAction{
+    
+    NewFolderViewController *newFolderVc = [NewFolderViewController new];
+    newFolderVc.isSubItem = YES;
+    newFolderVc.fromKeyValue = self.fromKeyValue;
+    [self presentViewController:newFolderVc animated:YES completion:^{
+        
+    }];
 }
 
 -(void)saveAction{
@@ -368,53 +380,6 @@
     CGRect screenFrame = [UIScreen mainScreen].bounds;
     int screenWidth = screenFrame.size.width;
     
-    if (indexPath.row == 0) {
-        switch (keyValue.type) {
-            case VT_IMG:
-            {
-                return CGSizeMake(screenWidth, screenWidth);
-            }
-                break;
-            case VT_TEXT:
-            {
-                return [BaseRecordCell caculateCurrentSize:keyValue.value];
-            }
-                break;
-            case VT_VIDEO:
-            {
-                return CGSizeMake(screenWidth, screenWidth);
-            }
-                break;
-            case VT_AUDIO:
-            {
-                return CGSizeMake(screenWidth, 100);
-            }
-                break;
-                case VT_SUB_IMG:
-                {
-                    return CGSizeMake(screenWidth, screenWidth);
-                }
-                    break;
-                case VT_SUB_TEXT:
-                {
-                    return [BaseRecordCell caculateCurrentSize:keyValue.value];
-                }
-                    break;
-                case VT_SUB_VIDEO:
-                {
-                    return CGSizeMake(screenWidth, screenWidth);
-                }
-                    break;
-                case VT_SUB_AUDIO:
-                {
-                    return CGSizeMake(screenWidth, 100);
-                }
-                    break;
-            default:
-                break;
-        }
-    }
-    else{
         if (keyValue.type == VT_IMG) {
             return CGSizeMake(screenWidth, screenWidth);
         }
@@ -442,9 +407,15 @@
         if (keyValue.type == VT_SUB_AUDIO) {
             return CGSizeMake(screenWidth, 50);
         }
+        if (keyValue.type == VT_ROOT_TEXT) {
+            return CGSizeMake(screenWidth, 80);
+        }
+    if (keyValue.type == VT_SUB_ROOT_TEXT) {
+        return CGSizeMake(screenWidth, 80);
+    }
         
 
-    }
+//    }
     
     return CGSizeMake(screenWidth, 60);
     
@@ -455,85 +426,6 @@
     
     
     DbKeyValue *keyValue = [self.currentDataArr objectAtIndex:indexPath.row];
-    
-    
-    if (indexPath.row == 0) {
-        switch (keyValue.type) {
-            case VT_TEXT:
-            {
-                TextDetailCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TextDetailCell" forIndexPath:indexPath];
-                [cell updateRecord:keyValue];
-                
-                return cell;
-            }
-                break;
-            case VT_IMG:
-            {
-                ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
-                [cell updateRecord:keyValue];
-                cell.fullsizeBtn.tag = indexPath.row;
-                [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                return cell;
-            }
-                break;
-            case VT_VIDEO:
-            {
-                ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
-                [cell updateRecord:keyValue];
-                cell.fullsizeBtn.tag = indexPath.row;
-                [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                return cell;
-            }
-                break;
-            case VT_AUDIO:
-            {
-                AudioDetailCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioDetailCell" forIndexPath:indexPath];
-                [cell updateRecord:keyValue];
-                [cell.playBtn addTarget:self action:@selector(playClickAction:) forControlEvents:UIControlEventTouchUpInside];
-                playBtn = cell.playBtn;
-                return cell;
-            }
-                break;
-            case VT_SUB_TEXT:
-            {
-                BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
-                [cell updateRecord:keyValue];
-                
-                return cell;
-            }
-                break;
-            case VT_SUB_IMG:
-            {
-                ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
-                [cell updateRecord:keyValue];
-                cell.fullsizeBtn.tag = indexPath.row;
-                [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                return cell;
-            }
-                break;
-            case VT_SUB_VIDEO:
-            {
-                VideoRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VideoRecordCell" forIndexPath:indexPath];
-                [cell updateRecord:keyValue];
-                return cell;
-            }
-                break;
-            case VT_SUB_AUDIO:
-            {
-                AudioRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioRecordCell" forIndexPath:indexPath];
-                [cell updateRecord:keyValue];
-                
-                return cell;
-            }
-                break;
-            default:
-                return nil;
-                break;
-        }
-    }
     
     switch (keyValue.type) {
         case VT_TEXT:
@@ -608,6 +500,22 @@
             return cell;
         }
             break;
+        case VT_ROOT_TEXT:
+        {
+            FolderRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FolderRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            
+            return cell;
+        }
+            break;
+        case VT_SUB_ROOT_TEXT:
+        {
+            FolderRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FolderRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            
+            return cell;
+        }
+            break;
         default:
             return nil;
             break;
@@ -619,18 +527,18 @@
 
 -(void)didSelectionCell:(NSIndexPath*)indexPath{
     
-    if (indexPath.row == 0) {
-        if (self.fromKeyValue.type == VT_IMG || self.fromKeyValue.type == VT_SUB_IMG) {
-            [self showFullImageSizeView:self.fromKeyValue.value];
-        }
-    }
-    else{
+//    if (indexPath.row == 0) {
+//        if (self.fromKeyValue.type == VT_IMG || self.fromKeyValue.type == VT_SUB_IMG) {
+//            [self showFullImageSizeView:self.fromKeyValue.value];
+//        }
+//    }
+//    else{
         ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
         itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
         //itemDetailVC.title = @"详情";
         itemDetailVC.isDetailPage = YES;
         [self.navigationController pushViewController:itemDetailVC animated:YES];
-    }
+//    }
 }
 
 @end

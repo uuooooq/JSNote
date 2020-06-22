@@ -41,6 +41,12 @@
     switch (viewState) {
         case VS_HomeList:
         {
+            self.folderBtn = [[UIButton alloc] initWithFrame:CGRectMake(20+60+60, 7, 32, 32)];
+            //[self.addVideoBtn setTitle:@"视频" forState:UIControlStateNormal];
+            [self.folderBtn setImage:[UIImage imageNamed:@"folder"] forState:UIControlStateNormal];
+            [self.folderBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [self addSubview:self.folderBtn];
+            
             self.searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width -60, 7, 32, 32)];
             //[self.addVideoBtn setTitle:@"视频" forState:UIControlStateNormal];
             [self.searchBtn setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
@@ -65,7 +71,13 @@
             break;
         case VS_ItemDetail_Text:
         {
-            self.copyyBtn = [[UIButton alloc] initWithFrame:CGRectMake(20+60+60, 7, 32, 32)];
+            self.folderBtn = [[UIButton alloc] initWithFrame:CGRectMake(20+60+60, 7, 32, 32)];
+            //[self.addVideoBtn setTitle:@"视频" forState:UIControlStateNormal];
+            [self.folderBtn setImage:[UIImage imageNamed:@"folder"] forState:UIControlStateNormal];
+            [self.folderBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [self addSubview:self.folderBtn];
+            
+            self.copyyBtn = [[UIButton alloc] initWithFrame:CGRectMake(20+60+60+60, 7, 32, 32)];
             //[self.editBtn setTitle:@"视频" forState:UIControlStateNormal];
             [self.copyyBtn setImage:[UIImage imageNamed:@"copy"] forState:UIControlStateNormal];
             //[self.editBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

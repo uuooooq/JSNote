@@ -17,6 +17,7 @@
 #import "ItemDetailViewController.h"
 #import "SearchResultsController.h"
 #import <MJRefresh/MJRefresh.h>
+#import "NewFolderViewController.h"
 
 @interface ViewController ()<UISearchControllerDelegate, UISearchBarDelegate>
 {
@@ -102,6 +103,7 @@
     }
     [_newFunctionView updateViewFunctionState:VS_HomeList];
     [_newFunctionView.searchBtn addTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside];
+    [_newFunctionView.folderBtn addTarget:self action:@selector(newFolderAction) forControlEvents:UIControlEventTouchUpInside];
     return _newFunctionView;
 }
 
@@ -138,6 +140,13 @@
         [self noMoreData];
     }
 
+}
+
+-(void)newFolderAction{
+    
+    [self presentViewController:[NewFolderViewController new] animated:YES completion:^{
+        
+    }];
 }
 
 -(void)updateWithNewData{
@@ -212,6 +221,10 @@
     ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
     itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
     //itemDetailVC.title = @"详情";
+    itemDetailVC.navigationController.navigationBar.prefersLargeTitles = YES;
+    itemDetailVC.title = itemDetailVC.fromKeyValue.value;
+    //itemDetailVC.navigationController.navigationBar.largeTitleTextAttributes =
+    [self.navigationController.navigationBar setLargeTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName,[UIFont systemFontOfSize:18.0f],NSFontAttributeName,nil]];
     itemDetailVC.isDetailPage = YES;
     [self.navigationController pushViewController:itemDetailVC animated:YES];
 }

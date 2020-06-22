@@ -15,6 +15,7 @@
 #import "VideoRecordCell.h"
 #import <MJRefresh/MJRefresh.h>
 
+
 @interface BaseListViewController ()<TZImagePickerControllerDelegate>{
     FullsizeImageView *fullImageView;
     MJRefreshAutoNormalFooter * footer;
@@ -63,6 +64,7 @@
     [self.shuKucollectionView registerClass:[AudioRecordCell class] forCellWithReuseIdentifier:@"AudioRecordCell"];
     [self.shuKucollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
     [self.shuKucollectionView registerClass:[VideoRecordCell class] forCellWithReuseIdentifier:@"VideoRecordCell"];
+    [self.shuKucollectionView registerClass:[FolderRecordCell class] forCellWithReuseIdentifier:@"FolderRecordCell"];
     self.shuKucollectionView.backgroundColor = [UIColor whiteColor];
     
     //self.shuKucollectionView.collectionViewLayout = UICollectionViewFlowLayout;
@@ -176,6 +178,11 @@
     if (keyValue.type == VT_AUDIO || keyValue.type == VT_SUB_AUDIO) {
         return CGSizeMake(screenWidth, 50);
     }
+    
+    
+    if (keyValue.type == VT_ROOT_TEXT) {
+        return CGSizeMake(screenWidth, 80);
+    }
 
     return CGSizeMake(screenWidth, 60);
     
@@ -191,6 +198,14 @@
         case VT_TEXT:
         {
             BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            
+            return cell;
+        }
+            break;
+        case VT_ROOT_TEXT:
+        {
+            FolderRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FolderRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
             
             return cell;

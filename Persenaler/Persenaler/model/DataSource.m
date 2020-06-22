@@ -212,5 +212,9 @@ static DataSource *_DBCtl = nil;
     
 }
 
+-(void)updateKeyValue:(DbKeyValue*)keyValue{
+    [[DataBase sharedDataBase] updateKeyValue:keyValue];
+}
+
 
 @end

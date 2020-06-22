@@ -116,7 +116,9 @@
     
     ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
     itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
-    itemDetailVC.title = @"详情";
+    //itemDetailVC.title = @"详情";
+    //itemDetailVC.navigationController.navigationBar.prefersLargeTitles = YES;
+    itemDetailVC.title = itemDetailVC.fromKeyValue.value;
     itemDetailVC.isDetailPage = YES;
     [self.navigationController pushViewController:itemDetailVC animated:YES];
     

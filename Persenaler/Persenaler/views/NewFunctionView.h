@@ -23,6 +23,7 @@ typedef enum _ViewState{
 @property(nonatomic,strong) UIButton * addImgBtn;
 @property(nonatomic,strong) UIButton * editBtn;
 @property(nonatomic,strong) UIButton * copyyBtn;
+@property(nonatomic,strong) UIButton * folderBtn;
 @property(nonatomic,strong) UIButton * searchBtn;
 @property(nonatomic,strong) UIButton * saveBtn;
 @property(nonatomic,strong) UIButton * tagBtn;

@@ -48,6 +48,8 @@
 		E6DDD8FF249758B800E1B5C6 /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */; };
 		E6DDD9032498880600E1B5C6 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD9022498880600E1B5C6 /* Record.m */; };
 		E6DDD90624989AF600E1B5C6 /* SubRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD90524989AF600E1B5C6 /* SubRecord.m */; };
+		E6DDD90924A097B300E1B5C6 /* FolderRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD90824A097B300E1B5C6 /* FolderRecordCell.m */; };
+		E6DDD90C24A0AD9A00E1B5C6 /* NewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD90B24A0AD9A00E1B5C6 /* NewFolderViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +130,10 @@
 		E6DDD9022498880600E1B5C6 /* Record.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		E6DDD90424989AF600E1B5C6 /* SubRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubRecord.h; sourceTree = "<group>"; };
 		E6DDD90524989AF600E1B5C6 /* SubRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubRecord.m; sourceTree = "<group>"; };
+		E6DDD90724A097B300E1B5C6 /* FolderRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FolderRecordCell.h; sourceTree = "<group>"; };
+		E6DDD90824A097B300E1B5C6 /* FolderRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FolderRecordCell.m; sourceTree = "<group>"; };
+		E6DDD90A24A0AD9A00E1B5C6 /* NewFolderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewFolderViewController.h; sourceTree = "<group>"; };
+		E6DDD90B24A0AD9A00E1B5C6 /* NewFolderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewFolderViewController.m; sourceTree = "<group>"; };
 		F46E43402A2F5518B2EF8BC1 /* Pods-Persenaler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.debug.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,6 +237,8 @@
 				E6DDD8FD249758B800E1B5C6 /* UpdateViewController.h */,
 				E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */,
 				E6DDD9002497659900E1B5C6 /* 数据表升级.md */,
+				E6DDD90A24A0AD9A00E1B5C6 /* NewFolderViewController.h */,
+				E6DDD90B24A0AD9A00E1B5C6 /* NewFolderViewController.m */,
 			);
 			path = Persenaler;
 			sourceTree = "<group>";
@@ -281,6 +289,8 @@
 				E68586EF248CD2F100712095 /* AudioDetailCell.m */,
 				E68586F12490DFB700712095 /* TextDetailCell.h */,
 				E68586F22490DFB700712095 /* TextDetailCell.m */,
+				E6DDD90724A097B300E1B5C6 /* FolderRecordCell.h */,
+				E6DDD90824A097B300E1B5C6 /* FolderRecordCell.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -444,10 +454,12 @@
 				E6336870247274C500FC0BEC /* DbKeyValueGroup.m in Sources */,
 				E68586E3248C4D5800712095 /* AudioOperateViewCell.m in Sources */,
 				E66E892A244BE4A800F1DABC /* ZUtitlity.h in Sources */,
+				E6DDD90924A097B300E1B5C6 /* FolderRecordCell.m in Sources */,
 				E6DDD90624989AF600E1B5C6 /* SubRecord.m in Sources */,
 				E67A48062403567500FA357B /* DataSource.m in Sources */,
 				E66E892D244DAE4F00F1DABC /* ZDWUtility.m in Sources */,
 				E67A480924035C6800FA357B /* BaseRecordCell.m in Sources */,
+				E6DDD90C24A0AD9A00E1B5C6 /* NewFolderViewController.m in Sources */,
 				E68586EA248CCACE00712095 /* AudioOperateView.m in Sources */,
 				E6816935248701BB005E2A81 /* VideoRecordCell.m in Sources */,
 				E67A47E62401ED9100FA357B /* SceneDelegate.m in Sources */,

@@ -59,6 +59,8 @@
         return;
     }
     
+
+    
     //NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
     //[extCategoryDic setObject:TXT forKey:@"type"];
     DbKeyValue * keyValue = [DbKeyValue new];
@@ -70,6 +72,11 @@
     [self.dataSource addRecord:keyValue];
     
     if (self.fromKeyValue) {
+        
+        if (self.fromKeyValue.type == VT_TEXT) {
+            self.fromKeyValue.type = VT_ROOT_TEXT;
+            [self.dataSource updateKeyValue:self.fromKeyValue];
+        }
 //        NSMutableDictionary *groupCategoryDic = [NSMutableDictionary dictionary];
         
 //        DbKeyValueGroup *keyValueGroup = [DbKeyValueGroup new];

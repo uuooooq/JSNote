@@ -51,6 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray *)getKeyValuesPageNumWith:(int)pageNum pageWith:(int)createTime;
 
+-(void)updateKeyValue:(DbKeyValue*)keyValue;
+
 @end
 
 NS_ASSUME_NONNULL_END
