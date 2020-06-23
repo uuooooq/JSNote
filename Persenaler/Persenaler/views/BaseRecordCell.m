@@ -15,6 +15,7 @@
     
     UILabel *title;
     UILabel *descLbl;
+    UIView * markView;
     
 }
 
@@ -32,6 +33,8 @@
 }
 
 -(void)customizeView{
+    
+
     
 //    title = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.frame.size.width-20, self.frame.size.width-10)];
 //    title.textColor = [UIColor blackColor];
@@ -70,6 +73,15 @@
     // 使用formatter转换后的date字符串变成了当前时区的时间
     NSString *dateStr = [formatter stringFromDate:date];
     descLbl.text = dateStr;
+    
+    
+    [markView removeFromSuperview];
+    markView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, self.frame.size.height)];
+    markView.backgroundColor = [UIColor orangeColor];
+    [self.contentView addSubview:markView];
+    
+    markView.backgroundColor = [UIColor whiteColor];
+    
     [self.contentView addSubview:descLbl];
 }
 

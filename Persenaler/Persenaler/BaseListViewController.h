@@ -19,7 +19,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseListViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface BaseListViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIGestureRecognizerDelegate>
 
 @property(nonatomic,strong) UICollectionView *shuKucollectionView;
 @property(nonatomic,strong) DataSource *dataSource;
@@ -43,12 +43,15 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)addPhotoAction;
 -(void)copyAction;
 -(void)saveAction;
+//-(void)longPressAction:(UILongPressGestureRecognizer *)gestureRecognizer;
 
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue;
 -(void)fusizeBtnClick:(UIButton*)btn;
 -(void)showFullImageSizeView:(NSString*)imgName;
 
 -(void)noMoreData;
+
+
 
 @end
 

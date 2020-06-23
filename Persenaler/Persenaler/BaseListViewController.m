@@ -35,6 +35,12 @@
     [fullImageView.closeBtn addTarget:self action:@selector(dismissFullImageView) forControlEvents:UIControlEventTouchUpInside];
     [self createCollectionView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWithNewData) name:@"receiveData" object:nil];
+    
+    // long press gesture action
+//    UILongPressGestureRecognizer *lpgr =  [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
+//    lpgr.delegate = self;
+//    lpgr.delaysTouchesBegan = YES;
+//    [self.shuKucollectionView addGestureRecognizer:lpgr];
 }
 
 -(DataSource*)dataSource{
@@ -289,6 +295,27 @@
 
 #pragma mark action
 
+
+//-(void)longPressAction:(UILongPressGestureRecognizer *)gestureRecognizer{
+//    
+//    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
+//        return;
+//    }
+//    CGPoint p = [gestureRecognizer locationInView:self.shuKucollectionView];
+//
+//    NSIndexPath *indexPath = [self.shuKucollectionView indexPathForItemAtPoint:p];
+//    if (indexPath == nil){
+//        NSLog(@"couldn't find index path");
+//    } else {
+//        // get the cell at indexPath (the one you long pressed)
+////        UICollectionViewCell* cell =
+////        [self.shuKucollectionView cellForItemAtIndexPath:indexPath];
+//        // do stuff with the cell
+//        
+//        DbKeyValue *item = [self.currentDataArr objectAtIndex:indexPath.row];
+//        NSLog(@"click cell at index : %ld value:%@",indexPath.row,item.value);
+//    }
+//}
 
 -(void)loadNextPage{
     

@@ -14,7 +14,7 @@
     
     UIImageView *imgView;
     UILabel *descLbl;
-    
+    UIView * markView;
 }
 
 @end
@@ -64,7 +64,16 @@
 //    tagImgView.contentMode = UIViewContentModeCenter;
 //    [self.contentView addSubview:tagImgView];
     
+//    UIView * markView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, self.frame.size.height)];
+//    markView.backgroundColor = [UIColor orangeColor];
+//    [self.contentView addSubview:markView];
+    
     [self.contentView addSubview:descLbl];
+    
+    [markView removeFromSuperview];
+    markView = [[UIView alloc] initWithFrame:CGRectMake(5, 0, 5, self.frame.size.height)];
+    markView.backgroundColor = [UIColor clearColor];
+    [self.contentView addSubview:markView];
 }
 
 -(void)updateRecord:(DbKeyValue*)value{
