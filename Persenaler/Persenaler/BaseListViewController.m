@@ -11,8 +11,6 @@
 #import <TZImagePickerController/TZImagePickerController.h>
 #import "FullsizeImageView.h"
 #import "RecordAudioController.h"
-#import "AudioRecordCell.h"
-#import "VideoRecordCell.h"
 #import <MJRefresh/MJRefresh.h>
 
 
@@ -59,17 +57,12 @@
     
     self.shuKucollectionView = [[UICollectionView alloc] initWithFrame:collectonFrame collectionViewLayout:_layout];
     
-    
-//    [self.shuKucollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
-//
     self.shuKucollectionView.delegate = self;
     self.shuKucollectionView.dataSource = self;
     //    [self.shuKucollectionView registerClass:[ShukuHomeListCell class] forCellWithReuseIdentifier:@"ShukuHomeListCell"];
-    [self.shuKucollectionView registerClass:[BaseRecordCell class] forCellWithReuseIdentifier:@"BaseRecordCell"];
+    [self.shuKucollectionView registerClass:[TextRecordCell class] forCellWithReuseIdentifier:@"TextRecordCell"];
     [self.shuKucollectionView registerClass:[ImageRecordCell class] forCellWithReuseIdentifier:@"ImageRecordCell"];
-    [self.shuKucollectionView registerClass:[AudioRecordCell class] forCellWithReuseIdentifier:@"AudioRecordCell"];
     [self.shuKucollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
-    [self.shuKucollectionView registerClass:[VideoRecordCell class] forCellWithReuseIdentifier:@"VideoRecordCell"];
     [self.shuKucollectionView registerClass:[FolderRecordCell class] forCellWithReuseIdentifier:@"FolderRecordCell"];
     self.shuKucollectionView.backgroundColor = [UIColor whiteColor];
     
@@ -83,31 +76,8 @@
             [weakSelf.shuKucollectionView.mj_footer endRefreshing];
          });
     }];
-//    [footer setTitle:@"下拉显示更多数据" forState:MJRefreshStateIdle];
-//    [footer setTitle:@"没有数据了" forState:MJRefreshStateNoMoreData];
+    
     self.shuKucollectionView.mj_footer = footer;
-    
-    
-//    self.shuKucollectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-//        // 增加5条假数据
-////        for (int i = 0; i<5; i++) {
-////            [weakSelf.colors addObject:MJRandomColor];
-////        }
-//
-//        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-////        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-////            [weakSelf.shuKucollectionView reloadData];
-////
-////            // 结束刷新
-////            [weakSelf.shuKucollectionView.mj_footer endRefreshing];
-////        });
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            // UI更新代码
-//            //[[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
-//            [weakSelf loadNextPage];
-//             [weakSelf.shuKucollectionView.mj_footer endRefreshing];
-//        });
-//    }];
     
     [self.view addSubview: self.shuKucollectionView];
     
@@ -174,15 +144,9 @@
     if (keyValue.type == VT_IMG || keyValue.type == VT_SUB_IMG) {
         return CGSizeMake(screenWidth, screenWidth);
     }
-    if (keyValue.type == VT_VIDEO || keyValue.type == VT_SUB_VIDEO) {
-        return CGSizeMake(screenWidth, screenWidth);
-    }
     
     if (keyValue.type == VT_TEXT || keyValue.type == VT_SUB_TEXT) {
         return [BaseRecordCell caculateCurrentSize:keyValue.value];
-    }
-    if (keyValue.type == VT_AUDIO || keyValue.type == VT_SUB_AUDIO) {
-        return CGSizeMake(screenWidth, 50);
     }
     
     
@@ -203,7 +167,7 @@
     switch (keyValue.type) {
         case VT_TEXT:
         {
-            BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
+            TextRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TextRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
             
             return cell;
@@ -221,30 +185,15 @@
         {
             ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
-            cell.fullsizeBtn.tag = indexPath.row;
-            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            //cell.fullsizeBtn.tag = indexPath.row;
+            //[cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            return cell;
-        }
-            break;
-        case VT_VIDEO:
-        {
-            VideoRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VideoRecordCell" forIndexPath:indexPath];
-            [cell updateRecord:keyValue];
-            return cell;
-        }
-            break;
-        case VT_AUDIO:
-        {
-            AudioRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioRecordCell" forIndexPath:indexPath];
-            [cell updateRecord:keyValue];
-            
             return cell;
         }
             break;
         case VT_SUB_TEXT:
         {
-            BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
+            TextRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TextRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
             
             return cell;
@@ -254,24 +203,9 @@
         {
             ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
-            cell.fullsizeBtn.tag = indexPath.row;
-            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            //cell.fullsizeBtn.tag = indexPath.row;
+            //[cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            return cell;
-        }
-            break;
-        case VT_SUB_VIDEO:
-        {
-            VideoRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VideoRecordCell" forIndexPath:indexPath];
-            [cell updateRecord:keyValue];
-            return cell;
-        }
-            break;
-        case VT_SUB_AUDIO:
-        {
-            AudioRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioRecordCell" forIndexPath:indexPath];
-            [cell updateRecord:keyValue];
-            
             return cell;
         }
             break;
@@ -295,27 +229,6 @@
 
 #pragma mark action
 
-
-//-(void)longPressAction:(UILongPressGestureRecognizer *)gestureRecognizer{
-//    
-//    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
-//        return;
-//    }
-//    CGPoint p = [gestureRecognizer locationInView:self.shuKucollectionView];
-//
-//    NSIndexPath *indexPath = [self.shuKucollectionView indexPathForItemAtPoint:p];
-//    if (indexPath == nil){
-//        NSLog(@"couldn't find index path");
-//    } else {
-//        // get the cell at indexPath (the one you long pressed)
-////        UICollectionViewCell* cell =
-////        [self.shuKucollectionView cellForItemAtIndexPath:indexPath];
-//        // do stuff with the cell
-//        
-//        DbKeyValue *item = [self.currentDataArr objectAtIndex:indexPath.row];
-//        NSLog(@"click cell at index : %ld value:%@",indexPath.row,item.value);
-//    }
-//}
 
 -(void)loadNextPage{
     
@@ -485,7 +398,7 @@
                 NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
                 [extCategoryDic setObject:VIDEO forKey:@"type"];
                 [extCategoryDic setObject:[outputPath lastPathComponent] forKey:@"filename"];
-                [self copyImageInfoAndInsertToDb:asset withImage:coverImage withExtCategoryDic:extCategoryDic withType:VT_VIDEO];
+                //!!![self copyImageInfoAndInsertToDb:asset withImage:coverImage withExtCategoryDic:extCategoryDic withType:VT_VIDEO];
                 NSLog(@"%@",[NSThread currentThread]);
             });
             

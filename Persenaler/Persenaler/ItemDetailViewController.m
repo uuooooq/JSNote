@@ -383,29 +383,17 @@
         if (keyValue.type == VT_IMG) {
             return CGSizeMake(screenWidth, screenWidth);
         }
-        if (keyValue.type == VT_VIDEO) {
-            return CGSizeMake(screenWidth, screenWidth);
-        }
         
         if (keyValue.type == VT_TEXT) {
             return [BaseRecordCell caculateCurrentSize:keyValue.value];
         }
-        if (keyValue.type == VT_AUDIO) {
-            return CGSizeMake(screenWidth, 50);
-        }
         
-        if (keyValue.type == VT_SUB_IMG) {
-            return CGSizeMake(screenWidth, screenWidth);
-        }
         if (keyValue.type == VT_SUB_IMG) {
             return CGSizeMake(screenWidth, screenWidth);
         }
         
         if (keyValue.type == VT_SUB_TEXT) {
             return [BaseRecordCell caculateCurrentSize:keyValue.value];
-        }
-        if (keyValue.type == VT_SUB_AUDIO) {
-            return CGSizeMake(screenWidth, 50);
         }
         if (keyValue.type == VT_ROOT_TEXT) {
             return CGSizeMake(screenWidth, 80);
@@ -430,7 +418,7 @@
     switch (keyValue.type) {
         case VT_TEXT:
         {
-            BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
+            TextRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TextRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
             
             return cell;
@@ -440,33 +428,15 @@
         {
             ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
-            cell.fullsizeBtn.tag = indexPath.row;
-            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            //cell.fullsizeBtn.tag = indexPath.row;
+            //[cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            return cell;
-        }
-            break;
-        case VT_VIDEO:
-        {
-            ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
-            [cell updateRecord:keyValue];
-            cell.fullsizeBtn.tag = indexPath.row;
-            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            return cell;
-        }
-            break;
-        case VT_AUDIO:
-        {
-            AudioRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioRecordCell" forIndexPath:indexPath];
-            [cell updateRecord:keyValue];
-            
             return cell;
         }
             break;
         case VT_SUB_TEXT:
         {
-            BaseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaseRecordCell" forIndexPath:indexPath];
+            TextRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TextRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
             
             return cell;
@@ -476,27 +446,9 @@
         {
             ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
-            cell.fullsizeBtn.tag = indexPath.row;
-            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            //cell.fullsizeBtn.tag = indexPath.row;
+            //[cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            return cell;
-        }
-            break;
-        case VT_SUB_VIDEO:
-        {
-            ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
-            [cell updateRecord:keyValue];
-            cell.fullsizeBtn.tag = indexPath.row;
-            [cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            return cell;
-        }
-            break;
-        case VT_SUB_AUDIO:
-        {
-            AudioRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioRecordCell" forIndexPath:indexPath];
-            [cell updateRecord:keyValue];
-            
             return cell;
         }
             break;

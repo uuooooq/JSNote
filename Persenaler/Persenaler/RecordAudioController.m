@@ -181,7 +181,7 @@
     keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
     keyValue.value = [audioPath lastPathComponent];
     keyValue.createTime =[DbKeyValue getCurrentTime];
-    keyValue.type = VT_AUDIO;
+    //!!keyValue.type = VT_AUDIO;
     //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
     [[DataSource sharedDataSource] addRecord:keyValue];
     dispatch_async(dispatch_get_main_queue(), ^{

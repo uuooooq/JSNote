@@ -505,7 +505,7 @@ static DataBase *_DBCtl = nil;
     
     [_db open];
     NSMutableArray *arr = [NSMutableArray new];
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHTER type < 20 ORDER BY createTime desc LIMIT ?,?",recordTBName],@(start),@(end)];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHTER type < 12 ORDER BY createTime desc LIMIT ?,?",recordTBName],@(start),@(end)];
     
     while ([res next]) {
         DbKeyValue *keyValue = [[DbKeyValue alloc] init];
@@ -532,7 +532,7 @@ static DataBase *_DBCtl = nil;
     
     [_db open];
     NSMutableArray *arr = [NSMutableArray new];
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where createTime < ? AND type < 20 ORDER BY createTime desc LIMIT 0,?",recordTBName],@(createTime),@(pageNum)];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where createTime < ? AND type < 12 ORDER BY createTime desc LIMIT 0,?",recordTBName],@(createTime),@(pageNum)];
     
     while ([res next]) {
         DbKeyValue *keyValue = [[DbKeyValue alloc] init];
@@ -682,7 +682,7 @@ static DataBase *_DBCtl = nil;
     
     [_db open];
     NSMutableArray *arr = [NSMutableArray new];
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where createTime > ? AND type < 20 ORDER BY createTime desc ",recordTBName],@(createTime)];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where createTime > ? AND type < 12 ORDER BY createTime desc ",recordTBName],@(createTime)];
     
     while ([res next]) {
         DbKeyValue *keyValue = [[DbKeyValue alloc] init];

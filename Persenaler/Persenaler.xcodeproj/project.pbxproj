@@ -50,6 +50,7 @@
 		E6DDD90624989AF600E1B5C6 /* SubRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD90524989AF600E1B5C6 /* SubRecord.m */; };
 		E6DDD90924A097B300E1B5C6 /* FolderRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD90824A097B300E1B5C6 /* FolderRecordCell.m */; };
 		E6DDD90C24A0AD9A00E1B5C6 /* NewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD90B24A0AD9A00E1B5C6 /* NewFolderViewController.m */; };
+		E6DDD91524A2C47000E1B5C6 /* TextRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD91424A2C47000E1B5C6 /* TextRecordCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +135,8 @@
 		E6DDD90824A097B300E1B5C6 /* FolderRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FolderRecordCell.m; sourceTree = "<group>"; };
 		E6DDD90A24A0AD9A00E1B5C6 /* NewFolderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewFolderViewController.h; sourceTree = "<group>"; };
 		E6DDD90B24A0AD9A00E1B5C6 /* NewFolderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewFolderViewController.m; sourceTree = "<group>"; };
+		E6DDD91324A2C47000E1B5C6 /* TextRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextRecordCell.h; sourceTree = "<group>"; };
+		E6DDD91424A2C47000E1B5C6 /* TextRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextRecordCell.m; sourceTree = "<group>"; };
 		F46E43402A2F5518B2EF8BC1 /* Pods-Persenaler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.debug.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -269,6 +272,8 @@
 			children = (
 				E67A480724035C6800FA357B /* BaseRecordCell.h */,
 				E67A480824035C6800FA357B /* BaseRecordCell.m */,
+				E6DDD91324A2C47000E1B5C6 /* TextRecordCell.h */,
+				E6DDD91424A2C47000E1B5C6 /* TextRecordCell.m */,
 				E66E892E244DB96700F1DABC /* ImageRecordCell.h */,
 				E66E892F244DB96700F1DABC /* ImageRecordCell.m */,
 				E6816921247F3857005E2A81 /* FullsizeImageView.h */,
@@ -443,6 +448,7 @@
 				E6336867246A9DDE00FC0BEC /* SearchViewController.m in Sources */,
 				E68586F0248CD2F100712095 /* AudioDetailCell.m in Sources */,
 				E67A47E32401ED9100FA357B /* AppDelegate.m in Sources */,
+				E6DDD91524A2C47000E1B5C6 /* TextRecordCell.m in Sources */,
 				E67A47F42401ED9500FA357B /* main.m in Sources */,
 				E68586F32490DFB700712095 /* TextDetailCell.m in Sources */,
 				E6816938248701D9005E2A81 /* AudioRecordCell.m in Sources */,

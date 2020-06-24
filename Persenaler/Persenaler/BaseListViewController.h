@@ -16,6 +16,7 @@
 #import "DbKeyValue.h"
 #import "NewFunctionView.h"
 #import "FolderRecordCell.h"
+#import "TextRecordCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
