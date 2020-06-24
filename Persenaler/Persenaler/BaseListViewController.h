@@ -17,6 +17,7 @@
 #import "NewFunctionView.h"
 #import "FolderRecordCell.h"
 #import "TextRecordCell.h"
+//#import "ItemDetailViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

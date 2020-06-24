@@ -216,18 +216,49 @@
     return headerView;
 }
 
--(void)didSelectionCell:(NSIndexPath*)indexPath{
-    
-    ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
-    itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
-    //itemDetailVC.title = @"详情";
-    itemDetailVC.navigationController.navigationBar.prefersLargeTitles = YES;
-    itemDetailVC.title = itemDetailVC.fromKeyValue.value;
-    //itemDetailVC.navigationController.navigationBar.largeTitleTextAttributes =
-    [self.navigationController.navigationBar setLargeTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName,[UIFont systemFontOfSize:18.0f],NSFontAttributeName,nil]];
-    itemDetailVC.isDetailPage = YES;
-    [self.navigationController pushViewController:itemDetailVC animated:YES];
-}
+//-(void)didSelectionCell:(NSIndexPath*)indexPath{
+//    
+//    DbKeyValue * tmpKeyValue  = [self.currentDataArr objectAtIndex:indexPath.row];
+//    if (tmpKeyValue.type == VT_ROOT || tmpKeyValue.type == VT_SUB_ROOT) {
+//        ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
+//        itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
+//        //itemDetailVC.title = @"详情";
+//        itemDetailVC.navigationController.navigationBar.prefersLargeTitles = YES;
+//        itemDetailVC.title = itemDetailVC.fromKeyValue.value;
+//        //itemDetailVC.navigationController.navigationBar.largeTitleTextAttributes =
+//        [self.navigationController.navigationBar setLargeTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName,[UIFont systemFontOfSize:18.0f],NSFontAttributeName,nil]];
+//        itemDetailVC.isDetailPage = YES;
+//        [self.navigationController pushViewController:itemDetailVC animated:YES];
+//    }
+//    else{
+//        switch (tmpKeyValue.type) {
+//            case VT_IMG:
+//            {
+//                [self showFullImageSizeView:tmpKeyValue.value];
+//            }
+//                break;
+//            case VT_SUB_IMG:
+//            {
+//                [self showFullImageSizeView:tmpKeyValue.value];
+//            }
+//                break;
+//            case VT_TEXT:
+//            {
+//                
+//            }
+//                break;
+//            case VT_SUB_TEXT:
+//            {
+//                
+//            }
+//                break;
+//                
+//            default:
+//                break;
+//        }
+//    }
+//
+//}
 //-(void)addPhotoAction{
 //    
 //    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
