@@ -20,11 +20,12 @@ typedef enum _ValueType{
     VT_ALL = 0,
     VT_TEXT,
     VT_IMG,
+    VT_ROOT,
     VT_ROOT_TEXT = 10,
     VT_ROOT_IMG,
     VT_SUB_TEXT = 20,
     VT_SUB_IMG,
-    VT_SUB_ROOT_TEXT = 30
+    VT_SUB_ROOT = 30
 }ValueType;
 
 @interface DbKeyValue : NSObject

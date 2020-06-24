@@ -51,7 +51,7 @@
         keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
         keyValue.value = self.textView.text;
         keyValue.createTime =[DbKeyValue getCurrentTime];
-        keyValue.type = VT_SUB_ROOT_TEXT;
+        keyValue.type = VT_SUB_ROOT;
         [self.dataSource addRecord:keyValue];
         
         DbKeyValue *subItem = [self.dataSource getKeyValue:keyValue.key];
@@ -74,7 +74,7 @@
         keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
         keyValue.value = self.textView.text;
         keyValue.createTime =[DbKeyValue getCurrentTime];
-        keyValue.type = VT_ROOT_TEXT;
+        keyValue.type = VT_ROOT;
         //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
         [self.dataSource addRecord:keyValue];
         

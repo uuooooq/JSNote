@@ -50,7 +50,7 @@
 //        [_newFunctionView.addVideoBtn addTarget:self action:@selector(addVideoAction) forControlEvents:UIControlEventTouchUpInside];
         
     }
-    if (self.fromKeyValue.type == VT_ROOT_TEXT || self.fromKeyValue.type == VT_TEXT || self.fromKeyValue.type == VT_SUB_ROOT_TEXT) {
+    if (self.fromKeyValue.type == VT_ROOT || self.fromKeyValue.type == VT_TEXT || self.fromKeyValue.type == VT_SUB_ROOT) {
         [_newFunctionView updateViewFunctionState:VS_ItemDetail_Text];
         [_newFunctionView.copyyBtn addTarget:self action:@selector(copyAction) forControlEvents:UIControlEventTouchUpInside];
         [_newFunctionView.folderBtn addTarget:self action:@selector(newFolderAction) forControlEvents:UIControlEventTouchUpInside];
@@ -395,10 +395,10 @@
         if (keyValue.type == VT_SUB_TEXT) {
             return [BaseRecordCell caculateCurrentSize:keyValue.value];
         }
-        if (keyValue.type == VT_ROOT_TEXT) {
+        if (keyValue.type == VT_ROOT) {
             return CGSizeMake(screenWidth, 80);
         }
-    if (keyValue.type == VT_SUB_ROOT_TEXT) {
+    if (keyValue.type == VT_SUB_ROOT) {
         return CGSizeMake(screenWidth, 80);
     }
         
@@ -452,7 +452,7 @@
             return cell;
         }
             break;
-        case VT_ROOT_TEXT:
+        case VT_ROOT:
         {
             FolderRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FolderRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
@@ -460,7 +460,7 @@
             return cell;
         }
             break;
-        case VT_SUB_ROOT_TEXT:
+        case VT_SUB_ROOT:
         {
             FolderRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FolderRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];

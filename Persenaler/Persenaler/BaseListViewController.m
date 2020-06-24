@@ -150,7 +150,7 @@
     }
     
     
-    if (keyValue.type == VT_ROOT_TEXT) {
+    if (keyValue.type == VT_ROOT) {
         return CGSizeMake(screenWidth, 80);
     }
 
@@ -173,7 +173,7 @@
             return cell;
         }
             break;
-        case VT_ROOT_TEXT:
+        case VT_ROOT:
         {
             FolderRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FolderRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
