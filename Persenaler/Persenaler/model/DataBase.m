@@ -494,11 +494,30 @@ static DataBase *_DBCtl = nil;
 
 - (void)deleteKeyValue:(DbKeyValue *)keyValue{
     
+//    [_db open];
+//
+//    [_db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE key = ?",recordTBName],keyValue.key];
+//
+//    [_db close];
+    
     [_db open];
-
-    [_db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE key = ?",recordTBName],keyValue.key];
-
-    [_db close];
+    [_db beginTransaction];
+    BOOL isRollBack = NO;
+    @try {
+        [_db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE key = ?",recordTBName],keyValue.key];
+        [_db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE rootKey = ?",subRecordTBName],keyValue.key];
+        [_db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE subKey = ?",subRecordTBName],keyValue.key];
+        
+    } @catch (NSException *exception) {
+        isRollBack = YES;
+        [_db rollback];
+    } @finally {
+        if (!isRollBack) {
+            [_db commit];
+        }
+    }
+    NSLog(@"migration kvtb to recordTb done!");
+    [_db class];
     
 }
 

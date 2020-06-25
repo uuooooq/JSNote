@@ -53,6 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)updateKeyValue:(DbKeyValue*)keyValue;
 
+- (void)deleteKeyValue:(DbKeyValue *)keyValue;
+
 @end
 
 NS_ASSUME_NONNULL_END

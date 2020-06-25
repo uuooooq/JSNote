@@ -216,5 +216,10 @@ static DataSource *_DBCtl = nil;
     [[DataBase sharedDataBase] updateKeyValue:keyValue];
 }
 
+- (void)deleteKeyValue:(DbKeyValue *)keyValue{
+    
+    [[DataBase sharedDataBase] deleteKeyValue:keyValue];
+}
+
 
 @end

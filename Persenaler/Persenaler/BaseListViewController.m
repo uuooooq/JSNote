@@ -36,10 +36,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWithNewData) name:@"receiveData" object:nil];
     
     // long press gesture action
-//    UILongPressGestureRecognizer *lpgr =  [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
-//    lpgr.delegate = self;
-//    lpgr.delaysTouchesBegan = YES;
-//    [self.shuKucollectionView addGestureRecognizer:lpgr];
+    UILongPressGestureRecognizer *lpgr =  [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
+    lpgr.delegate = self;
+    lpgr.delaysTouchesBegan = YES;
+    [self.shuKucollectionView addGestureRecognizer:lpgr];
 }
 
 -(DataSource*)dataSource{
@@ -267,6 +267,10 @@
 
 
 #pragma mark action
+-(void)longPressAction:(UILongPressGestureRecognizer *)gestureRecognizer{
+    
+    NSLog(@"在子类中实现");
+}
 
 
 -(void)loadNextPage{
@@ -316,6 +320,15 @@
     [alert addAction:defaultAction1];
     [alert addAction:defaultAction2];
     [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+-(void)deleteAction:(DbKeyValue*)deleteItem withIndexPath:(NSIndexPath*)indexPath{
+    
+    [self.dataSource deleteKeyValue:deleteItem];
+    [self.currentDataArr removeObject:deleteItem];
+    [self.shuKucollectionView deleteItemsAtIndexPaths:@[indexPath]];
+    //[self.shuKucollectionView reloadData];
     
 }
 

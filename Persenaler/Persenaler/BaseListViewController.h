@@ -45,11 +45,14 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)addPhotoAction;
 -(void)copyAction;
 -(void)saveAction;
-//-(void)longPressAction:(UILongPressGestureRecognizer *)gestureRecognizer;
+-(void)longPressAction:(UILongPressGestureRecognizer *)gestureRecognizer;
+-(void)itemSetingAction:(DbKeyValue*)keyValue withIndexPath:(NSIndexPath*)indexPath;
 
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue;
 -(void)fusizeBtnClick:(UIButton*)btn;
 -(void)showFullImageSizeView:(NSString*)imgName;
+
+-(void)deleteAction:(DbKeyValue*)deleteItem withIndexPath:(NSIndexPath*)indexPath;
 
 -(void)noMoreData;
 

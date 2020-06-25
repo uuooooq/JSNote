@@ -167,6 +167,51 @@
 }
 */
 
+#pragma mark action
+
+-(void)longPressAction:(UILongPressGestureRecognizer *)gestureRecognizer{
+    
+    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
+        return;
+    }
+    CGPoint p = [gestureRecognizer locationInView:self.shuKucollectionView];
+
+    NSIndexPath *indexPath = [self.shuKucollectionView indexPathForItemAtPoint:p];
+    if (indexPath == nil){
+        NSLog(@"couldn't find index path");
+    } else {
+        DbKeyValue *keyValue = [self.currentDataArr objectAtIndex:indexPath.row];
+        NSLog(@"===========%@",keyValue.value);
+        UICollectionViewCell *cell = [self.shuKucollectionView cellForItemAtIndexPath:indexPath];
+        [cell setSelected:YES];
+        [self itemSetingAction:keyValue withIndexPath:indexPath];
+    }
+}
+
+-(void)itemSetingAction:(DbKeyValue*)keyValue withIndexPath:(NSIndexPath*)indexPath{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *selectAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self deleteAction:keyValue withIndexPath:indexPath];
+    }];
+    UIAlertAction *editAction = [UIAlertAction actionWithTitle:@"修改" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"移动" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [alert addAction:selectAction];
+    [alert addAction:editAction];
+    [alert addAction:moveAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 -(void)copyAction{
     
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
