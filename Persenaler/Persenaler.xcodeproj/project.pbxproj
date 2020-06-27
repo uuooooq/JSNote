@@ -52,6 +52,7 @@
 		E6DDD90C24A0AD9A00E1B5C6 /* NewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD90B24A0AD9A00E1B5C6 /* NewFolderViewController.m */; };
 		E6DDD91524A2C47000E1B5C6 /* TextRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD91424A2C47000E1B5C6 /* TextRecordCell.m */; };
 		E6E189D024A6E26D003AE0A2 /* FolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E189CF24A6E26D003AE0A2 /* FolderViewController.m */; };
+		E6E189D324A71A0A003AE0A2 /* ZDWPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E189D224A71A0A003AE0A2 /* ZDWPhotoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +141,8 @@
 		E6DDD91424A2C47000E1B5C6 /* TextRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextRecordCell.m; sourceTree = "<group>"; };
 		E6E189CE24A6E26D003AE0A2 /* FolderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FolderViewController.h; sourceTree = "<group>"; };
 		E6E189CF24A6E26D003AE0A2 /* FolderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FolderViewController.m; sourceTree = "<group>"; };
+		E6E189D124A71A0A003AE0A2 /* ZDWPhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDWPhotoView.h; sourceTree = "<group>"; };
+		E6E189D224A71A0A003AE0A2 /* ZDWPhotoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDWPhotoView.m; sourceTree = "<group>"; };
 		F46E43402A2F5518B2EF8BC1 /* Pods-Persenaler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.debug.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -301,6 +304,8 @@
 				E68586F22490DFB700712095 /* TextDetailCell.m */,
 				E6DDD90724A097B300E1B5C6 /* FolderRecordCell.h */,
 				E6DDD90824A097B300E1B5C6 /* FolderRecordCell.m */,
+				E6E189D124A71A0A003AE0A2 /* ZDWPhotoView.h */,
+				E6E189D224A71A0A003AE0A2 /* ZDWPhotoView.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -455,6 +460,7 @@
 				E67A47E32401ED9100FA357B /* AppDelegate.m in Sources */,
 				E6DDD91524A2C47000E1B5C6 /* TextRecordCell.m in Sources */,
 				E67A47F42401ED9500FA357B /* main.m in Sources */,
+				E6E189D324A71A0A003AE0A2 /* ZDWPhotoView.m in Sources */,
 				E68586F32490DFB700712095 /* TextDetailCell.m in Sources */,
 				E6816938248701D9005E2A81 /* AudioRecordCell.m in Sources */,
 				E65609D424336BA10089B3C6 /* DbKeyValue.m in Sources */,

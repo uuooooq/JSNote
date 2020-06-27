@@ -13,11 +13,14 @@
 #import "RecordAudioController.h"
 #import <MJRefresh/MJRefresh.h>
 #import "ItemDetailViewController.h"
+#import "ZDWPhotoView.h"
 
 
 @interface BaseListViewController ()<TZImagePickerControllerDelegate>{
     FullsizeImageView *fullImageView;
     MJRefreshAutoNormalFooter * footer;
+    ZDWPhotoView *photoView;
+    
 }
 
 @end
@@ -32,6 +35,9 @@
     //self.dataSource = [DataSource sharedDataSource];
     fullImageView = [[FullsizeImageView alloc] initWithFrame:self.navigationController.view.bounds];
     [fullImageView.closeBtn addTarget:self action:@selector(dismissFullImageView) forControlEvents:UIControlEventTouchUpInside];
+    
+    //photoView = [[ZDWPhotoView alloc] initWithFrame:self.navigationController.view.bounds];
+    
     [self createCollectionView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWithNewData) name:@"receiveData" object:nil];
     
@@ -509,9 +515,12 @@
 
 -(void)showFullImageSizeView:(NSString*)imgName{
     
-    [fullImageView showImage:imgName];
-    [fullImageView.closeBtn addTarget:self action:@selector(dismissFullImageView) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationController.view addSubview:fullImageView];
+    NSString* filePath = [ZDWUtility getImagePath:imgName];
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
+    photoView = [[ZDWPhotoView alloc] initWithFrame:self.navigationController.view.bounds];
+    [photoView setImage:image];
+    [self.navigationController.view addSubview:photoView];
+    
 }
 
 -(void)dismissFullImageView{
