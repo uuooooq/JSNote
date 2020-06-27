@@ -491,6 +491,42 @@ static DataBase *_DBCtl = nil;
     return nil;
 }
 
+- (NSArray*)getSubRecordsFolderWith:(NSString *)rootKey pageNumWith:(int)pageNum pageWith:(int)createTime{
+    
+    [_db open];
+    NSMutableArray *arr = [NSMutableArray new];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where rootKey = ? AND createTime < ? ORDER BY createTime desc LIMIT 0,?",subRecordTBName] ,rootKey,@(createTime),@(pageNum)];
+    
+    while ([res next]) {
+        
+        SubRecord * subRecord = [SubRecord new];
+        subRecord.gID = [res intForColumn:@"id"];
+        subRecord.rootKey = [res stringForColumn:@"rootKey"];
+        subRecord.subKey = [res stringForColumn:@"subKey"];
+        subRecord.createTime = [res intForColumn:@"createTime"];
+        
+        DbKeyValue * keyValue = [self getKeyValue:subRecord.subKey];//[DbKeyValue new];
+        
+        if (keyValue.type == VT_SUB_ROOT) {
+            [arr addObject:keyValue];
+        }
+        
+    }
+    
+    [_db close];
+    
+    if ([arr count]>0) {
+        return arr;
+    }
+    else{
+        return nil;
+    }
+    
+    
+    
+    return nil;
+}
+
 
 - (void)deleteKeyValue:(DbKeyValue *)keyValue{
     
@@ -604,6 +640,32 @@ static DataBase *_DBCtl = nil;
     [_db open];
     NSMutableArray *arr = [NSMutableArray new];
     FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where createTime < ? AND type < 12 ORDER BY createTime desc LIMIT 0,?",recordTBName],@(createTime),@(pageNum)];
+    
+    while ([res next]) {
+        DbKeyValue *keyValue = [[DbKeyValue alloc] init];
+        keyValue.kvid = [res intForColumn:@"id"];
+        keyValue.key = [res stringForColumn:@"key"];
+        keyValue.value = [res stringForColumn:@"value"];
+        keyValue.createTime = [res intForColumn:@"createTime"];
+        //keyValue.extCategory = [res stringForColumn:@"extCategory"];
+        keyValue.type = [res intForColumn:@"type"];
+        [arr addObject:keyValue];
+    }
+    
+    //[_db close];
+    
+    if ([arr count]>0) {
+        return arr;
+    }
+    else{
+        return nil;
+    }
+}
+
+- (NSArray *)getKeyValuesFolderPageNumWith:(int)pageNum pageWith:(int)createTime{
+    [_db open];
+    NSMutableArray *arr = [NSMutableArray new];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where createTime < ? AND type == 3 ORDER BY createTime desc LIMIT 0,?",recordTBName],@(createTime),@(pageNum)];
     
     while ([res next]) {
         DbKeyValue *keyValue = [[DbKeyValue alloc] init];

@@ -55,6 +55,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)deleteKeyValue:(DbKeyValue *)keyValue;
 
+- (NSArray *)getKeyValuesFolderPageNumWith:(int)pageNum pageWith:(int)createTime;
+
+- (NSArray*)getSubRecordsFolderWith:(NSString *)rootKey pageNumWith:(int)pageNum pageWith:(int)createTime;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -51,6 +51,7 @@
 		E6DDD90924A097B300E1B5C6 /* FolderRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD90824A097B300E1B5C6 /* FolderRecordCell.m */; };
 		E6DDD90C24A0AD9A00E1B5C6 /* NewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD90B24A0AD9A00E1B5C6 /* NewFolderViewController.m */; };
 		E6DDD91524A2C47000E1B5C6 /* TextRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD91424A2C47000E1B5C6 /* TextRecordCell.m */; };
+		E6E189D024A6E26D003AE0A2 /* FolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E189CF24A6E26D003AE0A2 /* FolderViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +138,8 @@
 		E6DDD90B24A0AD9A00E1B5C6 /* NewFolderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewFolderViewController.m; sourceTree = "<group>"; };
 		E6DDD91324A2C47000E1B5C6 /* TextRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextRecordCell.h; sourceTree = "<group>"; };
 		E6DDD91424A2C47000E1B5C6 /* TextRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextRecordCell.m; sourceTree = "<group>"; };
+		E6E189CE24A6E26D003AE0A2 /* FolderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FolderViewController.h; sourceTree = "<group>"; };
+		E6E189CF24A6E26D003AE0A2 /* FolderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FolderViewController.m; sourceTree = "<group>"; };
 		F46E43402A2F5518B2EF8BC1 /* Pods-Persenaler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.debug.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -242,6 +245,8 @@
 				E6DDD9002497659900E1B5C6 /* 数据表升级.md */,
 				E6DDD90A24A0AD9A00E1B5C6 /* NewFolderViewController.h */,
 				E6DDD90B24A0AD9A00E1B5C6 /* NewFolderViewController.m */,
+				E6E189CE24A6E26D003AE0A2 /* FolderViewController.h */,
+				E6E189CF24A6E26D003AE0A2 /* FolderViewController.m */,
 			);
 			path = Persenaler;
 			sourceTree = "<group>";
@@ -456,6 +461,7 @@
 				E681692924807179005E2A81 /* SearchResultsController.m in Sources */,
 				E6816923247F3857005E2A81 /* FullsizeImageView.m in Sources */,
 				E6816920247F23D8005E2A81 /* TestViewController.m in Sources */,
+				E6E189D024A6E26D003AE0A2 /* FolderViewController.m in Sources */,
 				E68586E6248C4D8700712095 /* AudioActionViewCell.swift in Sources */,
 				E6336870247274C500FC0BEC /* DbKeyValueGroup.m in Sources */,
 				E68586E3248C4D5800712095 /* AudioOperateViewCell.m in Sources */,

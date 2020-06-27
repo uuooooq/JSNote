@@ -197,6 +197,20 @@ static DataSource *_DBCtl = nil;
     
 }
 
+- (NSArray*)getSubRecordsFolderWith:(NSString *)rootKey pageNumWith:(int)pageNum pageWith:(int)createTime{
+    
+    if (createTime == 0) {
+        createTime = [ZDWUtility getCurrentTime];
+    }
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordsFolderWith:rootKey pageNumWith:pageNum pageWith:createTime];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+    
+}
+
 - (NSArray *)getKeyValuesPageNumWith:(int)pageNum pageWith:(int)createTime{
     
     if (createTime == 0) {
@@ -210,6 +224,20 @@ static DataSource *_DBCtl = nil;
     }
     return [[NSArray alloc] init];
     
+}
+
+- (NSArray *)getKeyValuesFolderPageNumWith:(int)pageNum pageWith:(int)createTime{
+    
+    if (createTime == 0) {
+        createTime = [ZDWUtility getCurrentTime];
+    }
+    
+    //NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordsWith:rootKey pageNumWith:pageNum pageWith:createTime];
+    NSArray* tmpArr = [[DataBase sharedDataBase] getKeyValuesFolderPageNumWith:pageNum pageWith:createTime];//getKeyValuesPageNumWith:pageNum pageWith:createTime];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
 }
 
 -(void)updateKeyValue:(DbKeyValue*)keyValue{

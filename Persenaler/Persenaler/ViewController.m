@@ -18,6 +18,7 @@
 #import "SearchResultsController.h"
 #import <MJRefresh/MJRefresh.h>
 #import "NewFolderViewController.h"
+#import "FolderViewController.h"
 
 @interface ViewController ()<UISearchControllerDelegate, UISearchBarDelegate>
 {
@@ -140,6 +141,17 @@
         
     }];
     UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"移动" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        
+        DbKeyValue *moveItem = [self.currentDataArr objectAtIndex:indexPath.row];
+        FolderViewController *folderVc = [FolderViewController new];
+        folderVc.moveKeyValue = moveItem;
+        //folderVc.fromKeyValue = nil;
+        
+        UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:folderVc];
+        [self presentViewController:navVC animated:YES completion:^{
+            
+        }];
         
     }];
     UIAlertAction *colorAction = [UIAlertAction actionWithTitle:@"标记颜色" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

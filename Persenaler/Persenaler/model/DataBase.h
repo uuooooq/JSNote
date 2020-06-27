@@ -65,6 +65,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray *)getKeyValuesPageNumWith:(int)pageNum pageWith:(int)createTime;
 
+- (NSArray *)getKeyValuesFolderPageNumWith:(int)pageNum pageWith:(int)createTime;
+
+- (NSArray*)getSubRecordsFolderWith:(NSString *)rootKey pageNumWith:(int)pageNum pageWith:(int)createTime;
+
 // migration kvTb kvGroupTb
 
 -(void)migrationDb;

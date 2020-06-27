@@ -192,6 +192,9 @@
     if (keyValue.type == VT_ROOT) {
         return CGSizeMake(screenWidth, 80);
     }
+    if (keyValue.type == VT_SUB_ROOT) {
+        return CGSizeMake(screenWidth, 80);
+    }
 
     return CGSizeMake(screenWidth, 60);
     
@@ -242,9 +245,14 @@
         {
             ImageRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageRecordCell" forIndexPath:indexPath];
             [cell updateRecord:keyValue];
-            //cell.fullsizeBtn.tag = indexPath.row;
-            //[cell.fullsizeBtn addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            //[cell. addTarget:self action:@selector(fusizeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+        }
+            break;
+        case VT_SUB_ROOT:
+        {
+            FolderRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FolderRecordCell" forIndexPath:indexPath];
+            [cell updateRecord:keyValue];
+            
             return cell;
         }
             break;
