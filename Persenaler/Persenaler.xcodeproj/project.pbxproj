@@ -53,6 +53,7 @@
 		E6DDD91524A2C47000E1B5C6 /* TextRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD91424A2C47000E1B5C6 /* TextRecordCell.m */; };
 		E6E189D024A6E26D003AE0A2 /* FolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E189CF24A6E26D003AE0A2 /* FolderViewController.m */; };
 		E6E189D324A71A0A003AE0A2 /* ZDWPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E189D224A71A0A003AE0A2 /* ZDWPhotoView.m */; };
+		E6E189D624A72776003AE0A2 /* TextEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E189D524A72776003AE0A2 /* TextEditorViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +144,8 @@
 		E6E189CF24A6E26D003AE0A2 /* FolderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FolderViewController.m; sourceTree = "<group>"; };
 		E6E189D124A71A0A003AE0A2 /* ZDWPhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDWPhotoView.h; sourceTree = "<group>"; };
 		E6E189D224A71A0A003AE0A2 /* ZDWPhotoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDWPhotoView.m; sourceTree = "<group>"; };
+		E6E189D424A72776003AE0A2 /* TextEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextEditorViewController.h; sourceTree = "<group>"; };
+		E6E189D524A72776003AE0A2 /* TextEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextEditorViewController.m; sourceTree = "<group>"; };
 		F46E43402A2F5518B2EF8BC1 /* Pods-Persenaler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.debug.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,6 +253,8 @@
 				E6DDD90B24A0AD9A00E1B5C6 /* NewFolderViewController.m */,
 				E6E189CE24A6E26D003AE0A2 /* FolderViewController.h */,
 				E6E189CF24A6E26D003AE0A2 /* FolderViewController.m */,
+				E6E189D424A72776003AE0A2 /* TextEditorViewController.h */,
+				E6E189D524A72776003AE0A2 /* TextEditorViewController.m */,
 			);
 			path = Persenaler;
 			sourceTree = "<group>";
@@ -470,6 +475,7 @@
 				E6E189D024A6E26D003AE0A2 /* FolderViewController.m in Sources */,
 				E68586E6248C4D8700712095 /* AudioActionViewCell.swift in Sources */,
 				E6336870247274C500FC0BEC /* DbKeyValueGroup.m in Sources */,
+				E6E189D624A72776003AE0A2 /* TextEditorViewController.m in Sources */,
 				E68586E3248C4D5800712095 /* AudioOperateViewCell.m in Sources */,
 				E66E892A244BE4A800F1DABC /* ZUtitlity.h in Sources */,
 				E6DDD90924A097B300E1B5C6 /* FolderRecordCell.m in Sources */,
