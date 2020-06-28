@@ -9,26 +9,20 @@ PODS:
     - GCDWebServer/Core
   - GCDWebServer/WebUploader (3.5.3):
     - GCDWebServer/Core
-  - IQKeyboardManager (6.5.4)
   - MJRefresh (3.3.1)
   - TZImagePickerController (3.3.1)
-  - ZSSRichTextEditor (0.5.2.1)
 
 DEPENDENCIES:
   - FMDB
   - GCDWebServer (~> 3.0)
   - GCDWebServer/WebDAV (~> 3.0)
   - GCDWebServer/WebUploader (~> 3.0)
-  - IQKeyboardManager
   - MJRefresh
   - TZImagePickerController
-  - ZSSRichTextEditor
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - IQKeyboardManager
     - MJRefresh
-    - ZSSRichTextEditor
   trunk:
     - FMDB
     - GCDWebServer
@@ -37,11 +31,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   GCDWebServer: c0ab22c73e1b84f358d1e2f74bf6afd1c60829f2
-  IQKeyboardManager: 72b359cd7e777e3a984cedbe05f8da45320cbb63
   MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237
   TZImagePickerController: 99f03b64145a8c92c55b9b1b931410967d9be4cb
-  ZSSRichTextEditor: 56ed060d6d7a98fb6be9fceb8074ced22160349b
 
-PODFILE CHECKSUM: 21997fe3fa1fd238ab40c7bf812a41f9318415f3
+PODFILE CHECKSUM: 30e1cc6fabc11f76f840508f0f297b736786de18
 
 COCOAPODS: 1.8.4

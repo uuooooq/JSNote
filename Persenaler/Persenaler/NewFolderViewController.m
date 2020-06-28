@@ -8,7 +8,7 @@
 
 #import "NewFolderViewController.h"
 #import "ZDWUtility.h"
-#import <IQKeyboardManager/IQKeyboardManager.h>
+//#import <IQKeyboardManager/IQKeyboardManager.h>
 
 @interface NewFolderViewController ()
 
@@ -33,9 +33,9 @@
     
     //IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
     //manager.toolbarDoneBarButtonItemText = @"保存";
-    [_textView addDoneOnKeyboardWithTarget:self action:@selector(saveAction)];
+    //[_textView addDoneOnKeyboardWithTarget:self action:@selector(saveAction)];
     //manager.toolbarDoneBarButtonItemImage = [UIImage imageNamed:@"save"];
-    [_textView.keyboardToolbar.doneBarButton setTitle:@"保存"];
+    //[_textView.keyboardToolbar.doneBarButton setTitle:@"保存"];
     // Do any additional setup after loading the view.
 }
 

@@ -16,17 +16,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.title = @"Large";
+    
+    //self.alwaysShowToolbar = YES;
+    
+    // HTML Content to set in the editor
+    self.title = @"Selective";
+    
+    // HTML Content to set in the editor
+    NSString *html = @"<p>Example showing just a few toolbar buttons.</p>";
+    
+    // Choose which toolbar items to show
+    self.enabledToolbarItems = @[ZSSRichTextEditorToolbarBold, ZSSRichTextEditorToolbarH1, ZSSRichTextEditorToolbarParagraph];
+    
+    // Set the HTML contents of the editor
+    [self setHTML:html];
+    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

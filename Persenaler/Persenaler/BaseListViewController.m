@@ -14,6 +14,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "ItemDetailViewController.h"
 #import "ZDWPhotoView.h"
+#import "TextEditorViewController.h"
 
 
 @interface BaseListViewController ()<TZImagePickerControllerDelegate>{
@@ -149,7 +150,8 @@
                    break;
                case VT_TEXT:
                {
-                   
+                   TextEditorViewController *editor = [[TextEditorViewController alloc] init];
+                   [self.navigationController pushViewController:editor animated:YES];
                }
                    break;
                case VT_SUB_TEXT:

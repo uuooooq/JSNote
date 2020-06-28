@@ -5,8 +5,7 @@
 //  Created by zhu dongwei on 2020/6/27.
 //  Copyright © 2020 zhu dongwei. All rights reserved.
 //
-
-#import <ZSSRichTextEditor/ZSSRichTextEditor.h>
+#import "ZSSRichTextEditor.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
