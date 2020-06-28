@@ -169,6 +169,18 @@
 
 #pragma mark action
 
+-(void)showText:(DbKeyValue*)editKeyValue{
+    
+    InputViewController *inputVc = [InputViewController new];
+    inputVc.editKeyValue = editKeyValue;
+    inputVc.fromKeyValue = self.fromKeyValue;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:inputVc];
+    [self.navigationController presentViewController:nav animated:YES completion:^{
+        
+    }];
+    
+}
+
 -(void)longPressAction:(UILongPressGestureRecognizer *)gestureRecognizer{
     
     if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
@@ -264,7 +276,7 @@
     
     InputViewController *inputVC = [InputViewController new];
     inputVC.fromKeyValue = self.fromKeyValue;
-    inputVC.isSubItem = YES;
+    //inputVC.isSubItem = YES;
     [self presentViewController:inputVC animated:YES completion:^{
         
     }];

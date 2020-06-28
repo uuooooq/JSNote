@@ -41,6 +41,7 @@
     
     [self createCollectionView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWithNewData) name:@"receiveData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"reloadData" object:nil];
     
     // long press gesture action
     UILongPressGestureRecognizer *lpgr =  [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
@@ -150,13 +151,12 @@
                    break;
                case VT_TEXT:
                {
-                   TextEditorViewController *editor = [[TextEditorViewController alloc] init];
-                   [self.navigationController pushViewController:editor animated:YES];
+                   [self showText:tmpKeyValue];
                }
                    break;
                case VT_SUB_TEXT:
                {
-                   
+                   [self showText:tmpKeyValue];
                }
                    break;
                    
@@ -283,6 +283,10 @@
 
 
 #pragma mark action
+
+-(void)refreshView{
+    [self.shuKucollectionView reloadData];
+}
 -(void)longPressAction:(UILongPressGestureRecognizer *)gestureRecognizer{
     
     NSLog(@"在子类中实现");
@@ -350,12 +354,12 @@
 
 -(void)addTextAction{
     InputViewController *inputVc = [InputViewController new];
-    if (self.isDetailPage) {
-        inputVc.isSubItem = YES;
-    }
-    else{
-        inputVc.isSubItem = NO;
-    }
+//    if (self.isDetailPage) {
+//        inputVc.isSubItem = YES;
+//    }
+//    else{
+//        inputVc.isSubItem = NO;
+//    }
     [self presentViewController:inputVc animated:YES completion:^{
         
     }];
@@ -527,6 +531,15 @@
 
 -(void)dismissFullImageView{
     [fullImageView removeFromSuperview];
+}
+
+-(void)showText:(DbKeyValue*)editKeyValue{
+    InputViewController *inputVc = [InputViewController new];
+    inputVc.editKeyValue = editKeyValue;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:inputVc];
+    [self.navigationController presentViewController:nav animated:YES completion:^{
+        
+    }];
 }
 
 

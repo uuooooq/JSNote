@@ -279,7 +279,7 @@ static DataBase *_DBCtl = nil;
     
     [_db open];
     
-    [_db executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET type = ?  WHERE id = ? ",recordTBName],@(keyValue.type),@(keyValue.kvid)];
+    [_db executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET type = ?, value = ?  WHERE id = ? ",recordTBName],@(keyValue.type),keyValue.value,@(keyValue.kvid)];
     
     [_db close];
     
