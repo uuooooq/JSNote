@@ -353,17 +353,17 @@
 }
 
 -(void)addTextAction{
-    InputViewController *inputVc = [InputViewController new];
+//    InputViewController *inputVc = [InputViewController new];
 //    if (self.isDetailPage) {
 //        inputVc.isSubItem = YES;
 //    }
 //    else{
 //        inputVc.isSubItem = NO;
 //    }
-    [self presentViewController:inputVc animated:YES completion:^{
-        
-    }];
-    
+//    [self presentViewController:inputVc animated:YES completion:^{
+//
+//    }];
+    [self showText:nil];
 }
 -(void)addPhotoAction{
     
@@ -535,7 +535,10 @@
 
 -(void)showText:(DbKeyValue*)editKeyValue{
     InputViewController *inputVc = [InputViewController new];
-    inputVc.editKeyValue = editKeyValue;
+    if (editKeyValue) {
+        inputVc.editKeyValue = editKeyValue;
+    }
+    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:inputVc];
     [self.navigationController presentViewController:nav animated:YES completion:^{
         

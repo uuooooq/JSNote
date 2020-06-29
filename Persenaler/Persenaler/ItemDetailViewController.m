@@ -274,13 +274,14 @@
 
 -(void)addTextAction{
     
-    InputViewController *inputVC = [InputViewController new];
-    inputVC.fromKeyValue = self.fromKeyValue;
-    //inputVC.isSubItem = YES;
-    [self presentViewController:inputVC animated:YES completion:^{
-        
-    }];
+//    InputViewController *inputVC = [InputViewController new];
+//    inputVC.fromKeyValue = self.fromKeyValue;
+//    //inputVC.isSubItem = YES;
+//    [self presentViewController:inputVC animated:YES completion:^{
+//
+//    }];
     
+    [self showText:nil];
 }
 
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue{

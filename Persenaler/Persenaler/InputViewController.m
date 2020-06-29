@@ -56,36 +56,20 @@
         return;
     }
     
-
-    
-    //NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
-    //[extCategoryDic setObject:TXT forKey:@"type"];
-    DbKeyValue * keyValue = [DbKeyValue new];
-    keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
-    keyValue.value = self.textView.text;
-    keyValue.createTime =[DbKeyValue getCurrentTime];
-    keyValue.type = VT_SUB_TEXT;
-    //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
-    [self.dataSource addRecord:keyValue];
-    
     if (self.fromKeyValue) {
+        
+        DbKeyValue * keyValue = [DbKeyValue new];
+        keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
+        keyValue.value = self.textView.text;
+        keyValue.createTime =[DbKeyValue getCurrentTime];
+        keyValue.type = VT_SUB_TEXT;
+        //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+        [self.dataSource addRecord:keyValue];
         
         if (self.fromKeyValue.type == VT_TEXT) {
             self.fromKeyValue.type = VT_ROOT_TEXT;
             [self.dataSource updateKeyValue:self.fromKeyValue];
         }
-//        NSMutableDictionary *groupCategoryDic = [NSMutableDictionary dictionary];
-        
-//        DbKeyValueGroup *keyValueGroup = [DbKeyValueGroup new];
-//        keyValueGroup.createTime = [DbKeyValueGroup getCurrentTime];
-//        keyValueGroup.rootID = self.fromKeyValue.kvid;
-//        keyValueGroup.rootValue = self.fromKeyValue.value;
-//        keyValueGroup.extCategory = [ZDWUtility convertStringFromDic:groupCategoryDic];
-//        DbKeyValue *subItem = [self.dataSource getKeyValue:keyValue.key];
-//        keyValueGroup.subID = subItem.kvid;
-//        keyValueGroup.subValue = subItem.value;
-//        keyValueGroup.rootType = self.fromKeyValue.type;
-//        keyValueGroup.subType = keyValue.type;
         DbKeyValue *subItem = [self.dataSource getKeyValue:keyValue.key];
         SubRecord *subRecord = [SubRecord new];
         subRecord.rootKey = self.fromKeyValue.key;
@@ -93,6 +77,15 @@
         subRecord.createTime = subItem.createTime;
         
         [self.dataSource addSubRecord:subRecord];
+    }
+    else{
+        DbKeyValue * keyValue = [DbKeyValue new];
+        keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
+        keyValue.value = self.textView.text;
+        keyValue.createTime =[DbKeyValue getCurrentTime];
+        keyValue.type = VT_TEXT;
+        //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+        [self.dataSource addRecord:keyValue];   
     }
     
 
