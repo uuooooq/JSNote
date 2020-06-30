@@ -15,9 +15,11 @@
 #import "ItemDetailViewController.h"
 #import "ZDWPhotoView.h"
 #import "TextEditorViewController.h"
+#import <STPopup/STPopup.h>
+#import "AddPhotoTextViewController.h"
 
 
-@interface BaseListViewController ()<TZImagePickerControllerDelegate>{
+@interface BaseListViewController ()<TZImagePickerControllerDelegate,STPopupControllerTransitioning>{
     FullsizeImageView *fullImageView;
     MJRefreshAutoNormalFooter * footer;
     ZDWPhotoView *photoView;
@@ -284,6 +286,14 @@
 
 #pragma mark action
 
+-(void)showPhotoTextEditView:(DbKeyValue*)keyvalue withIndexPath:(NSIndexPath*)indexPath{
+    AddPhotoTextViewController *addPhotoVc = [AddPhotoTextViewController new];
+    addPhotoVc.editKeyValue = keyvalue;
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:addPhotoVc];
+    popupController.containerView.layer.cornerRadius = 4;
+    [popupController presentInViewController:self];
+}
+
 -(void)refreshView{
     [self.shuKucollectionView reloadData];
 }
@@ -448,6 +458,35 @@
             // UI更新代码
             [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
         });
+    }
+}
+
+#pragma mark - STPopupControllerTransitioning
+
+- (NSTimeInterval)popupControllerTransitionDuration:(STPopupControllerTransitioningContext *)context
+{
+    return context.action == STPopupControllerTransitioningActionPresent ? 0.5 : 0.35;
+}
+
+- (void)popupControllerAnimateTransition:(STPopupControllerTransitioningContext *)context completion:(void (^)(void))completion
+{
+    UIView *containerView = context.containerView;
+    if (context.action == STPopupControllerTransitioningActionPresent) {
+        containerView.transform = CGAffineTransformMakeTranslation(containerView.superview.bounds.size.width - containerView.frame.origin.x, 0);
+        
+        [UIView animateWithDuration:[self popupControllerTransitionDuration:context] delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            context.containerView.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            completion();
+        }];
+    }
+    else {
+        [UIView animateWithDuration:[self popupControllerTransitionDuration:context] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            containerView.transform = CGAffineTransformMakeTranslation(- 2 * (containerView.superview.bounds.size.width - containerView.frame.origin.x), 0);
+        } completion:^(BOOL finished) {
+            containerView.transform = CGAffineTransformIdentity;
+            completion();
+        }];
     }
 }
 

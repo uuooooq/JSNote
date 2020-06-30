@@ -31,6 +31,9 @@
     
     [self.view addSubview:_textView];
     
+    UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];//initWithImage:[UIImage imageNamed:@"保存"] style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
+    self.navigationItem.rightBarButtonItem = moreItem;
+    
     //IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
     //manager.toolbarDoneBarButtonItemText = @"保存";
     //[_textView addDoneOnKeyboardWithTarget:self action:@selector(saveAction)];

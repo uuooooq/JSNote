@@ -32,41 +32,16 @@
 
 -(void)customizeView{
     
-//    title = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 200, 30)];
-//    title.textColor = [UIColor blackColor];
-//    title.textAlignment = NSTextAlignmentLeft;
-//    title.font = [UIFont systemFontOfSize:14];
-//    [self.contentView addSubview:title];
-    
     imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.width)];
     imgView.contentMode = UIViewContentModeScaleAspectFill;
     imgView.clipsToBounds = YES;
     [self.contentView addSubview:imgView];
     
-    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.size.height-20, 200, 20)];
+    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.size.height-20, self.frame.size.width-40, 20)];
     descLbl.textColor = [UIColor lightGrayColor];
     descLbl.textAlignment = NSTextAlignmentLeft;
     descLbl.font = [UIFont systemFontOfSize:12];
     
-//    _commBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 200-10-10-50, self.frame.size.height-20-5, 50, 20)];
-//    [_commBtn setTitle:@"com" forState:UIControlStateNormal];
-//    [_commBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    //[commBtn addTarget:self action:@selector(clickCommAction) forControlEvents:UIControlEventTouchUpInside];
-//    [self addSubview:_commBtn];
-    
-//    _fullsizeBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, self.frame.size.width-24-10, 24, 24)];
-//    [_fullsizeBtn setImage:[UIImage imageNamed:@"fullsize"] forState:UIControlStateNormal];
-//    [_fullsizeBtn setBackgroundColor:[UIColor whiteColor]];
-//    [self.contentView addSubview:_fullsizeBtn];
-    
-//    UIImageView *tagImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
-//    [tagImgView setImage:[UIImage imageNamed:@"takephoto"]];
-//    tagImgView.contentMode = UIViewContentModeCenter;
-//    [self.contentView addSubview:tagImgView];
-    
-//    UIView * markView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, self.frame.size.height)];
-//    markView.backgroundColor = [UIColor orangeColor];
-//    [self.contentView addSubview:markView];
     
     [self.contentView addSubview:descLbl];
     
@@ -89,6 +64,15 @@
     [formatter setDateFormat:@"yyyy-MM-dd"];
     // 使用formatter转换后的date字符串变成了当前时区的时间
     NSString *dateStr = [formatter stringFromDate:date];
+    
+    NSDictionary * propertyDic = [value getDicProperty];
+    if (propertyDic) {
+        NSString * markstr = [propertyDic objectForKey:@"markstr"];
+        if ([markstr length] > 0) {
+            dateStr = [NSString stringWithFormat:@"%@ %@",dateStr,markstr];
+        }
+    }
+    
     descLbl.text = dateStr;
 }
 

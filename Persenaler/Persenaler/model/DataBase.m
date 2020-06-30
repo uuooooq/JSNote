@@ -331,7 +331,7 @@ static DataBase *_DBCtl = nil;
     
     [_db open];
     
-    [_db executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET type = ?, value = ?, property = ?,search = ?  WHERE id = ? ",recordTBName],@(keyValue.type),keyValue.value,@(keyValue.kvid),keyValue.property,keyValue.search];
+    [_db executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET type = ?, value = ?, property = ?,search = ?  WHERE id = ? ",recordTBName],@(keyValue.type),keyValue.value,keyValue.property,keyValue.search,@(keyValue.kvid)];
     
     [_db close];
     
@@ -344,13 +344,13 @@ static DataBase *_DBCtl = nil;
 //    [_db close];
 //}
 //
-//-(void)addKeyValueSubRelation:(SubRecord*)subRecord{
-//
-//    [_db open];
-//    [_db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(rootKey,subKey,createTime) values(?, ?,?)",subRecordTBName],subRecord.rootKey,subRecord.subKey,@(subRecord.createTime)];
-//    [_db close];
-//
-//}
+-(void)addKeyValueSubRelation:(SubRecord*)subRecord{
+
+    [_db open];
+    [_db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(rootKey,subKey,createTime) values(?, ?,?)",subRecordTBName],subRecord.rootKey,subRecord.subKey,@(subRecord.createTime)];
+    [_db close];
+
+}
 
 //- (DbKeyValueGroup *)getRootKeyValue:(NSString*)subID{
 //    [_db open];
@@ -813,7 +813,7 @@ static DataBase *_DBCtl = nil;
     [_db open];
     NSMutableArray *arr = [NSMutableArray new];
     
-    NSString *selectSQL = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE value like '%%%@%%'",recordTBName,key];
+    NSString *selectSQL = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE search like '%%%@%%'",recordTBName,key];
 
     FMResultSet *res = [_db executeQuery:selectSQL];
     

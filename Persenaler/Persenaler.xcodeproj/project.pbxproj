@@ -44,6 +44,7 @@
 		E68586EA248CCACE00712095 /* AudioOperateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E68586E9248CCACE00712095 /* AudioOperateView.m */; };
 		E68586F0248CD2F100712095 /* AudioDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E68586EF248CD2F100712095 /* AudioDetailCell.m */; };
 		E68586F32490DFB700712095 /* TextDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E68586F22490DFB700712095 /* TextDetailCell.m */; };
+		E68C179124AADE3F008E7232 /* AddPhotoTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C179024AADE3F008E7232 /* AddPhotoTextViewController.m */; };
 		E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */; };
 		E6DDD8FF249758B800E1B5C6 /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */; };
 		E6DDD9032498880600E1B5C6 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD9022498880600E1B5C6 /* Record.m */; };
@@ -221,6 +222,8 @@
 		E68586EF248CD2F100712095 /* AudioDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioDetailCell.m; sourceTree = "<group>"; };
 		E68586F12490DFB700712095 /* TextDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextDetailCell.h; sourceTree = "<group>"; };
 		E68586F22490DFB700712095 /* TextDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextDetailCell.m; sourceTree = "<group>"; };
+		E68C178F24AADE3F008E7232 /* AddPhotoTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPhotoTextViewController.h; sourceTree = "<group>"; };
+		E68C179024AADE3F008E7232 /* AddPhotoTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPhotoTextViewController.m; sourceTree = "<group>"; };
 		E6D0DF1324199BC2007DD127 /* HttpServerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpServerHandler.h; sourceTree = "<group>"; };
 		E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpServerHandler.m; sourceTree = "<group>"; };
 		E6DDD8FD249758B800E1B5C6 /* UpdateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
@@ -466,6 +469,8 @@
 				E6E189CF24A6E26D003AE0A2 /* FolderViewController.m */,
 				E6E189D424A72776003AE0A2 /* TextEditorViewController.h */,
 				E6E189D524A72776003AE0A2 /* TextEditorViewController.m */,
+				E68C178F24AADE3F008E7232 /* AddPhotoTextViewController.h */,
+				E68C179024AADE3F008E7232 /* AddPhotoTextViewController.m */,
 			);
 			path = Persenaler;
 			sourceTree = "<group>";
@@ -925,6 +930,7 @@
 				E6816935248701BB005E2A81 /* VideoRecordCell.m in Sources */,
 				E67A47E62401ED9100FA357B /* SceneDelegate.m in Sources */,
 				E6E18AA224A81464003AE0A2 /* HRCgUtil.m in Sources */,
+				E68C179124AADE3F008E7232 /* AddPhotoTextViewController.m in Sources */,
 				E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */,
 				E66E8930244DB96700F1DABC /* ImageRecordCell.m in Sources */,
 				E681692E24863F45005E2A81 /* RecordAudioController.m in Sources */,

@@ -167,7 +167,8 @@
     [alert addAction:colorAction];
     if (keyValue.type == VT_IMG || keyValue.type == VT_SUB_IMG) {
         UIAlertAction *markAction = [UIAlertAction actionWithTitle:@"标记文字" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
+            DbKeyValue *editItem = [self.currentDataArr objectAtIndex:indexPath.row];
+            [self showPhotoTextEditView:editItem withIndexPath:indexPath];
         }];
         [alert addAction:markAction];
     }
@@ -210,7 +211,10 @@
 
 -(void)newFolderAction{
     
-    [self presentViewController:[NewFolderViewController new] animated:YES completion:^{
+    NewFolderViewController *newFolder = [NewFolderViewController new];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:newFolder];
+    
+    [self presentViewController:nav animated:YES completion:^{
         
     }];
 }

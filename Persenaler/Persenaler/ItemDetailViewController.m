@@ -243,9 +243,16 @@
     NewFolderViewController *newFolderVc = [NewFolderViewController new];
     newFolderVc.isSubItem = YES;
     newFolderVc.fromKeyValue = self.fromKeyValue;
-    [self presentViewController:newFolderVc animated:YES completion:^{
-        
-    }];
+//    [self presentViewController:newFolderVc animated:YES completion:^{
+//
+//    }];
+    
+    //NewFolderViewController *newFolder = [NewFolderViewController new];
+     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:newFolderVc];
+     
+     [self presentViewController:nav animated:YES completion:^{
+         
+     }];
 }
 
 -(void)saveAction{

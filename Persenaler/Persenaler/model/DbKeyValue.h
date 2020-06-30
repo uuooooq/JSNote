@@ -39,6 +39,7 @@ typedef enum _ValueType{
 @property(nonatomic,strong) NSString *property;
 
 +(int)getCurrentTime;
+-(NSDictionary*)getDicProperty;
 
 @end
 

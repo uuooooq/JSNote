@@ -11,6 +11,7 @@ PODS:
     - GCDWebServer/Core
   - IQKeyboardManager (6.5.5)
   - MJRefresh (3.3.1)
+  - STPopup (1.8.7)
   - TZImagePickerController (3.3.1)
 
 DEPENDENCIES:
@@ -20,12 +21,14 @@ DEPENDENCIES:
   - GCDWebServer/WebUploader (~> 3.0)
   - IQKeyboardManager
   - MJRefresh
+  - STPopup
   - TZImagePickerController
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - IQKeyboardManager
     - MJRefresh
+    - STPopup
   trunk:
     - FMDB
     - GCDWebServer
@@ -36,8 +39,9 @@ SPEC CHECKSUMS:
   GCDWebServer: c0ab22c73e1b84f358d1e2f74bf6afd1c60829f2
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237
+  STPopup: a9045557bc48a0df51fbb7bf0544447c5fe84d34
   TZImagePickerController: 99f03b64145a8c92c55b9b1b931410967d9be4cb
 
-PODFILE CHECKSUM: 9702677eea92d21fa818d08737e0ae7de9884b21
+PODFILE CHECKSUM: 29e5a0158bcfffaa9668eb7903f1e06fee45d4e3
 
 COCOAPODS: 1.8.4
