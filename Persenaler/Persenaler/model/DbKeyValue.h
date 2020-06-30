@@ -35,6 +35,8 @@ typedef enum _ValueType{
 @property(nonatomic,strong) NSString *value;
 @property(nonatomic,assign) int createTime;
 @property(nonatomic,assign) ValueType type;
+@property(nonatomic,strong) NSString *search;
+@property(nonatomic,strong) NSString *property;
 
 +(int)getCurrentTime;
 

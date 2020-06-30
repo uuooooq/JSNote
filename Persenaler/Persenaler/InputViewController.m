@@ -64,6 +64,11 @@
         keyValue.createTime =[DbKeyValue getCurrentTime];
         keyValue.type = VT_SUB_TEXT;
         //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+        NSMutableDictionary *propertyDic = [NSMutableDictionary dictionary];
+        [propertyDic setValue:@"" forKey:@"markcolor"];
+        [propertyDic setValue:@"" forKey:@"markstr"];
+        keyValue.property = [ZDWUtility convertStringFromDic:propertyDic];
+        keyValue.search = keyValue.value;
         [self.dataSource addRecord:keyValue];
         
         if (self.fromKeyValue.type == VT_TEXT) {
@@ -85,7 +90,12 @@
         keyValue.createTime =[DbKeyValue getCurrentTime];
         keyValue.type = VT_TEXT;
         //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
-        [self.dataSource addRecord:keyValue];   
+        NSMutableDictionary *propertyDic = [NSMutableDictionary dictionary];
+        [propertyDic setValue:@"" forKey:@"markcolor"];
+        [propertyDic setValue:@"" forKey:@"markstr"];
+        keyValue.property = [ZDWUtility convertStringFromDic:propertyDic];
+        keyValue.search = keyValue.value;
+        [self.dataSource addRecord:keyValue];
     }
     
 

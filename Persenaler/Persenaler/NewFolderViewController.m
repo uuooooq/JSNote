@@ -52,6 +52,11 @@
         keyValue.value = self.textView.text;
         keyValue.createTime =[DbKeyValue getCurrentTime];
         keyValue.type = VT_SUB_ROOT;
+        NSMutableDictionary *propertyDic = [NSMutableDictionary dictionary];
+        [propertyDic setValue:@"" forKey:@"markcolor"];
+        [propertyDic setValue:@"" forKey:@"markstr"];
+        keyValue.property = [ZDWUtility convertStringFromDic:propertyDic];
+        keyValue.search = keyValue.value;
         [self.dataSource addRecord:keyValue];
         
         DbKeyValue *subItem = [self.dataSource getKeyValue:keyValue.key];
@@ -76,6 +81,11 @@
         keyValue.createTime =[DbKeyValue getCurrentTime];
         keyValue.type = VT_ROOT;
         //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+        NSMutableDictionary *propertyDic = [NSMutableDictionary dictionary];
+        [propertyDic setValue:@"" forKey:@"markcolor"];
+        [propertyDic setValue:@"" forKey:@"markstr"];
+        keyValue.property = [ZDWUtility convertStringFromDic:propertyDic];
+        keyValue.search = keyValue.value;
         [self.dataSource addRecord:keyValue];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];

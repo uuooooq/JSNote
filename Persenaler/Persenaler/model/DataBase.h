@@ -10,12 +10,15 @@
 #import "DbKeyValue.h"
 #import "DbKeyValueGroup.h"
 #import "SubRecord.h"
+#import <FMDB.h>
+#import "ZDWUtility.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DataBase : NSObject
 
 + (instancetype)sharedDataBase;
+@property(nonnull,strong)FMDatabase  *db;
 
 #pragma mark - DbKeyValue
 /**

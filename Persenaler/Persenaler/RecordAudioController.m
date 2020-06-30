@@ -183,6 +183,11 @@
     keyValue.createTime =[DbKeyValue getCurrentTime];
     //!!keyValue.type = VT_AUDIO;
     //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+    NSMutableDictionary *propertyDic = [NSMutableDictionary dictionary];
+    [propertyDic setValue:@"" forKey:@"markcolor"];
+    [propertyDic setValue:@"" forKey:@"markstr"];
+    keyValue.property = [ZDWUtility convertStringFromDic:propertyDic];
+    keyValue.search = keyValue.value;
     [[DataSource sharedDataSource] addRecord:keyValue];
     dispatch_async(dispatch_get_main_queue(), ^{
         // UI更新代码

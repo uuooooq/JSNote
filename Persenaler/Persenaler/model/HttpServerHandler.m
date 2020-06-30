@@ -162,6 +162,11 @@
             keyValue.type = VT_TEXT;
             //keyValue.extCategory = @"{}";
             //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+            NSMutableDictionary *propertyDic = [NSMutableDictionary dictionary];
+            [propertyDic setValue:@"" forKey:@"markcolor"];
+            [propertyDic setValue:@"" forKey:@"markstr"];
+            keyValue.property = [ZDWUtility convertStringFromDic:propertyDic];
+            keyValue.search = keyValue.value;
             [weakSelf.dataSource addRecord:keyValue];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -223,6 +228,11 @@
     keyValue.createTime =[DbKeyValue getCurrentTime];
     keyValue.type = VT_IMG;
     //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+    NSMutableDictionary *propertyDic = [NSMutableDictionary dictionary];
+    [propertyDic setValue:@"" forKey:@"markcolor"];
+    [propertyDic setValue:@"" forKey:@"markstr"];
+    keyValue.property = [ZDWUtility convertStringFromDic:propertyDic];
+    keyValue.search = keyValue.value;
     [self.dataSource addRecord:keyValue];
     //[weakSelf.dataSource addRecord:keyValue];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];

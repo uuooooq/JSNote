@@ -434,6 +434,11 @@
         keyValue.createTime =[DbKeyValue getCurrentTime];
         keyValue.type = type;
         //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+        NSMutableDictionary *propertyDic = [NSMutableDictionary dictionary];
+        [propertyDic setValue:@"" forKey:@"markcolor"];
+        [propertyDic setValue:@"" forKey:@"markstr"];
+        keyValue.property = [ZDWUtility convertStringFromDic:propertyDic];
+        keyValue.search = keyValue.value;
         [self.dataSource addRecord:keyValue];
         
         [self addPhotoStepNext:keyValue];
