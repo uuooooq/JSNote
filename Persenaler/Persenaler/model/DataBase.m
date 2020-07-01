@@ -733,7 +733,7 @@ static DataBase *_DBCtl = nil;
         [tmpDict setObject:[res stringForColumn:@"key"] forKey:@"key"];
         [tmpDict setObject:[res stringForColumn:@"value"] forKey:@"value"];
         [tmpDict setObject:[res stringForColumn:@"createTime"] forKey:@"createTime"];
-        [tmpDict setObject:[res stringForColumn:@"extCategory"] forKey:@"extCategory"];
+        //[tmpDict setObject:[res stringForColumn:@"extCategory"] forKey:@"extCategory"];
         [tmpDict setObject:[res stringForColumn:@"type"] forKey:@"type"];
         [arr addObject:tmpDict];
     }
@@ -863,8 +863,8 @@ static DataBase *_DBCtl = nil;
         keyValue.search = [res stringForColumn:@"search"];
         [arr addObject:keyValue];
     }
-    
-    //[_db close];
+    [res close];
+    [_db close];
     
     if ([arr count]>0) {
         return arr;

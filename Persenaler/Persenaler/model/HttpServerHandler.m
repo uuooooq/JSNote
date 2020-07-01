@@ -167,9 +167,10 @@
             [propertyDic setValue:@"" forKey:@"markstr"];
             keyValue.property = [ZDWUtility convertStringFromDic:propertyDic];
             keyValue.search = keyValue.value;
-            [weakSelf.dataSource addRecord:keyValue];
+            //[weakSelf.dataSource addRecord:keyValue];
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.dataSource addRecord:keyValue];
                 // UI更新代码
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
             });
