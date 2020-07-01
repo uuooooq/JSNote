@@ -14,8 +14,8 @@
             filePath = "Persenaler/model/DataBase.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "643"
-            endingLineNumber = "643"
+            startingLineNumber = "615"
+            endingLineNumber = "615"
             landmarkName = "DataBase"
             landmarkType = "3">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "Persenaler/model/DataBase.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "700"
-            endingLineNumber = "700"
+            startingLineNumber = "672"
+            endingLineNumber = "672"
             landmarkName = "-getKeyValuesPageNumWith:pageWith:"
             landmarkType = "7">
          </BreakpointContent>

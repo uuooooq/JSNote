@@ -179,20 +179,12 @@
 
 -(void)loadNextPage{
     
-    
-//    NSArray *arr = [self.dataSource getRecordsObjFrom:((self.currentPageNum-1)*self.currentPageContentNum) to:self.currentPageNum*self.currentPageContentNum];
-//    if (arr && [arr count]>0) {
-//        [self.currentDataArr addObjectsFromArray:arr];
-//        self.currentPageNum = self.currentPageNum + 1;
-//        [self.shuKucollectionView reloadData];
-//    }
-//    else{
-//        [self noMoreData];
-//    }
-    
     NSArray* arr = [self.dataSource getKeyValuesPageNumWith:self.currentPageContentNum pageWith:self.loadPageTime];
     //NSArray* arr = [self.dataSource getSubRecordsWith:self.fromKeyValue.key pageNumWith:self.currentPageContentNum pageWith:self.loadPageTime];
     if (arr && [arr count]>0) {
+        if (self.currentPageNum == 1) {
+            [self.currentDataArr removeAllObjects];
+        }
         [self.currentDataArr addObjectsFromArray:arr];
         self.currentPageNum = self.currentPageNum + 1;
         [self.shuKucollectionView reloadData];
@@ -208,6 +200,10 @@
     }
 
 }
+
+//-(void)refetchData{
+//    
+//}
 
 -(void)newFolderAction{
     

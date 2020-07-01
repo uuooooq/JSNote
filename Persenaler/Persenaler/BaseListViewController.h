@@ -60,6 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)refreshView;
 
+-(void)refetchData;
+
 -(void)showPhotoTextEditView:(DbKeyValue*)keyvalue withIndexPath:(NSIndexPath*)indexPath;
 
 

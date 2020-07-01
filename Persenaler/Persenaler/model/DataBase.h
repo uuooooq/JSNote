@@ -47,15 +47,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(NSArray*)getKeyValuesObjWith:(NSString*)key;
 
-- (DbKeyValueGroup *)getRootKeyValue:(NSString*)subID;
+//- (DbKeyValueGroup *)getRootKeyValue:(NSString*)subID;
 
 //- (NSArray *)getKeyValueGroups:(NSString*)rootID;
 
--(void)addkeyValueGroup:(DbKeyValueGroup*)kvGroup;
+//-(void)addkeyValueGroup:(DbKeyValueGroup*)kvGroup;
 
 - (NSArray*)getKeyValueGroups:(NSString *)rootKey;
+- (NSArray*)getKeyValueGroups:(NSString *)rootKey withSubKey:(NSString*)subKey;
 
 -(void)addKeyValueSubRelation:(SubRecord*)subRecord;
+
+-(void)updateKeyValueSubRelation:(SubRecord*)subRecord;
 
 - (NSArray*)getSubRecordsWith:(NSString *)rootKey;
 
@@ -71,6 +74,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray *)getKeyValuesFolderPageNumWith:(int)pageNum pageWith:(int)createTime;
 
 - (NSArray*)getSubRecordsFolderWith:(NSString *)rootKey pageNumWith:(int)pageNum pageWith:(int)createTime;
+
+- (NSArray*)getSubRecordWithSubKey:(NSString*)subKey;
+
+- (void)deleteSubRecord:(SubRecord *)subRecord;
 
 // migration kvTb kvGroupTb
 

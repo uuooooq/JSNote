@@ -119,6 +119,24 @@ static DataSource *_DBCtl = nil;
     return [[NSArray alloc] init];
 }
 
+- (NSArray*)getKeyValueGroups:(NSString *)rootKey withSubKey:(NSString*)subKey{
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getKeyValueGroups:rootKey withSubKey:subKey];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+}
+
+- (NSArray*)getSubRecordWithSubKey:(NSString*)subKey{
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordWithSubKey:subKey];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+}
+
 -(NSArray*)getSubRecordsWith:(NSString*)rootKey{
     
     NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordsWith:rootKey];
@@ -166,8 +184,12 @@ static DataSource *_DBCtl = nil;
     //}
 }
 
--(void)addRecordGroup:(DbKeyValueGroup*)group{
-    [[DataBase sharedDataBase] addkeyValueGroup:group];
+//-(void)addRecordGroup:(DbKeyValueGroup*)group{
+//    [[DataBase sharedDataBase] addkeyValueGroup:group];
+//}
+
+-(void)updateKeyValueSubRelation:(SubRecord*)subRecord{
+    [[DataBase sharedDataBase] updateKeyValueSubRelation:subRecord];
 }
 
 -(void)addSubRecord:(SubRecord*)subRecord{
@@ -247,6 +269,12 @@ static DataSource *_DBCtl = nil;
 - (void)deleteKeyValue:(DbKeyValue *)keyValue{
     
     [[DataBase sharedDataBase] deleteKeyValue:keyValue];
+}
+
+- (void)deleteSubRecord:(SubRecord *)subRecord{
+    
+    [[DataBase sharedDataBase] deleteSubRecord:subRecord];
+    
 }
 
 

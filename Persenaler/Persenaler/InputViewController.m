@@ -31,8 +31,8 @@
     
     [self.view addSubview:_textView];
     
-    UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];//initWithImage:[UIImage imageNamed:@"保存"] style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
-    self.navigationItem.rightBarButtonItem = moreItem;//@[searchItem,settingItem];
+    UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
+    self.navigationItem.rightBarButtonItem = moreItem;
     
     if (self.editKeyValue) {
         self.textView.text = self.editKeyValue.value;

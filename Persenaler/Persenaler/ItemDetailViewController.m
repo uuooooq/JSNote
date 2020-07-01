@@ -13,6 +13,7 @@
 #import "TextDetailCell.h"
 #import "VideoRecordCell.h"
 #import "NewFolderViewController.h"
+#import "FolderViewController.h"
 
 
 
@@ -211,7 +212,15 @@
         
     }];
     UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"移动" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        DbKeyValue *moveItem = [self.currentDataArr objectAtIndex:indexPath.row];
+        FolderViewController *folderVc = [FolderViewController new];
+        folderVc.moveKeyValue = moveItem;
+        //folderVc.fromKeyValue = self.fromKeyValue;
         
+        UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:folderVc];
+        [self presentViewController:navVC animated:YES completion:^{
+            
+        }];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         

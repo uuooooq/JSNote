@@ -44,6 +44,7 @@
     [self createCollectionView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWithNewData) name:@"receiveData" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"reloadData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refetchData) name:@"refetchData" object:nil];
     
     // long press gesture action
     UILongPressGestureRecognizer *lpgr =  [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
@@ -308,6 +309,16 @@
     
 }
 
+-(void)refetchData{
+    
+    self.currentPageNum = 1;
+    self.currentPageContentNum = 20;
+    _loadPageTime = 0;
+    
+    [self loadNextPage];
+    
+}
+
 -(void)noMoreData{
     [self.shuKucollectionView.mj_footer setState:MJRefreshStateNoMoreData];
     [footer setTitle:@"已无更多数据" forState:MJRefreshStateIdle];
@@ -461,35 +472,6 @@
     }
 }
 
-#pragma mark - STPopupControllerTransitioning
-
-- (NSTimeInterval)popupControllerTransitionDuration:(STPopupControllerTransitioningContext *)context
-{
-    return context.action == STPopupControllerTransitioningActionPresent ? 0.5 : 0.35;
-}
-
-- (void)popupControllerAnimateTransition:(STPopupControllerTransitioningContext *)context completion:(void (^)(void))completion
-{
-    UIView *containerView = context.containerView;
-    if (context.action == STPopupControllerTransitioningActionPresent) {
-        containerView.transform = CGAffineTransformMakeTranslation(containerView.superview.bounds.size.width - containerView.frame.origin.x, 0);
-        
-        [UIView animateWithDuration:[self popupControllerTransitionDuration:context] delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            context.containerView.transform = CGAffineTransformIdentity;
-        } completion:^(BOOL finished) {
-            completion();
-        }];
-    }
-    else {
-        [UIView animateWithDuration:[self popupControllerTransitionDuration:context] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            containerView.transform = CGAffineTransformMakeTranslation(- 2 * (containerView.superview.bounds.size.width - containerView.frame.origin.x), 0);
-        } completion:^(BOOL finished) {
-            containerView.transform = CGAffineTransformIdentity;
-            completion();
-        }];
-    }
-}
-
 -(void)addVideoAction{
     NSLog(@"************* addVideoAction");
     
@@ -588,6 +570,36 @@
         
     }];
 }
+
+#pragma mark - STPopupControllerTransitioning
+
+- (NSTimeInterval)popupControllerTransitionDuration:(STPopupControllerTransitioningContext *)context
+{
+    return context.action == STPopupControllerTransitioningActionPresent ? 0.5 : 0.35;
+}
+
+- (void)popupControllerAnimateTransition:(STPopupControllerTransitioningContext *)context completion:(void (^)(void))completion
+{
+    UIView *containerView = context.containerView;
+    if (context.action == STPopupControllerTransitioningActionPresent) {
+        containerView.transform = CGAffineTransformMakeTranslation(containerView.superview.bounds.size.width - containerView.frame.origin.x, 0);
+        
+        [UIView animateWithDuration:[self popupControllerTransitionDuration:context] delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            context.containerView.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            completion();
+        }];
+    }
+    else {
+        [UIView animateWithDuration:[self popupControllerTransitionDuration:context] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            containerView.transform = CGAffineTransformMakeTranslation(- 2 * (containerView.superview.bounds.size.width - containerView.frame.origin.x), 0);
+        } completion:^(BOOL finished) {
+            containerView.transform = CGAffineTransformIdentity;
+            completion();
+        }];
+    }
+}
+
 
 
 @end

@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)addRecord:(DbKeyValue*)value;
 
--(void)addRecordGroup:(DbKeyValueGroup*)group;
+//-(void)addRecordGroup:(DbKeyValueGroup*)group;
 
 -(NSArray*)getRecordsFrom:(int)start to:(int)end;
 -(NSArray*)getRecordsObjFrom:(int)start to:(int)end;
@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(DbKeyValue*)getKeyValue:(NSString*)key;
 
 - (NSArray *)getKeyValueGroups:(NSString*)rootID;
+
+-(void)updateKeyValueSubRelation:(SubRecord*)subRecord;
 
 -(void)addSubRecord:(SubRecord*)subRecord;
 
@@ -58,6 +60,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray *)getKeyValuesFolderPageNumWith:(int)pageNum pageWith:(int)createTime;
 
 - (NSArray*)getSubRecordsFolderWith:(NSString *)rootKey pageNumWith:(int)pageNum pageWith:(int)createTime;
+
+- (NSArray*)getKeyValueGroups:(NSString *)rootKey withSubKey:(NSString*)subKey;
+
+- (NSArray*)getSubRecordWithSubKey:(NSString*)subKey;
+
+- (void)deleteSubRecord:(SubRecord *)subRecord;
 
 @end
 

@@ -104,38 +104,6 @@ static DataBase *_DBCtl = nil;
         [_db executeUpdate:keyValueTbSql];
     }
     
-    // 升级到 recordTBz003
-    if (![self isTableOK:@"recordTbz003"]) {
-        
-        
-        NSLog(@"---------- start create recordTbz003");
-        NSString *keyValueTbSql = @"CREATE TABLE 'recordTbz003' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT,'type' INTEGER,'createTime' INTEGER)";
-        [_db executeUpdate:keyValueTbSql];
-        
-        NSLog(@"---------- start create subRecordTbz003");
-        NSString *subKeyValueTbSql = @"CREATE TABLE 'subRecordTbz003' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'rootKey' VARCHAR(1024),'subKey' VARCHAR(1024))";
-        [_db executeUpdate:subKeyValueTbSql];
-        
-           recordTBName = @"kvTb";
-           subRecordTBName = @"kvGroupTb";
-        
-           NSLog(@"start .... ");
-           NSLog(@"========== kvTb migration start ");
-           [self migrationKvtb];
-           
-           NSLog(@"========== kvTb migration start ");
-           [self migrationKvgrouptb];
-           
-           NSLog(@"========== migration done ");
-        
-        recordTBName = @"recordTbz003";
-        subRecordTBName = @"subRecordTbz003";
-    }
-    else{
-        recordTBName = @"recordTbz003";
-        subRecordTBName = @"subRecordTbz003";
-    }
-    
     
     // update database to V6
     
@@ -188,20 +156,20 @@ static DataBase *_DBCtl = nil;
         subRecordTBName = @"subRecordTbz006";
     }
     
-    // update database to V7
+    // update database to V12
      
-     if (![self isTableOK:@"recordTbz007"]) {
+     if (![self isTableOK:@"recordTbz0012"]) {
          
          [_db beginTransaction];
          BOOL isRollBack = NO;
          @try {
 
-             NSLog(@"---------- start create recordTbz007");
-             NSString *keyValueTbSql = @"CREATE TABLE 'recordTbz007' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT,'type' INTEGER,'createTime' INTEGER)";
+             NSLog(@"---------- start create recordTbz0012");
+             NSString *keyValueTbSql = @"CREATE TABLE 'recordTbz0012' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT,'type' INTEGER,'createTime' INTEGER)";
              [_db executeUpdate:keyValueTbSql];
              
              NSLog(@"---------- start create subRecordTbz007");
-             NSString *subKeyValueTbSql = @"CREATE TABLE 'subRecordTbz007' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'rootKey' VARCHAR(1024),'subKey' VARCHAR(1024),'createTime' INTEGER)";
+             NSString *subKeyValueTbSql = @"CREATE TABLE 'subRecordTbz0012' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'rootKey' VARCHAR(1024),'subKey' VARCHAR(1024),'createTime' INTEGER)";
              [_db executeUpdate:subKeyValueTbSql];
 
 
@@ -216,44 +184,44 @@ static DataBase *_DBCtl = nil;
          
          if (!isRollBack) {
              
-             recordTBName = @"recordTbz006";
-             subRecordTBName = @"subRecordTbz006";
+             recordTBName = @"recordTbz0012";
+             subRecordTBName = @"subRecordTbz0012";
              NSLog(@"start .... ");
              
-             NSLog(@"========== subRecordTbz005 migration start ");
-             [self migrationSubrecordTbV7];
+             NSLog(@"========== subRecordTbz0012 migration start ");
+             [self migrationSubrecordTbV12];
              
-             NSLog(@"========== recordTbz005 migration start ");
-             [self migrationRecordTbV7];
+             NSLog(@"========== recordTbz0012 migration start ");
+             [self migrationRecordTbV12];
              
              
-             recordTBName = @"recordTbz007";
-             subRecordTBName = @"subRecordTbz007";
+             recordTBName = @"recordTbz0012";
+             subRecordTBName = @"subRecordTbz0012";
          }
      
 
 
      }
      else{
-         recordTBName = @"recordTbz007";
-         subRecordTBName = @"subRecordTbz007";
+         recordTBName = @"recordTbz0012";
+         subRecordTBName = @"subRecordTbz0012";
      }
     
     
-    // update database to V9
-     
-     if (![self isTableOK:@"recordTbz009"]) {
-         
+    // update database to V13
+
+     if (![self isTableOK:@"recordTbz0013"]) {
+
          [_db beginTransaction];
          BOOL isRollBack = NO;
          @try {
 
-             NSLog(@"---------- start create recordTbz009");
-             NSString *keyValueTbSql = @"CREATE TABLE 'recordTbz009' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT，,'search' TEXT,'property' TEXT,'type' INTEGER,'createTime' INTEGER)";
+             NSLog(@"---------- start create recordTbz0013");
+             NSString *keyValueTbSql = @"CREATE TABLE 'recordTbz0013' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT，,'search' TEXT,'property' TEXT,'type' INTEGER,'createTime' INTEGER)";
              [_db executeUpdate:keyValueTbSql];
-             
-             NSLog(@"---------- start create subRecordTbz009");
-             NSString *subKeyValueTbSql = @"CREATE TABLE 'subRecordTbz009' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'rootKey' VARCHAR(1024),'subKey' VARCHAR(1024),'createTime' INTEGER)";
+
+             NSLog(@"---------- start create subRecordTbz0013");
+             NSString *subKeyValueTbSql = @"CREATE TABLE 'subRecordTbz0013' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'rootKey' VARCHAR(1024),'subKey' VARCHAR(1024),'createTime' INTEGER)";
              [_db executeUpdate:subKeyValueTbSql];
 
 
@@ -265,30 +233,30 @@ static DataBase *_DBCtl = nil;
                  [_db commit];
              }
          }
-         
+
          if (!isRollBack) {
-             
-             recordTBName = @"recordTbz007";
-             subRecordTBName = @"subRecordTbz007";
+
+             recordTBName = @"recordTbz0013";
+             subRecordTBName = @"subRecordTbz0013";
              NSLog(@"start .... ");
-             
-             NSLog(@"========== subRecordTbz009 migration start ");
-             [self migrationSubrecordTbV9];
-             
-             NSLog(@"========== recordTbz009 migration start ");
-             [self migrationRecordTbV9];
-             
-             
-             recordTBName = @"recordTbz009";
-             subRecordTBName = @"subRecordTbz009";
+
+             NSLog(@"========== subRecordTbz0013 migration start ");
+             [self migrationSubrecordTbV13];
+
+             NSLog(@"========== recordTbz0013 migration start ");
+             [self migrationRecordTbV13];
+
+//
+//             recordTBName = @"recordTbz0011";
+//             subRecordTBName = @"subRecordTbz0011";
          }
-     
+
 
 
      }
      else{
-         recordTBName = @"recordTbz009";
-         subRecordTBName = @"subRecordTbz009";
+         recordTBName = @"recordTbz0013";
+         subRecordTBName = @"subRecordTbz0013";
      }
 
 
@@ -337,13 +305,7 @@ static DataBase *_DBCtl = nil;
     
 }
 
-//-(void)addkeyValueGroup:(DbKeyValueGroup*)kvGroup{
-//
-//    [_db open];
-//    [_db executeUpdate:@"INSERT INTO kvGroupTb(rootID,rootValue,rootType,subID,subValue,subType,type,createTime,extCategory) values(?, ?,?, ?, ?,?, ?,?, ?)",@(kvGroup.rootID),kvGroup.rootValue,@(kvGroup.rootType),@(kvGroup.subID),kvGroup.subValue,@(kvGroup.subType),@(kvGroup.type),@(kvGroup.createTime),kvGroup.extCategory];
-//    [_db close];
-//}
-//
+
 -(void)addKeyValueSubRelation:(SubRecord*)subRecord{
 
     [_db open];
@@ -352,65 +314,13 @@ static DataBase *_DBCtl = nil;
 
 }
 
-//- (DbKeyValueGroup *)getRootKeyValue:(NSString*)subID{
-//    [_db open];
-//
-//    FMResultSet *res = [_db executeQuery:@"SELECT * FROM kvGroupTb where subID = ?",subID];
-//    DbKeyValueGroup *keyValueGroup = [[DbKeyValueGroup alloc] init];
-//    while ([res next]) {
-//
-//        keyValueGroup.gID = [res intForColumn:@"gid"];
-//        keyValueGroup.rootID = [res intForColumn:@"rootID"];
-//        keyValueGroup.rootValue = [res stringForColumn:@"rootValue"];
-//        keyValueGroup.rootType = [res intForColumn:@"rootType"];
-//        keyValueGroup.subID = [res intForColumn:@"subID"];
-//        keyValueGroup.subValue = [res stringForColumn:@"subValue"];
-//        keyValueGroup.subType = [res intForColumn:@"subType"];
-//        keyValueGroup.type = [res intForColumn:@"type"];
-//        keyValueGroup.createTime = [res intForColumn:@"createTime"];
-//        keyValueGroup.extCategory = [res stringForColumn:@"extCategory"];
-//    }
-//
-//    [_db close];
-//
-//    if (keyValueGroup.gID) {
-//        return keyValueGroup;
-//    }
-//    else{
-//        return nil;
-//    }
-//}
+-(void)updateKeyValueSubRelation:(SubRecord*)subRecord{
 
-//- (NSArray *)getKeyValueGroups:(NSString*)rootID{
-//    
-//    [_db open];
-//    NSMutableArray *arr = [NSMutableArray new];
-//    FMResultSet *res = [_db executeQuery:@"SELECT * FROM kvGroupTb where rootID = ?",rootID];
-//    
-//    while ([res next]) {
-//        DbKeyValueGroup *keyValueGroup = [[DbKeyValueGroup alloc] init];
-//        keyValueGroup.gID = [res intForColumn:@"gid"];
-//        keyValueGroup.rootID = [res intForColumn:@"rootID"];
-//        keyValueGroup.rootValue = [res stringForColumn:@"rootValue"];
-//        keyValueGroup.rootType = [res intForColumn:@"rootType"];
-//        keyValueGroup.subID = [res intForColumn:@"subID"];
-//        keyValueGroup.subValue = [res stringForColumn:@"subValue"];
-//        keyValueGroup.subType = [res intForColumn:@"subType"];
-//        keyValueGroup.type = [res intForColumn:@"type"];
-//        keyValueGroup.createTime = [res intForColumn:@"createTime"];
-//        keyValueGroup.extCategory = [res stringForColumn:@"extCategory"];
-//        [arr addObject:keyValueGroup];
-//    }
-//    
-//    [_db close];
-//    
-//    if ([arr count]>0) {
-//        return arr;
-//    }
-//    else{
-//        return nil;
-//    }
-//}
+    [_db open];
+    [_db executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET rootKey = ?, subKey = ?, createTime = ?  WHERE id = ?",subRecordTBName],subRecord.rootKey,subRecord.subKey,@(subRecord.createTime),@(subRecord.gID)];
+    [_db close];
+
+}
 
 - (NSArray*)getKeyValueGroups:(NSString *)rootKey{
     
@@ -443,6 +353,60 @@ static DataBase *_DBCtl = nil;
         return nil;
     }
     
+}
+
+- (NSArray*)getKeyValueGroups:(NSString *)rootKey withSubKey:(NSString*)subKey{
+    [_db open];
+    NSMutableArray *arr = [NSMutableArray new];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where rootKey = ? AND subKey = ?",subRecordTBName] ,rootKey,subKey];
+    
+    while ([res next]) {
+        
+        SubRecord * subRecord = [SubRecord new];
+        subRecord.gID = [res intForColumn:@"id"];
+        subRecord.rootKey = [res stringForColumn:@"rootKey"];
+        subRecord.subKey = [res stringForColumn:@"subKey"];
+        subRecord.createTime = [res intForColumn:@"createTime"];
+        
+        [arr addObject:subRecord];
+        
+    }
+    
+    [_db close];
+    
+    if ([arr count]>0) {
+        return arr;
+    }
+    else{
+        return nil;
+    }
+}
+
+- (NSArray*)getSubRecordWithSubKey:(NSString*)subKey{
+    [_db open];
+    NSMutableArray *arr = [NSMutableArray new];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ where subKey = ?",subRecordTBName],subKey];
+    
+    while ([res next]) {
+        
+        SubRecord * subRecord = [SubRecord new];
+        subRecord.gID = [res intForColumn:@"id"];
+        subRecord.rootKey = [res stringForColumn:@"rootKey"];
+        subRecord.subKey = [res stringForColumn:@"subKey"];
+        subRecord.createTime = [res intForColumn:@"createTime"];
+        
+        [arr addObject:subRecord];
+        
+    }
+    
+    [_db close];
+    
+    if ([arr count]>0) {
+        return arr;
+    }
+    else{
+        return nil;
+    }
 }
 
 - (NSArray*)getSubRecordsWith:(NSString *)rootKey{
@@ -607,6 +571,14 @@ static DataBase *_DBCtl = nil;
     NSLog(@"migration kvtb to recordTb done!");
     [_db class];
     
+}
+- (void)deleteSubRecord:(SubRecord *)subRecord{
+    [_db open];
+    
+    [_db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE id = ?",subRecordTBName],subRecord.gID];
+     
+     
+     [_db close];
 }
 
 
@@ -905,162 +877,162 @@ static DataBase *_DBCtl = nil;
 
 #pragma mark migration
 
--(void)migrationDb{
-    
-    recordTBName = @"kvTb";
-    subRecordTBName = @"kvGroupTb";
- 
-    NSLog(@"start .... ");
-    NSLog(@"========== kvTb migration start ");
-    [self migrationKvtb];
-    
-    NSLog(@"========== kvTb migration start ");
-    [self migrationKvgrouptb];
-    
-    NSLog(@"========== migration done ");
+//-(void)migrationDb{
+//
+//    recordTBName = @"kvTb";
+//    subRecordTBName = @"kvGroupTb";
+//
+//    NSLog(@"start .... ");
+//    NSLog(@"========== kvTb migration start ");
+//    [self migrationKvtb];
+//
+//    NSLog(@"========== kvTb migration start ");
+//    [self migrationKvgrouptb];
+//
+//    NSLog(@"========== migration done ");
+//
+//}
+//
+//
+//-(void)migrationKvtb{
+//    [_db open];
+//    NSMutableArray *arr = [NSMutableArray new];
+//    FMResultSet *res = [_db executeQuery:@"SELECT * FROM kvTb ORDER BY id desc"];
+//
+//    while ([res next]) {
+//        DbKeyValue *keyValue = [[DbKeyValue alloc] init];
+//        keyValue.kvid = [res intForColumn:@"id"];
+//        keyValue.key = [res stringForColumn:@"key"];
+//        keyValue.value = [res stringForColumn:@"value"];
+//        keyValue.createTime = [res intForColumn:@"createTime"];
+//        keyValue.type = [res intForColumn:@"type"];
+//        [arr addObject:keyValue];
+//    }
+//
+//    [_db close];
+//
+//    if ([arr count]>0) {
+//        //return;
+//        [self insertRecordTbUseTransaction:arr];
+//    }
+//    else{
+//        return;
+//    }
+//}
+//
+//-(void)insertRecordTbUseTransaction:(NSArray<DbKeyValue*>*)keyvalues{
+//
+//    [_db open];
+//    [_db beginTransaction];
+//    BOOL isRollBack = NO;
+//    @try {
+//        for (DbKeyValue *keyValue in keyvalues) {
+//            BOOL isSuccess = [_db executeUpdate:@"INSERT INTO recordTbz003(key,value,type,createTime) values(?, ?, ?, ?)",keyValue.key,keyValue.value,@(keyValue.type),@(keyValue.createTime)];
+//            NSLog(@"%@",isSuccess ? @"插入 keyvalue 成功" : @"插入keyvalue失败");
+//        }
+//    } @catch (NSException *exception) {
+//        isRollBack = YES;
+//        [_db rollback];
+//    } @finally {
+//        if (!isRollBack) {
+//            [_db commit];
+//        }
+//    }
+//    NSLog(@"migration kvtb to recordTb done!");
+//    [_db class];
+//
+//}
+//
+//-(void)migrationKvgrouptb{
+//
+//    [_db open];
+//    NSMutableArray *arr = [NSMutableArray new];
+//    FMResultSet *res = [_db executeQuery:@"SELECT * FROM kvGroupTb"];
+//
+//    while ([res next]) {
+//        DbKeyValueGroup *keyValueGroup = [[DbKeyValueGroup alloc] init];
+//        keyValueGroup.gID = [res intForColumn:@"gid"];
+//        keyValueGroup.rootID = [res intForColumn:@"rootID"];
+//        keyValueGroup.rootValue = [res stringForColumn:@"rootValue"];
+//        keyValueGroup.rootType = [res intForColumn:@"rootType"];
+//        keyValueGroup.subID = [res intForColumn:@"subID"];
+//        keyValueGroup.subValue = [res stringForColumn:@"subValue"];
+//        keyValueGroup.subType = [res intForColumn:@"subType"];
+//        keyValueGroup.type = [res intForColumn:@"type"];
+//        keyValueGroup.createTime = [res intForColumn:@"createTime"];
+//        keyValueGroup.extCategory = [res stringForColumn:@"extCategory"];
+//        [arr addObject:keyValueGroup];
+//    }
+//
+//    [_db close];
+//
+//    if ([arr count]>0) {
+//        //return arr;
+//        NSArray * subRecords = [self getKey:arr];
+//        if (subRecords) {
+//            [self insertSubRecordsTransaction:subRecords];
+//        }
+//    }
+//    else{
+//        //return nil;
+//    }
+//
+//}
 
-}
+//-(NSArray*)getKey:(NSArray<DbKeyValueGroup*>*)groups{
+//
+//    NSMutableArray *arr = [NSMutableArray array];
+//
+//    for (DbKeyValueGroup *group in groups) {
+//
+//        DbKeyValue * rootKeyValue = [self getKeyValueBy:group.rootID];
+//
+//        rootKeyValue.type = rootKeyValue.type + 9;
+//        [self updateKeyValue:rootKeyValue];
+//
+//        DbKeyValue * subKeyValue = [self getKeyValueBy:group.subID];
+//
+//        rootKeyValue.type = rootKeyValue.type + 19;
+//        [self updateKeyValue:rootKeyValue];
+//
+//        SubRecord * subRecord = [SubRecord new];
+//        subRecord.rootKey = rootKeyValue.key;
+//        subRecord.subKey = subKeyValue.key;
+//
+//        [arr addObject:subRecord];
+//    }
+//
+//    if ([arr count] > 0) {
+//        return  [NSArray arrayWithArray:arr];
+//    }else{
+//        return nil;
+//    }
+//
+//
+//}
 
-
--(void)migrationKvtb{
-    [_db open];
-    NSMutableArray *arr = [NSMutableArray new];
-    FMResultSet *res = [_db executeQuery:@"SELECT * FROM kvTb ORDER BY id desc"];
-    
-    while ([res next]) {
-        DbKeyValue *keyValue = [[DbKeyValue alloc] init];
-        keyValue.kvid = [res intForColumn:@"id"];
-        keyValue.key = [res stringForColumn:@"key"];
-        keyValue.value = [res stringForColumn:@"value"];
-        keyValue.createTime = [res intForColumn:@"createTime"];
-        keyValue.type = [res intForColumn:@"type"];
-        [arr addObject:keyValue];
-    }
-    
-    [_db close];
-    
-    if ([arr count]>0) {
-        //return;
-        [self insertRecordTbUseTransaction:arr];
-    }
-    else{
-        return;
-    }
-}
-
--(void)insertRecordTbUseTransaction:(NSArray<DbKeyValue*>*)keyvalues{
-    
-    [_db open];
-    [_db beginTransaction];
-    BOOL isRollBack = NO;
-    @try {
-        for (DbKeyValue *keyValue in keyvalues) {
-            BOOL isSuccess = [_db executeUpdate:@"INSERT INTO recordTbz003(key,value,type,createTime) values(?, ?, ?, ?)",keyValue.key,keyValue.value,@(keyValue.type),@(keyValue.createTime)];
-            NSLog(@"%@",isSuccess ? @"插入 keyvalue 成功" : @"插入keyvalue失败");
-        }
-    } @catch (NSException *exception) {
-        isRollBack = YES;
-        [_db rollback];
-    } @finally {
-        if (!isRollBack) {
-            [_db commit];
-        }
-    }
-    NSLog(@"migration kvtb to recordTb done!");
-    [_db class];
-    
-}
-
--(void)migrationKvgrouptb{
-    
-    [_db open];
-    NSMutableArray *arr = [NSMutableArray new];
-    FMResultSet *res = [_db executeQuery:@"SELECT * FROM kvGroupTb"];
-    
-    while ([res next]) {
-        DbKeyValueGroup *keyValueGroup = [[DbKeyValueGroup alloc] init];
-        keyValueGroup.gID = [res intForColumn:@"gid"];
-        keyValueGroup.rootID = [res intForColumn:@"rootID"];
-        keyValueGroup.rootValue = [res stringForColumn:@"rootValue"];
-        keyValueGroup.rootType = [res intForColumn:@"rootType"];
-        keyValueGroup.subID = [res intForColumn:@"subID"];
-        keyValueGroup.subValue = [res stringForColumn:@"subValue"];
-        keyValueGroup.subType = [res intForColumn:@"subType"];
-        keyValueGroup.type = [res intForColumn:@"type"];
-        keyValueGroup.createTime = [res intForColumn:@"createTime"];
-        keyValueGroup.extCategory = [res stringForColumn:@"extCategory"];
-        [arr addObject:keyValueGroup];
-    }
-    
-    [_db close];
-    
-    if ([arr count]>0) {
-        //return arr;
-        NSArray * subRecords = [self getKey:arr];
-        if (subRecords) {
-            [self insertSubRecordsTransaction:subRecords];
-        }
-    }
-    else{
-        //return nil;
-    }
-    
-}
-
--(NSArray*)getKey:(NSArray<DbKeyValueGroup*>*)groups{
-    
-    NSMutableArray *arr = [NSMutableArray array];
-    
-    for (DbKeyValueGroup *group in groups) {
-        
-        DbKeyValue * rootKeyValue = [self getKeyValueBy:group.rootID];
-        
-        rootKeyValue.type = rootKeyValue.type + 9;
-        [self updateKeyValue:rootKeyValue];
-        
-        DbKeyValue * subKeyValue = [self getKeyValueBy:group.subID];
-        
-        rootKeyValue.type = rootKeyValue.type + 19;
-        [self updateKeyValue:rootKeyValue];
-        
-        SubRecord * subRecord = [SubRecord new];
-        subRecord.rootKey = rootKeyValue.key;
-        subRecord.subKey = subKeyValue.key;
-        
-        [arr addObject:subRecord];
-    }
-    
-    if ([arr count] > 0) {
-        return  [NSArray arrayWithArray:arr];
-    }else{
-        return nil;
-    }
-    
-    
-}
-
--(void)insertSubRecordsTransaction:(NSArray<SubRecord*>*)subrecords{
-    
-    [_db open];
-    [_db beginTransaction];
-    BOOL isRollBack = NO;
-    @try {
-        for (SubRecord *subRecord in subrecords) {
-            BOOL isSuccess = [_db executeUpdate:@"INSERT INTO subRecordTbz003(rootKey,subKey) values(?, ?)",subRecord.rootKey,subRecord.subKey];
-            NSLog(@"%@",isSuccess ? @"插入 SubRecord 成功" : @"插入SubRecord失败");
-        }
-    } @catch (NSException *exception) {
-        isRollBack = YES;
-        [_db rollback];
-    } @finally {
-        if (!isRollBack) {
-            [_db commit];
-        }
-    }
-    NSLog(@"migration kvtb to recordTb done!");
-    [_db class];
-    
-}
+//-(void)insertSubRecordsTransaction:(NSArray<SubRecord*>*)subrecords{
+//
+//    [_db open];
+//    [_db beginTransaction];
+//    BOOL isRollBack = NO;
+//    @try {
+//        for (SubRecord *subRecord in subrecords) {
+//            BOOL isSuccess = [_db executeUpdate:@"INSERT INTO subRecordTbz003(rootKey,subKey) values(?, ?)",subRecord.rootKey,subRecord.subKey];
+//            NSLog(@"%@",isSuccess ? @"插入 SubRecord 成功" : @"插入SubRecord失败");
+//        }
+//    } @catch (NSException *exception) {
+//        isRollBack = YES;
+//        [_db rollback];
+//    } @finally {
+//        if (!isRollBack) {
+//            [_db commit];
+//        }
+//    }
+//    NSLog(@"migration kvtb to recordTb done!");
+//    [_db class];
+//
+//}
 
 #pragma mark migration v = 6
 
@@ -1189,9 +1161,9 @@ static DataBase *_DBCtl = nil;
     
 }
 
-#pragma mark migration v = 7
+#pragma mark migration v = 12
 
--(void)migrationRecordTbV7{
+-(void)migrationRecordTbV12{
     
     [_db open];
      NSMutableArray *arr = [NSMutableArray new];
@@ -1226,7 +1198,7 @@ static DataBase *_DBCtl = nil;
      if ([arr count]>0) {
          //return;
          //NSArray* tmpArr = [self filerInvalidItem:arr];
-         [self insertRecordTbV7UseTransaction:arr];
+         [self insertRecordTbV12UseTransaction:arr];
      }
      else{
          return;
@@ -1234,14 +1206,14 @@ static DataBase *_DBCtl = nil;
     
 }
 
--(void)insertRecordTbV7UseTransaction:(NSArray<DbKeyValue*>*)keyvalues{
+-(void)insertRecordTbV12UseTransaction:(NSArray<DbKeyValue*>*)keyvalues{
     
     [_db open];
     [_db beginTransaction];
     BOOL isRollBack = NO;
     @try {
         for (DbKeyValue *keyValue in keyvalues) {
-            BOOL isSuccess = [_db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(key,value,type,createTime) values(?, ?, ?, ?)",@"recordTbz007"],keyValue.key,keyValue.value,@(keyValue.type),@(keyValue.createTime)];
+            BOOL isSuccess = [_db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(key,value,type,createTime) values(?, ?, ?, ?)",@"recordTbz0012"],keyValue.key,keyValue.value,@(keyValue.type),@(keyValue.createTime)];
             NSLog(@"%@",isSuccess ? @"插入 keyvalue 成功" : @"插入keyvalue失败");
         }
     } @catch (NSException *exception) {
@@ -1257,7 +1229,7 @@ static DataBase *_DBCtl = nil;
     
 }
 
--(void)migrationSubrecordTbV7{
+-(void)migrationSubrecordTbV12{
     
     [_db open];
     NSMutableArray *arr = [NSMutableArray new];
@@ -1298,7 +1270,7 @@ static DataBase *_DBCtl = nil;
     
     if ([arr count]>0) {
         //return arr;
-        [self insertSubRecordsV7Transaction:arr];
+        [self insertSubRecordsV12Transaction:arr];
     }
     else{
         //return nil;
@@ -1306,14 +1278,14 @@ static DataBase *_DBCtl = nil;
     
 }
 
--(void)insertSubRecordsV7Transaction:(NSArray<SubRecord*>*)subrecords{
+-(void)insertSubRecordsV12Transaction:(NSArray<SubRecord*>*)subrecords{
     
     [_db open];
     [_db beginTransaction];
     BOOL isRollBack = NO;
     @try {
         for (SubRecord *subRecord in subrecords) {
-            BOOL isSuccess = [_db executeUpdate:@"INSERT INTO subRecordTbz007(rootKey,subKey,createTime) values(?, ?, ?)",subRecord.rootKey,subRecord.subKey,@(subRecord.createTime)];
+            BOOL isSuccess = [_db executeUpdate:@"INSERT INTO subRecordTbz0012(rootKey,subKey,createTime) values(?, ?, ?)",subRecord.rootKey,subRecord.subKey,@(subRecord.createTime)];
             NSLog(@"%@",isSuccess ? @"插入 SubRecord 成功" : @"插入SubRecord失败");
         }
     } @catch (NSException *exception) {
@@ -1329,13 +1301,13 @@ static DataBase *_DBCtl = nil;
     
 }
 
-#pragma mark migration v = 9
+#pragma mark migration v = 13
 
--(void)migrationRecordTbV9{
+-(void)migrationRecordTbV13{
     
     [_db open];
      NSMutableArray *arr = [NSMutableArray new];
-     FMResultSet *res = [_db executeQuery:@"SELECT * FROM recordTbz007 ORDER BY id desc"];
+     FMResultSet *res = [_db executeQuery:@"SELECT * FROM recordTbz0012 ORDER BY id desc"];
      
      while ([res next]) {
          DbKeyValue *keyValue = [[DbKeyValue alloc] init];
@@ -1360,7 +1332,7 @@ static DataBase *_DBCtl = nil;
      if ([arr count]>0) {
          //return;
          //NSArray* tmpArr = [self filerInvalidItem:arr];
-         [self insertRecordTbV9UseTransaction:arr];
+         [self insertRecordTbV13UseTransaction:arr];
      }
      else{
          return;
@@ -1368,14 +1340,14 @@ static DataBase *_DBCtl = nil;
     
 }
 
--(void)insertRecordTbV9UseTransaction:(NSArray<DbKeyValue*>*)keyvalues{
+-(void)insertRecordTbV13UseTransaction:(NSArray<DbKeyValue*>*)keyvalues{
     
     [_db open];
     [_db beginTransaction];
     BOOL isRollBack = NO;
     @try {
         for (DbKeyValue *keyValue in keyvalues) {
-            BOOL isSuccess = [_db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(key,value,type,createTime,search,property) values(?, ?, ?, ?,?,?)",@"recordTbz009"],keyValue.key,keyValue.value,@(keyValue.type),@(keyValue.createTime),keyValue.search,keyValue.property];
+            BOOL isSuccess = [_db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(key,value,type,createTime,search,property) values(?, ?, ?, ?,?,?)",@"recordTbz0013"],keyValue.key,keyValue.value,@(keyValue.type),@(keyValue.createTime),keyValue.search,keyValue.property];
             NSLog(@"%@",isSuccess ? @"插入 keyvalue 成功" : @"插入keyvalue失败");
         }
     } @catch (NSException *exception) {
@@ -1391,11 +1363,11 @@ static DataBase *_DBCtl = nil;
     
 }
 
--(void)migrationSubrecordTbV9{
+-(void)migrationSubrecordTbV13{
     
     [_db open];
     NSMutableArray *arr = [NSMutableArray new];
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@",@"subRecordTbz007"]];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@",@"subRecordTbz0012"]];
     
     while ([res next]) {
         
@@ -1410,7 +1382,7 @@ static DataBase *_DBCtl = nil;
     
     if ([arr count]>0) {
         //return arr;
-        [self insertSubRecordsV9Transaction:arr];
+        [self insertSubRecordsV13Transaction:arr];
     }
     else{
         //return nil;
@@ -1418,14 +1390,14 @@ static DataBase *_DBCtl = nil;
     
 }
 
--(void)insertSubRecordsV9Transaction:(NSArray<SubRecord*>*)subrecords{
+-(void)insertSubRecordsV13Transaction:(NSArray<SubRecord*>*)subrecords{
     
     [_db open];
     [_db beginTransaction];
     BOOL isRollBack = NO;
     @try {
         for (SubRecord *subRecord in subrecords) {
-            BOOL isSuccess = [_db executeUpdate:@"INSERT INTO subRecordTbz009(rootKey,subKey,createTime) values(?, ?, ?)",subRecord.rootKey,subRecord.subKey,@(subRecord.createTime)];
+            BOOL isSuccess = [_db executeUpdate:@"INSERT INTO subRecordTbz0013(rootKey,subKey,createTime) values(?, ?, ?)",subRecord.rootKey,subRecord.subKey,@(subRecord.createTime)];
             NSLog(@"%@",isSuccess ? @"插入 SubRecord 成功" : @"插入SubRecord失败");
         }
     } @catch (NSException *exception) {
