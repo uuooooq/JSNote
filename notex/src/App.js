@@ -9,8 +9,8 @@ const { Content } = Layout;
 //import { UploadOutlined } from '@ant-design/icons';
 
 
-const httpPre = 'http://'+window.location.host 
-//const httpPre = 'http://192.168.1.12:8080'
+//const httpPre = 'http://'+window.location.host 
+const httpPre = 'http://192.168.1.7:8080'
 const imgPre = httpPre + '/file?imageName='
 const uploadUrl = httpPre + '/upload'
 

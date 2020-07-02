@@ -38,15 +38,19 @@
     
     //title.text = value.value;
     [title removeFromSuperview];
-    title = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, self.frame.size.width-10, self.frame.size.height-10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, self.frame.size.width-10, self.frame.size.height-22)];
     title.textColor = [UIColor blackColor];
-    title.numberOfLines = 0;
-    title.attributedText = [ZDWUtility getLabelAttributeString:value.value];
+    title.numberOfLines = 3;
+    //title.attributedText = [ZDWUtility getLabelAttributeString:value.value];
     //title.backgroundColor = [UIColor grayColor];
+    title.lineBreakMode = NSLineBreakByTruncatingTail;
+    title.font = [UIFont systemFontOfSize:13.0f];
+    
+    title.text = value.value;
     [self.contentView addSubview:title];
     
     [descLbl removeFromSuperview];
-    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.size.height-20, 200, 20)];
+    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.size.height-15, 200, 20)];
     descLbl.textColor = [UIColor lightGrayColor];
     descLbl.textAlignment = NSTextAlignmentLeft;
     descLbl.font = [UIFont systemFontOfSize:12];
@@ -71,8 +75,11 @@
 
 +(CGSize)caculateCurrentSize:(NSString*)value{
     
-    CGFloat higth = [ZDWUtility getLabelHight:value withWidth:ZDWSCREEN_WIDTH-20];
-    return CGSizeMake(ZDWSCREEN_WIDTH-10, higth+40);
+//    CGFloat higth = [ZDWUtility getLabelHight:value withWidth:ZDWSCREEN_WIDTH-20];
+//    if (higth > 100) {
+//        higth = 100;
+//    }
+    return CGSizeMake(ZDWSCREEN_WIDTH-10, 70);
 }
 
 

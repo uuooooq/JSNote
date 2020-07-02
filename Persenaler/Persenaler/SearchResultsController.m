@@ -32,6 +32,7 @@
     }
 
     [self.shuKucollectionView reloadData];
+    [self noMoreData];
 }
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController
@@ -47,16 +48,21 @@
 //    [self.tableView reloadData];
 }
 
--(void)didSelectionCell:(NSIndexPath*)indexPath{
+//-(void)didSelectionCell:(NSIndexPath*)indexPath{
+//    
+//    ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
+//    itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
+//    //itemDetailVC.title = @"详情";
+//    itemDetailVC.isDetailPage = YES;
+//    [self.presentingViewController.navigationController pushViewController:itemDetailVC animated:YES];
+//    
+////    TestViewController *testVc = [TestViewController new];
+////    [self.navigationController pushViewController:testVc animated:YES];
+//}
+
+-(UINavigationController*)getCurrentNavigationController{
     
-    ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
-    itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
-    //itemDetailVC.title = @"详情";
-    itemDetailVC.isDetailPage = YES;
-    [self.presentingViewController.navigationController pushViewController:itemDetailVC animated:YES];
-    
-//    TestViewController *testVc = [TestViewController new];
-//    [self.navigationController pushViewController:testVc animated:YES];
+    return self.presentingViewController.navigationController;
 }
 
 @end

@@ -97,8 +97,12 @@
 //        [self.ll_delegate singleClickWithPhoto:self];
 //    }
 //    else {
-        [self removeFromSuperview];
+        //[self removeFromSuperview];
 //    }
+    
+    if ([self.photoDelegate respondsToSelector:@selector(photoViewTapAction)]) {
+        [self.photoDelegate photoViewTapAction];
+    }
 }
 
 //双击

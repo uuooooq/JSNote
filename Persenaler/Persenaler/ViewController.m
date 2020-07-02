@@ -19,6 +19,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "NewFolderViewController.h"
 #import "FolderViewController.h"
+#import "CreateFolderViewController.h"
 
 @interface ViewController ()<UISearchControllerDelegate, UISearchBarDelegate>
 {
@@ -137,9 +138,6 @@
     UIAlertAction *selectAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self deleteAction:keyValue withIndexPath:indexPath];
     }];
-    UIAlertAction *editAction = [UIAlertAction actionWithTitle:@"修改" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
     UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"移动" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         
@@ -154,18 +152,16 @@
         }];
         
     }];
-    UIAlertAction *colorAction = [UIAlertAction actionWithTitle:@"标记颜色" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
+
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }];
     
     [alert addAction:selectAction];
-    [alert addAction:editAction];
-    [alert addAction:moveAction];
-    [alert addAction:colorAction];
-    if (keyValue.type == VT_IMG || keyValue.type == VT_SUB_IMG) {
+    if (keyValue.type == VT_TEXT || keyValue.type == VT_IMG) {
+        [alert addAction:moveAction];
+    }
+    if (keyValue.type == VT_IMG) {
         UIAlertAction *markAction = [UIAlertAction actionWithTitle:@"标记文字" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             DbKeyValue *editItem = [self.currentDataArr objectAtIndex:indexPath.row];
             [self showPhotoTextEditView:editItem withIndexPath:indexPath];
@@ -207,12 +203,18 @@
 
 -(void)newFolderAction{
     
-    NewFolderViewController *newFolder = [NewFolderViewController new];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:newFolder];
+//    NewFolderViewController *newFolder = [NewFolderViewController new];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:newFolder];
+//
+//    [self presentViewController:nav animated:YES completion:^{
+//
+//    }];
     
-    [self presentViewController:nav animated:YES completion:^{
-        
-    }];
+    CreateFolderViewController *addFolderVc = [CreateFolderViewController new];
+    //addPhotoVc.editKeyValue = keyvalue;
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:addFolderVc];
+    popupController.containerView.layer.cornerRadius = 4;
+    [popupController presentInViewController:self];
 }
 
 -(void)updateWithNewData{

@@ -98,7 +98,7 @@
                         //移动到同一目录下，不用移动了
                     }else{
                         
-                        if (!self.fromKeyValue) {
+                        if (self.fromKeyValue) {
                             //判断移动文件是否有目录
                             NSArray *arr = [[DataSource sharedDataSource] getSubRecordWithSubKey:self.moveKeyValue.key];
                             if (arr && [arr count]>0) { //子文件移动到子目录下

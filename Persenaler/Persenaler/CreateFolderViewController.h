@@ -1,8 +1,8 @@
 //
-//  NewFolderViewController.h
+//  CreateFolderViewController.h
 //  Persenaler
 //
-//  Created by zhu dongwei on 2020/6/22.
+//  Created by zhu dongwei on 2020/7/2.
 //  Copyright © 2020 zhu dongwei. All rights reserved.
 //
 
@@ -11,12 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NewFolderViewController : UIViewController
-
-@property(nonatomic,strong) UITextView *textView;
+@interface CreateFolderViewController : UIViewController
 @property(nonatomic,strong) DataSource *dataSource;
 @property(nonatomic,strong) DbKeyValue *fromKeyValue;
-//@property(nonatomic,assign) BOOL isSubItem;
 
 @end
 

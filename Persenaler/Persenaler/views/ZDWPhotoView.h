@@ -10,9 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ZDWPhotoViewDelegate <NSObject>
+
+-(void)photoViewTapAction;
+
+@end
+
 @interface ZDWPhotoView : UIScrollView
 
 @property(nonatomic,strong) UIImage *image;
+@property(nonatomic,weak,nullable) id<ZDWPhotoViewDelegate> photoDelegate;
+
 
 @end
 

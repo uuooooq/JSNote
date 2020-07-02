@@ -14,6 +14,7 @@
 #import "VideoRecordCell.h"
 #import "NewFolderViewController.h"
 #import "FolderViewController.h"
+#import "CreateFolderViewController.h"
 
 
 
@@ -106,6 +107,9 @@
     
     NSArray* arr = [self.dataSource getSubRecordsWith:self.fromKeyValue.key pageNumWith:self.currentPageContentNum pageWith:self.loadPageTime];
     if (arr && [arr count]>0) {
+        if (self.currentPageNum == 1) {
+            [self.currentDataArr removeAllObjects];
+        }
         [self.currentDataArr addObjectsFromArray:arr];
         self.currentPageNum = self.currentPageNum + 1;
         [self.shuKucollectionView reloadData];
@@ -175,10 +179,12 @@
     InputViewController *inputVc = [InputViewController new];
     inputVc.editKeyValue = editKeyValue;
     inputVc.fromKeyValue = self.fromKeyValue;
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:inputVc];
-    [self.navigationController presentViewController:nav animated:YES completion:^{
-        
-    }];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:inputVc];
+//    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+//    [self.navigationController presentViewController:nav animated:YES completion:^{
+//
+//    }];
+     [self.navigationController pushViewController:inputVc animated:YES];
     
 }
 
@@ -208,9 +214,7 @@
     UIAlertAction *selectAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self deleteAction:keyValue withIndexPath:indexPath];
     }];
-    UIAlertAction *editAction = [UIAlertAction actionWithTitle:@"修改" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
+
     UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"移动" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         DbKeyValue *moveItem = [self.currentDataArr objectAtIndex:indexPath.row];
         FolderViewController *folderVc = [FolderViewController new];
@@ -227,8 +231,17 @@
     }];
     
     [alert addAction:selectAction];
-    [alert addAction:editAction];
-    [alert addAction:moveAction];
+    if (keyValue.type == VT_SUB_IMG || keyValue.type == VT_SUB_TEXT) {
+        [alert addAction:moveAction];
+    }
+    if (keyValue.type == VT_SUB_IMG) {
+        UIAlertAction *markAction = [UIAlertAction actionWithTitle:@"标记文字" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            DbKeyValue *editItem = [self.currentDataArr objectAtIndex:indexPath.row];
+            [self showPhotoTextEditView:editItem withIndexPath:indexPath];
+        }];
+        [alert addAction:markAction];
+    }
+    
     [alert addAction:cancelAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
@@ -249,19 +262,26 @@
 
 -(void)newFolderAction{
     
-    NewFolderViewController *newFolderVc = [NewFolderViewController new];
-    newFolderVc.isSubItem = YES;
-    newFolderVc.fromKeyValue = self.fromKeyValue;
-//    [self presentViewController:newFolderVc animated:YES completion:^{
+//    NewFolderViewController *newFolderVc = [NewFolderViewController new];
+////    newFolderVc.isSubItem = YES;
+//    newFolderVc.fromKeyValue = self.fromKeyValue;
+////    [self presentViewController:newFolderVc animated:YES completion:^{
+////
+////    }];
 //
-//    }];
+//    //NewFolderViewController *newFolder = [NewFolderViewController new];
+//     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:newFolderVc];
+//
+//     [self presentViewController:nav animated:YES completion:^{
+//
+//     }];
     
-    //NewFolderViewController *newFolder = [NewFolderViewController new];
-     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:newFolderVc];
-     
-     [self presentViewController:nav animated:YES completion:^{
-         
-     }];
+    CreateFolderViewController *addFolderVc = [CreateFolderViewController new];
+    //addPhotoVc.editKeyValue = keyvalue;
+    addFolderVc.fromKeyValue = self.fromKeyValue;
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:addFolderVc];
+    popupController.containerView.layer.cornerRadius = 4;
+    [popupController presentInViewController:self];
 }
 
 -(void)saveAction{
@@ -459,7 +479,7 @@
         }
         
         if (keyValue.type == VT_TEXT) {
-            return [BaseRecordCell caculateCurrentSize:keyValue.value];
+            return [TextRecordCell caculateCurrentSize:keyValue.value];
         }
         
         if (keyValue.type == VT_SUB_IMG) {
@@ -467,7 +487,7 @@
         }
         
         if (keyValue.type == VT_SUB_TEXT) {
-            return [BaseRecordCell caculateCurrentSize:keyValue.value];
+            return [TextRecordCell caculateCurrentSize:keyValue.value];
         }
         if (keyValue.type == VT_ROOT) {
             return CGSizeMake(screenWidth, 80);

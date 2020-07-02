@@ -84,7 +84,8 @@
     [self.shuKucollectionView reloadData];
     //[self.shuKucollectionView.mj_footer setState:MJRefreshStateNoMoreData];
     //[self.footer setTitle:@"已无更多数据" forState:MJRefreshStateIdle];
-    self.shuKucollectionView.mj_footer.hidden = YES;
+    //self.shuKucollectionView.mj_footer.hidden = YES;
+    [self noMoreData];
 }
 
 #pragma mark UITextFielddelegate

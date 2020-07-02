@@ -18,6 +18,7 @@
 #import "FolderRecordCell.h"
 #import "TextRecordCell.h"
 //#import "ItemDetailViewController.h"
+#import <STPopup/STPopup.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -50,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)addPhotoStepNext:(DbKeyValue*)keyValue;
 -(void)fusizeBtnClick:(UIButton*)btn;
--(void)showFullImageSizeView:(NSString*)imgName;
+-(void)showFullImageSizeView:(DbKeyValue*)imgName;
 
 -(void)deleteAction:(DbKeyValue*)deleteItem withIndexPath:(NSIndexPath*)indexPath;
 
@@ -63,6 +64,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)refetchData;
 
 -(void)showPhotoTextEditView:(DbKeyValue*)keyvalue withIndexPath:(NSIndexPath*)indexPath;
+
+-(UINavigationController*)getCurrentNavigationController;
 
 
 

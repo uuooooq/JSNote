@@ -50,9 +50,10 @@
         [self.dataSource updateKeyValue:self.editKeyValue];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
         
-        [self dismissViewControllerAnimated:YES completion:^{
-            
-        }];
+//        [self dismissViewControllerAnimated:YES completion:^{
+//
+//        }];
+        [self.navigationController popViewControllerAnimated:YES];
         return;
     }
     
@@ -104,9 +105,10 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+//    [self dismissViewControllerAnimated:YES completion:^{
+//
+//    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -42,6 +42,10 @@
 +(CGSize)caculateCurrentSize:(NSString*)value{
     
     CGFloat higth = [ZDWUtility getLabelHight:value withWidth:ZDWSCREEN_WIDTH-20];
+    
+    if (higth > 100) {
+        higth = 100;
+    }
     return CGSizeMake(ZDWSCREEN_WIDTH-10, higth+40);
 }
 

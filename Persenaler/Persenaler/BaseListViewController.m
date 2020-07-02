@@ -15,8 +15,9 @@
 #import "ItemDetailViewController.h"
 #import "ZDWPhotoView.h"
 #import "TextEditorViewController.h"
-#import <STPopup/STPopup.h>
+
 #import "AddPhotoTextViewController.h"
+#import "PhotoDetailViewController.h"
 
 
 @interface BaseListViewController ()<TZImagePickerControllerDelegate,STPopupControllerTransitioning>{
@@ -51,6 +52,11 @@
     lpgr.delegate = self;
     lpgr.delaysTouchesBegan = YES;
     [self.shuKucollectionView addGestureRecognizer:lpgr];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 -(DataSource*)dataSource{
@@ -124,6 +130,11 @@
 
 }
 
+-(UINavigationController*)getCurrentNavigationController{
+    
+    return self.navigationController;
+}
+
 
 
 -(void)didSelectionCell:(NSIndexPath*)indexPath{
@@ -138,18 +149,18 @@
            //itemDetailVC.navigationController.navigationBar.largeTitleTextAttributes =
            [self.navigationController.navigationBar setLargeTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName,[UIFont systemFontOfSize:18.0f],NSFontAttributeName,nil]];
            itemDetailVC.isDetailPage = YES;
-           [self.navigationController pushViewController:itemDetailVC animated:YES];
+           [[self getCurrentNavigationController] pushViewController:itemDetailVC animated:YES];
        }
        else{
            switch (tmpKeyValue.type) {
                case VT_IMG:
                {
-                   [self showFullImageSizeView:tmpKeyValue.value];
+                   [self showFullImageSizeView:tmpKeyValue];
                }
                    break;
                case VT_SUB_IMG:
                {
-                   [self showFullImageSizeView:tmpKeyValue.value];
+                   [self showFullImageSizeView:tmpKeyValue];
                }
                    break;
                case VT_TEXT:
@@ -196,7 +207,7 @@
     }
     
     if (keyValue.type == VT_TEXT || keyValue.type == VT_SUB_TEXT) {
-        return [BaseRecordCell caculateCurrentSize:keyValue.value];
+        return [TextRecordCell caculateCurrentSize:keyValue.value];
     }
     
     
@@ -321,7 +332,7 @@
 
 -(void)noMoreData{
     [self.shuKucollectionView.mj_footer setState:MJRefreshStateNoMoreData];
-    [footer setTitle:@"已无更多数据" forState:MJRefreshStateIdle];
+    [footer setTitle:@"已无更多数据" forState:MJRefreshStateNoMoreData];
 }
 
 -(void)updateWithNewData{
@@ -542,16 +553,20 @@
     
     DbKeyValue *keyValue = [self.currentDataArr objectAtIndex:btn.tag];
     NSLog(@"fullsize btn click %@",keyValue.value);
-    [self showFullImageSizeView:keyValue.value];
+    [self showFullImageSizeView:keyValue];
 }
 
--(void)showFullImageSizeView:(NSString*)imgName{
+-(void)showFullImageSizeView:(DbKeyValue*)keyValue{
     
-    NSString* filePath = [ZDWUtility getImagePath:imgName];
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
-    photoView = [[ZDWPhotoView alloc] initWithFrame:self.navigationController.view.bounds];
-    [photoView setImage:image];
-    [self.navigationController.view addSubview:photoView];
+//    NSString* filePath = [ZDWUtility getImagePath:imgName];
+//    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
+//    photoView = [[ZDWPhotoView alloc] initWithFrame:self.navigationController.view.bounds];
+//    [photoView setImage:image];
+//    [self.navigationController.view addSubview:photoView];
+    
+    PhotoDetailViewController *photoVC = [PhotoDetailViewController new];
+    photoVC.imgKeyValue = keyValue;
+    [[self getCurrentNavigationController] pushViewController:photoVC animated:YES];
     
 }
 
@@ -565,10 +580,12 @@
         inputVc.editKeyValue = editKeyValue;
     }
     
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:inputVc];
-    [self.navigationController presentViewController:nav animated:YES completion:^{
-        
-    }];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:inputVc];
+//    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+//    [self.navigationController presentViewController:nav animated:YES completion:^{
+//
+//    }];
+    [[self getCurrentNavigationController] pushViewController:inputVc animated:YES];
 }
 
 #pragma mark - STPopupControllerTransitioning

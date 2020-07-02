@@ -575,7 +575,7 @@ static DataBase *_DBCtl = nil;
 - (void)deleteSubRecord:(SubRecord *)subRecord{
     [_db open];
     
-    [_db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE id = ?",subRecordTBName],subRecord.gID];
+    [_db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE subKey = ?",subRecordTBName],subRecord.subKey];
      
      
      [_db close];
