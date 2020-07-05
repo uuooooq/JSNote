@@ -47,8 +47,8 @@ public class NoteWebServer extends NanoHTTPD {
         String answer = "";
         String uri = null;
         uri = session.getUri();
-        Log.d("jimmy","uri = " +uri);
-        Log.d("jimmy","uri substring(1)= " +uri.substring(1));
+        Log.w("jimmy","uri = " +uri);
+        Log.w("jimmy","uri substring(1)= " +uri.substring(1));
 
         InputStream mbuffer = null;
         if(uri.equals("/")) {
@@ -80,6 +80,7 @@ public class NoteWebServer extends NanoHTTPD {
             } else {
                 msg += "<p>Hello, " + parms.get("username") + "!</p>";
             }
+            Log.w("jimmy","uri = " +uri+session.getHeaders());
             return newFixedLengthResponse(msg + "</body></html>\n");
         }else if(uri.endsWith("js")){
 
@@ -129,7 +130,7 @@ public class NoteWebServer extends NanoHTTPD {
         }
 
         Method method = session.getMethod();
-        Log.d("jimmy","method = "+method);
+        Log.w("jimmy","method = "+method);
         //public static Response newFixedLengthResponse(IStatus status, String mimeType, String txt) {
         //return newFixedLengthResponse(IStatus status, String mimeType, String txt);
         return newFixedLengthResponse(answer);
