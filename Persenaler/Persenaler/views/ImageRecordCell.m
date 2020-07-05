@@ -14,7 +14,7 @@
     
     UIImageView *imgView;
     UILabel *descLbl;
-    
+    UIView * markView;
 }
 
 @end
@@ -32,22 +32,23 @@
 
 -(void)customizeView{
     
-//    title = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 200, 30)];
-//    title.textColor = [UIColor blackColor];
-//    title.textAlignment = NSTextAlignmentLeft;
-//    title.font = [UIFont systemFontOfSize:14];
-//    [self.contentView addSubview:title];
-    
     imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.width)];
     imgView.contentMode = UIViewContentModeScaleAspectFill;
     imgView.clipsToBounds = YES;
-    [self addSubview:imgView];
+    [self.contentView addSubview:imgView];
     
-    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.size.width+10, self.frame.size.width-20, 30)];
+    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.size.height-20, self.frame.size.width-40, 20)];
     descLbl.textColor = [UIColor lightGrayColor];
-    descLbl.textAlignment = NSTextAlignmentRight;
-    descLbl.font = [UIFont systemFontOfSize:14];
-    [self addSubview:descLbl];
+    descLbl.textAlignment = NSTextAlignmentLeft;
+    descLbl.font = [UIFont systemFontOfSize:12];
+    
+    
+    [self.contentView addSubview:descLbl];
+    
+    [markView removeFromSuperview];
+    markView = [[UIView alloc] initWithFrame:CGRectMake(5, 0, 5, self.frame.size.height)];
+    markView.backgroundColor = [UIColor clearColor];
+    [self.contentView addSubview:markView];
 }
 
 -(void)updateRecord:(DbKeyValue*)value{
@@ -60,9 +61,18 @@
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:value.createTime];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     //最结尾的Z表示的是时区，零时区表示+0000，东八区表示+0800
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
     // 使用formatter转换后的date字符串变成了当前时区的时间
     NSString *dateStr = [formatter stringFromDate:date];
+    
+    NSDictionary * propertyDic = [value getDicProperty];
+    if (propertyDic) {
+        NSString * markstr = [propertyDic objectForKey:@"markstr"];
+        if ([markstr length] > 0) {
+            dateStr = [NSString stringWithFormat:@"%@ %@",dateStr,markstr];
+        }
+    }
+    
     descLbl.text = dateStr;
 }
 

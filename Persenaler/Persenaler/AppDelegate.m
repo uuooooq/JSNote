@@ -7,8 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import "HttpServerHandler.h"
+#import "DataBase.h"
 
-@interface AppDelegate ()
+@interface AppDelegate (){
+    ViewController * vc;
+    HttpServerHandler *httpServerHandler;
+}
 
 @end
 
@@ -18,6 +24,28 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     return YES;
+}
+
+- (void)createAppWindow{
+    if (@available(iOS 13.0, *)) {
+        
+    }else{
+        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        vc = [ViewController new];
+        vc.title = @"Personal";
+        httpServerHandler = [HttpServerHandler new];
+        [httpServerHandler startServer];
+        vc.serverHeadler = httpServerHandler;
+        vc.isDetailPage = NO;
+        //NSLog(@"%@",[httpServerHandler getAddr]);
+        //vc.title = [httpServerHandler getAddr];
+        //[self setDir];
+        UINavigationController *rootNavgationController = [[UINavigationController alloc] initWithRootViewController:vc];
+        rootNavgationController.navigationBar.prefersLargeTitles = YES;
+        self.window.rootViewController = rootNavgationController;
+        //rootNavgationController.title = [httpServerHandler getAddr];
+        [self.window makeKeyAndVisible];
+    }
 }
 
 

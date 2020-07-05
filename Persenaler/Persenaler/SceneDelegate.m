@@ -23,10 +23,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.windowScene = (UIWindowScene*)scene;
     vc = [ViewController new];
-    NSLog(@"%@",[httpServerHandler getAddr]);
+    vc.title = @"Personal";
+    vc.serverHeadler = httpServerHandler;
+    //NSLog(@"%@",[httpServerHandler getAddr]);
     //vc.title = [httpServerHandler getAddr];
     //[self setDir];
     UINavigationController *rootNavgationController = [[UINavigationController alloc] initWithRootViewController:vc];
+    //rootNavgationController.navigationBar.prefersLargeTitles = YES;
     self.window.rootViewController = rootNavgationController;
     //rootNavgationController.title = [httpServerHandler getAddr];
     [self.window makeKeyAndVisible];

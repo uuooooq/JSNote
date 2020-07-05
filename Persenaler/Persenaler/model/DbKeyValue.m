@@ -16,5 +16,17 @@
     return [datenow timeIntervalSince1970];
 }
 
+-(NSDictionary*)getDicProperty{
+    
+    if (self.property) {
+        return [NSJSONSerialization JSONObjectWithData:[self.property dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+    }
+    else{
+        return nil;
+    }
+    
+    
+}
+
 
 @end

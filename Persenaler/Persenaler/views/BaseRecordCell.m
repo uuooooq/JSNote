@@ -6,15 +6,11 @@
 //  Copyright © 2020 zhu dongwei. All rights reserved.
 //
 
+
+
+
 #import "BaseRecordCell.h"
 
-@interface  BaseRecordCell(){
-    
-    UILabel *title;
-    
-}
-
-@end
 
 @implementation BaseRecordCell
 
@@ -22,25 +18,36 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self customizeView];
+       
     }
     return self;
 }
 
 -(void)customizeView{
-    
-    title = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 200, 30)];
-    title.textColor = [UIColor blackColor];
-    title.textAlignment = NSTextAlignmentLeft;
-    title.font = [UIFont systemFontOfSize:14];
-    [self.contentView addSubview:title];
-    
-    
+
 }
+
 
 -(void)updateRecord:(DbKeyValue*)value{
     
-    title.text = value.value;
 }
+
+-(void)showSelectBtn{
+    
+}
+-(void)dismissSelectBtn{
+    
+}
+
++(CGSize)caculateCurrentSize:(NSString*)value{
+    
+    CGFloat higth = [ZDWUtility getLabelHight:value withWidth:ZDWSCREEN_WIDTH-20];
+    
+    if (higth > 100) {
+        higth = 100;
+    }
+    return CGSizeMake(ZDWSCREEN_WIDTH-10, higth+40);
+}
+
 
 @end

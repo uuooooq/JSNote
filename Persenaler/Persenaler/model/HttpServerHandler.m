@@ -154,17 +154,23 @@
         NSArray *arr = [(GCDWebServerMultiPartFormRequest*)request arguments];
         for (GCDWebServerMultiPartArgument *argument in arr) {
             NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
-            [extCategoryDic setObject:@"VT_TEXT" forKey:@"type"];
+            [extCategoryDic setObject:TXT forKey:@"type"];
             DbKeyValue * keyValue = [DbKeyValue new];
             keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
             keyValue.value = argument.string;
             keyValue.createTime =[DbKeyValue getCurrentTime];
             keyValue.type = VT_TEXT;
             //keyValue.extCategory = @"{}";
-            keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
-            [weakSelf.dataSource addRecord:keyValue];
+            //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+            NSMutableDictionary *propertyDic = [NSMutableDictionary dictionary];
+            [propertyDic setValue:@"" forKey:@"markcolor"];
+            [propertyDic setValue:@"" forKey:@"markstr"];
+            keyValue.property = [ZDWUtility convertStringFromDic:propertyDic];
+            keyValue.search = keyValue.value;
+            //[weakSelf.dataSource addRecord:keyValue];
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.dataSource addRecord:keyValue];
                 // UI更新代码
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
             });
@@ -215,14 +221,19 @@
     }
     NSLog(@"开始记录文件到数据库");
     NSMutableDictionary *extCategoryDic = [NSMutableDictionary dictionary];
-    [extCategoryDic setObject:@"img" forKey:@"type"];
+    [extCategoryDic setObject:IMG forKey:@"type"];
     
     DbKeyValue * keyValue = [DbKeyValue new];
     keyValue.key = [NSString stringWithFormat:@"%d",[DbKeyValue getCurrentTime]];
     keyValue.value = fileName;
     keyValue.createTime =[DbKeyValue getCurrentTime];
     keyValue.type = VT_IMG;
-    keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+    //keyValue.extCategory = [ZDWUtility convertStringFromDic:extCategoryDic];
+    NSMutableDictionary *propertyDic = [NSMutableDictionary dictionary];
+    [propertyDic setValue:@"" forKey:@"markcolor"];
+    [propertyDic setValue:@"" forKey:@"markstr"];
+    keyValue.property = [ZDWUtility convertStringFromDic:propertyDic];
+    keyValue.search = keyValue.value;
     [self.dataSource addRecord:keyValue];
     //[weakSelf.dataSource addRecord:keyValue];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveData" object:nil];
@@ -271,8 +282,12 @@
 }
 
 - (void)webServerDidStart:(GCDWebServer*)server{
-    NSLog(@"---%@",[self getAddr]);
+    NSLog(@"---***%@",[self getAddr]);
     //vc.title = [self getAddr];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // UI更新代码
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"serverRunning" object:nil];
+    });
 }
 
 @end

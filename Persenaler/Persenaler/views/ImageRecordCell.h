@@ -6,14 +6,15 @@
 //  Copyright © 2020 zhu dongwei. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "DbKeyValue.h"
+#import "BaseRecordCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ImageRecordCell : UICollectionViewCell
+@interface ImageRecordCell : BaseRecordCell
 
--(void)updateRecord:(DbKeyValue*)value;
+//-(void)updateRecord:(DbKeyValue*)value;
+//@property(nonatomic,strong) UIButton * commBtn;
+//@property(nonatomic,strong) UIButton * fullsizeBtn;
 
 @end
 
