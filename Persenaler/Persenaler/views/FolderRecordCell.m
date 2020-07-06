@@ -14,6 +14,7 @@
     UILabel *descLbl;
     UIView *markView;
     UIImageView *iconView;
+    UILabel *subLbl;
     
 }
 
@@ -33,17 +34,24 @@
 
 -(void)customizeView{
     
-    markView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, self.frame.size.height)];
+    markView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, self.frame.size.height)];
     markView.backgroundColor = [UIColor orangeColor];
+
     [self.contentView addSubview:markView];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(25, 5, self.frame.size.width-25-40, 20)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.frame.size.width-10-40, 20)];
     title.textColor = [UIColor blackColor];
     title.numberOfLines = 1;
     title.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:title];
     
-    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(25, self.frame.size.height-20, 200, 20)];
+    subLbl = [[UILabel alloc] initWithFrame:CGRectMake(10+20, 5+20, self.frame.size.width-10-40-20-10, 20)];
+    subLbl.textColor = [UIColor placeholderTextColor];
+    subLbl.numberOfLines = 2;
+    subLbl.font = [UIFont systemFontOfSize:12];
+    [self.contentView addSubview:subLbl];
+    
+    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.size.height-20, 200, 20)];
     descLbl.textColor = [UIColor lightGrayColor];
     descLbl.textAlignment = NSTextAlignmentLeft;
     descLbl.font = [UIFont systemFontOfSize:12];
@@ -66,6 +74,7 @@
     // 使用formatter转换后的date字符串变成了当前时区的时间
     NSString *dateStr = [formatter stringFromDate:date];
     descLbl.text = dateStr;
+    subLbl.text = [value getLatestSubRecordValue];
     
 }
 

@@ -38,7 +38,7 @@
     
     //title.text = value.value;
     [title removeFromSuperview];
-    title = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, self.frame.size.width-10, self.frame.size.height-22)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.frame.size.width-10-10, self.frame.size.height-22)];
     title.textColor = [UIColor blackColor];
     title.numberOfLines = 3;
     //title.attributedText = [ZDWUtility getLabelAttributeString:value.value];
@@ -50,7 +50,7 @@
     [self.contentView addSubview:title];
     
     [descLbl removeFromSuperview];
-    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.size.height-15, 200, 20)];
+    descLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.size.height-20, 200, 20)];
     descLbl.textColor = [UIColor lightGrayColor];
     descLbl.textAlignment = NSTextAlignmentLeft;
     descLbl.font = [UIFont systemFontOfSize:12];
@@ -64,11 +64,10 @@
     
     
     [markView removeFromSuperview];
-    markView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, self.frame.size.height)];
-    markView.backgroundColor = [UIColor orangeColor];
-    [self.contentView addSubview:markView];
-    
+    markView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, self.frame.size.height)];
     markView.backgroundColor = [UIColor whiteColor];
+
+    [self.contentView addSubview:markView];
     
     [self.contentView addSubview:descLbl];
 }
@@ -79,7 +78,7 @@
 //    if (higth > 100) {
 //        higth = 100;
 //    }
-    return CGSizeMake(ZDWSCREEN_WIDTH-10, 70);
+    return CGSizeMake(ZDWSCREEN_WIDTH, 70);
 }
 
 

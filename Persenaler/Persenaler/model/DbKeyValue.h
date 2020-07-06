@@ -40,6 +40,7 @@ typedef enum _ValueType{
 
 +(int)getCurrentTime;
 -(NSDictionary*)getDicProperty;
+-(NSString*)getLatestSubRecordValue;// 当此项目为 ROOT 时
 
 @end
 

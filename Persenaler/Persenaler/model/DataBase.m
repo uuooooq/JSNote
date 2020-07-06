@@ -245,19 +245,16 @@ static DataBase *_DBCtl = nil;
 
              NSLog(@"========== recordTbz0013 migration start ");
              [self migrationRecordTbV13];
-
-//
-//             recordTBName = @"recordTbz0011";
-//             subRecordTBName = @"subRecordTbz0011";
          }
-
-
 
      }
      else{
          recordTBName = @"recordTbz0013";
          subRecordTBName = @"subRecordTbz0013";
      }
+    
+    
+    //创建目项属性和描述记录表
 
 
 
@@ -315,6 +312,14 @@ static DataBase *_DBCtl = nil;
 }
 
 -(void)updateKeyValueSubRelation:(SubRecord*)subRecord{
+
+    [_db open];
+    [_db executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET rootKey = ?, subKey = ?, createTime = ?  WHERE id = ?",subRecordTBName],subRecord.rootKey,subRecord.subKey,@(subRecord.createTime),@(subRecord.gID)];
+    [_db close];
+
+}
+
+-(void)updateSubRecord:(SubRecord*)subRecord{
 
     [_db open];
     [_db executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET rootKey = ?, subKey = ?, createTime = ?  WHERE id = ?",subRecordTBName],subRecord.rootKey,subRecord.subKey,@(subRecord.createTime),@(subRecord.gID)];

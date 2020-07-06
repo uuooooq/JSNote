@@ -18,7 +18,7 @@
 
 
 
-@interface ItemDetailViewController ()<AVAudioPlayerDelegate>{
+@interface ItemDetailViewController ()<AVAudioPlayerDelegate,UIDocumentPickerDelegate>{
     UIButton *playBtn;
 }
 
@@ -231,9 +231,9 @@
     }];
     
     [alert addAction:selectAction];
-    if (keyValue.type == VT_SUB_IMG || keyValue.type == VT_SUB_TEXT) {
+    //if (keyValue.type == VT_SUB_IMG || keyValue.type == VT_SUB_TEXT) {
         [alert addAction:moveAction];
-    }
+    //}
     if (keyValue.type == VT_SUB_IMG) {
         UIAlertAction *markAction = [UIAlertAction actionWithTitle:@"标记文字" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             DbKeyValue *editItem = [self.currentDataArr objectAtIndex:indexPath.row];
@@ -248,15 +248,25 @@
 
 -(void)copyAction{
     
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = self.fromKeyValue.value;
+//    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+//    pasteboard.string = self.fromKeyValue.value;
+//
+//    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:nil message:@"已经拷贝到剪贴板中" preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//
+//    }];
+//    [alertVC addAction:cancelAction];
+//    [self presentViewController:alertVC animated:YES completion:nil];
     
-    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:nil message:@"已经拷贝到剪贴板中" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [alertVC addAction:cancelAction];
-    [self presentViewController:alertVC animated:YES completion:nil];
+    /*
+     支持的文件类型
+     尝试将这个设置成一个空数组 验证效果。会很快明白这个设置是干嘛用的
+     */
+    NSArray *types = @[@"public.content",@"public.text",@"public.source-code",@"public.image",@"public.audiovisual-content",@"com.adobe.pdf",@"com.apple.keynote.key",@"com.microsoft.word.doc",@"com.microsoft.execl.xls",@"com.microsoft.powerpoint.ppt"];
+    
+    UIDocumentPickerViewController *vc = [[UIDocumentPickerViewController alloc]initWithDocumentTypes:types inMode:UIDocumentPickerModeOpen];
+    vc.delegate = self;
+    [self presentViewController:vc animated:YES completion:nil];
     
 }
 
@@ -586,5 +596,15 @@
 ////        [self.navigationController pushViewController:itemDetailVC animated:YES];
 ////    }
 //}
+
+#pragma mark -- UIDocumentPickerDelegate
+//选取到文件 回调
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray <NSURL *>*)urls {
+    
+}
+//取消的回调
+- (void)documentPickerWasCancelled:(UIDocumentPickerViewController *)controller {
+    
+}
 
 @end

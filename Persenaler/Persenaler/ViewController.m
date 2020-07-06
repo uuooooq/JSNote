@@ -158,9 +158,9 @@
     }];
     
     [alert addAction:selectAction];
-    if (keyValue.type == VT_TEXT || keyValue.type == VT_IMG) {
-        [alert addAction:moveAction];
-    }
+    //if (keyValue.type == VT_TEXT || keyValue.type == VT_IMG) {
+    [alert addAction:moveAction];
+    //}
     if (keyValue.type == VT_IMG) {
         UIAlertAction *markAction = [UIAlertAction actionWithTitle:@"标记文字" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             DbKeyValue *editItem = [self.currentDataArr objectAtIndex:indexPath.row];

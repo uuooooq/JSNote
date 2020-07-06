@@ -79,6 +79,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)deleteSubRecord:(SubRecord *)subRecord;
 
+-(void)updateSubRecord:(SubRecord*)subRecord;
+
 // migration kvTb kvGroupTb
 
 -(void)migrationDb;

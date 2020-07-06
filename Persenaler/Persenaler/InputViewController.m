@@ -83,6 +83,14 @@
         subRecord.createTime = subItem.createTime;
         
         [self.dataSource addSubRecord:subRecord];
+        
+        
+        NSMutableDictionary *fromPropertyDic = [NSMutableDictionary dictionary];
+        [fromPropertyDic setValue:@"" forKey:@"markcolor"];
+        [fromPropertyDic setValue:@"" forKey:@"markstr"];
+        [fromPropertyDic setValue:subItem.key forKey:@"latestsubkey"];
+        self.fromKeyValue.property = [ZDWUtility convertStringFromDic:fromPropertyDic];
+        [self.dataSource updateKeyValue:self.fromKeyValue];
     }
     else{
         DbKeyValue * keyValue = [DbKeyValue new];

@@ -67,6 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)deleteSubRecord:(SubRecord *)subRecord;
 
+-(void)updateSubRecord:(SubRecord*)subRecord;
+
 @end
 
 NS_ASSUME_NONNULL_END

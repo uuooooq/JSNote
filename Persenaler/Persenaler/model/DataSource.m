@@ -192,6 +192,10 @@ static DataSource *_DBCtl = nil;
     [[DataBase sharedDataBase] updateKeyValueSubRelation:subRecord];
 }
 
+-(void)updateSubRecord:(SubRecord*)subRecord{
+    [[DataBase sharedDataBase] updateSubRecord:subRecord];
+}
+
 -(void)addSubRecord:(SubRecord*)subRecord{
     [[DataBase sharedDataBase] addKeyValueSubRelation:subRecord];
 }
