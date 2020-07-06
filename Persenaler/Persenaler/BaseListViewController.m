@@ -351,6 +351,30 @@
     
 }
 
+-(void)savePhotoAction:(DbKeyValue*)keyvalue{
+    
+    NSString* filePath = [ZDWUtility getImagePath:keyvalue.value];
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+
+    NSLog(@"image = %@, error = %@, contextInfo = %@", image, error.description, contextInfo);
+    
+    if (!error) {
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:nil message:@"已经保存到相册中" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alertVC addAction:cancelAction];
+        [self presentViewController:alertVC animated:YES completion:nil];
+    }
+    
+    
+}
+
 
 -(void)addAction{
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"选择类型"

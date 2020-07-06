@@ -8,6 +8,7 @@
 
 #import "InputViewController.h"
 #import "ZDWUtility.h"
+#import "FolderViewController.h"
 //#import <IQKeyboardManager/IQKeyboardManager.h>
 
 
@@ -31,12 +32,55 @@
     
     [self.view addSubview:_textView];
     
-    UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
-    self.navigationItem.rightBarButtonItem = moreItem;
+    UIBarButtonItem *saveItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
+    UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithTitle:@"更多" style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
+    //self.navigationItem.rightBarButtonItem = moreItem;
+    
+    self.navigationItem.rightBarButtonItems = @[saveItem,moreItem];
+    
     
     if (self.editKeyValue) {
         self.textView.text = self.editKeyValue.value;
     }
+}
+
+-(void)moreAction{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *selectAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //[self deleteAction:keyValue withIndexPath:indexPath];
+        [self.dataSource deleteKeyValue:self.editKeyValue];
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"refetchData" object:nil];
+        [alert dismissViewControllerAnimated:YES completion:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        } ];
+        
+    }];
+
+    UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"移动" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        DbKeyValue *moveItem = self.editKeyValue;//[self.currentDataArr objectAtIndex:indexPath.row];
+        FolderViewController *folderVc = [FolderViewController new];
+        folderVc.moveKeyValue = moveItem;
+        //folderVc.fromKeyValue = self.fromKeyValue;
+        
+        UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:folderVc];
+        [self presentViewController:navVC animated:YES completion:^{
+            
+        }];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [alert addAction:selectAction];
+    [alert addAction:moveAction];
+    
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
 }
 
 -(void)saveAction{

@@ -54,7 +54,7 @@
     }
     if (self.fromKeyValue.type == VT_ROOT || self.fromKeyValue.type == VT_TEXT || self.fromKeyValue.type == VT_SUB_ROOT) {
         [_newFunctionView updateViewFunctionState:VS_ItemDetail_Text];
-        [_newFunctionView.copyyBtn addTarget:self action:@selector(copyAction) forControlEvents:UIControlEventTouchUpInside];
+        //[_newFunctionView.copyyBtn addTarget:self action:@selector(copyAction) forControlEvents:UIControlEventTouchUpInside];
         [_newFunctionView.folderBtn addTarget:self action:@selector(newFolderAction) forControlEvents:UIControlEventTouchUpInside];
     }
     else if(self.fromKeyValue.type == VT_IMG){
@@ -226,6 +226,11 @@
             
         }];
     }];
+    
+    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"保存到相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //[self deleteAction:keyValue withIndexPath:indexPath];
+        [self savePhotoAction:keyValue];
+    }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }];
@@ -234,8 +239,11 @@
     //if (keyValue.type == VT_SUB_IMG || keyValue.type == VT_SUB_TEXT) {
         [alert addAction:moveAction];
     //}
+    if (keyValue.type == VT_SUB_IMG || keyValue.type == VT_IMG) {
+        [alert addAction:saveAction];
+    }
     if (keyValue.type == VT_SUB_IMG) {
-        UIAlertAction *markAction = [UIAlertAction actionWithTitle:@"标记文字" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *markAction = [UIAlertAction actionWithTitle:@"文字备注" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             DbKeyValue *editItem = [self.currentDataArr objectAtIndex:indexPath.row];
             [self showPhotoTextEditView:editItem withIndexPath:indexPath];
         }];
@@ -294,29 +302,29 @@
     [popupController presentInViewController:self];
 }
 
--(void)saveAction{
-    NSString* filePath = [ZDWUtility getImagePath:self.fromKeyValue.value];//[self getImagePath:value.value];
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
-    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
-    
-}
-
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
-
-    NSLog(@"image = %@, error = %@, contextInfo = %@", image, error.description, contextInfo);
-    
-    if (!error) {
-        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:nil message:@"已经保存到相册中" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
-        }];
-        [alertVC addAction:cancelAction];
-        [self presentViewController:alertVC animated:YES completion:nil];
-    }
-    
-    
-}
+//-(void)saveAction{
+//    NSString* filePath = [ZDWUtility getImagePath:self.fromKeyValue.value];//[self getImagePath:value.value];
+//    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
+//    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
+//    
+//}
+//
+//- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+//{
+//
+//    NSLog(@"image = %@, error = %@, contextInfo = %@", image, error.description, contextInfo);
+//    
+//    if (!error) {
+//        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:nil message:@"已经保存到相册中" preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//            
+//        }];
+//        [alertVC addAction:cancelAction];
+//        [self presentViewController:alertVC animated:YES completion:nil];
+//    }
+//    
+//    
+//}
 
 -(void)addTextAction{
     

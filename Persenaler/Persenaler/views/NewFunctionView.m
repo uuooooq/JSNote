@@ -77,18 +77,6 @@
             [self.folderBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [self addSubview:self.folderBtn];
             
-            self.copyyBtn = [[UIButton alloc] initWithFrame:CGRectMake(20+60+60+60, 7, 32, 32)];
-            //[self.editBtn setTitle:@"视频" forState:UIControlStateNormal];
-            [self.copyyBtn setImage:[UIImage imageNamed:@"copy"] forState:UIControlStateNormal];
-            //[self.editBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [self addSubview:self.copyyBtn];
-
-//            self.copyyBtn = [[UIButton alloc] initWithFrame:CGRectMake(20+60+60+60, 7, 32, 32)];
-//            //[self.copyyBtn setTitle:@"音频" forState:UIControlStateNormal];
-//            [self.copyyBtn setImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
-//            //[self.copyyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//            [self addSubview:self.copyyBtn];
-            
         }
             break;
         default:

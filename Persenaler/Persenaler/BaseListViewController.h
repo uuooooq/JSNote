@@ -67,6 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(UINavigationController*)getCurrentNavigationController;
 
+-(void)savePhotoAction:(DbKeyValue*)keyvalue;
+
 
 
 @end

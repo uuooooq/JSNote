@@ -156,13 +156,17 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }];
+    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"保存到相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self savePhotoAction:keyValue];
+    }];
     
     [alert addAction:selectAction];
-    //if (keyValue.type == VT_TEXT || keyValue.type == VT_IMG) {
     [alert addAction:moveAction];
-    //}
     if (keyValue.type == VT_IMG) {
-        UIAlertAction *markAction = [UIAlertAction actionWithTitle:@"标记文字" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alert addAction:saveAction];
+    }
+    if (keyValue.type == VT_IMG) {
+        UIAlertAction *markAction = [UIAlertAction actionWithTitle:@"文字备注" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             DbKeyValue *editItem = [self.currentDataArr objectAtIndex:indexPath.row];
             [self showPhotoTextEditView:editItem withIndexPath:indexPath];
         }];
