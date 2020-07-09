@@ -41,6 +41,14 @@
     self.navigationItem.rightBarButtonItem = moreItem;//@[saveItem,moreItem];
     
     self.navigationController.navigationBar.hidden = YES;
+    
+    NSDictionary * propertyDic = [self.imgKeyValue getDicProperty];
+    if (propertyDic) {
+        NSString * markstr = [propertyDic objectForKey:@"markstr"];
+        if ([markstr length] > 0) {
+            self.title = markstr;
+        }
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
