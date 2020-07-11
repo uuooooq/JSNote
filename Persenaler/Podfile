@@ -7,9 +7,9 @@ target 'Persenaler' do
   use_frameworks!
 
   # Pods for Persenaler
-  pod "GCDWebServer", "~> 3.0"
-  pod "GCDWebServer/WebUploader", "~> 3.0"
-  pod "GCDWebServer/WebDAV", "~> 3.0"
+  #pod "GCDWebServer", "~> 3.0"
+  #pod "GCDWebServer/WebUploader", "~> 3.0"
+  #pod "GCDWebServer/WebDAV", "~> 3.0"
   pod 'FMDB'
   pod 'TZImagePickerController'
   pod 'IQKeyboardManager'

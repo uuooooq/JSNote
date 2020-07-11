@@ -40,8 +40,8 @@
     [self initView];
     //[self receiveNotiAction];
     [self loadNextPage];
-    [self.shuKucollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
-    self.layout.headerReferenceSize = CGSizeMake(ZDWSCREEN_WIDTH, 50.0f);  //设置headerView大小
+    //[self.shuKucollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+    //self.layout.headerReferenceSize = CGSizeMake(ZDWSCREEN_WIDTH, 50.0f);  //设置headerView大小
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveServerNotiAction) name:@"serverRunning" object:nil];
     [self.bottomView addSubview:self.newFunctionView];
@@ -235,8 +235,9 @@
         for (DbKeyValue* item in arr) {
             [self.currentDataArr insertObject:item atIndex:0];
         }
-        [self.shuKucollectionView reloadData];
+        
     }
+    [self.shuKucollectionView reloadData];
     
 }
 
@@ -248,7 +249,7 @@
 -(void)receiveServerNotiAction{
 //    self.searchController.searchBar.searchFieldBackgroundPositionAdjustment = UIOffsetMake(0, 20);
 //    self.searchController.searchBar.prompt = @"xxxksdfjkslflsd";//[self.serverHeadler getAddr];
-    self.promtLbl.text = [NSString stringWithFormat:@"网页访问: %@",[self.serverHeadler getAddr]];
+//    self.promtLbl.text = [NSString stringWithFormat:@"网页访问: %@",[self.serverHeadler getAddr]];
 }
 
 -(void)goSettingAction{
@@ -281,12 +282,12 @@
 }
 
 
-- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-    [headerView addSubview:self.promtLbl];
-    return headerView;
-}
+//- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+//{
+//    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+//    [headerView addSubview:self.promtLbl];
+//    return headerView;
+//}
 
 //-(void)didSelectionCell:(NSIndexPath*)indexPath{
 //    

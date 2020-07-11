@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(int)getCurrentTime;
 
++(UIColor *) getColor:(NSString *)hexColor;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -16,7 +16,6 @@
 		E65609D424336BA10089B3C6 /* DbKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E65609D024336BA10089B3C6 /* DbKeyValue.m */; };
 		E65609D524336BA10089B3C6 /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E65609D124336BA10089B3C6 /* DataBase.m */; };
 		E66E89252446FC1500F1DABC /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = E66E89242446FC1500F1DABC /* test.png */; };
-		E66E892A244BE4A800F1DABC /* ZUtitlity.h in Sources */ = {isa = PBXBuildFile; fileRef = E66E8929244BE4A800F1DABC /* ZUtitlity.h */; };
 		E66E892D244DAE4F00F1DABC /* ZDWUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E66E892C244DAE4F00F1DABC /* ZDWUtility.m */; };
 		E66E8930244DB96700F1DABC /* ImageRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E66E892F244DB96700F1DABC /* ImageRecordCell.m */; };
 		E67A47E32401ED9100FA357B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E67A47E22401ED9100FA357B /* AppDelegate.m */; };
@@ -47,7 +46,7 @@
 		E68C179124AADE3F008E7232 /* AddPhotoTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C179024AADE3F008E7232 /* AddPhotoTextViewController.m */; };
 		E68C179524ADCE66008E7232 /* PhotoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C179424ADCE66008E7232 /* PhotoDetailViewController.m */; };
 		E68C179824ADD5C0008E7232 /* CreateFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C179724ADD5C0008E7232 /* CreateFolderViewController.m */; };
-		E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */; };
+		E68C181324B93645008E7232 /* persenaler.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C181224B93645008E7232 /* persenaler.m */; };
 		E6DDD8FF249758B800E1B5C6 /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */; };
 		E6DDD9032498880600E1B5C6 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD9022498880600E1B5C6 /* Record.m */; };
 		E6DDD90624989AF600E1B5C6 /* SubRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD90524989AF600E1B5C6 /* SubRecord.m */; };
@@ -174,7 +173,6 @@
 		E65609D224336BA10089B3C6 /* DbKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DbKeyValue.h; sourceTree = "<group>"; };
 		E65609D324336BA10089B3C6 /* DataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBase.h; sourceTree = "<group>"; };
 		E66E89242446FC1500F1DABC /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
-		E66E8929244BE4A800F1DABC /* ZUtitlity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZUtitlity.h; sourceTree = "<group>"; };
 		E66E892B244DAE4F00F1DABC /* ZDWUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDWUtility.h; sourceTree = "<group>"; };
 		E66E892C244DAE4F00F1DABC /* ZDWUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDWUtility.m; sourceTree = "<group>"; };
 		E66E892E244DB96700F1DABC /* ImageRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageRecordCell.h; sourceTree = "<group>"; };
@@ -230,8 +228,8 @@
 		E68C179424ADCE66008E7232 /* PhotoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoDetailViewController.m; sourceTree = "<group>"; };
 		E68C179624ADD5C0008E7232 /* CreateFolderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateFolderViewController.h; sourceTree = "<group>"; };
 		E68C179724ADD5C0008E7232 /* CreateFolderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateFolderViewController.m; sourceTree = "<group>"; };
-		E6D0DF1324199BC2007DD127 /* HttpServerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpServerHandler.h; sourceTree = "<group>"; };
-		E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpServerHandler.m; sourceTree = "<group>"; };
+		E68C181124B93645008E7232 /* persenaler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = persenaler.h; sourceTree = "<group>"; };
+		E68C181224B93645008E7232 /* persenaler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = persenaler.m; sourceTree = "<group>"; };
 		E6DDD8FD249758B800E1B5C6 /* UpdateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
 		E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
 		E6DDD9002497659900E1B5C6 /* 数据表升级.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "数据表升级.md"; sourceTree = "<group>"; };
@@ -448,7 +446,6 @@
 				E67A47EF2401ED9500FA357B /* LaunchScreen.storyboard */,
 				E67A47F22401ED9500FA357B /* Info.plist */,
 				E67A47F32401ED9500FA357B /* main.m */,
-				E66E8929244BE4A800F1DABC /* ZUtitlity.h */,
 				E66E892B244DAE4F00F1DABC /* ZDWUtility.h */,
 				E66E892C244DAE4F00F1DABC /* ZDWUtility.m */,
 				E63368642462AF6B00FC0BEC /* note.md */,
@@ -481,6 +478,8 @@
 				E68C179424ADCE66008E7232 /* PhotoDetailViewController.m */,
 				E68C179624ADD5C0008E7232 /* CreateFolderViewController.h */,
 				E68C179724ADD5C0008E7232 /* CreateFolderViewController.m */,
+				E68C181124B93645008E7232 /* persenaler.h */,
+				E68C181224B93645008E7232 /* persenaler.m */,
 			);
 			path = Persenaler;
 			sourceTree = "<group>";
@@ -494,8 +493,6 @@
 				E65609D024336BA10089B3C6 /* DbKeyValue.m */,
 				E67A48042403567500FA357B /* DataSource.h */,
 				E67A48052403567500FA357B /* DataSource.m */,
-				E6D0DF1324199BC2007DD127 /* HttpServerHandler.h */,
-				E6D0DF1424199BC2007DD127 /* HttpServerHandler.m */,
 				E633686E247274C500FC0BEC /* DbKeyValueGroup.h */,
 				E633686F247274C500FC0BEC /* DbKeyValueGroup.m */,
 				E6DDD9012498880600E1B5C6 /* Record.h */,
@@ -900,6 +897,7 @@
 				E63368732472839E00FC0BEC /* ItemDetailViewController.m in Sources */,
 				E6DDD9032498880600E1B5C6 /* Record.m in Sources */,
 				E67A47E92401ED9100FA357B /* ViewController.m in Sources */,
+				E68C181324B93645008E7232 /* persenaler.m in Sources */,
 				E6336867246A9DDE00FC0BEC /* SearchViewController.m in Sources */,
 				E68586F0248CD2F100712095 /* AudioDetailCell.m in Sources */,
 				E67A47E32401ED9100FA357B /* AppDelegate.m in Sources */,
@@ -922,7 +920,6 @@
 				E68C179524ADCE66008E7232 /* PhotoDetailViewController.m in Sources */,
 				E6E189D624A72776003AE0A2 /* TextEditorViewController.m in Sources */,
 				E68586E3248C4D5800712095 /* AudioOperateViewCell.m in Sources */,
-				E66E892A244BE4A800F1DABC /* ZUtitlity.h in Sources */,
 				E6E18AAB24A81464003AE0A2 /* HRColorCursor.m in Sources */,
 				E6E18AA624A81464003AE0A2 /* CYRLayoutManager.m in Sources */,
 				E6E18AA124A81464003AE0A2 /* ZSSFontsViewController.m in Sources */,
@@ -943,7 +940,6 @@
 				E67A47E62401ED9100FA357B /* SceneDelegate.m in Sources */,
 				E6E18AA224A81464003AE0A2 /* HRCgUtil.m in Sources */,
 				E68C179124AADE3F008E7232 /* AddPhotoTextViewController.m in Sources */,
-				E6D0DF1524199BC2007DD127 /* HttpServerHandler.m in Sources */,
 				E66E8930244DB96700F1DABC /* ImageRecordCell.m in Sources */,
 				E681692E24863F45005E2A81 /* RecordAudioController.m in Sources */,
 				E65609D524336BA10089B3C6 /* DataBase.m in Sources */,

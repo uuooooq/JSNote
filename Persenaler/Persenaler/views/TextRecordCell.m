@@ -7,6 +7,7 @@
 //
 
 #import "TextRecordCell.h"
+#import "persenaler.h"
 @interface  TextRecordCell(){
     
     UILabel *title;
@@ -39,7 +40,7 @@
     //title.text = value.value;
     [title removeFromSuperview];
     title = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.frame.size.width-10-10, self.frame.size.height-22)];
-    title.textColor = [UIColor blackColor];
+    title.textColor = TitleColor;
     title.numberOfLines = 3;
     //title.attributedText = [ZDWUtility getLabelAttributeString:value.value];
     //title.backgroundColor = [UIColor grayColor];
@@ -51,7 +52,7 @@
     
     [descLbl removeFromSuperview];
     descLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.size.height-20, 200, 20)];
-    descLbl.textColor = [UIColor lightGrayColor];
+    descLbl.textColor = timeDescColor;
     descLbl.textAlignment = NSTextAlignmentLeft;
     descLbl.font = [UIFont systemFontOfSize:12];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:value.createTime];

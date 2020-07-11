@@ -33,10 +33,18 @@
     [self.view addSubview:_textView];
     
     UIBarButtonItem *saveItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
-    UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithTitle:@"更多" style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
-    //self.navigationItem.rightBarButtonItem = moreItem;
     
-    self.navigationItem.rightBarButtonItems = @[saveItem,moreItem];
+    if(self.editKeyValue){
+        UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithTitle:@"更多" style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
+        //self.navigationItem.rightBarButtonItem = moreItem;
+        
+        self.navigationItem.rightBarButtonItems = @[saveItem,moreItem];
+    }
+    else{
+        self.navigationItem.rightBarButtonItem = saveItem;
+    }
+    
+
     
     
     if (self.editKeyValue) {

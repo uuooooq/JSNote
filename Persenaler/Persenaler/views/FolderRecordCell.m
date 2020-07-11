@@ -7,6 +7,7 @@
 //
 
 #import "FolderRecordCell.h"
+#import "persenaler.h"
 
 @interface  FolderRecordCell(){
     
@@ -40,19 +41,19 @@
     [self.contentView addSubview:markView];
     
     title = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.frame.size.width-10-40, 20)];
-    title.textColor = [UIColor blackColor];
+    title.textColor = TitleColor;
     title.numberOfLines = 1;
     title.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:title];
     
     subLbl = [[UILabel alloc] initWithFrame:CGRectMake(10+20, 5+20, self.frame.size.width-10-40-20-10, 20)];
-    subLbl.textColor = [UIColor placeholderTextColor];
+    subLbl.textColor = SubTitleColor;
     subLbl.numberOfLines = 2;
     subLbl.font = [UIFont systemFontOfSize:12];
     [self.contentView addSubview:subLbl];
     
     descLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.size.height-20, 200, 20)];
-    descLbl.textColor = [UIColor lightGrayColor];
+    descLbl.textColor = timeDescColor;
     descLbl.textAlignment = NSTextAlignmentLeft;
     descLbl.font = [UIFont systemFontOfSize:12];
     [self.contentView addSubview:descLbl];

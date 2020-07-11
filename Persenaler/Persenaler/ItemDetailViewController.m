@@ -140,9 +140,9 @@
         for (DbKeyValue* item in arr) {
             [self.currentDataArr insertObject:item atIndex:0];
         }
-        [self.shuKucollectionView reloadData];
+        
     }
-    
+    [self.shuKucollectionView reloadData];
     
 }
 
