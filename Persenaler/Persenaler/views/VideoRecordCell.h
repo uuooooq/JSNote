@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DbKeyValue.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VideoRecordCell : UICollectionViewCell
+
+-(void)updateRecord:(DbKeyValue*)value;
+@property(nonatomic,strong) UIButton * commBtn;
+@property(nonatomic,strong) UIButton * fullsizeBtn;
 
 @end
 

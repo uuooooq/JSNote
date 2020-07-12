@@ -13,4 +13,6 @@ target 'Persenaler' do
   pod 'FMDB'
   pod 'TZImagePickerController'
   pod 'IQKeyboardManager'
+  pod 'MJRefresh'
+  pod 'STPopup'
 end

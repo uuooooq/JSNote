@@ -22,12 +22,15 @@
 -(void)initView{
     
     _imgView = [[UIImageView alloc] initWithFrame:self.bounds];
+    _imgView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:_imgView];
     
     _closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, self.frame.size.height-10-24, 24, 24)];
     [_closeBtn setImage:[UIImage imageNamed:@"closeFullsize"] forState:UIControlStateNormal];
-    [_closeBtn setBackgroundColor:[UIColor whiteColor]];
+    [_closeBtn setBackgroundColor:[UIColor clearColor]];
     [self addSubview:_closeBtn];
+    
+    self.backgroundColor = [UIColor blackColor];
 }
 
 -(void)showImage:(NSString*)imgName{

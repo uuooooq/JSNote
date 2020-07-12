@@ -1,16 +1,20 @@
 import React from 'react';
 import './App.css';
-import { Affix, Button, List, Divider, Radio, Upload, message } from 'antd';
+import { Affix, Button, Table } from 'antd';
 import { Layout } from 'antd';
 import TextareaAutosize from 'react-textarea-autosize';
 import 'antd/dist/antd.css';
+//import {FolderOutlined} from '@ant-design/icons'
+
+
+
 const { Content } = Layout;
 //import { Upload, message, Button } from 'antd';
 //import { UploadOutlined } from '@ant-design/icons';
 
 
-const httpPre = 'http://'+window.location.host 
-//const httpPre = 'http://192.168.1.12:8080'
+//const httpPre = 'http://'+window.location.host 
+const httpPre = 'http://192.168.1.9:8080'
 const imgPre = httpPre + '/file?imageName='
 const uploadUrl = httpPre + '/upload'
 
@@ -175,19 +179,28 @@ export default class App extends React.Component {
       });
   }
 
+  showDetailView(value){
+
+    alert('show detail view'+value.value);
+
+  }
+
   createTextDisplay(value) {
 
     if (value.type == '2' || value.type.inputValue == 2) {
       return (
         <div>
+          <Button onClick={this.showDetailView.bind(this,value)}>更多</Button>
           <img height={360} src={imgPre + value.value} />
         </div>
       )
     }
     else {
-      return (
+      return ( 
         <div>
+          <Button onClick={this.showDetailView.bind(this,value)}>更多</Button>
           <pre>{value.value}</pre>
+          
 
         </div>
       );
@@ -211,9 +224,9 @@ export default class App extends React.Component {
       body: form,
 
     }).then(function (response) {
-
-        return response.json();
         alert('上传成功')
+        return response.json();
+        
       }).then((e) => {
 
         console.log(e)
@@ -227,58 +240,32 @@ export default class App extends React.Component {
 
   render() {
 
+    const column= [
+      {
+        title:'',
+        dataIndex:'value',
+        key:'value',
+      render: text => <a>{text}</a>
+      }
+    ];
+
     return (
 
-      <div>
-        <Layout>
-          <Content>
-            <Affix offsetTop={0} >
-              <div style={{ display: 'flex', width: '100%', flexDirection: 'column' }}>
-                <div style={{ display: 'flex', width: '100%', backgroundColor: 'white', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'baseline' }}>
-                  {/* <Button onClick={this.onSaveFile.bind(this)}>添加文件</Button> */}
-                  <div>
-                  <input type="file" name='file' ref={this.fileInput}/>
-                <input type="button" value="上传" onClick={this.onSaveFile.bind(this)}/>
-                  </div>
-                  <Button>取消(ctrl+c)</Button>
-                  <Button onClick={this.onSave.bind(this)} >保存(ctrl+s)</Button>
-                </div>
-                <div style={{ display: 'flex', width: '100%', backgroundColor: 'gray', flexDirection: 'row' }}>
-                  <TextareaAutosize onChange={this.handleChange.bind(this)} placeholder="请输入内容" value={this.state.inputValue} style={{ flexGrow: '1' }} />
-                </div>
 
-              </div>
-            </Affix>
             <div style={{ display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'white' }}>
-              <List
-                itemLayout="horizontal"
-                dataSource={this.state.myData}
-                size="large"
-                renderItem={item => (
-                  <div style={{ display: 'flex', flex: '1', flexDirection: 'column', marginRight: 200, marginLeft: 200 }}>
-                    <div style={{ display: 'flex', flex: '1', padding: '10px' }}>
-                      {this.createTextDisplay(item)}
-                    </div>
-
-                    <Divider></Divider>
-                  </div>
-
-                )}
-                pagination={{
-                  onChange: page => {
-                    console.log(page);
-                  },
-                  pageSize: 30,
-                }}
-              />
+                <Table 
+                columns={column} 
+                dataSource={this.state.myData} 
+                pagination={{pageSize:20}}
+                onRow={(record) => {
+                  return {
+                    onClick:() => {
+                      alert(record.value)
+                    }
+                  }
+                } }
+                ></Table>
             </div>
-
-
-          </Content>
-
-        </Layout>
-
-      </div>
     );
   }
 }

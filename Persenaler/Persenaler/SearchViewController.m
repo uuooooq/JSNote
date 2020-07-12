@@ -10,6 +10,7 @@
 #import "DataSource.h"
 #import "ItemDetailViewController.h"
 #import "TestViewController.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface SearchViewController ()<UITextFieldDelegate>{
     UITextField *searchTF;
@@ -34,6 +35,8 @@
     searchTF.keyboardType = UIKeyboardTypeWebSearch;
     self.navigationItem.titleView = searchTF;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelAction)];
+    
+    
 }
 
 -(void)cancelAction{
@@ -75,9 +78,14 @@
         [self.currentDataArr removeAllObjects];
         NSMutableArray *tmpArr = [NSMutableArray arrayWithArray:[self.dataSource getSearchKeyValueWith:searchStr]];
         [self.currentDataArr addObjectsFromArray:tmpArr];
+        
     }
 
     [self.shuKucollectionView reloadData];
+    //[self.shuKucollectionView.mj_footer setState:MJRefreshStateNoMoreData];
+    //[self.footer setTitle:@"已无更多数据" forState:MJRefreshStateIdle];
+    //self.shuKucollectionView.mj_footer.hidden = YES;
+    [self noMoreData];
 }
 
 #pragma mark UITextFielddelegate
@@ -109,6 +117,10 @@
     
     ItemDetailViewController *itemDetailVC = [ItemDetailViewController new];
     itemDetailVC.fromKeyValue = [self.currentDataArr objectAtIndex:indexPath.row];
+    //itemDetailVC.title = @"详情";
+    //itemDetailVC.navigationController.navigationBar.prefersLargeTitles = YES;
+    itemDetailVC.title = itemDetailVC.fromKeyValue.value;
+    itemDetailVC.isDetailPage = YES;
     [self.navigationController pushViewController:itemDetailVC animated:YES];
     
 //    TestViewController *testVc = [TestViewController new];

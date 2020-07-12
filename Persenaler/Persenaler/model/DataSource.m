@@ -7,6 +7,7 @@
 //
 
 #import "DataSource.h"
+#import "ZDWUtility.h"
 
 static DataSource *_DBCtl = nil;
 
@@ -54,13 +55,14 @@ static DataSource *_DBCtl = nil;
 -(void)loadRecord{
 //    DbKeyValue *mKeyValue = [DbKeyValue new];
 //    mKeyValue.key = self.jsonObjectStrKey;
-    NSArray* tmpArr = [[DataBase sharedDataBase] getKeyValuesFrom:0 to:100];
+    NSArray* tmpArr = [[DataBase sharedDataBase] getKeyValuesFrom:0 to:10];
     if (tmpArr) {
         //[self.recordArr addObjectsFromArray:tmpArr];
         [self.recordArr removeAllObjects];
         [self.recordArr addObjectsFromArray:tmpArr];
     }
 }
+
 -(void)loadRecordGroup:(NSString*)rootID{
     NSArray* tmpArr = [[DataBase sharedDataBase] getKeyValueGroups:rootID];
     if (tmpArr) {
@@ -76,6 +78,16 @@ static DataSource *_DBCtl = nil;
         return tmpArr;
     }
     return [[NSArray alloc] init];
+}
+
+-(NSArray*)getRecordsObjFrom:(int)start to:(int)end{
+    
+    NSArray* tmpArr = [[DataBase sharedDataBase] getKeyValuesFrom:start to:end];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+    
 }
 
 -(NSArray*)getSearchWith:(NSString*)key{
@@ -107,6 +119,63 @@ static DataSource *_DBCtl = nil;
     return [[NSArray alloc] init];
 }
 
+- (NSArray*)getKeyValueGroups:(NSString *)rootKey withSubKey:(NSString*)subKey{
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getKeyValueGroups:rootKey withSubKey:subKey];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+}
+
+- (NSArray*)getSubRecordWithSubKey:(NSString*)subKey{
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordWithSubKey:subKey];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+}
+
+-(NSArray*)getSubRecordsWith:(NSString*)rootKey{
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordsWith:rootKey];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+}
+
+-(NSArray*)getSubRecordsWith:(NSString*)rootKey from:(int)start to:(int)end{
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordsWith:rootKey from:start to:end];//getSubRecordsWith:rootKey];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+    
+}
+
+-(NSArray*)getNewSubRecordsWithCreateTime:(int)createTime withRootKey:(NSString*)rootKey{
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getNewSubRecordsWithCreateTime:createTime withRootKey:rootKey];//getSubRecordsWith:rootKey];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+    
+}
+
+-(NSArray*)getNewRecordsWithCreateTime:(int)createTime{
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getNewRecordsWithCreateTime:createTime];//getSubRecordsWith:rootKey];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+    
+}
+
 -(void)addRecord:(DbKeyValue*)value{
     [[DataBase sharedDataBase] addKeyValue:value];
     //if ([self.recordArr count] <101) {
@@ -115,8 +184,20 @@ static DataSource *_DBCtl = nil;
     //}
 }
 
--(void)addRecordGroup:(DbKeyValueGroup*)group{
-    [[DataBase sharedDataBase] addkeyValueGroup:group];
+//-(void)addRecordGroup:(DbKeyValueGroup*)group{
+//    [[DataBase sharedDataBase] addkeyValueGroup:group];
+//}
+
+-(void)updateKeyValueSubRelation:(SubRecord*)subRecord{
+    [[DataBase sharedDataBase] updateKeyValueSubRelation:subRecord];
+}
+
+-(void)updateSubRecord:(SubRecord*)subRecord{
+    [[DataBase sharedDataBase] updateSubRecord:subRecord];
+}
+
+-(void)addSubRecord:(SubRecord*)subRecord{
+    [[DataBase sharedDataBase] addKeyValueSubRelation:subRecord];
 }
 
 -(NSArray*)getSearchKeyValueWith:(NSString*)key{
@@ -126,5 +207,79 @@ static DataSource *_DBCtl = nil;
     }
     return [[NSArray alloc] init];
 }
+
+
+- (NSArray*)getSubRecordsWith:(NSString *)rootKey pageNumWith:(int)pageNum pageWith:(int)createTime{
+    
+    if (createTime == 0) {
+        createTime = [ZDWUtility getCurrentTime];
+    }
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordsWith:rootKey pageNumWith:pageNum pageWith:createTime];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+    
+}
+
+- (NSArray*)getSubRecordsFolderWith:(NSString *)rootKey pageNumWith:(int)pageNum pageWith:(int)createTime{
+    
+    if (createTime == 0) {
+        createTime = [ZDWUtility getCurrentTime];
+    }
+    
+    NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordsFolderWith:rootKey pageNumWith:pageNum pageWith:createTime];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+    
+}
+
+- (NSArray *)getKeyValuesPageNumWith:(int)pageNum pageWith:(int)createTime{
+    
+    if (createTime == 0) {
+        createTime = [ZDWUtility getCurrentTime];
+    }
+    
+    //NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordsWith:rootKey pageNumWith:pageNum pageWith:createTime];
+    NSArray* tmpArr = [[DataBase sharedDataBase] getKeyValuesPageNumWith:pageNum pageWith:createTime];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+    
+}
+
+- (NSArray *)getKeyValuesFolderPageNumWith:(int)pageNum pageWith:(int)createTime{
+    
+    if (createTime == 0) {
+        createTime = [ZDWUtility getCurrentTime];
+    }
+    
+    //NSArray *tmpArr = [[DataBase sharedDataBase] getSubRecordsWith:rootKey pageNumWith:pageNum pageWith:createTime];
+    NSArray* tmpArr = [[DataBase sharedDataBase] getKeyValuesFolderPageNumWith:pageNum pageWith:createTime];//getKeyValuesPageNumWith:pageNum pageWith:createTime];
+    if (tmpArr) {
+        return tmpArr;
+    }
+    return [[NSArray alloc] init];
+}
+
+-(void)updateKeyValue:(DbKeyValue*)keyValue{
+    [[DataBase sharedDataBase] updateKeyValue:keyValue];
+}
+
+- (void)deleteKeyValue:(DbKeyValue *)keyValue{
+    
+    [[DataBase sharedDataBase] deleteKeyValue:keyValue];
+}
+
+- (void)deleteSubRecord:(SubRecord *)subRecord{
+    
+    [[DataBase sharedDataBase] deleteSubRecord:subRecord];
+    
+}
+
 
 @end

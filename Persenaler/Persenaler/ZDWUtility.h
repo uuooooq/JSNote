@@ -27,6 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)copyBigFileFromPath:(NSString*)fromPath;
 
++(NSMutableAttributedString*)getLabelAttributeString:(NSString*)currentStr withFontSize:(UIFont*)foneSize;
++(CGFloat)getLabelHight:(NSString*)currentStr withWidth:(CGFloat)currentWidth withFontSize:(UIFont*)foneSize;
+
++(int)getCurrentTime;
+
 @end
 
 NS_ASSUME_NONNULL_END

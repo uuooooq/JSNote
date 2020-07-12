@@ -7,13 +7,13 @@
 //
 
 #import "BaseListViewController.h"
-
+#import "NewFunctionView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ItemDetailViewController : BaseListViewController
 
 @property(nonatomic,strong) DbKeyValue *fromKeyValue;
-
+@property(nonatomic,strong) NewFunctionView *newFunctionView;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -20,16 +20,12 @@ typedef enum _ValueType{
     VT_ALL = 0,
     VT_TEXT,
     VT_IMG,
-    VT_VIDEO,
-    VT_AUDIO,
+    VT_ROOT,
     VT_ROOT_TEXT = 10,
     VT_ROOT_IMG,
-    VT_ROOT_VIDEO,
-    VT_ROOT_AUDIO,
     VT_SUB_TEXT = 20,
     VT_SUB_IMG,
-    VT_SUB_VIDEO,
-    VT_SUB_AUDIO
+    VT_SUB_ROOT = 30
 }ValueType;
 
 @interface DbKeyValue : NSObject
@@ -38,10 +34,13 @@ typedef enum _ValueType{
 @property(nonatomic,strong) NSString *key;
 @property(nonatomic,strong) NSString *value;
 @property(nonatomic,assign) int createTime;
-@property(nonatomic,strong) NSString *extCategory; //dictionary <-> json string
 @property(nonatomic,assign) ValueType type;
+@property(nonatomic,strong) NSString *search;
+@property(nonatomic,strong) NSString *property;
 
 +(int)getCurrentTime;
+-(NSDictionary*)getDicProperty;
+-(NSString*)getLatestSubRecordValue;// 当此项目为 ROOT 时
 
 @end
 

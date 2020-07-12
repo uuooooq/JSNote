@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DbKeyValue.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AudioRecordCell : UICollectionViewCell
-
+@interface AudioRecordCell : UICollectionViewCell{
+    
+}
+@property(nonatomic,strong)UILabel *titleLbl;
+-(void)updateRecord:(DbKeyValue*)value;
 @end
 
 NS_ASSUME_NONNULL_END
