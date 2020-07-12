@@ -15,4 +15,5 @@ target 'Persenaler' do
   pod 'IQKeyboardManager'
   pod 'MJRefresh'
   pod 'STPopup'
+  pod 'SVGKit'
 end

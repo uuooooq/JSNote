@@ -47,6 +47,10 @@
 		E68C179524ADCE66008E7232 /* PhotoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C179424ADCE66008E7232 /* PhotoDetailViewController.m */; };
 		E68C179824ADD5C0008E7232 /* CreateFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C179724ADD5C0008E7232 /* CreateFolderViewController.m */; };
 		E68C181324B93645008E7232 /* persenaler.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C181224B93645008E7232 /* persenaler.m */; };
+		E68C182224BAC4E1008E7232 /* basic_magnifier.svg in Resources */ = {isa = PBXBuildFile; fileRef = E68C182124BAC4E1008E7232 /* basic_magnifier.svg */; };
+		E68C182624BADD4C008E7232 /* basic_photo.svg in Resources */ = {isa = PBXBuildFile; fileRef = E68C182324BADD4C008E7232 /* basic_photo.svg */; };
+		E68C182724BADD4C008E7232 /* basic_keyboard.svg in Resources */ = {isa = PBXBuildFile; fileRef = E68C182424BADD4C008E7232 /* basic_keyboard.svg */; };
+		E68C182824BADD4C008E7232 /* basic_folder.svg in Resources */ = {isa = PBXBuildFile; fileRef = E68C182524BADD4C008E7232 /* basic_folder.svg */; };
 		E6DDD8FF249758B800E1B5C6 /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */; };
 		E6DDD9032498880600E1B5C6 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD9022498880600E1B5C6 /* Record.m */; };
 		E6DDD90624989AF600E1B5C6 /* SubRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD90524989AF600E1B5C6 /* SubRecord.m */; };
@@ -230,6 +234,10 @@
 		E68C179724ADD5C0008E7232 /* CreateFolderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateFolderViewController.m; sourceTree = "<group>"; };
 		E68C181124B93645008E7232 /* persenaler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = persenaler.h; sourceTree = "<group>"; };
 		E68C181224B93645008E7232 /* persenaler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = persenaler.m; sourceTree = "<group>"; };
+		E68C182124BAC4E1008E7232 /* basic_magnifier.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = basic_magnifier.svg; path = ../../../../../../basic_magnifier.svg; sourceTree = "<group>"; };
+		E68C182324BADD4C008E7232 /* basic_photo.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = basic_photo.svg; path = ../../../../../../basic_photo.svg; sourceTree = "<group>"; };
+		E68C182424BADD4C008E7232 /* basic_keyboard.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = basic_keyboard.svg; path = ../../../../../../basic_keyboard.svg; sourceTree = "<group>"; };
+		E68C182524BADD4C008E7232 /* basic_folder.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = basic_folder.svg; path = ../../../../../../basic_folder.svg; sourceTree = "<group>"; };
 		E6DDD8FD249758B800E1B5C6 /* UpdateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
 		E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
 		E6DDD9002497659900E1B5C6 /* 数据表升级.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "数据表升级.md"; sourceTree = "<group>"; };
@@ -559,8 +567,20 @@
 		E68586E7248C8A6C00712095 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				E68C181E24BAC2D8008E7232 /* svg */,
 			);
 			path = res;
+			sourceTree = "<group>";
+		};
+		E68C181E24BAC2D8008E7232 /* svg */ = {
+			isa = PBXGroup;
+			children = (
+				E68C182524BADD4C008E7232 /* basic_folder.svg */,
+				E68C182424BADD4C008E7232 /* basic_keyboard.svg */,
+				E68C182324BADD4C008E7232 /* basic_photo.svg */,
+				E68C182124BAC4E1008E7232 /* basic_magnifier.svg */,
+			);
+			path = svg;
 			sourceTree = "<group>";
 		};
 		E6E189E024A81462003AE0A2 /* Source */ = {
@@ -764,7 +784,9 @@
 				E6E18A5324A81463003AE0A2 /* ZSSh2@2x.png in Resources */,
 				E6E18A6F24A81463003AE0A2 /* ZSSh6@2x.png in Resources */,
 				E6E18A5D24A81463003AE0A2 /* ZSSsubscript.png in Resources */,
+				E68C182224BAC4E1008E7232 /* basic_magnifier.svg in Resources */,
 				E6E18A5124A81463003AE0A2 /* ZSStable@2x.png in Resources */,
+				E68C182724BADD4C008E7232 /* basic_keyboard.svg in Resources */,
 				E6E18A6424A81463003AE0A2 /* ZSShorizontalrule.png in Resources */,
 				E6E18A5224A81463003AE0A2 /* ZSSoutdent@2x.png in Resources */,
 				E6E18A7D24A81463003AE0A2 /* ZSSunderline@2x.png in Resources */,
@@ -785,6 +807,7 @@
 				E6E18A6A24A81463003AE0A2 /* ZSSunorderedlist.png in Resources */,
 				E6E18A8124A81463003AE0A2 /* ZSSleftjustify.png in Resources */,
 				E67A47F12401ED9500FA357B /* LaunchScreen.storyboard in Resources */,
+				E68C182824BADD4C008E7232 /* basic_folder.svg in Resources */,
 				E6E18A5924A81463003AE0A2 /* ZSSleftjustify@2x.png in Resources */,
 				E6E18A7B24A81463003AE0A2 /* ZSSimageDevice.png in Resources */,
 				E6E18A7824A81463003AE0A2 /* ZSSh2.png in Resources */,
@@ -826,6 +849,7 @@
 				E6E18A5B24A81463003AE0A2 /* ZSSunderline.png in Resources */,
 				E6E18A6C24A81463003AE0A2 /* ZSSh5.png in Resources */,
 				E6E18A6724A81463003AE0A2 /* ZSSunorderedlist@2x.png in Resources */,
+				E68C182624BADD4C008E7232 /* basic_photo.svg in Resources */,
 				E6E18A9724A81464003AE0A2 /* ZSStable.png in Resources */,
 				E6E18A7F24A81463003AE0A2 /* ZSSh3@2x.png in Resources */,
 				E6E18A5024A81463003AE0A2 /* ZSSRichTextEditor.js in Resources */,

@@ -1,10 +1,15 @@
 PODS:
+  - CocoaLumberjack (3.6.1):
+    - CocoaLumberjack/Core (= 3.6.1)
+  - CocoaLumberjack/Core (3.6.1)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - IQKeyboardManager (6.5.5)
   - MJRefresh (3.3.1)
   - STPopup (1.8.7)
+  - SVGKit (2.1.1):
+    - CocoaLumberjack (~> 3.0)
   - TZImagePickerController (3.3.1)
 
 DEPENDENCIES:
@@ -12,24 +17,29 @@ DEPENDENCIES:
   - IQKeyboardManager
   - MJRefresh
   - STPopup
+  - SVGKit
   - TZImagePickerController
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - CocoaLumberjack
     - IQKeyboardManager
     - MJRefresh
     - STPopup
+    - SVGKit
   trunk:
     - FMDB
     - TZImagePickerController
 
 SPEC CHECKSUMS:
+  CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237
   STPopup: a9045557bc48a0df51fbb7bf0544447c5fe84d34
+  SVGKit: 652cdf7bef8bec8564d04a8511d3ab50c7595fac
   TZImagePickerController: 99f03b64145a8c92c55b9b1b931410967d9be4cb
 
-PODFILE CHECKSUM: c79b8e6d3cc20e9ab7799dbd4209e0175d6caab6
+PODFILE CHECKSUM: b2efef62f36d2d2cb742dfb9cf957b2b844c7eb7
 
 COCOAPODS: 1.8.4
