@@ -406,6 +406,8 @@
     [self.shuKucollectionView deleteItemsAtIndexPaths:@[indexPath]];
     //[self.shuKucollectionView reloadData];
     
+    [ZDWUtility deleteImageFile:deleteItem];
+    
 }
 
 -(void)addTextAction{
@@ -473,8 +475,9 @@
     
     UIImage * tmpImg = currentImg;
     NSString *currentImgName = [currentAsset valueForKey:@"filename"] ;
+    currentImgName = [NSString stringWithFormat:@"imageFolder/%@",currentImgName];
     NSData *imagedata=UIImagePNGRepresentation(tmpImg);
-    NSString *newImageName=[self getImagePath:currentImgName];
+    NSString *newImageName=[ZDWUtility getImagePath:currentImgName];
     BOOL result =  [imagedata writeToFile:newImageName options:NSAtomicWrite error:nil];//[imagedata writeToFile:rootDir atomically:YES];
     NSLog(@"===============  %@",newImageName);
     if (result == YES) {
@@ -558,20 +561,20 @@
     NSLog(@"************* addPhotoStepNext");
 }
 
-- (NSString*)getImagePath:(NSString *)name {
-
-    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,  NSUserDomainMask, YES);
-
-    NSString *docPath = [path objectAtIndex:0];
-
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-
-    NSString *finalPath = [docPath stringByAppendingPathComponent:name];
-
-    [fileManager createDirectoryAtPath:[finalPath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:nil error:nil];//stringByDeletingLastPathComponent是关键
-    return finalPath;
-
-}
+//- (NSString*)getImagePath:(NSString *)name {
+//
+//    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,  NSUserDomainMask, YES);
+//
+//    NSString *docPath = [path objectAtIndex:0];
+//
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//
+//    NSString *finalPath = [docPath stringByAppendingPathComponent:name];
+//
+//    [fileManager createDirectoryAtPath:[finalPath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:nil error:nil];//stringByDeletingLastPathComponent是关键
+//    return finalPath;
+//
+//}
 
 -(void)fusizeBtnClick:(UIButton*)btn{
     

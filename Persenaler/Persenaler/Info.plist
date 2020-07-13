@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
-	<false/>
+	<true/>
 	<key>UIFileSharingEnabled</key>
-	<false/>
+	<true/>
 	<key>Supports Document Browser </key>
-	<false/>
+	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>使用定位</string>
 	<key>CFBundleDevelopmentRegion</key>

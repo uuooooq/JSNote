@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "DbKeyValue.h"
 
 
 #define ZDWSCREEN_WIDTH  ([UIScreen mainScreen].bounds.size.width)
@@ -33,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(int)getCurrentTime;
 
 +(UIColor *) getColor:(NSString *)hexColor;
+
++(void)deleteImageFile:(DbKeyValue*)keyValue;
 
 @end
 

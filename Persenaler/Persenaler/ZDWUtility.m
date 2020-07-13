@@ -210,4 +210,19 @@
                            alpha:1.0];
 }
 
++(void)deleteImageFile:(DbKeyValue*)keyValue{
+    
+    NSString* filePath = [self getImagePath:keyValue.value];
+    NSFileManager*fileManager = [NSFileManager defaultManager];
+    
+    if (![fileManager fileExistsAtPath:filePath]) {
+
+        return;
+
+    }
+    [fileManager removeItemAtPath:filePath error:NULL];
+    
+}
+
+
 @end

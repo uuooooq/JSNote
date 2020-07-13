@@ -54,7 +54,7 @@
 -(void)updateRecord:(DbKeyValue*)value{
     
     //title.text = value.value;
-    NSString* filePath = [self getImagePath:value.value];
+    NSString* filePath = [ZDWUtility getImagePath:value.value];
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
     imgView.image = image;
     
@@ -76,19 +76,19 @@
     descLbl.text = dateStr;
 }
 
-- (NSString*)getImagePath:(NSString *)name {
-
-    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,  NSUserDomainMask, YES);
-
-    NSString *docPath = [path objectAtIndex:0];
-
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-
-    NSString *finalPath = [docPath stringByAppendingPathComponent:name];
-
-    [fileManager createDirectoryAtPath:[finalPath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:nil error:nil];//stringByDeletingLastPathComponent是关键
-    return finalPath;
-
-}
+//- (NSString*)getImagePath:(NSString *)name {
+//
+//    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,  NSUserDomainMask, YES);
+//
+//    NSString *docPath = [path objectAtIndex:0];
+//
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//
+//    NSString *finalPath = [docPath stringByAppendingPathComponent:name];
+//
+//    [fileManager createDirectoryAtPath:[finalPath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:nil error:nil];//stringByDeletingLastPathComponent是关键
+//    return finalPath;
+//
+//}
 
 @end
