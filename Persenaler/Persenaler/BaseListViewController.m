@@ -332,7 +332,7 @@
 
 -(void)noMoreData{
     [self.shuKucollectionView.mj_footer setState:MJRefreshStateNoMoreData];
-    [footer setTitle:@"已无更多数据" forState:MJRefreshStateNoMoreData];
+    [footer setTitle:@"" forState:MJRefreshStateNoMoreData];
 }
 
 -(void)updateWithNewData{
