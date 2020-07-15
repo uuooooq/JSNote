@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E67A47DD2401ED9100FA357B"
-               BuildableName = "Persenaler.app"
-               BlueprintName = "Persenaler"
+               BuildableName = "&#x53f8;&#x9a6c;&#x8bb0;&#x4e8b;.app"
+               BlueprintName = "&#x53f8;&#x9a6c;&#x8bb0;&#x4e8b;"
                ReferencedContainer = "container:Persenaler.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E67A47DD2401ED9100FA357B"
-            BuildableName = "Persenaler.app"
-            BlueprintName = "Persenaler"
+            BuildableName = "&#x53f8;&#x9a6c;&#x8bb0;&#x4e8b;.app"
+            BlueprintName = "&#x53f8;&#x9a6c;&#x8bb0;&#x4e8b;"
             ReferencedContainer = "container:Persenaler.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E67A47DD2401ED9100FA357B"
-            BuildableName = "Persenaler.app"
-            BlueprintName = "Persenaler"
+            BuildableName = "&#x53f8;&#x9a6c;&#x8bb0;&#x4e8b;.app"
+            BlueprintName = "&#x53f8;&#x9a6c;&#x8bb0;&#x4e8b;"
             ReferencedContainer = "container:Persenaler.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

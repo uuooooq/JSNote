@@ -23,7 +23,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.windowScene = (UIWindowScene*)scene;
     vc = [ViewController new];
-    vc.title = @"Personal";
+    vc.title = @"司马记事";
 //    vc.serverHeadler = httpServerHandler;
     //NSLog(@"%@",[httpServerHandler getAddr]);
     //vc.title = [httpServerHandler getAddr];

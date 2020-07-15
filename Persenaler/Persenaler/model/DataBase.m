@@ -81,11 +81,11 @@ static DataBase *_DBCtl = nil;
 -(void)initDataBase{
     // 获得Documents目录路径
     
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    //NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     
     // 文件路径
     
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"model.sqlite"];
+    NSString *filePath = [ZDWUtility getImagePath:@".sina/model.sqlite"];//[documentsPath stringByAppendingPathComponent:@".sima/model.sqlite"];
     
     // 实例化FMDataBase对象
     
@@ -93,122 +93,122 @@ static DataBase *_DBCtl = nil;
     
     [_db open];
     
-    if (![self isTableOK:@"kvTb"]) {
-        NSLog(@"---------- start create kvTb");
-        NSString *keyValueTbSql = @"CREATE TABLE 'kvTb' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT,'type' INTEGER,'createTime' INTEGER,'extCategory' TEXT)";
-        [_db executeUpdate:keyValueTbSql];
-    }
-    if (![self isTableOK:@"kvGroupTb"]) {
-        NSLog(@"---------- start create kvGroupTb");
-        NSString *keyValueTbSql = @"CREATE TABLE 'kvGroupTb' ('gid' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'rootID' INTEGER,'rootValue' TEXT,'rootType' INTEGER,'subID' INTEGER,'subValue' TEXT,'subType' INTEGER,'type' INTEGER,'createTime' INTEGER,'extCategory' TEXT)";
-        [_db executeUpdate:keyValueTbSql];
-    }
-    
-    
-    // update database to V6
-    
-    if (![self isTableOK:@"recordTbz006"]) {
-        
-        [_db beginTransaction];
-        BOOL isRollBack = NO;
-        @try {
-
-            NSLog(@"---------- start create recordTbz006");
-            NSString *keyValueTbSql = @"CREATE TABLE 'recordTbz006' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT,'type' INTEGER,'createTime' INTEGER)";
-            [_db executeUpdate:keyValueTbSql];
-            
-            NSLog(@"---------- start create subRecordTbz006");
-            NSString *subKeyValueTbSql = @"CREATE TABLE 'subRecordTbz006' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'rootKey' VARCHAR(1024),'subKey' VARCHAR(1024),'createTime' INTEGER)";
-            [_db executeUpdate:subKeyValueTbSql];
-
-
-        } @catch (NSException *exception) {
-            isRollBack = YES;
-            [_db rollback];
-        } @finally {
-            if (!isRollBack) {
-                [_db commit];
-            }
-        }
-        
-        if (!isRollBack) {
-            
-            recordTBName = @"recordTbz003";
-            subRecordTBName = @"subRecordTbz003";
-            NSLog(@"start .... ");
-            
-            NSLog(@"========== recordTbz005 migration start ");
-            [self migrationRecordTbV6];
-            
-            NSLog(@"========== subRecordTbz005 migration start ");
-            [self migrationSubrecordTbV6];
-            
-            
-            recordTBName = @"recordTbz006";
-            subRecordTBName = @"subRecordTbz006";
-        }
-    
-
-
-    }
-    else{
-        recordTBName = @"recordTbz006";
-        subRecordTBName = @"subRecordTbz006";
-    }
-    
-    // update database to V12
-     
-     if (![self isTableOK:@"recordTbz0012"]) {
-         
-         [_db beginTransaction];
-         BOOL isRollBack = NO;
-         @try {
-
-             NSLog(@"---------- start create recordTbz0012");
-             NSString *keyValueTbSql = @"CREATE TABLE 'recordTbz0012' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT,'type' INTEGER,'createTime' INTEGER)";
-             [_db executeUpdate:keyValueTbSql];
-             
-             NSLog(@"---------- start create subRecordTbz007");
-             NSString *subKeyValueTbSql = @"CREATE TABLE 'subRecordTbz0012' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'rootKey' VARCHAR(1024),'subKey' VARCHAR(1024),'createTime' INTEGER)";
-             [_db executeUpdate:subKeyValueTbSql];
-
-
-         } @catch (NSException *exception) {
-             isRollBack = YES;
-             [_db rollback];
-         } @finally {
-             if (!isRollBack) {
-                 [_db commit];
-             }
-         }
-         
-         if (!isRollBack) {
-             
-             recordTBName = @"recordTbz0012";
-             subRecordTBName = @"subRecordTbz0012";
-             NSLog(@"start .... ");
-             
-             NSLog(@"========== subRecordTbz0012 migration start ");
-             [self migrationSubrecordTbV12];
-             
-             NSLog(@"========== recordTbz0012 migration start ");
-             [self migrationRecordTbV12];
-             
-             
-             recordTBName = @"recordTbz0012";
-             subRecordTBName = @"subRecordTbz0012";
-         }
-     
-
-
-     }
-     else{
-         recordTBName = @"recordTbz0012";
-         subRecordTBName = @"subRecordTbz0012";
-     }
-    
-    
-    // update database to V13
+//    if (![self isTableOK:@"kvTb"]) {
+//        NSLog(@"---------- start create kvTb");
+//        NSString *keyValueTbSql = @"CREATE TABLE 'kvTb' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT,'type' INTEGER,'createTime' INTEGER,'extCategory' TEXT)";
+//        [_db executeUpdate:keyValueTbSql];
+//    }
+//    if (![self isTableOK:@"kvGroupTb"]) {
+//        NSLog(@"---------- start create kvGroupTb");
+//        NSString *keyValueTbSql = @"CREATE TABLE 'kvGroupTb' ('gid' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'rootID' INTEGER,'rootValue' TEXT,'rootType' INTEGER,'subID' INTEGER,'subValue' TEXT,'subType' INTEGER,'type' INTEGER,'createTime' INTEGER,'extCategory' TEXT)";
+//        [_db executeUpdate:keyValueTbSql];
+//    }
+//
+//
+//    // update database to V6
+//
+//    if (![self isTableOK:@"recordTbz006"]) {
+//
+//        [_db beginTransaction];
+//        BOOL isRollBack = NO;
+//        @try {
+//
+//            NSLog(@"---------- start create recordTbz006");
+//            NSString *keyValueTbSql = @"CREATE TABLE 'recordTbz006' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT,'type' INTEGER,'createTime' INTEGER)";
+//            [_db executeUpdate:keyValueTbSql];
+//
+//            NSLog(@"---------- start create subRecordTbz006");
+//            NSString *subKeyValueTbSql = @"CREATE TABLE 'subRecordTbz006' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'rootKey' VARCHAR(1024),'subKey' VARCHAR(1024),'createTime' INTEGER)";
+//            [_db executeUpdate:subKeyValueTbSql];
+//
+//
+//        } @catch (NSException *exception) {
+//            isRollBack = YES;
+//            [_db rollback];
+//        } @finally {
+//            if (!isRollBack) {
+//                [_db commit];
+//            }
+//        }
+//
+//        if (!isRollBack) {
+//
+//            recordTBName = @"recordTbz003";
+//            subRecordTBName = @"subRecordTbz003";
+//            NSLog(@"start .... ");
+//
+//            NSLog(@"========== recordTbz005 migration start ");
+//            [self migrationRecordTbV6];
+//
+//            NSLog(@"========== subRecordTbz005 migration start ");
+//            [self migrationSubrecordTbV6];
+//
+//
+//            recordTBName = @"recordTbz006";
+//            subRecordTBName = @"subRecordTbz006";
+//        }
+//
+//
+//
+//    }
+//    else{
+//        recordTBName = @"recordTbz006";
+//        subRecordTBName = @"subRecordTbz006";
+//    }
+//
+//    // update database to V12
+//
+//     if (![self isTableOK:@"recordTbz0012"]) {
+//
+//         [_db beginTransaction];
+//         BOOL isRollBack = NO;
+//         @try {
+//
+//             NSLog(@"---------- start create recordTbz0012");
+//             NSString *keyValueTbSql = @"CREATE TABLE 'recordTbz0012' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'key' VARCHAR(1024),'value' TEXT,'type' INTEGER,'createTime' INTEGER)";
+//             [_db executeUpdate:keyValueTbSql];
+//
+//             NSLog(@"---------- start create subRecordTbz007");
+//             NSString *subKeyValueTbSql = @"CREATE TABLE 'subRecordTbz0012' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,'rootKey' VARCHAR(1024),'subKey' VARCHAR(1024),'createTime' INTEGER)";
+//             [_db executeUpdate:subKeyValueTbSql];
+//
+//
+//         } @catch (NSException *exception) {
+//             isRollBack = YES;
+//             [_db rollback];
+//         } @finally {
+//             if (!isRollBack) {
+//                 [_db commit];
+//             }
+//         }
+//
+//         if (!isRollBack) {
+//
+//             recordTBName = @"recordTbz0012";
+//             subRecordTBName = @"subRecordTbz0012";
+//             NSLog(@"start .... ");
+//
+//             NSLog(@"========== subRecordTbz0012 migration start ");
+//             [self migrationSubrecordTbV12];
+//
+//             NSLog(@"========== recordTbz0012 migration start ");
+//             [self migrationRecordTbV12];
+//
+//
+//             recordTBName = @"recordTbz0012";
+//             subRecordTBName = @"subRecordTbz0012";
+//         }
+//
+//
+//
+//     }
+//     else{
+//         recordTBName = @"recordTbz0012";
+//         subRecordTBName = @"subRecordTbz0012";
+//     }
+//
+//
+//    // update database to V13
 
      if (![self isTableOK:@"recordTbz0013"]) {
 
@@ -240,11 +240,11 @@ static DataBase *_DBCtl = nil;
              subRecordTBName = @"subRecordTbz0013";
              NSLog(@"start .... ");
 
-             NSLog(@"========== subRecordTbz0013 migration start ");
-             [self migrationSubrecordTbV13];
-
-             NSLog(@"========== recordTbz0013 migration start ");
-             [self migrationRecordTbV13];
+//             NSLog(@"========== subRecordTbz0013 migration start ");
+//             [self migrationSubrecordTbV13];
+//
+//             NSLog(@"========== recordTbz0013 migration start ");
+//             [self migrationRecordTbV13];
          }
 
      }

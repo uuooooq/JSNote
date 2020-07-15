@@ -181,7 +181,7 @@
 		E66E892C244DAE4F00F1DABC /* ZDWUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDWUtility.m; sourceTree = "<group>"; };
 		E66E892E244DB96700F1DABC /* ImageRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageRecordCell.h; sourceTree = "<group>"; };
 		E66E892F244DB96700F1DABC /* ImageRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageRecordCell.m; sourceTree = "<group>"; };
-		E67A47DE2401ED9100FA357B /* Persenaler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Persenaler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E67A47DE2401ED9100FA357B /* 司马记事.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "司马记事.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E67A47E12401ED9100FA357B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E67A47E22401ED9100FA357B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E67A47E42401ED9100FA357B /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
@@ -429,7 +429,7 @@
 		E67A47DF2401ED9100FA357B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E67A47DE2401ED9100FA357B /* Persenaler.app */,
+				E67A47DE2401ED9100FA357B /* 司马记事.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -719,9 +719,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E67A47DD2401ED9100FA357B /* Persenaler */ = {
+		E67A47DD2401ED9100FA357B /* 司马记事 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E67A47F72401ED9500FA357B /* Build configuration list for PBXNativeTarget "Persenaler" */;
+			buildConfigurationList = E67A47F72401ED9500FA357B /* Build configuration list for PBXNativeTarget "司马记事" */;
 			buildPhases = (
 				825A4785381FCC158EEAE026 /* [CP] Check Pods Manifest.lock */,
 				E67A47DA2401ED9100FA357B /* Sources */,
@@ -733,9 +733,9 @@
 			);
 			dependencies = (
 			);
-			name = Persenaler;
+			name = "司马记事";
 			productName = Persenaler;
-			productReference = E67A47DE2401ED9100FA357B /* Persenaler.app */;
+			productReference = E67A47DE2401ED9100FA357B /* 司马记事.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -766,7 +766,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E67A47DD2401ED9100FA357B /* Persenaler */,
+				E67A47DD2401ED9100FA357B /* 司马记事 */,
 			);
 		};
 /* End PBXProject section */
@@ -1120,7 +1120,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wenter.Persenaler;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wenter.simanote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Persenaler/views/Persenaler-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1142,7 +1142,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wenter.Persenaler;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wenter.simanote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Persenaler/views/Persenaler-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1162,7 +1162,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E67A47F72401ED9500FA357B /* Build configuration list for PBXNativeTarget "Persenaler" */ = {
+		E67A47F72401ED9500FA357B /* Build configuration list for PBXNativeTarget "司马记事" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E67A47F82401ED9500FA357B /* Debug */,

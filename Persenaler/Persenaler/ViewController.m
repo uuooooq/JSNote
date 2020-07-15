@@ -67,8 +67,8 @@
 //
     //UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: target:self action:@selector(goToSearchAction)];
 ////    UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(goToSearchAction)];
-    UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
-    self.navigationItem.rightBarButtonItem = moreItem;//@[searchItem,settingItem];
+//    UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
+//    self.navigationItem.rightBarButtonItem = moreItem;//@[searchItem,settingItem];
     
     //初始化 SearchController
     {
