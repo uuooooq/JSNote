@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private NoteWebServer server;
     //private static Context mContext = null;
 
+    private static final int REQUEST_CODE_ALBUM = 100;//打开相册
+    private static final int REQUEST_CODE_CAMERA = 101;//打开相机
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,7 +167,11 @@ public class MainActivity extends AppCompatActivity {
         Log.w("view init", "click: and text action fired");
     }
     public void addImageClick(View v){
+
         Log.w("view init", "click: add image action fired");
+        Intent intent = new Intent(); //调用照相机
+        intent.setAction("android.media.action.STILL_IMAGE_CAMERA");
+        startActivity(intent);
     }
 
 }
