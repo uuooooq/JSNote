@@ -1,10 +1,10 @@
 #import "SceneDelegate.h"
-//#import "HttpServerHandler.h"
+#import "HttpServerHandler.h"
 #import "ViewController.h"
 
 @interface SceneDelegate ()
 {
-    //HttpServerHandler *httpServerHandler;
+    HttpServerHandler *httpServerHandler;
     ViewController *vc;
 }
 
@@ -17,17 +17,17 @@
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-//    httpServerHandler = [HttpServerHandler new];
-//    [httpServerHandler startServer];
+    httpServerHandler = [HttpServerHandler new];
+    [httpServerHandler startServer];
     //httpServerHandler.webServer.delegate = self;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.windowScene = (UIWindowScene*)scene;
     vc = [ViewController new];
     vc.title = @"司马记事";
-//    vc.serverHeadler = httpServerHandler;
-    //NSLog(@"%@",[httpServerHandler getAddr]);
-    //vc.title = [httpServerHandler getAddr];
-    //[self setDir];
+    vc.serverHeadler = httpServerHandler;
+    NSLog(@"%@",[httpServerHandler getAddr]);
+    vc.title = [httpServerHandler getAddr];
+    [self setDir];
     UINavigationController *rootNavgationController = [[UINavigationController alloc] initWithRootViewController:vc];
     //rootNavgationController.navigationBar.prefersLargeTitles = YES;
     self.window.rootViewController = rootNavgationController;

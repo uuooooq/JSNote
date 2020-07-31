@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B5EB15EAF707BF165B96B3DF /* Pods_Persenaler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40DB189454420C72E85AD78A /* Pods_Persenaler.framework */; };
+		E615191524D40E430049AED2 /* HttpServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E615191324D40E430049AED2 /* HttpServerHandler.m */; };
 		E6336867246A9DDE00FC0BEC /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6336866246A9DDE00FC0BEC /* SearchViewController.m */; };
 		E633686A246E65C000FC0BEC /* BaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6336869246E65C000FC0BEC /* BaseListViewController.m */; };
 		E633686D246EC26100FC0BEC /* InputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E633686C246EC26100FC0BEC /* InputViewController.m */; };
@@ -61,6 +62,8 @@
 /* Begin PBXFileReference section */
 		0AD43534560657615509498C /* Pods-Persenaler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Persenaler.release.xcconfig"; path = "Target Support Files/Pods-Persenaler/Pods-Persenaler.release.xcconfig"; sourceTree = "<group>"; };
 		40DB189454420C72E85AD78A /* Pods_Persenaler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Persenaler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E615191324D40E430049AED2 /* HttpServerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpServerHandler.m; sourceTree = "<group>"; };
+		E615191424D40E430049AED2 /* HttpServerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpServerHandler.h; sourceTree = "<group>"; };
 		E63368642462AF6B00FC0BEC /* note.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = note.md; sourceTree = "<group>"; };
 		E6336865246A9DDE00FC0BEC /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		E6336866246A9DDE00FC0BEC /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
@@ -391,6 +394,8 @@
 		E67A47FD2403524900FA357B /* model */ = {
 			isa = PBXGroup;
 			children = (
+				E615191424D40E430049AED2 /* HttpServerHandler.h */,
+				E615191324D40E430049AED2 /* HttpServerHandler.m */,
 				E65609D324336BA10089B3C6 /* DataBase.h */,
 				E65609D124336BA10089B3C6 /* DataBase.m */,
 				E65609D224336BA10089B3C6 /* DbKeyValue.h */,
@@ -740,6 +745,7 @@
 				E67A47F42401ED9500FA357B /* main.m in Sources */,
 				E6E189D324A71A0A003AE0A2 /* ZDWPhotoView.m in Sources */,
 				E68586F32490DFB700712095 /* TextDetailCell.m in Sources */,
+				E615191524D40E430049AED2 /* HttpServerHandler.m in Sources */,
 				E6816938248701D9005E2A81 /* AudioRecordCell.m in Sources */,
 				E65609D424336BA10089B3C6 /* DbKeyValue.m in Sources */,
 				E681692924807179005E2A81 /* SearchResultsController.m in Sources */,

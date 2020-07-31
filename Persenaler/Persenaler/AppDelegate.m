@@ -8,12 +8,12 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-//#import "HttpServerHandler.h"
+#import "HttpServerHandler.h"
 #import "DataBase.h"
 
 @interface AppDelegate (){
     ViewController * vc;
-    //HttpServerHandler *httpServerHandler;
+    HttpServerHandler *httpServerHandler;
 }
 
 @end
@@ -33,12 +33,12 @@
         self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         vc = [ViewController new];
         vc.title = @"Personal";
-//        httpServerHandler = [HttpServerHandler new];
-//        [httpServerHandler startServer];
-//        vc.serverHeadler = httpServerHandler;
+        httpServerHandler = [HttpServerHandler new];
+        [httpServerHandler startServer];
+        vc.serverHeadler = httpServerHandler;
         vc.isDetailPage = NO;
-        //NSLog(@"%@",[httpServerHandler getAddr]);
-        //vc.title = [httpServerHandler getAddr];
+        NSLog(@"%@",[httpServerHandler getAddr]);
+        vc.title = [httpServerHandler getAddr];
         //[self setDir];
         UINavigationController *rootNavgationController = [[UINavigationController alloc] initWithRootViewController:vc];
         rootNavgationController.navigationBar.prefersLargeTitles = YES;

@@ -2,6 +2,13 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - GCDWebServer (3.5.4):
+    - GCDWebServer/Core (= 3.5.4)
+  - GCDWebServer/Core (3.5.4)
+  - GCDWebServer/WebDAV (3.5.4):
+    - GCDWebServer/Core
+  - GCDWebServer/WebUploader (3.5.4):
+    - GCDWebServer/Core
   - IQKeyboardManager (6.5.5)
   - MJRefresh (3.3.1)
   - STPopup (1.8.7)
@@ -9,6 +16,9 @@ PODS:
 
 DEPENDENCIES:
   - FMDB
+  - GCDWebServer (~> 3.0)
+  - GCDWebServer/WebDAV (~> 3.0)
+  - GCDWebServer/WebUploader (~> 3.0)
   - IQKeyboardManager
   - MJRefresh
   - STPopup
@@ -16,6 +26,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+    - GCDWebServer
     - IQKeyboardManager
     - MJRefresh
     - STPopup
@@ -25,11 +36,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237
   STPopup: a9045557bc48a0df51fbb7bf0544447c5fe84d34
   TZImagePickerController: 99f03b64145a8c92c55b9b1b931410967d9be4cb
 
-PODFILE CHECKSUM: 06a32770546ad7810421f81a2a2344ba2aa04344
+PODFILE CHECKSUM: 34c4cd874ff0a6e2053d8dc28a8aa926a5c26b37
 
 COCOAPODS: 1.9.3
