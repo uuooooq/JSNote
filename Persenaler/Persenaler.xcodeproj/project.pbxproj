@@ -23,7 +23,6 @@
 		E67A47E92401ED9100FA357B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E67A47E82401ED9100FA357B /* ViewController.m */; };
 		E67A47EC2401ED9100FA357B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E67A47EA2401ED9100FA357B /* Main.storyboard */; };
 		E67A47EE2401ED9500FA357B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E67A47ED2401ED9500FA357B /* Assets.xcassets */; };
-		E67A47F12401ED9500FA357B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E67A47EF2401ED9500FA357B /* LaunchScreen.storyboard */; };
 		E67A47F42401ED9500FA357B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E67A47F32401ED9500FA357B /* main.m */; };
 		E67A47FC240200E100FA357B /* website in Resources */ = {isa = PBXBuildFile; fileRef = E67A47FB240200E100FA357B /* website */; };
 		E67A48062403567500FA357B /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E67A48052403567500FA357B /* DataSource.m */; };
@@ -47,10 +46,6 @@
 		E68C179524ADCE66008E7232 /* PhotoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C179424ADCE66008E7232 /* PhotoDetailViewController.m */; };
 		E68C179824ADD5C0008E7232 /* CreateFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C179724ADD5C0008E7232 /* CreateFolderViewController.m */; };
 		E68C181324B93645008E7232 /* persenaler.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C181224B93645008E7232 /* persenaler.m */; };
-		E68C182224BAC4E1008E7232 /* basic_magnifier.svg in Resources */ = {isa = PBXBuildFile; fileRef = E68C182124BAC4E1008E7232 /* basic_magnifier.svg */; };
-		E68C182624BADD4C008E7232 /* basic_photo.svg in Resources */ = {isa = PBXBuildFile; fileRef = E68C182324BADD4C008E7232 /* basic_photo.svg */; };
-		E68C182724BADD4C008E7232 /* basic_keyboard.svg in Resources */ = {isa = PBXBuildFile; fileRef = E68C182424BADD4C008E7232 /* basic_keyboard.svg */; };
-		E68C182824BADD4C008E7232 /* basic_folder.svg in Resources */ = {isa = PBXBuildFile; fileRef = E68C182524BADD4C008E7232 /* basic_folder.svg */; };
 		E6DDD8FF249758B800E1B5C6 /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */; };
 		E6DDD9032498880600E1B5C6 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD9022498880600E1B5C6 /* Record.m */; };
 		E6DDD90624989AF600E1B5C6 /* SubRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD90524989AF600E1B5C6 /* SubRecord.m */; };
@@ -59,103 +54,8 @@
 		E6DDD91524A2C47000E1B5C6 /* TextRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DDD91424A2C47000E1B5C6 /* TextRecordCell.m */; };
 		E6E189D024A6E26D003AE0A2 /* FolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E189CF24A6E26D003AE0A2 /* FolderViewController.m */; };
 		E6E189D324A71A0A003AE0A2 /* ZDWPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E189D224A71A0A003AE0A2 /* ZDWPhotoView.m */; };
-		E6E189D624A72776003AE0A2 /* TextEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E189D524A72776003AE0A2 /* TextEditorViewController.m */; };
 		E6E189DA24A81313003AE0A2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E189D924A81313003AE0A2 /* CoreGraphics.framework */; };
 		E6E189DC24A8131C003AE0A2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E189DB24A8131C003AE0A2 /* CoreText.framework */; };
-		E6E18A5024A81463003AE0A2 /* ZSSRichTextEditor.js in Resources */ = {isa = PBXBuildFile; fileRef = E6E189E124A81462003AE0A2 /* ZSSRichTextEditor.js */; };
-		E6E18A5124A81463003AE0A2 /* ZSStable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189E524A81462003AE0A2 /* ZSStable@2x.png */; };
-		E6E18A5224A81463003AE0A2 /* ZSSoutdent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189E624A81462003AE0A2 /* ZSSoutdent@2x.png */; };
-		E6E18A5324A81463003AE0A2 /* ZSSh2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189E724A81462003AE0A2 /* ZSSh2@2x.png */; };
-		E6E18A5424A81463003AE0A2 /* ZSSsubscript@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189E824A81462003AE0A2 /* ZSSsubscript@2x.png */; };
-		E6E18A5524A81463003AE0A2 /* ZSSsuperscript@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189E924A81462003AE0A2 /* ZSSsuperscript@2x.png */; };
-		E6E18A5624A81463003AE0A2 /* ZSShorizontalrule@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189EA24A81462003AE0A2 /* ZSShorizontalrule@2x.png */; };
-		E6E18A5724A81463003AE0A2 /* ZSSviewsource.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189EB24A81462003AE0A2 /* ZSSviewsource.png */; };
-		E6E18A5824A81463003AE0A2 /* ZSSorderedlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189EC24A81462003AE0A2 /* ZSSorderedlist@2x.png */; };
-		E6E18A5924A81463003AE0A2 /* ZSSleftjustify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189ED24A81462003AE0A2 /* ZSSleftjustify@2x.png */; };
-		E6E18A5A24A81463003AE0A2 /* ZSSitalic.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189EE24A81462003AE0A2 /* ZSSitalic.png */; };
-		E6E18A5B24A81463003AE0A2 /* ZSSunderline.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189EF24A81462003AE0A2 /* ZSSunderline.png */; };
-		E6E18A5C24A81463003AE0A2 /* ZSStextcolor.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189F024A81462003AE0A2 /* ZSStextcolor.png */; };
-		E6E18A5D24A81463003AE0A2 /* ZSSsubscript.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189F124A81462003AE0A2 /* ZSSsubscript.png */; };
-		E6E18A5E24A81463003AE0A2 /* ZSSpicker.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189F224A81462003AE0A2 /* ZSSpicker.png */; };
-		E6E18A5F24A81463003AE0A2 /* ZSSoutdent.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189F324A81462003AE0A2 /* ZSSoutdent.png */; };
-		E6E18A6024A81463003AE0A2 /* ZSSrightjustify.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189F424A81462003AE0A2 /* ZSSrightjustify.png */; };
-		E6E18A6124A81463003AE0A2 /* ZSSundo.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189F524A81462003AE0A2 /* ZSSundo.png */; };
-		E6E18A6224A81463003AE0A2 /* ZSScenterjustify.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189F624A81462003AE0A2 /* ZSScenterjustify.png */; };
-		E6E18A6324A81463003AE0A2 /* ZSSparagraph.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189F724A81462003AE0A2 /* ZSSparagraph.png */; };
-		E6E18A6424A81463003AE0A2 /* ZSShorizontalrule.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189F824A81462003AE0A2 /* ZSShorizontalrule.png */; };
-		E6E18A6524A81463003AE0A2 /* ZSSunlink.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189F924A81462003AE0A2 /* ZSSunlink.png */; };
-		E6E18A6624A81463003AE0A2 /* ZSSunlink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189FA24A81462003AE0A2 /* ZSSunlink@2x.png */; };
-		E6E18A6724A81463003AE0A2 /* ZSSunorderedlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189FB24A81462003AE0A2 /* ZSSunorderedlist@2x.png */; };
-		E6E18A6824A81463003AE0A2 /* ZSSh6.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189FC24A81462003AE0A2 /* ZSSh6.png */; };
-		E6E18A6924A81463003AE0A2 /* ZSSh4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189FD24A81462003AE0A2 /* ZSSh4@2x.png */; };
-		E6E18A6A24A81463003AE0A2 /* ZSSunorderedlist.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189FE24A81462003AE0A2 /* ZSSunorderedlist.png */; };
-		E6E18A6B24A81463003AE0A2 /* ZSSh4.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E189FF24A81462003AE0A2 /* ZSSh4.png */; };
-		E6E18A6C24A81463003AE0A2 /* ZSSh5.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0024A81462003AE0A2 /* ZSSh5.png */; };
-		E6E18A6D24A81463003AE0A2 /* ZSSbgcolor.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0124A81462003AE0A2 /* ZSSbgcolor.png */; };
-		E6E18A6E24A81463003AE0A2 /* ZSSclearstyle.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0224A81462003AE0A2 /* ZSSclearstyle.png */; };
-		E6E18A6F24A81463003AE0A2 /* ZSSh6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0324A81462003AE0A2 /* ZSSh6@2x.png */; };
-		E6E18A7024A81463003AE0A2 /* ZSSinsertkeyword.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0424A81463003AE0A2 /* ZSSinsertkeyword.png */; };
-		E6E18A7124A81463003AE0A2 /* ZSSh1.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0524A81463003AE0A2 /* ZSSh1.png */; };
-		E6E18A7224A81463003AE0A2 /* ZSSstrikethrough@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0624A81463003AE0A2 /* ZSSstrikethrough@2x.png */; };
-		E6E18A7324A81463003AE0A2 /* ZSSclearstyle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0724A81463003AE0A2 /* ZSSclearstyle@2x.png */; };
-		E6E18A7424A81463003AE0A2 /* ZSSimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0824A81463003AE0A2 /* ZSSimage@2x.png */; };
-		E6E18A7524A81463003AE0A2 /* ZSSkeyboard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0924A81463003AE0A2 /* ZSSkeyboard@2x.png */; };
-		E6E18A7624A81463003AE0A2 /* ZSSkeyboard.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0A24A81463003AE0A2 /* ZSSkeyboard.png */; };
-		E6E18A7724A81463003AE0A2 /* ZSSredo.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0B24A81463003AE0A2 /* ZSSredo.png */; };
-		E6E18A7824A81463003AE0A2 /* ZSSh2.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0C24A81463003AE0A2 /* ZSSh2.png */; };
-		E6E18A7924A81463003AE0A2 /* ZSSh3.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0D24A81463003AE0A2 /* ZSSh3.png */; };
-		E6E18A7A24A81463003AE0A2 /* ZSSindent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0E24A81463003AE0A2 /* ZSSindent@2x.png */; };
-		E6E18A7B24A81463003AE0A2 /* ZSSimageDevice.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A0F24A81463003AE0A2 /* ZSSimageDevice.png */; };
-		E6E18A7C24A81463003AE0A2 /* ZSSundo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1024A81463003AE0A2 /* ZSSundo@2x.png */; };
-		E6E18A7D24A81463003AE0A2 /* ZSSunderline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1124A81463003AE0A2 /* ZSSunderline@2x.png */; };
-		E6E18A7E24A81463003AE0A2 /* ZSSlink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1224A81463003AE0A2 /* ZSSlink@2x.png */; };
-		E6E18A7F24A81463003AE0A2 /* ZSSh3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1324A81463003AE0A2 /* ZSSh3@2x.png */; };
-		E6E18A8024A81463003AE0A2 /* ZSSfonts.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1424A81463003AE0A2 /* ZSSfonts.png */; };
-		E6E18A8124A81463003AE0A2 /* ZSSleftjustify.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1524A81463003AE0A2 /* ZSSleftjustify.png */; };
-		E6E18A8224A81463003AE0A2 /* ZSSindent.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1624A81463003AE0A2 /* ZSSindent.png */; };
-		E6E18A8324A81463003AE0A2 /* ZSSbgcolor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1724A81463003AE0A2 /* ZSSbgcolor@2x.png */; };
-		E6E18A8424A81463003AE0A2 /* ZSSbold.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1824A81463003AE0A2 /* ZSSbold.png */; };
-		E6E18A8524A81463003AE0A2 /* ZSSinsertkeyword@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1924A81463003AE0A2 /* ZSSinsertkeyword@2x.png */; };
-		E6E18A8624A81463003AE0A2 /* ZSSitalic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1A24A81463003AE0A2 /* ZSSitalic@2x.png */; };
-		E6E18A8724A81463003AE0A2 /* ZSSlink.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1B24A81463003AE0A2 /* ZSSlink.png */; };
-		E6E18A8824A81463003AE0A2 /* ZSSh1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1C24A81463003AE0A2 /* ZSSh1@2x.png */; };
-		E6E18A8924A81463003AE0A2 /* ZSSforcejustify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1D24A81463003AE0A2 /* ZSSforcejustify@2x.png */; };
-		E6E18A8A24A81463003AE0A2 /* ZSSviewsource@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1E24A81463003AE0A2 /* ZSSviewsource@2x.png */; };
-		E6E18A8B24A81463003AE0A2 /* ZSScenterjustify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A1F24A81463003AE0A2 /* ZSScenterjustify@2x.png */; };
-		E6E18A8C24A81463003AE0A2 /* ZSSpicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2024A81463003AE0A2 /* ZSSpicker@2x.png */; };
-		E6E18A8D24A81463003AE0A2 /* ZSSorderedlist.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2124A81463003AE0A2 /* ZSSorderedlist.png */; };
-		E6E18A8E24A81463003AE0A2 /* ZSSh5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2224A81463003AE0A2 /* ZSSh5@2x.png */; };
-		E6E18A8F24A81463003AE0A2 /* ZSSquicklink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2324A81463003AE0A2 /* ZSSquicklink@2x.png */; };
-		E6E18A9024A81463003AE0A2 /* ZSStextcolor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2424A81463003AE0A2 /* ZSStextcolor@2x.png */; };
-		E6E18A9124A81463003AE0A2 /* ZSSrightjustify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2524A81463003AE0A2 /* ZSSrightjustify@2x.png */; };
-		E6E18A9224A81463003AE0A2 /* ZSSstrikethrough.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2624A81463003AE0A2 /* ZSSstrikethrough.png */; };
-		E6E18A9324A81463003AE0A2 /* ZSSbold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2724A81463003AE0A2 /* ZSSbold@2x.png */; };
-		E6E18A9424A81463003AE0A2 /* ZSSparagraph@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2824A81463003AE0A2 /* ZSSparagraph@2x.png */; };
-		E6E18A9524A81463003AE0A2 /* ZSSimageDevice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2924A81463003AE0A2 /* ZSSimageDevice@2x.png */; };
-		E6E18A9624A81464003AE0A2 /* ZSSquicklink.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2A24A81463003AE0A2 /* ZSSquicklink.png */; };
-		E6E18A9724A81464003AE0A2 /* ZSStable.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2B24A81463003AE0A2 /* ZSStable.png */; };
-		E6E18A9824A81464003AE0A2 /* ZSSsuperscript.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2C24A81463003AE0A2 /* ZSSsuperscript.png */; };
-		E6E18A9924A81464003AE0A2 /* ZSSfonts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2D24A81463003AE0A2 /* ZSSfonts@2x.png */; };
-		E6E18A9A24A81464003AE0A2 /* ZSSforcejustify.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2E24A81463003AE0A2 /* ZSSforcejustify.png */; };
-		E6E18A9B24A81464003AE0A2 /* ZSSredo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A2F24A81463003AE0A2 /* ZSSredo@2x.png */; };
-		E6E18A9C24A81464003AE0A2 /* ZSSimage.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A3024A81463003AE0A2 /* ZSSimage.png */; };
-		E6E18A9D24A81464003AE0A2 /* editor.html in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A3224A81463003AE0A2 /* editor.html */; };
-		E6E18A9E24A81464003AE0A2 /* ZSSRichTextEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A3424A81463003AE0A2 /* ZSSRichTextEditor.m */; };
-		E6E18A9F24A81464003AE0A2 /* ZSSBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A3524A81463003AE0A2 /* ZSSBarButtonItem.m */; };
-		E6E18AA024A81464003AE0A2 /* JSBeautifier.js in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A3624A81463003AE0A2 /* JSBeautifier.js */; };
-		E6E18AA124A81464003AE0A2 /* ZSSFontsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A3724A81463003AE0A2 /* ZSSFontsViewController.m */; };
-		E6E18AA224A81464003AE0A2 /* HRCgUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A3C24A81463003AE0A2 /* HRCgUtil.m */; };
-		E6E18AA324A81464003AE0A2 /* HRColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A3D24A81463003AE0A2 /* HRColorPickerViewController.m */; };
-		E6E18AA424A81464003AE0A2 /* HRColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A3E24A81463003AE0A2 /* HRColorPickerView.m */; };
-		E6E18AA524A81464003AE0A2 /* HRBrightnessCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A3F24A81463003AE0A2 /* HRBrightnessCursor.m */; };
-		E6E18AA624A81464003AE0A2 /* CYRLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A4024A81463003AE0A2 /* CYRLayoutManager.m */; };
-		E6E18AA724A81464003AE0A2 /* CYRToken.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A4124A81463003AE0A2 /* CYRToken.m */; };
-		E6E18AA824A81464003AE0A2 /* CYRTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A4224A81463003AE0A2 /* CYRTextStorage.m */; };
-		E6E18AA924A81464003AE0A2 /* CYRTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A4324A81463003AE0A2 /* CYRTextView.m */; };
-		E6E18AAA24A81464003AE0A2 /* HRColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A4424A81463003AE0A2 /* HRColorUtil.m */; };
-		E6E18AAB24A81464003AE0A2 /* HRColorCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A4524A81463003AE0A2 /* HRColorCursor.m */; };
-		E6E18AAC24A81464003AE0A2 /* ZSSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E18A4E24A81463003AE0A2 /* ZSSTextView.m */; };
-		E6E18AAD24A81464003AE0A2 /* jQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = E6E18A4F24A81463003AE0A2 /* jQuery.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -255,8 +155,6 @@
 		E6E189CF24A6E26D003AE0A2 /* FolderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FolderViewController.m; sourceTree = "<group>"; };
 		E6E189D124A71A0A003AE0A2 /* ZDWPhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDWPhotoView.h; sourceTree = "<group>"; };
 		E6E189D224A71A0A003AE0A2 /* ZDWPhotoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDWPhotoView.m; sourceTree = "<group>"; };
-		E6E189D424A72776003AE0A2 /* TextEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextEditorViewController.h; sourceTree = "<group>"; };
-		E6E189D524A72776003AE0A2 /* TextEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextEditorViewController.m; sourceTree = "<group>"; };
 		E6E189D924A81313003AE0A2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E6E189DB24A8131C003AE0A2 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		E6E189E124A81462003AE0A2 /* ZSSRichTextEditor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ZSSRichTextEditor.js; sourceTree = "<group>"; };
@@ -478,8 +376,6 @@
 				E6DDD90B24A0AD9A00E1B5C6 /* NewFolderViewController.m */,
 				E6E189CE24A6E26D003AE0A2 /* FolderViewController.h */,
 				E6E189CF24A6E26D003AE0A2 /* FolderViewController.m */,
-				E6E189D424A72776003AE0A2 /* TextEditorViewController.h */,
-				E6E189D524A72776003AE0A2 /* TextEditorViewController.m */,
 				E68C178F24AADE3F008E7232 /* AddPhotoTextViewController.h */,
 				E68C179024AADE3F008E7232 /* AddPhotoTextViewController.m */,
 				E68C179324ADCE66008E7232 /* PhotoDetailViewController.h */,
@@ -776,95 +672,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6E18A9424A81463003AE0A2 /* ZSSparagraph@2x.png in Resources */,
-				E6E18A8B24A81463003AE0A2 /* ZSScenterjustify@2x.png in Resources */,
-				E6E18A9624A81464003AE0A2 /* ZSSquicklink.png in Resources */,
-				E6E18A6024A81463003AE0A2 /* ZSSrightjustify.png in Resources */,
-				E6E18A8724A81463003AE0A2 /* ZSSlink.png in Resources */,
-				E6E18A5324A81463003AE0A2 /* ZSSh2@2x.png in Resources */,
-				E6E18A6F24A81463003AE0A2 /* ZSSh6@2x.png in Resources */,
-				E6E18A5D24A81463003AE0A2 /* ZSSsubscript.png in Resources */,
-				E68C182224BAC4E1008E7232 /* basic_magnifier.svg in Resources */,
-				E6E18A5124A81463003AE0A2 /* ZSStable@2x.png in Resources */,
-				E68C182724BADD4C008E7232 /* basic_keyboard.svg in Resources */,
-				E6E18A6424A81463003AE0A2 /* ZSShorizontalrule.png in Resources */,
-				E6E18A5224A81463003AE0A2 /* ZSSoutdent@2x.png in Resources */,
-				E6E18A7D24A81463003AE0A2 /* ZSSunderline@2x.png in Resources */,
-				E6E18A8324A81463003AE0A2 /* ZSSbgcolor@2x.png in Resources */,
-				E6E18A5624A81463003AE0A2 /* ZSShorizontalrule@2x.png in Resources */,
-				E6E18A9924A81464003AE0A2 /* ZSSfonts@2x.png in Resources */,
-				E6E18A5424A81463003AE0A2 /* ZSSsubscript@2x.png in Resources */,
-				E6E18A8824A81463003AE0A2 /* ZSSh1@2x.png in Resources */,
-				E6E18A6924A81463003AE0A2 /* ZSSh4@2x.png in Resources */,
-				E6E18A5824A81463003AE0A2 /* ZSSorderedlist@2x.png in Resources */,
-				E6E18AA024A81464003AE0A2 /* JSBeautifier.js in Resources */,
-				E6E18A7624A81463003AE0A2 /* ZSSkeyboard.png in Resources */,
-				E6E18A5A24A81463003AE0A2 /* ZSSitalic.png in Resources */,
-				E6E18A8E24A81463003AE0A2 /* ZSSh5@2x.png in Resources */,
-				E6E18A8424A81463003AE0A2 /* ZSSbold.png in Resources */,
-				E6E18A8D24A81463003AE0A2 /* ZSSorderedlist.png in Resources */,
-				E6E18A9C24A81464003AE0A2 /* ZSSimage.png in Resources */,
-				E6E18A6A24A81463003AE0A2 /* ZSSunorderedlist.png in Resources */,
-				E6E18A8124A81463003AE0A2 /* ZSSleftjustify.png in Resources */,
-				E67A47F12401ED9500FA357B /* LaunchScreen.storyboard in Resources */,
-				E68C182824BADD4C008E7232 /* basic_folder.svg in Resources */,
-				E6E18A5924A81463003AE0A2 /* ZSSleftjustify@2x.png in Resources */,
-				E6E18A7B24A81463003AE0A2 /* ZSSimageDevice.png in Resources */,
-				E6E18A7824A81463003AE0A2 /* ZSSh2.png in Resources */,
-				E6E18A7924A81463003AE0A2 /* ZSSh3.png in Resources */,
-				E6E18A7224A81463003AE0A2 /* ZSSstrikethrough@2x.png in Resources */,
-				E6E18A6824A81463003AE0A2 /* ZSSh6.png in Resources */,
-				E6E18A5E24A81463003AE0A2 /* ZSSpicker.png in Resources */,
-				E6E18A6E24A81463003AE0A2 /* ZSSclearstyle.png in Resources */,
-				E6E18A9A24A81464003AE0A2 /* ZSSforcejustify.png in Resources */,
-				E6E18A7424A81463003AE0A2 /* ZSSimage@2x.png in Resources */,
-				E6E18A9524A81463003AE0A2 /* ZSSimageDevice@2x.png in Resources */,
-				E6E18A8C24A81463003AE0A2 /* ZSSpicker@2x.png in Resources */,
-				E6E18AAD24A81464003AE0A2 /* jQuery.js in Resources */,
-				E6E18A9024A81463003AE0A2 /* ZSStextcolor@2x.png in Resources */,
-				E6E18A8224A81463003AE0A2 /* ZSSindent.png in Resources */,
-				E6E18A5724A81463003AE0A2 /* ZSSviewsource.png in Resources */,
-				E6E18A8F24A81463003AE0A2 /* ZSSquicklink@2x.png in Resources */,
 				E66E89252446FC1500F1DABC /* test.png in Resources */,
-				E6E18A6224A81463003AE0A2 /* ZSScenterjustify.png in Resources */,
-				E6E18A5524A81463003AE0A2 /* ZSSsuperscript@2x.png in Resources */,
-				E6E18A6324A81463003AE0A2 /* ZSSparagraph.png in Resources */,
-				E6E18A9324A81463003AE0A2 /* ZSSbold@2x.png in Resources */,
 				E67A47EE2401ED9500FA357B /* Assets.xcassets in Resources */,
-				E6E18A8924A81463003AE0A2 /* ZSSforcejustify@2x.png in Resources */,
-				E6E18A7324A81463003AE0A2 /* ZSSclearstyle@2x.png in Resources */,
-				E6E18A7C24A81463003AE0A2 /* ZSSundo@2x.png in Resources */,
-				E6E18A9124A81463003AE0A2 /* ZSSrightjustify@2x.png in Resources */,
-				E6E18A7E24A81463003AE0A2 /* ZSSlink@2x.png in Resources */,
-				E6E18A7124A81463003AE0A2 /* ZSSh1.png in Resources */,
-				E6E18A7A24A81463003AE0A2 /* ZSSindent@2x.png in Resources */,
-				E6E18A6D24A81463003AE0A2 /* ZSSbgcolor.png in Resources */,
-				E6E18A8024A81463003AE0A2 /* ZSSfonts.png in Resources */,
-				E6E18A7524A81463003AE0A2 /* ZSSkeyboard@2x.png in Resources */,
-				E6E18A7024A81463003AE0A2 /* ZSSinsertkeyword.png in Resources */,
-				E6E18A6124A81463003AE0A2 /* ZSSundo.png in Resources */,
-				E6E18A9D24A81464003AE0A2 /* editor.html in Resources */,
-				E6E18A8524A81463003AE0A2 /* ZSSinsertkeyword@2x.png in Resources */,
-				E6E18A6524A81463003AE0A2 /* ZSSunlink.png in Resources */,
-				E6E18A5B24A81463003AE0A2 /* ZSSunderline.png in Resources */,
-				E6E18A6C24A81463003AE0A2 /* ZSSh5.png in Resources */,
-				E6E18A6724A81463003AE0A2 /* ZSSunorderedlist@2x.png in Resources */,
-				E68C182624BADD4C008E7232 /* basic_photo.svg in Resources */,
-				E6E18A9724A81464003AE0A2 /* ZSStable.png in Resources */,
-				E6E18A7F24A81463003AE0A2 /* ZSSh3@2x.png in Resources */,
-				E6E18A5024A81463003AE0A2 /* ZSSRichTextEditor.js in Resources */,
-				E6E18A6B24A81463003AE0A2 /* ZSSh4.png in Resources */,
-				E6E18A9B24A81464003AE0A2 /* ZSSredo@2x.png in Resources */,
-				E6E18A7724A81463003AE0A2 /* ZSSredo.png in Resources */,
-				E6E18A5F24A81463003AE0A2 /* ZSSoutdent.png in Resources */,
-				E6E18A8624A81463003AE0A2 /* ZSSitalic@2x.png in Resources */,
-				E6E18A9824A81464003AE0A2 /* ZSSsuperscript.png in Resources */,
-				E6E18A9224A81463003AE0A2 /* ZSSstrikethrough.png in Resources */,
 				E67A47FC240200E100FA357B /* website in Resources */,
 				E67A47EC2401ED9100FA357B /* Main.storyboard in Resources */,
-				E6E18A8A24A81463003AE0A2 /* ZSSviewsource@2x.png in Resources */,
-				E6E18A6624A81463003AE0A2 /* ZSSunlink@2x.png in Resources */,
-				E6E18A5C24A81463003AE0A2 /* ZSStextcolor.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -925,13 +736,9 @@
 				E6336867246A9DDE00FC0BEC /* SearchViewController.m in Sources */,
 				E68586F0248CD2F100712095 /* AudioDetailCell.m in Sources */,
 				E67A47E32401ED9100FA357B /* AppDelegate.m in Sources */,
-				E6E18AA424A81464003AE0A2 /* HRColorPickerView.m in Sources */,
-				E6E18AA824A81464003AE0A2 /* CYRTextStorage.m in Sources */,
 				E6DDD91524A2C47000E1B5C6 /* TextRecordCell.m in Sources */,
-				E6E18AAC24A81464003AE0A2 /* ZSSTextView.m in Sources */,
 				E67A47F42401ED9500FA357B /* main.m in Sources */,
 				E6E189D324A71A0A003AE0A2 /* ZDWPhotoView.m in Sources */,
-				E6E18AA324A81464003AE0A2 /* HRColorPickerViewController.m in Sources */,
 				E68586F32490DFB700712095 /* TextDetailCell.m in Sources */,
 				E6816938248701D9005E2A81 /* AudioRecordCell.m in Sources */,
 				E65609D424336BA10089B3C6 /* DbKeyValue.m in Sources */,
@@ -942,33 +749,22 @@
 				E68586E6248C4D8700712095 /* AudioActionViewCell.swift in Sources */,
 				E6336870247274C500FC0BEC /* DbKeyValueGroup.m in Sources */,
 				E68C179524ADCE66008E7232 /* PhotoDetailViewController.m in Sources */,
-				E6E189D624A72776003AE0A2 /* TextEditorViewController.m in Sources */,
 				E68586E3248C4D5800712095 /* AudioOperateViewCell.m in Sources */,
-				E6E18AAB24A81464003AE0A2 /* HRColorCursor.m in Sources */,
-				E6E18AA624A81464003AE0A2 /* CYRLayoutManager.m in Sources */,
-				E6E18AA124A81464003AE0A2 /* ZSSFontsViewController.m in Sources */,
 				E6DDD90924A097B300E1B5C6 /* FolderRecordCell.m in Sources */,
 				E6DDD90624989AF600E1B5C6 /* SubRecord.m in Sources */,
-				E6E18A9F24A81464003AE0A2 /* ZSSBarButtonItem.m in Sources */,
-				E6E18A9E24A81464003AE0A2 /* ZSSRichTextEditor.m in Sources */,
 				E67A48062403567500FA357B /* DataSource.m in Sources */,
 				E66E892D244DAE4F00F1DABC /* ZDWUtility.m in Sources */,
 				E67A480924035C6800FA357B /* BaseRecordCell.m in Sources */,
 				E6DDD90C24A0AD9A00E1B5C6 /* NewFolderViewController.m in Sources */,
 				E68C179824ADD5C0008E7232 /* CreateFolderViewController.m in Sources */,
 				E68586EA248CCACE00712095 /* AudioOperateView.m in Sources */,
-				E6E18AA924A81464003AE0A2 /* CYRTextView.m in Sources */,
-				E6E18AA524A81464003AE0A2 /* HRBrightnessCursor.m in Sources */,
-				E6E18AA724A81464003AE0A2 /* CYRToken.m in Sources */,
 				E6816935248701BB005E2A81 /* VideoRecordCell.m in Sources */,
 				E67A47E62401ED9100FA357B /* SceneDelegate.m in Sources */,
-				E6E18AA224A81464003AE0A2 /* HRCgUtil.m in Sources */,
 				E68C179124AADE3F008E7232 /* AddPhotoTextViewController.m in Sources */,
 				E66E8930244DB96700F1DABC /* ImageRecordCell.m in Sources */,
 				E681692E24863F45005E2A81 /* RecordAudioController.m in Sources */,
 				E65609D524336BA10089B3C6 /* DataBase.m in Sources */,
 				E6DDD8FF249758B800E1B5C6 /* UpdateViewController.m in Sources */,
-				E6E18AAA24A81464003AE0A2 /* HRColorUtil.m in Sources */,
 				E633686D246EC26100FC0BEC /* InputViewController.m in Sources */,
 				E633686A246E65C000FC0BEC /* BaseListViewController.m in Sources */,
 				E6816926248065D7005E2A81 /* NewFunctionView.m in Sources */,

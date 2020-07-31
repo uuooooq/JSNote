@@ -14,7 +14,6 @@
 #import <MJRefresh/MJRefresh.h>
 #import "ItemDetailViewController.h"
 #import "ZDWPhotoView.h"
-#import "TextEditorViewController.h"
 
 #import "AddPhotoTextViewController.h"
 #import "PhotoDetailViewController.h"
