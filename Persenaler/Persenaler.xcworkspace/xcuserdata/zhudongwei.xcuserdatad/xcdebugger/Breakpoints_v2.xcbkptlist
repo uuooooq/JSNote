@@ -62,8 +62,8 @@
             filePath = "Persenaler/BaseListViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "328"
-            endingLineNumber = "328"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
             landmarkName = "-refetchData"
             landmarkType = "7">
          </BreakpointContent>

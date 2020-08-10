@@ -25,7 +25,7 @@ DEPENDENCIES:
   - TZImagePickerController
 
 SPEC REPOS:
-  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - GCDWebServer
     - IQKeyboardManager
     - MJRefresh
@@ -42,6 +42,6 @@ SPEC CHECKSUMS:
   STPopup: a9045557bc48a0df51fbb7bf0544447c5fe84d34
   TZImagePickerController: 99f03b64145a8c92c55b9b1b931410967d9be4cb
 
-PODFILE CHECKSUM: 34c4cd874ff0a6e2053d8dc28a8aa926a5c26b37
+PODFILE CHECKSUM: e8ef0ed1b41e892378ff12dc0c4517756206e574
 
 COCOAPODS: 1.9.3
