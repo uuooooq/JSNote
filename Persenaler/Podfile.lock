@@ -25,13 +25,12 @@ DEPENDENCIES:
   - TZImagePickerController
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
+    - FMDB
     - GCDWebServer
     - IQKeyboardManager
     - MJRefresh
     - STPopup
-  trunk:
-    - FMDB
     - TZImagePickerController
 
 SPEC CHECKSUMS:
