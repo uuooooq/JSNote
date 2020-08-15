@@ -11,6 +11,7 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import fi.iki.elonen.NanoHTTPD;
@@ -44,6 +45,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE_TAKE_PHOTO_RESULT = 1001;
     private NoteWebServer server;
     //private static Context mContext = null;
 
@@ -170,8 +172,27 @@ public class MainActivity extends AppCompatActivity {
 
         Log.w("view init", "click: add image action fired");
         Intent intent = new Intent(); //调用照相机
+//        // 给拍摄的照片指定存储位置
+//        String f = System.currentTimeMillis()+".jpg"; // 指定名字
+//        Uri fileUri = Uri.fromFile(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), f)); // 指定图片保存的uri，此处将图片保存在系统相册中
+//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); //指定图片存放位置，指定后，在onActivityResult里得到的Data将为null
+
         intent.setAction("android.media.action.STILL_IMAGE_CAMERA");
-        startActivity(intent);
+        //startActivity(intent);
+        startActivityForResult(intent,REQUEST_CODE_TAKE_PHOTO_RESULT);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case REQUEST_CODE_TAKE_PHOTO_RESULT:
+                // 此处写“如何获取图片”...
+                Log.w("view init", "click: add image action fired---");
+                break;
+
+        }
+    }
+
+
 
 }
