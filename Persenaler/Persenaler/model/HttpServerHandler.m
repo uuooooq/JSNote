@@ -26,9 +26,6 @@
 -(void)startServer{
     self.dataSource = [DataSource new];
     [self.dataSource loadRecord];
-    //__weak typeof(self) tmpSelf = self;
-    
-    // _webServer = [[GCDWebServer alloc] init];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -40,9 +37,6 @@
     [self startFetchListApi];
     [self startAddItemApi];
     [self startSearchApi];
-    //[self startResServices];
-    [self startDirServices];
-    //[self startStaticServices];
     [self startTestServices];
     
     // 启动服务器在8080端口
@@ -53,16 +47,6 @@
     
 }
 
--(void)startDirServices{
-    
-//    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,  NSUserDomainMask, YES);
-//
-//    NSString *docPath = [path objectAtIndex:0];
-//
-//    //NSString *rootDir = [[NSBundle mainBundle] pathForResource:@"website" ofType:nil];
-//    [_webServer addGETHandlerForBasePath:@"/Files" directoryPath:docPath indexFilename:nil cacheAge:3600 allowRangeRequests:YES];
-//
-}
 
 -(void)startIndexServices{
         
@@ -112,11 +96,6 @@
 }
 
 
-// 获取总共条目数
--(void)startFetchListCout{
-    
-}
-
 // 获取指定条目数据
 -(void)startFetchListApi{
     __weak typeof(self) weakSelf = self;
@@ -138,12 +117,6 @@
     }];
 }
 
-// 添加上传文件接口
-
--(void)startAddFilepi{
-    //__weak typeof(self) weakSelf = self;
-    
-}
 
 // 添加数据接口
 -(void)startAddItemApi{

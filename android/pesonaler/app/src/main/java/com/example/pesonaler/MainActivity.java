@@ -2,6 +2,7 @@ package com.example.pesonaler;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
@@ -182,17 +183,19 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent,REQUEST_CODE_TAKE_PHOTO_RESULT);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        switch (requestCode) {
-            case REQUEST_CODE_TAKE_PHOTO_RESULT:
-                // 此处写“如何获取图片”...
-                Log.w("view init", "click: add image action fired---");
-                break;
-
-        }
-    }
-
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        switch (requestCode) {
+//            case REQUEST_CODE_TAKE_PHOTO_RESULT:
+//                // 此处写“如何获取图片”...
+//                Log.w("view init", "click: add image action fired---");
+//                break;
+//
+//        }
+//    }
+//protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//    Bitmap bp = (Bitmap) data.getExtras().get("data");
+//}
 
 
 }

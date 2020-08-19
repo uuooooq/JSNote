@@ -16,6 +16,7 @@
 		E63368732472839E00FC0BEC /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E63368722472839E00FC0BEC /* ItemDetailViewController.m */; };
 		E65609D424336BA10089B3C6 /* DbKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E65609D024336BA10089B3C6 /* DbKeyValue.m */; };
 		E65609D524336BA10089B3C6 /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E65609D124336BA10089B3C6 /* DataBase.m */; };
+		E65ABA6924ED3FC600F2AB7A /* HttpServer.m in Sources */ = {isa = PBXBuildFile; fileRef = E65ABA6824ED3FC600F2AB7A /* HttpServer.m */; };
 		E66E89252446FC1500F1DABC /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = E66E89242446FC1500F1DABC /* test.png */; };
 		E66E892D244DAE4F00F1DABC /* ZDWUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E66E892C244DAE4F00F1DABC /* ZDWUtility.m */; };
 		E66E8930244DB96700F1DABC /* ImageRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E66E892F244DB96700F1DABC /* ImageRecordCell.m */; };
@@ -79,6 +80,8 @@
 		E65609D124336BA10089B3C6 /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
 		E65609D224336BA10089B3C6 /* DbKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DbKeyValue.h; sourceTree = "<group>"; };
 		E65609D324336BA10089B3C6 /* DataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBase.h; sourceTree = "<group>"; };
+		E65ABA6724ED3FC600F2AB7A /* HttpServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpServer.h; sourceTree = "<group>"; };
+		E65ABA6824ED3FC600F2AB7A /* HttpServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpServer.m; sourceTree = "<group>"; };
 		E66E89242446FC1500F1DABC /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		E66E892B244DAE4F00F1DABC /* ZDWUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDWUtility.h; sourceTree = "<group>"; };
 		E66E892C244DAE4F00F1DABC /* ZDWUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDWUtility.m; sourceTree = "<group>"; };
@@ -408,6 +411,8 @@
 				E6DDD9022498880600E1B5C6 /* Record.m */,
 				E6DDD90424989AF600E1B5C6 /* SubRecord.h */,
 				E6DDD90524989AF600E1B5C6 /* SubRecord.m */,
+				E65ABA6724ED3FC600F2AB7A /* HttpServer.h */,
+				E65ABA6824ED3FC600F2AB7A /* HttpServer.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -737,6 +742,7 @@
 				E63368732472839E00FC0BEC /* ItemDetailViewController.m in Sources */,
 				E6DDD9032498880600E1B5C6 /* Record.m in Sources */,
 				E67A47E92401ED9100FA357B /* ViewController.m in Sources */,
+				E65ABA6924ED3FC600F2AB7A /* HttpServer.m in Sources */,
 				E68C181324B93645008E7232 /* persenaler.m in Sources */,
 				E6336867246A9DDE00FC0BEC /* SearchViewController.m in Sources */,
 				E68586F0248CD2F100712095 /* AudioDetailCell.m in Sources */,

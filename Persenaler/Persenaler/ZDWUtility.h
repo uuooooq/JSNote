@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(void)deleteImageFile:(DbKeyValue*)keyValue;
 
++(NSString*)getDefaultDocument;
+
 @end
 
 NS_ASSUME_NONNULL_END

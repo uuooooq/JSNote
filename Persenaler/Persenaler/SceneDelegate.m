@@ -24,7 +24,6 @@
     self.window.windowScene = (UIWindowScene*)scene;
     vc = [ViewController new];
     vc.title = @"司马记事";
-    vc.serverHeadler = httpServerHandler;
     NSLog(@"%@",[httpServerHandler getAddr]);
     vc.title = [httpServerHandler getAddr];
     [self setDir];
