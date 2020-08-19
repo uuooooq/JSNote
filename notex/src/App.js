@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Affix, Button, Table } from 'antd';
+import { Affix, Button, Table, List,Typography } from 'antd';
 import { Layout } from 'antd';
 import TextareaAutosize from 'react-textarea-autosize';
 import 'antd/dist/antd.css';
@@ -14,7 +14,7 @@ const { Content } = Layout;
 
 
 //const httpPre = 'http://'+window.location.host 
-const httpPre = 'http://192.168.1.9:8080'
+const httpPre = 'http://192.168.4.100:8080'
 const imgPre = httpPre + '/file?imageName='
 const uploadUrl = httpPre + '/upload'
 
@@ -43,7 +43,7 @@ export default class App extends React.Component {
   };
 
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.fileInput = React.createRef();
   }
@@ -179,9 +179,9 @@ export default class App extends React.Component {
       });
   }
 
-  showDetailView(value){
+  showDetailView(value) {
 
-    alert('show detail view'+value.value);
+    alert('show detail view' + value.value);
 
   }
 
@@ -190,17 +190,17 @@ export default class App extends React.Component {
     if (value.type == '2' || value.type.inputValue == 2) {
       return (
         <div>
-          <Button onClick={this.showDetailView.bind(this,value)}>更多</Button>
+          <Button onClick={this.showDetailView.bind(this, value)}>更多</Button>
           <img height={360} src={imgPre + value.value} />
         </div>
       )
     }
     else {
-      return ( 
+      return (
         <div>
-          <Button onClick={this.showDetailView.bind(this,value)}>更多</Button>
+          <Button onClick={this.showDetailView.bind(this, value)}>更多</Button>
           <pre>{value.value}</pre>
-          
+
 
         </div>
       );
@@ -224,14 +224,14 @@ export default class App extends React.Component {
       body: form,
 
     }).then(function (response) {
-        alert('上传成功')
-        return response.json();
-        
-      }).then((e) => {
+      alert('上传成功')
+      return response.json();
 
-        console.log(e)
-        alert('上传失败'+e)
-      })
+    }).then((e) => {
+
+      console.log(e)
+      alert('上传失败' + e)
+    })
   }
 
 
@@ -240,20 +240,20 @@ export default class App extends React.Component {
 
   render() {
 
-    const column= [
+    const column = [
       {
-        title:'',
-        dataIndex:'value',
-        key:'value',
-      render: text => <a>{text}</a>
+        title: '',
+        dataIndex: 'value',
+        key: 'value',
+        render: text => <a>{text}</a>
       }
     ];
 
     return (
 
 
-            <div style={{ display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'white' }}>
-                <Table 
+      <div style={{ display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'white' }}>
+        {/* <Table 
                 columns={column} 
                 dataSource={this.state.myData} 
                 pagination={{pageSize:20}}
@@ -264,8 +264,16 @@ export default class App extends React.Component {
                     }
                   }
                 } }
-                ></Table>
-            </div>
+                ></Table> */}
+        <List
+          dataSource={this.state.myData}
+          renderItem={item => (
+            <List.Item>
+               {item.value}
+            </List.Item>
+          )}
+        />
+      </div>
     );
   }
 }
