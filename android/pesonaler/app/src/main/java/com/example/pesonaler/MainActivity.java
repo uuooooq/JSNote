@@ -3,8 +3,10 @@ package com.example.pesonaler;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -17,6 +19,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import fi.iki.elonen.NanoHTTPD;
 
+import android.os.Handler;
+import android.os.Message;
+import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,17 +35,22 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.FileNameMap;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
@@ -53,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_ALBUM = 100;//打开相册
     private static final int REQUEST_CODE_CAMERA = 101;//打开相机
 
+    public static Handler handler ;
+    private static String srcPath;
+    private String fileNmae;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,16 +75,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
-        //FileServer fileServer = new FileServer();
 
         server = new NoteWebServer();
         try {
@@ -171,31 +176,21 @@ public class MainActivity extends AppCompatActivity {
     }
     public void addImageClick(View v){
 
-        Log.w("view init", "click: add image action fired");
-        Intent intent = new Intent(); //调用照相机
-//        // 给拍摄的照片指定存储位置
-//        String f = System.currentTimeMillis()+".jpg"; // 指定名字
-//        Uri fileUri = Uri.fromFile(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), f)); // 指定图片保存的uri，此处将图片保存在系统相册中
-//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); //指定图片存放位置，指定后，在onActivityResult里得到的Data将为null
 
-        intent.setAction("android.media.action.STILL_IMAGE_CAMERA");
-        //startActivity(intent);
-        startActivityForResult(intent,REQUEST_CODE_TAKE_PHOTO_RESULT);
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        startActivityForResult(intent,Activity.DEFAULT_KEYS_DIALER);
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        switch (requestCode) {
-//            case REQUEST_CODE_TAKE_PHOTO_RESULT:
-//                // 此处写“如何获取图片”...
-//                Log.w("view init", "click: add image action fired---");
-//                break;
-//
-//        }
-//    }
-//protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//    Bitmap bp = (Bitmap) data.getExtras().get("data");
-//}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            //mImageView.setImageBitmap(imageBitmap);
+        }
+    }
+
 
 
 }
