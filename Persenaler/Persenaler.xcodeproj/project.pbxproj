@@ -140,10 +140,6 @@
 		E68C179724ADD5C0008E7232 /* CreateFolderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateFolderViewController.m; sourceTree = "<group>"; };
 		E68C181124B93645008E7232 /* persenaler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = persenaler.h; sourceTree = "<group>"; };
 		E68C181224B93645008E7232 /* persenaler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = persenaler.m; sourceTree = "<group>"; };
-		E68C182124BAC4E1008E7232 /* basic_magnifier.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = basic_magnifier.svg; path = ../../../../../../basic_magnifier.svg; sourceTree = "<group>"; };
-		E68C182324BADD4C008E7232 /* basic_photo.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = basic_photo.svg; path = ../../../../../../basic_photo.svg; sourceTree = "<group>"; };
-		E68C182424BADD4C008E7232 /* basic_keyboard.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = basic_keyboard.svg; path = ../../../../../../basic_keyboard.svg; sourceTree = "<group>"; };
-		E68C182524BADD4C008E7232 /* basic_folder.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = basic_folder.svg; path = ../../../../../../basic_folder.svg; sourceTree = "<group>"; };
 		E6DDD8FD249758B800E1B5C6 /* UpdateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
 		E6DDD8FE249758B800E1B5C6 /* UpdateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
 		E6DDD9002497659900E1B5C6 /* 数据表升级.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "数据表升级.md"; sourceTree = "<group>"; };
@@ -341,7 +337,6 @@
 		E67A47E02401ED9100FA357B /* Persenaler */ = {
 			isa = PBXGroup;
 			children = (
-				E68586E7248C8A6C00712095 /* res */,
 				E681693924885A86005E2A81 /* component */,
 				E66E89212446E6D800F1DABC /* files */,
 				E67A480A24035C7200FA357B /* views */,
@@ -468,25 +463,6 @@
 				E681693F24885AC2005E2A81 /* Waver.m */,
 			);
 			path = wave;
-			sourceTree = "<group>";
-		};
-		E68586E7248C8A6C00712095 /* res */ = {
-			isa = PBXGroup;
-			children = (
-				E68C181E24BAC2D8008E7232 /* svg */,
-			);
-			path = res;
-			sourceTree = "<group>";
-		};
-		E68C181E24BAC2D8008E7232 /* svg */ = {
-			isa = PBXGroup;
-			children = (
-				E68C182524BADD4C008E7232 /* basic_folder.svg */,
-				E68C182424BADD4C008E7232 /* basic_keyboard.svg */,
-				E68C182324BADD4C008E7232 /* basic_photo.svg */,
-				E68C182124BAC4E1008E7232 /* basic_magnifier.svg */,
-			);
-			path = svg;
 			sourceTree = "<group>";
 		};
 		E6E189E024A81462003AE0A2 /* Source */ = {
