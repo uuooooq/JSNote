@@ -1,14 +1,11 @@
 import React from 'react';
 import './App.css';
-import { Affix, Button, Table, List,Typography } from 'antd';
-import { Layout } from 'antd';
+import { Affix, Button, Table, List, Typography } from 'antd';
+import { Layout, Avatar } from 'antd';
 import TextareaAutosize from 'react-textarea-autosize';
 import 'antd/dist/antd.css';
-//import {FolderOutlined} from '@ant-design/icons'
+import { FolderOutlined } from '@ant-design/icons';
 
-
-
-const { Content } = Layout;
 //import { Upload, message, Button } from 'antd';
 //import { UploadOutlined } from '@ant-design/icons';
 
@@ -37,26 +34,33 @@ if (storage) {
 export default class App extends React.Component {
 
   state = {
-    value: 1,
-    myData: [],
+    value: "**Hello world!!!**",
+    selectedTab: "write" | "preview">("write"),
     inputValue: '',
   };
 
 
-  constructor(props) {
-    super();
-    this.fileInput = React.createRef();
-  }
+
+  // componentDidMount() {
+  //   this.focusEditor();
+  // }
+
+
+  // constructor(props) {
+  //   super();
+  //   this.fileInput = React.createRef();
+  //   //this.handleValueChange = this.handleValueChange.bind();
+  // }
 
 
   componentWillMount() {
     this.fetchData()
-    
+
 
   }
 
   componentWillUnmount() {
-  
+
   }
 
 
@@ -76,34 +80,53 @@ export default class App extends React.Component {
       });
 
   }
-  
+
+  handleChange(e) {
+    // console.log(e.target.value)
+    this.setState({
+      inputValue: e.target.value
+    })
+  }
+
   render() {
 
-    const column = [
-      {
-        title: '',
-        dataIndex: 'value',
-        key: 'value',
-        render: text => <a>{text}</a>
-      }
-    ];
 
     return (
 
 
-      <div style={{ display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'white' }}>
- 
-        <List
-          dataSource={this.state.myData}
-          renderItem={item => (
-            <List.Item>
-               {item.value}
-            </List.Item>
-          )}
-        />
+      <div style={{ display: 'flex', flex: '1', flexDirection: 'row', backgroundColor: 'white', margin: 20 }}>
+
+        <div style={{ flex: 1 }}>
+          <List
+            dataSource={this.state.myData}
+            renderItem={item => (
+              <List.Item>
+                <List.Item.Meta
+                  title={<a href="https://ant.design">{item.value}</a>}
+                  description={item.createTime}
+                />
+
+              </List.Item>
+            )}
+          />
+        </div>
+
+        <div style={{ flex: 1 }}>
+
+        </div>
+
+
       </div>
     );
   }
 }
 
 //<pre>{item.value}</pre>
+
+const styles = {
+  editor: {
+    border: '1px solid gray',
+    minHeight: '6em',
+    height:'100%',
+  }
+};
