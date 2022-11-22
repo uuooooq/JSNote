@@ -15,7 +15,7 @@
     "react-dom": "^16.13.1",
     "react-infinite-scroller": "^1.2.4",
     "react-list": "^0.8.13",
-    "react-scripts": "3.4.0",
+    "react-scripts": "5.0.1",
     "react-textarea-autosize": "^7.1.2"
   },
   "scripts": {
